@@ -1,0 +1,48 @@
+---
+// /contact/ (T8): все способы связи + куда подписаться. Данные только из site.ts.
+import Page from '../../layouts/Page.astro';
+import { site } from '../../data/site';
+---
+
+<Page
+  title="Контакты · Валерий Карасаев"
+  description="Как связаться с Валерием Карасаевым: Telegram, почта, телефон. Запись на бесплатную 30-минутную встречу. Telegram-канал, B17, Дзен."
+  translation="/en/contact/"
+>
+  <div class="page-head">
+    <div class="kicker">Контакты</div>
+    <h1 class="page-title">Написать мне - это уже шаг</h1>
+    <p class="lead">
+      Самый быстрый способ - Telegram. Отвечаю лично, обычно в течение дня.
+      Можно сразу написать «хочу на бесплатную встречу» - и мы договоримся о времени.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Связь</span></div>
+  <div class="spec">
+    <div class="spec-row"><span class="spec-key">Telegram</span><span class="spec-val"><a href={site.telegram} style="color: var(--gold); text-decoration: none;">{site.telegramHandle}</a></span></div>
+    <div class="spec-row"><span class="spec-key">Почта</span><span class="spec-val"><a href={'mailto:' + site.email} style="color: var(--gold); text-decoration: none;">{site.email}</a></span></div>
+    <div class="spec-row"><span class="spec-key">Телефон</span><span class="spec-val"><a href={site.phoneHref} style="color: var(--gold); text-decoration: none;">{site.phone}</a></span></div>
+    <div class="spec-row"><span class="spec-key">Расписание сессий</span><span class="spec-val">{site.session.schedule}</span></div>
+    <div class="spec-row"><span class="spec-key">Очно</span><span class="spec-val">{site.session.offline}</span></div>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Где меня читать</span></div>
+  <div class="prose">
+    <p>
+      <a href="https://t.me/valera_outloud">Telegram-канал «Валера. Вслух»</a> - размышляю вслух:
+      про злость, тело, желание, стыд, жадность и жизненные радости.
+    </p>
+    <p>
+      <a href="https://www.b17.ru/karasaev/#article">B17</a> - про терапию без ботвы:
+      профессиональные тексты, кейсы, разборы теории и практики.
+    </p>
+    <p>
+      <a href="https://dzen.ru/valera_toptop">Дзен «Топ-топ»</a> - записки человека, который идет:
+      про Camino, дороги, города и внутренние переходы.
+    </p>
+    <p>
+      <a href="https://www.instagram.com/karasaev.psy">Instagram</a> - визуальная часть той же жизни.
+    </p>
+  </div>
+</Page>

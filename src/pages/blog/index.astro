@@ -1,0 +1,56 @@
+---
+// /blog/ (T6): список статей + «Избранное». Пока в блоге болванки (placeholder: true),
+// реальная миграция текстов - отдельной задачей по шорт-листу Валерия.
+import Page from '../../layouts/Page.astro';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const featured = all.filter((p) => p.data.featured);
+const fmt = (d: Date) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Page
+  title="Блог · Валерий Карасаев"
+  description="Тексты психолога и гештальт-терапевта: выгорание, кризисы и переходы, терапия без ботвы, дорога и живость. Без советов и мотивационных концовок."
+  wide={true}
+  hideCta={true}
+  translation="/en/articles/"
+>
+  <div class="page-head">
+    <div class="kicker">Блог</div>
+    <h1 class="page-title">Тексты</h1>
+    <p class="lead">
+      Про кризисы, переходы, выгорание и живость. Без советов, чек-листов и аккуратной мудрости
+      в финале. Больше текстов - в <a href="https://t.me/valera_outloud" style="color: var(--gold);">телеграм-канале</a>.
+    </p>
+  </div>
+
+  {featured.length > 0 && (
+    <>
+      <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Избранное</span></div>
+      <div class="grid-3">
+        {featured.map((p) => (
+          <a class="post-card" href={`/blog/${p.id.replace(/^ru\//, '')}/`}>
+            <div class="post-date">{fmt(p.data.date)}</div>
+            <div class="post-title">{p.data.title}</div>
+            <div class="post-desc">{p.data.description.replace(' Болванка: заменить на реальный текст Валерия.', '')}</div>
+            {p.data.tags.length > 0 && <div class="post-tags">{p.data.tags.map((t) => '#' + t).join('  ')}</div>}
+          </a>
+        ))}
+      </div>
+    </>
+  )}
+
+  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Все тексты</span></div>
+  <div class="grid-2">
+    {all.map((p) => (
+      <a class="post-card" href={`/blog/${p.id.replace(/^ru\//, '')}/`}>
+        <div class="post-date">{fmt(p.data.date)}</div>
+        <div class="post-title">{p.data.title}</div>
+        <div class="post-desc">{p.data.description.replace(' Болванка: заменить на реальный текст Валерия.', '')}</div>
+        {p.data.tags.length > 0 && <div class="post-tags">{p.data.tags.map((t) => '#' + t).join('  ')}</div>}
+      </a>
+    ))}
+  </div>
+</Page>

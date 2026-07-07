@@ -1,0 +1,38 @@
+---
+// /en/articles/ (Ф2, D6: «articles», не «blog»): список EN-текстов.
+import Page from '../../../layouts/Page.astro';
+import { getCollection } from 'astro:content';
+
+const all = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'en'))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const fmt = (d: Date) => d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Page
+  title="Articles · Valeriy Karasaev"
+  description="Essays in English on burnout, transitions, leadership loneliness and staying alive at work. By a Gestalt therapist and executive coach."
+  lang="en"
+  wide={true}
+  hideCta={true}
+  translation="/blog/"
+>
+  <div class="page-head">
+    <div class="kicker">Articles</div>
+    <h1 class="page-title">Essays in English</h1>
+    <p class="lead">
+      On burnout, transitions and staying human at work. No advice, no checklists,
+      no tidy wisdom at the end. Most of my writing lives in Russian - the English shelf is growing.
+    </p>
+  </div>
+
+  <div class="grid-2">
+    {all.map((p) => (
+      <a class="post-card" href={`/blog/${p.id.replace(/^en\//, '')}/`}>
+        <div class="post-date">{fmt(p.data.date)}</div>
+        <div class="post-title">{p.data.title}</div>
+        <div class="post-desc">{p.data.description.replace(' Placeholder essay: to be replaced or edited by Valeriy.', '')}</div>
+        {p.data.tags.length > 0 && <div class="post-tags">{p.data.tags.map((t) => '#' + t).join('  ')}</div>}
+      </a>
+    ))}
+  </div>
+</Page>

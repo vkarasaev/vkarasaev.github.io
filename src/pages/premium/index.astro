@@ -1,0 +1,57 @@
+---
+// /premium/ (Ф2): скрытая страница - вне меню, вне sitemap (фильтр в astro.config), noindex.
+// Открывается только по прямой ссылке. Состав и цена - из бизнес-требований 7.4. ДРАФТ.
+import Page from '../../layouts/Page.astro';
+import { site } from '../../data/site';
+---
+
+<Page
+  title="Премиум-сопровождение · Валерий Карасаев"
+  description="Три месяца индивидуального сопровождения: терапия и коучинг еженедельно, диагностика, планирование целей, поддержка между сессиями."
+  noindex={true}
+  hideCta={true}
+>
+  <div class="page-head">
+    <div class="kicker">Индивидуальное сопровождение</div>
+    <h1 class="page-title">Премиум: три месяца плотной работы</h1>
+    <p class="lead">
+      Формат для тех, кому нужен не час в неделю, а выделенный человек рядом на период
+      большого перехода: смена карьеры, запуск своего дела, развод, переезд, выход из выгорания.
+    </p>
+  </div>
+
+  <div class="prose">
+    <p>
+      Это гибрид терапии и executive-коучинга. Терапевтическая глубина - чтобы работать с тем,
+      что тормозит изнутри. Коучинговая структура - чтобы двигаться к целям, а не только понимать себя.
+      Я держу обе рамки одновременно и переключаю их осознанно.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Что входит</span></div>
+  <div class="spec">
+    <div class="spec-row"><span class="spec-key">Длительность</span><span class="spec-val">3 месяца</span></div>
+    <div class="spec-row"><span class="spec-key">Сессии</span><span class="spec-val">терапия + коучинг · еженедельно</span></div>
+    <div class="spec-row"><span class="spec-key">Старт</span><span class="spec-val">диагностика и карта целей</span></div>
+    <div class="spec-row"><span class="spec-key">Между сессиями</span><span class="spec-val">поддержка в мессенджере</span></div>
+    <div class="spec-row"><span class="spec-key">Итоги</span><span class="spec-val">регулярные отчеты и сверка курса</span></div>
+    <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">120 000 ₽ / 1 400 € за 3 месяца</span></div>
+  </div>
+
+  <div class="prose">
+    <p>
+      Мест в этом формате мало - обычно 2-3 одновременно, потому что каждый клиент занимает
+      заметную часть моего внимания. Вход - через личный разговор: обсудим задачу и решим,
+      подходит ли формат.
+    </p>
+  </div>
+
+  <div class="cta-final">
+    <div class="cta-title">Обсудить сопровождение</div>
+    <div class="cta-sub">30 минут, без обязательств - разберем задачу и решим, туда ли вам</div>
+    <div class="btn-group" style="margin: 0;">
+      <a href={'https://t.me/vkarasaev?text=' + encodeURIComponent('Привет! Интересует премиум-сопровождение')} class="btn btn-primary">Написать в Telegram</a>
+      <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
+    </div>
+  </div>
+</Page>

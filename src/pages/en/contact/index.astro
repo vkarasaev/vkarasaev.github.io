@@ -1,0 +1,39 @@
+---
+// /en/contact/ (Ф2). Данные только из site.ts.
+import Page from '../../../layouts/Page.astro';
+import { site } from '../../../data/site';
+---
+
+<Page
+  title="Contact · Valeriy Karasaev"
+  description="How to reach Valeriy Karasaev: Telegram, email, phone. Book a free 30-minute intro call. Sessions in English online."
+  lang="en"
+  translation="/contact/"
+>
+  <div class="page-head">
+    <div class="kicker">Contact</div>
+    <h1 class="page-title">Writing to me is already a step</h1>
+    <p class="lead">
+      The fastest way is Telegram. I answer personally, usually within a day. You can simply
+      write «I'd like a free intro call» - and we will find a time.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Reach me</span></div>
+  <div class="spec">
+    <div class="spec-row"><span class="spec-key">Telegram</span><span class="spec-val"><a href={site.telegram} style="color: var(--gold); text-decoration: none;">{site.telegramHandle}</a></span></div>
+    <div class="spec-row"><span class="spec-key">Email</span><span class="spec-val"><a href={'mailto:' + site.email} style="color: var(--gold); text-decoration: none;">{site.email}</a></span></div>
+    <div class="spec-row"><span class="spec-key">Session hours</span><span class="spec-val">Mon-Thu · 9:00-19:00 CET</span></div>
+    <div class="spec-row"><span class="spec-key">Format</span><span class="spec-val">online · English or Russian</span></div>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Where I write</span></div>
+  <div class="prose">
+    <p>
+      Most of my writing is in Russian: a <a href="https://t.me/valera_outloud">Telegram channel</a>,
+      <a href="https://www.b17.ru/karasaev/#article">professional articles on B17</a> and
+      <a href="https://dzen.ru/valera_toptop">road notes about the Camino</a>.
+      English essays are collected in <a href="/en/articles/">Articles</a>.
+    </p>
+  </div>
+</Page>

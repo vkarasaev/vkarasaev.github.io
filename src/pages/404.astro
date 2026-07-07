@@ -1,0 +1,30 @@
+---
+// 404 в стиле сайта: ссылки на главную, терапию, блог, группу, контакты.
+// Разделы, которых еще нет в проде, добавляются в список по мере запуска (T3-T8).
+import Base from '../layouts/Base.astro';
+import '../styles/main.css';
+---
+
+<Base
+  title="Страница не найдена · Валерий Карасаев"
+  description="Такой страницы нет. Но есть главная, терапия, блог и контакты."
+  lang="ru"
+  noindex={true}
+>
+  <div class="page">
+    <div class="hero">
+      <div class="name" style="margin-top: 60px;">404</div>
+      <div class="tagline">Такой страницы нет</div>
+      <div class="divider-gold"></div>
+      <p class="hero-bio">
+        Бывает. Страница переехала или никогда не существовала.<br />
+        Вот куда можно пойти вместо нее:
+      </p>
+    </div>
+    <div class="btn-group">
+      <a href="/" class="btn btn-primary">На главную</a>
+      <a href="/#format" class="btn btn-outline">Формат и стоимость</a>
+      <a href="https://t.me/vkarasaev" class="btn btn-ghost">Написать в Telegram</a>
+    </div>
+  </div>
+</Base>

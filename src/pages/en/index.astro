@@ -1,0 +1,95 @@
+---
+// /en/ (T9, D1): не перевод главной, а адаптация под expat/corporate-аудиторию.
+// Берлин/Европа уместны (решение из 09). Цены в евро (D4). ДРАФТ на проверку.
+import Page from '../../layouts/Page.astro';
+import { site } from '../../data/site';
+---
+
+<Page
+  title="Valeriy Karasaev · Psychologist and Executive Coach · English-speaking therapy"
+  description="Gestalt therapist and executive coach for professionals and expats. Burnout, relocation, identity, career transitions, leadership loneliness. Online sessions in English, 60 €."
+  lang="en"
+  translation="/"
+  hideCta={true}
+>
+  <div class="page-head" style="text-align: center;">
+    <img src="/images/photo/avatar.jpg" alt="Valeriy Karasaev" width="108" height="108" style="border-radius: 50%; border: 2px solid var(--gold); margin-bottom: 18px;" />
+    <div class="kicker">Psychologist · Gestalt Therapist · Executive Coach</div>
+    <h1 class="page-title">Therapy in English, for people who carry a lot</h1>
+    <p class="lead">
+      I work with professionals, leaders and expats navigating burnout, relocation,
+      career transitions and identity questions. In practice since 2014.
+      Before that - 17 years in international business, including 5 years living and working in Germany.
+    </p>
+    <div class="btn-group">
+      <a href={'https://t.me/vkarasaev?text=' + encodeURIComponent('Hi! I would like to book a free 30-minute intro call')} class="btn btn-primary">Free 30-min intro call</a>
+      <a href={'mailto:' + site.email} class="btn btn-outline">Email me</a>
+    </div>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">What brings people to me</span></div>
+  <div class="prose">
+    <p>
+      Burnout that doesn't look like burnout - everything is fine on paper, and empty inside.
+      Relocation that was supposed to be an adventure and turned into losing your footing.
+      A career that stopped making sense. Leadership loneliness: being the one everyone relies on,
+      with no one to talk to. Relationships stretched across cultures and time zones.
+    </p>
+    <p>
+      I know this territory from both sides. I spent 17 years in international corporations -
+      Abbott, BMW, Bosch - leading teams of up to 300 people across 30 countries, based in Moscow
+      and then Frankfurt. I have been through relocation, divorce, burnout and an identity crisis
+      myself - and worked through them in my own therapy, over 1,000 hours of it.
+      I don't need your world explained to me. I have lived in it.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">How I work</span></div>
+  <div class="prose">
+    <p>
+      My core method is Gestalt therapy - working with what happens in contact, here and now.
+      A psychoanalytic lens (MSc in Psychology, HSE University) helps to see recurring life patterns.
+      Coaching tools (Erickson International, ICF-accredited) come in when structure and concrete
+      steps are needed. 2,500+ hours of professional training altogether. I ask direct,
+      sometimes uncomfortable questions - and I can hold what comes up: shame, anger, fear, emptiness.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Format and fees</span></div>
+  <div class="spec">
+    <div class="spec-row"><span class="spec-key">Session</span><span class="spec-val">55 minutes · online</span></div>
+    <div class="spec-row"><span class="spec-key">Fee</span><span class="spec-val">60 € per session</span></div>
+    <div class="spec-row"><span class="spec-key">Schedule</span><span class="spec-val">Mon-Thu · 9:00-19:00 CET</span></div>
+    <div class="spec-row"><span class="spec-key">Payment</span><span class="spec-val">PayPal · IBAN · card</span></div>
+    <div class="spec-row"><span class="spec-key">Languages</span><span class="spec-val">English · Russian</span></div>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Group</span></div>
+  <div class="prose">
+    <p>
+      Together with my colleague Irina, I run an English-speaking therapy group -
+      <a href="/en/groups/work-ambition/">«Work, People, Ambition»</a> - about work that is never
+      just work: ambition, recognition, competition, burnout and what we actually want.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">05</span><span class="meta-label">Credentials, in short</span></div>
+  <div class="spec">
+    <div class="spec-row"><span class="spec-key">MSc in Psychology, psychoanalytic track</span><span class="spec-val">HSE University · 2015-2018</span></div>
+    <div class="spec-row"><span class="spec-key">Gestalt therapist · 4-year program, 733 hours</span><span class="spec-val">Moscow Gestalt Institute · 2017-2021</span></div>
+    <div class="spec-row"><span class="spec-key">Certified coach, ICF-accredited</span><span class="spec-val">Erickson International · 2014-2015</span></div>
+    <div class="spec-row"><span class="spec-key">Own therapy</span><span class="spec-val">12 years · 1,000+ hours</span></div>
+  </div>
+  <div class="prose">
+    <p>Diplomas and certificates: <a href="/credentials/">scans here</a> (page in Russian, documents speak for themselves).</p>
+  </div>
+
+  <div class="cta-final">
+    <div class="cta-title">Free 30-minute intro call</div>
+    <div class="cta-sub">Meet, ask anything, see if we click. No strings attached</div>
+    <div class="btn-group" style="margin: 0;">
+      <a href={'https://t.me/vkarasaev?text=' + encodeURIComponent('Hi! I would like to book a free 30-minute intro call')} class="btn btn-primary">Message me on Telegram</a>
+      <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
+    </div>
+  </div>
+</Page>

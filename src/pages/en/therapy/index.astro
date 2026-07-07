@@ -1,0 +1,118 @@
+---
+// /en/therapy/ (Ф2): адаптация RU /therapy/ под EN-аудиторию, не дословный перевод.
+// Цены в евро (D4), расписание в CET. Парная страница: /therapy/.
+import Page from '../../../layouts/Page.astro';
+import { site } from '../../../data/site';
+---
+
+<Page
+  title="Individual Therapy in English · Valeriy Karasaev"
+  description="How therapy works: first session, 55-minute online format, 60 € per session, confidentiality, FAQ. Gestalt therapist and executive coach, in practice since 2014."
+  lang="en"
+  translation="/therapy/"
+>
+  <div class="page-head">
+    <div class="kicker">Individual Therapy</div>
+    <h1 class="page-title">When handling it alone got too expensive</h1>
+    <p class="lead">
+      Everything looks fine on paper - and feels empty inside. You understand everything -
+      and still don't move. You are tired of thinking the same thoughts in circles.
+      If this sounds familiar, you are in the right place.
+    </p>
+  </div>
+
+  <div class="prose">
+    <p>
+      People usually come to me at times of crisis and transition: burnout, divorce, relocation,
+      job loss, loss of meaning, hard decisions. These are the moments when life is changing -
+      and you need a reliable second person next to you to untangle things and find new ground.
+    </p>
+    <p>
+      I don't hand out advice or checklists. I help you find the point where something actually
+      shifts. I hold three lenses at once: Gestalt - contact and the body; psychoanalytic thinking -
+      recurring life scripts; coaching - structure and concrete steps.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">The first session</span></div>
+  <div class="prose">
+    <p>
+      The first session is an introduction. We look at what brings you, I explain how I work,
+      and you decide whether to continue. No commitments beyond paying for one session.
+      Before that, we can have a free 30-minute call - to meet and see whether we click.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Format and fees</span></div>
+  <div class="spec">
+    <div class="spec-row"><span class="spec-key">Session</span><span class="spec-val">55 minutes · online, camera on</span></div>
+    <div class="spec-row"><span class="spec-key">Fee</span><span class="spec-val">{site.session.priceEur} per session</span></div>
+    <div class="spec-row"><span class="spec-key">Schedule</span><span class="spec-val">Mon-Thu · 9:00-19:00 CET</span></div>
+    <div class="spec-row"><span class="spec-key">Platforms</span><span class="spec-val">Google Meet / Zoom</span></div>
+    <div class="spec-row"><span class="spec-key">Payment</span><span class="spec-val">PayPal · IBAN · card</span></div>
+    <div class="spec-row"><span class="spec-key">Languages</span><span class="spec-val">English · Russian</span></div>
+  </div>
+  <div class="prose">
+    <p>
+      Full working agreements - cancellations, confidentiality, boundaries - are collected
+      in one document: <a href="/docs/pravila-raboty.pdf" target="_blank" rel="noopener">Working Rules (PDF, in Russian; English version on request)</a>.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">FAQ</span></div>
+  <div class="faq">
+    <details>
+      <summary>Do I need to prepare for a session?</summary>
+      <div class="faq-body">
+        No. Come as you are - tired, confused, angry, without a clear request. Figuring out
+        what is going on is already part of the work, and we do it together.
+      </div>
+    </details>
+    <details>
+      <summary>What if I don't know what my "request" is?</summary>
+      <div class="faq-body">
+        That's normal. «I want to figure things out» and «something is off, I don't know what»
+        are the most common starting points. Clarity comes in the first sessions - it's not
+        an entrance ticket.
+      </div>
+    </details>
+    <details>
+      <summary>How many sessions will I need?</summary>
+      <div class="faq-body">
+        It depends on the task. Short-term focused work - blocks of 5-10 sessions. An acute
+        crisis - sometimes 10-20. Deep work with patterns and your way of living - from half
+        a year to several years. We discuss it openly and review regularly.
+      </div>
+    </details>
+    <details>
+      <summary>Therapy or coaching - which one do I need?</summary>
+      <div class="faq-body">
+        Coaching is about goals and steps: where am I going and how do I get there. Therapy is
+        about what keeps repeating and getting in the way: feelings, scripts, relationships.
+        I am a certified coach and a Gestalt therapist, so we can work in the layer you need -
+        and switch when it makes sense.
+      </div>
+    </details>
+    <details>
+      <summary>Does online therapy actually work?</summary>
+      <div class="faq-body">
+        Yes. Most of my practice is online and it works as well as in-person. You need a private
+        space, stable internet and your camera on - I don't work without video.
+      </div>
+    </details>
+    <details>
+      <summary>What don't you work with?</summary>
+      <div class="faq-body">
+        I work with adults 18+. I don't work with children and teenagers, chemical addictions
+        or severe psychiatric conditions - in those cases I can recommend a psychiatrist.
+      </div>
+    </details>
+    <details>
+      <summary>Is it confidential?</summary>
+      <div class="faq-body">
+        Yes. Two exceptions: supervision (discussing the work without names or identifying
+        details - a professional standard) and a direct threat to life.
+      </div>
+    </details>
+  </div>
+</Page>

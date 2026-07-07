@@ -1,0 +1,256 @@
+---
+// Главная. Перенос текущего одностраничника пиксель-в-пиксель (T2).
+// Правки против прода: метро (Р2), карточка практики (Р5), без ВК (Р10),
+// добавлен Дзен, аватар файлом, favicon/OG/canonical в Base.
+import Base from '../layouts/Base.astro';
+import '../styles/main.css';
+---
+
+<Base
+  title="Валерий Карасаев · Психолог · Executive коуч"
+  description="Психолог, гештальт-терапевт, executive coach. Специализируюсь на кризисах и переходах. Практика с 2014 года."
+  lang="ru"
+  translation="/en/"
+>
+<div class="page">
+
+  <!-- ══ HERO ══ -->
+  <div class="hero">
+    <div class="logo-wrap"><img src="/images/photo/avatar.jpg" alt="Валерий Карасаев" width="108" height="108" alt="Валерий Карасаев"></div>
+    <div class="name">Валерий<br>Карасаев</div>
+    <div class="tagline">Психолог · Гештальт-терапевт · Executive коуч</div>
+    <div class="divider-gold"></div>
+    <p class="hero-bio">17 лет в международном бизнесе.<br>Специализируюсь на кризисах и переходах.</p>
+  </div>
+
+  <!-- ══ CTA ══ -->
+  <div class="btn-group">
+    <a href="https://t.me/vkarasaev" class="btn btn-primary">
+      <span class="btn-icon">✈</span> Написать в Telegram
+    </a>
+    <a href="mailto:karasaev.valery@gmail.com" class="btn btn-outline">
+      <span class="btn-icon">✉</span> Написать на почту
+    </a>
+    <a href="https://t.me/vkarasaev?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D1%83%D1%8E%2030-%D0%BC%D0%B8%D0%BD%D1%83%D1%82%D0%BD%D1%83%D1%8E%20%D0%B2%D1%81%D1%82%D1%80%D0%B5%D1%87%D1%83" class="btn btn-ghost">
+      <span class="btn-icon">◎</span> Бесплатная встреча - 30 мин
+    </a>
+  </div>
+
+  <!-- ══ STATS 2×2 ══ -->
+  <div class="stats">
+    <div class="stat-card">
+      <span class="stat-num">с 2014</span>
+      <span class="stat-label">в практике</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">2500+</span>
+      <span class="stat-label">часов подготовки</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">17</span>
+      <span class="stat-label">лет в бизнесе</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-num">3</span>
+      <span class="stat-label">языка работы</span>
+    </div>
+  </div>
+
+  <div class="sep"><div class="sep-line"></div><div class="sep-dot"></div><div class="sep-line"></div></div>
+
+  <!-- ══ О СЕБЕ ══ -->
+  <div class="section">
+    <div class="section-label">О себе</div>
+    <div class="text-card">
+      <p>Психолог, гештальт-терапевт с психоаналитическим мышлением и сертифицированный коуч. Практика с 2014 года.</p>
+    </div>
+    <div class="text-card">
+      <p>До перехода в практику - 17 лет в международном бизнесе (Abbott, BMW, Bosch). Руководил командами до 300 человек и проектами до $20 млн в 30 странах EMEA.</p>
+    </div>
+    <div class="text-card">
+      <p>Из собственного опыта знаю, что такое выгорание, развод, иммиграция и поиск нового смысла. Более 10 лет собственной терапии.</p>
+    </div>
+  </div>
+
+  <div class="sep"><div class="sep-line"></div><div class="sep-dot"></div><div class="sep-line"></div></div>
+
+  <!-- ══ С ЧЕМ РАБОТАЮ ══ -->
+  <div class="section">
+    <div class="section-label">С чем я работаю</div>
+    <ul class="list">
+      <li>Выгорание и хронический стресс</li>
+      <li>Кризис смысла, экзистенциальная пустота</li>
+      <li>Развод, расставание, восстановление после разрыва</li>
+      <li>Жизнь эмигранта: идентичность, адаптация, одиночество</li>
+      <li>Трудности в отношениях, повторяющиеся сценарии</li>
+      <li>Одиночество руководителя, давление ответственности</li>
+      <li>Карьерные переходы: из корпората в своё дело</li>
+      <li>Мужской опыт: уязвимость, агрессия, самоценность</li>
+    </ul>
+  </div>
+
+  <div class="sep"><div class="sep-line"></div><div class="sep-dot"></div><div class="sep-line"></div></div>
+
+  <!-- ══ МОЙ ПОДХОД ══ -->
+  <div class="section">
+    <div class="section-label">Мой подход</div>
+    <div class="approach-grid">
+      <div class="approach-card">
+        <span class="approach-letter">Г</span>
+        <div class="approach-content">
+          <h4>Гештальт</h4>
+          <p>Основа. 4-летняя программа МГИ, работа «здесь и сейчас» - в контакте, через тело, паузу, дыхание.</p>
+        </div>
+      </div>
+      <div class="approach-card">
+        <span class="approach-letter">П</span>
+        <div class="approach-content">
+          <h4>Психоанализ</h4>
+          <p>Глубина. Магистр психологии ВШЭ. То, что повторяется в жизни - это сценарий, который можно увидеть и изменить.</p>
+        </div>
+      </div>
+      <div class="approach-card">
+        <span class="approach-letter">К</span>
+        <div class="approach-content">
+          <h4>Коучинг</h4>
+          <p>Структура. Практика с 2014 г. Цели, решения, конкретные шаги. Добавляет ясность и движение.</p>
+        </div>
+      </div>
+    </div>
+    <a href="/credentials/" class="cert-btn">
+      ◈ Образование и сертификаты
+      <span class="cert-btn-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="sep"><div class="sep-line"></div><div class="sep-dot"></div><div class="sep-line"></div></div>
+
+  <!-- ══ РАЗДЕЛЫ САЙТА ══ -->
+  <div class="section">
+    <div class="section-label">Разделы сайта</div>
+    <div class="links-list">
+      <a href="/therapy/" class="link-btn"><span class="link-title">Индивидуальная терапия</span><span class="link-arrow">→</span></a>
+      <a href="/groups/vernutsya-v-kontakt/" class="link-btn"><span class="link-title">Группа «Вернуться в контакт»</span><span class="link-arrow">→</span></a>
+      <a href="/about/" class="link-btn"><span class="link-title">Обо мне</span><span class="link-arrow">→</span></a>
+      <a href="/blog/" class="link-btn"><span class="link-title">Блог</span><span class="link-arrow">→</span></a>
+      <a href="/en/" class="link-btn"><span class="link-title">English version</span><span class="link-arrow">→</span></a>
+    </div>
+  </div>
+
+  <div class="sep"><div class="sep-line"></div><div class="sep-dot"></div><div class="sep-line"></div></div>
+
+  <!-- ══ ФОРМАТ И СТОИМОСТЬ ══ -->
+  <div class="section">
+
+    <div class="section-label">Формат и стоимость</div>
+    <div class="format-table">
+      <div class="format-row">
+        <span class="format-key">Сессия</span>
+        <span class="format-val">55 минут, онлайн / очно</span>
+      </div>
+      <div class="format-row">
+        <span class="format-key">Платформы</span>
+        <span class="format-val">Google Meet / Яндекс.Телемост</span>
+      </div>
+      <div class="format-row">
+        <span class="format-key">Очно</span>
+        <span class="format-val">Москва, м. Краснопресненская</span>
+      </div>
+      <div class="format-row">
+        <span class="format-key">Расписание</span>
+        <span class="format-val">Пн–Чт, 11:00–21:00 МСК</span>
+      </div>
+      <div class="format-row">
+        <span class="format-key">Оплата</span>
+        <span class="format-val">Карта · PayPal · IBAN</span>
+      </div>
+    </div>
+
+    <div class="price-badge">
+      <div class="price-main">5 000 ₽</div>
+      <div class="price-sub">или 60 € · 55 минут</div>
+    </div>
+    <div class="price-badge">
+      <div class="price-free">Бесплатная ознакомительная встреча</div>
+      <div class="price-sub">30 минут · без обязательств</div>
+    </div>
+  </div>
+
+  <div class="btn-group">
+    <a href="https://t.me/vkarasaev" class="btn btn-primary">
+      <span class="btn-icon">✈</span> Записаться в Telegram
+    </a>
+    <a href="mailto:karasaev.valery@gmail.com" class="btn btn-outline">
+      <span class="btn-icon">✉</span> karasaev.valery@gmail.com
+    </a>
+  </div>
+
+  <div class="sep"><div class="sep-line"></div><div class="sep-dot"></div><div class="sep-line"></div></div>
+
+  <!-- ══ ЧИТАТЬ И СЛЕДИТЬ ══ -->
+  <div class="section">
+    <div class="section-label">Читать и следить</div>
+    <div class="links-grid">
+
+      <a href="https://www.instagram.com/karasaev.psy" class="link-btn" target="_blank" rel="noopener">
+        <span class="link-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="4.5"/>
+            <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
+        <span class="link-title">Instagram
+        </span>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://t.me/valera_outloud" class="link-btn" target="_blank" rel="noopener">
+        <span class="link-icon">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M21.5 3.5L2.5 10.5l6 2 2 6 3-4 5 4 3-15z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M8.5 12.5l9-6" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+        </span>
+        <span class="link-title">Telegram-канал
+        </span>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a href="https://www.b17.ru/karasaev/#article" class="link-btn" target="_blank" rel="noopener">
+        <span class="link-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="8" y1="13" x2="16" y2="13"/>
+            <line x1="8" y1="17" x2="12" y2="17"/>
+          </svg>
+        </span>
+        <span class="link-title">Статьи на B17</span>
+        <span class="link-arrow">→</span>
+      </a>
+<a href="https://dzen.ru/valera_toptop" class="link-btn" target="_blank" rel="noopener">
+        <span class="link-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="8" y1="13" x2="16" y2="13"/>
+            <line x1="8" y1="17" x2="12" y2="17"/>
+          </svg>
+        </span>
+        <span class="link-title">Дзен «Топ-топ»</span>
+        <span class="link-arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="footer">
+    <p>Валерий Карасаев · <a href="https://t.me/vkarasaev">@vkarasaev</a></p>
+    <p><a href="mailto:karasaev.valery@gmail.com">karasaev.valery@gmail.com</a></p>
+    <p><a href="tel:+79153107178">+7 (915) 310-71-78</a></p>
+  </div>
+
+</div>
+</Base>
