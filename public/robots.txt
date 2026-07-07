@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://karasaev.com/sitemap-index.xml

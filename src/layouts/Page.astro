@@ -1,0 +1,80 @@
+---
+// Каркас внутренних страниц: шапка с меню, контент, CTA, футер.
+// Главная (/) остается отдельным одностраничником и этот layout не использует.
+import Base from './Base.astro';
+import { site } from '../data/site';
+import '../styles/main.css';
+import '../styles/inner.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  lang?: 'ru' | 'en';
+  wide?: boolean;
+  ogImage?: string;
+  translation?: string;
+  noindex?: boolean;
+  hideCta?: boolean;
+}
+const { title, description, lang = 'ru', wide = false, ogImage, translation, noindex, hideCta = false } = Astro.props;
+const p = Astro.url.pathname;
+const isActive = (href: string) => (p === href || p.startsWith(href + '')) ? 'active' : '';
+const ru = lang === 'ru';
+const nav = ru
+  ? [
+      ['/therapy/', 'Терапия'],
+      ['/groups/vernutsya-v-kontakt/', 'Группа'],
+      ['/about/', 'Обо мне'],
+      ['/credentials/', 'Образование'],
+      ['/blog/', 'Блог'],
+      ['/contact/', 'Контакты'],
+    ]
+  : [
+      ['/en/therapy/', 'Therapy'],
+      ['/en/groups/work-ambition/', 'Group'],
+      ['/en/credentials/', 'Credentials'],
+      ['/en/articles/', 'Articles'],
+      ['/en/contact/', 'Contact'],
+    ];
+---
+
+<Base title={title} description={description} lang={lang} ogImage={ogImage} translation={translation} noindex={noindex}>
+  <header class="site-header">
+    <div class="site-header-in">
+      <a class="brand" href={ru ? '/' : '/en/'}>{ru ? 'Валерий Карасаев' : 'Valeriy Karasaev'}</a>
+      <nav class="nav">
+        {nav.map(([href, label]) => <a href={href} class={isActive(href)}>{label}</a>)}
+        <a href={translation ?? (ru ? '/en/' : '/')}>{ru ? 'EN' : 'RU'}</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class={wide ? 'shell-wide' : 'shell'}>
+    <slot />
+    {!hideCta && (
+      <div class="cta-final">
+        <div class="cta-title">{ru ? 'Бесплатная встреча - 30 минут' : 'Free 30-minute intro call'}</div>
+        <div class="cta-sub">{ru ? 'Познакомиться, задать вопросы, решить - без обязательств' : 'Meet, ask questions, decide. No strings attached'}</div>
+        <div class="btn-group" style="margin: 0;">
+          <a href={site.telegramFreeCall} class="btn btn-primary">{ru ? 'Записаться в Telegram' : 'Message me on Telegram'}</a>
+          <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
+        </div>
+      </div>
+    )}
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer-in">
+      <span>{ru ? 'Валерий Карасаев · психолог, гештальт-терапевт' : 'Valeriy Karasaev · psychologist, Gestalt therapist'}</span>
+      <span>
+        <a href={site.telegram}>{site.telegramHandle}</a> ·
+        <a href={'mailto:' + site.email}>{site.email}</a>
+      </span>
+      <span>
+        <a href="/principles/">{ru ? 'Принципы' : 'Principles'}</a> ·
+        <a href="/privacy/">{ru ? 'Конфиденциальность' : 'Privacy'}</a> ·
+        <a href="/terms/">{ru ? 'Условия' : 'Terms'}</a>
+      </span>
+    </div>
+  </footer>
+</Base>

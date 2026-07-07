@@ -1,0 +1,63 @@
+---
+// Шаблон статьи (T6): крупный serif-заголовок (editorial-акцент из docs/11),
+// автоматическая подпись + CTA. Кнопка «оригинал» ведет на площадку-источник.
+import Page from '../../layouts/Page.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id.replace(/^(ru|en)\//, '') },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const d = post.data;
+const ru = d.lang !== 'en';
+const fmt = (x: Date) => x.toLocaleDateString(ru ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dzen: 'Дзен', vc: 'VC.ru', linkedin: 'LinkedIn', original: '' };
+---
+
+<Page
+  title={d.title + (d.lang === 'en' ? ' · Valeriy Karasaev' : ' · Валерий Карасаев')}
+  description={d.description.replace(' Болванка: заменить на реальный текст Валерия.', '').replace(' Placeholder essay: to be replaced or edited by Valeriy.', '')}
+  lang={d.lang}
+  ogImage={d.cover}
+>
+  <article>
+    <div class="page-head">
+      <div class="kicker">{fmt(d.date)}{d.categories.length > 0 && ' · ' + d.categories.join(' · ')}</div>
+      <h1 class="page-title">{d.title}</h1>
+      {d.placeholder && (
+        <p style="font-size: 13px; color: var(--muted); border: 1px dashed var(--border); border-radius: 8px; padding: 10px 14px;">
+          {d.lang === 'en' ? 'This is a placeholder essay written by AI around Valeriy\'s themes; it will be replaced or edited.' : 'Это болванка для проверки шаблона. Текст написан ИИ по мотивам тем Валерия и будет заменен реальной статьей.'}
+        </p>
+      )}
+    </div>
+    {d.cover && (
+      <div class="photo-band"><img src={d.cover} alt={d.title} /></div>
+    )}
+    <div class="prose">
+      <Content />
+    </div>
+
+    <div class="spec" style="margin-top: 40px;">
+      <div class="spec-row">
+        <span class="spec-key">{d.lang === 'en' ? 'Author' : 'Автор'}</span>
+        <span class="spec-val"><a href={d.lang === 'en' ? '/en/' : '/about/'} style="color: var(--gold); text-decoration: none;">{d.lang === 'en' ? 'Valeriy Karasaev' : 'Валерий Карасаев'}</a> {d.lang === 'en' ? '· psychologist, Gestalt therapist' : '· психолог, гештальт-терапевт'}</span>
+      </div>
+      {d.source_url && srcNames[d.source_channel] && (
+        <div class="spec-row">
+          <span class="spec-key">Оригинал</span>
+          <span class="spec-val"><a href={d.source_url} style="color: var(--gold); text-decoration: none;">{srcNames[d.source_channel]}</a></span>
+        </div>
+      )}
+      <div class="spec-row">
+        <span class="spec-key">{d.lang === 'en' ? 'More' : 'Еще тексты'}</span>
+        <span class="spec-val">{d.lang === 'en' ? <a href="/en/articles/" style="color: var(--gold); text-decoration: none;">in Articles</a> : <><a href="/blog/" style="color: var(--gold); text-decoration: none;">в блоге</a> и <a href="https://t.me/valera_outloud" style="color: var(--gold); text-decoration: none;">в канале</a></>}</span>
+      </div>
+    </div>
+  </article>
+</Page>
