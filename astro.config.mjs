@@ -6,7 +6,7 @@ export default defineConfig({
   trailingSlash: 'always',
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/premium/') && !page.includes('/lp/'),
+      filter: (page) => !page.includes('/premium/') && !page.includes('/lp/') && !page.includes('/home/') && !page.includes('/sos/') && !page.includes('/oferta/') && !page.includes('-a/') && !page.includes('-b/'),
     }),
   ],
 });

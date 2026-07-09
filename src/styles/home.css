@@ -1,0 +1,96 @@
+/* Новая главная v2 (/home/). Полноширинный редакторский лейаут в каноне Premium Dark.
+   Логика страницы: обещание → «это про вас» → доверие → как работает → форматы → тексты → человек → CTA. */
+
+/* HERO: */
+.hx { position: relative; border-bottom: 1px solid var(--border); overflow: hidden; }
+.hx-grid { max-width: 1180px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr; gap: 0; align-items: stretch; }
+.hx-left { padding: 44px 0 36px; display: flex; flex-direction: column; justify-content: center; }
+.hx-kicker { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; }
+.hx-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 44px; line-height: 1.08; color: var(--text); margin: 0 0 22px; }
+.hx-lead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; line-height: 1.6; color: #e2ded6; max-width: 500px; margin: 0 0 30px; }
+.hx-cta { display: flex; flex-direction: column; gap: 12px; max-width: 440px; }
+.hx-photo { position: relative; min-height: 300px; max-height: 62vh; overflow: hidden; }
+.hx-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
+.hx-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, var(--bg) 100%), linear-gradient(90deg, var(--bg) 0%, transparent 22%); }
+
+/* Факт-полоса: */
+.factbar { border-bottom: 1px solid var(--border); background: var(--bg2); }
+.factbar-in { max-width: 1180px; margin: 0 auto; padding: 22px 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
+.fx { }
+.fx-n { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold); line-height: 1; }
+.fx-l { font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase; color: #b8b4ac; margin-top: 6px; }
+
+/* Общий контейнер секций: */
+.hx-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.hx-sec { padding: 52px 0; border-bottom: 1px solid var(--border); }
+.hx-sec:last-of-type { border-bottom: none; }
+.hx-h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 32px; color: var(--text); margin: 0 0 6px; }
+.hx-sub { font-size: 15px; color: #b6b2aa; margin: 0 0 28px; max-width: 640px; line-height: 1.6; }
+
+/* «Это про вас» колонки болей: */
+.pains { display: grid; grid-template-columns: 1fr; gap: 14px; }
+.pain { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+.pain-q { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 19px; color: #e8e4dc; line-height: 1.5; }
+
+/* Доверие: два мира: */
+.two { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.two-col { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.two-col h3 { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin: 0 0 14px; }
+.two-col p { font-size: 15.5px; line-height: 1.7; color: #d2cec6; margin: 0 0 12px; }
+.two-col p:last-child { margin-bottom: 0; }
+
+/* Как работает: шаги: */
+.steps { display: grid; grid-template-columns: 1fr; gap: 16px; counter-reset: st; }
+.step { display: flex; gap: 18px; align-items: flex-start; }
+.step-n { flex: 0 0 auto; width: 44px; height: 44px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--gold); }
+.step-b h4 { font-size: 16px; color: var(--text); margin: 8px 0 6px; font-weight: 500; }
+.step-b p { font-size: 14.5px; line-height: 1.65; color: #c3bfb7; margin: 0; }
+
+/* Форматы: */
+.fmts { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.fmt { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; text-decoration: none; display: flex; flex-direction: column; transition: border-color .3s; }
+.fmt:hover { border-color: var(--gold); }
+.fmt.lead-fmt { border-color: rgba(201,169,110,0.4); }
+.fmt-tag { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.fmt-t { font-family: 'Cormorant Garamond', serif; font-size: 25px; color: var(--text); margin-bottom: 8px; }
+.fmt-d { font-size: 14.5px; line-height: 1.6; color: #c3bfb7; flex: 1; }
+.fmt-price { font-size: 13px; color: #b8b4ac; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); }
+
+/* Человек: */
+.human { display: grid; grid-template-columns: 1fr; gap: 24px; align-items: center; }
+.human img { width: 100%; border-radius: var(--radius); object-fit: cover; aspect-ratio: 4/5; }
+.human .prose { font-size: 16px; }
+
+/* Тексты preview: */
+.posts3 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+/* Финальный CTA: */
+.hx-final { text-align: center; padding: 56px 24px; background:
+  radial-gradient(600px 300px at 50% 0%, rgba(201,169,110,0.06), transparent 70%); }
+.hx-final .t { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--text); margin-bottom: 10px; }
+.hx-final .s { font-size: 15px; color: #b6b2aa; margin-bottom: 22px; }
+
+@media (min-width: 760px) {
+  .factbar-in { grid-template-columns: repeat(5, 1fr); }
+  .pains { grid-template-columns: repeat(2, 1fr); }
+  .two { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: repeat(3, 1fr); }
+  .steps .step { flex-direction: column; }
+  .fmts { grid-template-columns: repeat(3, 1fr); }
+  .posts3 { grid-template-columns: repeat(3, 1fr); }
+  .human { grid-template-columns: 320px 1fr; }
+}
+@media (min-width: 960px) {
+  .hx-grid { grid-template-columns: 1.05fr 0.95fr; gap: 40px; }
+  .hx-left { padding: 56px 0 48px; }
+  .hx-title { font-size: 54px; }
+  .hx-photo { margin-right: -24px; }
+}
+
+/* Переключатель языка: визуально отделен от меню */
+.lang-sw { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold) !important; text-decoration: none; padding: 4px 0 4px 16px !important; margin-left: 4px; border-left: 1px solid var(--border); white-space: nowrap; }
+/* Фото hero не выше первого экрана, факт-полоса подтянута */
+@media (min-width: 960px) {
+  .hx-grid { min-height: 0; }
+  .hx-photo img { object-position: center 15%; }
+}

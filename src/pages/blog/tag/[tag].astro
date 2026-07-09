@@ -1,0 +1,44 @@
+---
+// Страницы тегов /blog/tag/<tag>/ (правка 13): рабочая фильтрация по тегам.
+import Page from '../../../layouts/Page.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru');
+  const tags = [...new Set(posts.flatMap((p) => p.data.tags))];
+  return tags.map((tag) => ({
+    params: { tag },
+    props: { posts: posts.filter((p) => p.data.tags.includes(tag)).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()), tag, tags },
+  }));
+}
+const { posts, tag, tags } = Astro.props;
+const fmt = (d: Date) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Page
+  title={'#' + tag + ' · Блог · Валерий Карасаев'}
+  description={'Тексты по теме «' + tag + '»: психолог и гештальт-терапевт о кризисах, переходах и живости.'}
+  wide={true}
+  hideCta={true}
+>
+  <div class="page-head">
+    <div class="kicker">Блог · тема</div>
+    <h1 class="page-title">#{tag}</h1>
+  </div>
+
+  <div class="tag-row">
+    <a href="/blog/" class="tag-chip">Все</a>
+    {tags.sort().map((t) => <a href={`/blog/tag/${t}/`} class={'tag-chip' + (t === tag ? ' active' : '')}>#{t}</a>)}
+  </div>
+
+  <div class="grid-2">
+    {posts.map((p) => (
+      <a class="post-card" href={`/blog/${p.id.replace(/^ru\//, '')}/`}>
+        {p.data.cover && <img src={p.data.cover} alt={p.data.title} style="width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" loading="lazy" />}
+        <div class="post-date">{fmt(p.data.date)}</div>
+        <div class="post-title">{p.data.title}</div>
+        <div class="post-desc">{p.data.description.replace(' Болванка: заменить на реальный текст Валерия.', '')}</div>
+      </a>
+    ))}
+  </div>
+</Page>

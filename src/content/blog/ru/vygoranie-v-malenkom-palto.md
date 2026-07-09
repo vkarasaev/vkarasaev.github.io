@@ -6,6 +6,7 @@ categories: ["выгорание"]
 tags: ["выгорание", "живое"]
 source_channel: telegram
 featured: true
+cover: "/images/photo/cover-palto.jpg"
 ---
 
 Я думаю, что выгорание - это не когда ты устал. А когда продолжаешь жить, будто ты всё ещё тот же, а на самом деле - уже давно другой.

@@ -17,14 +17,14 @@ export const site = {
   telegramHandle: '@vkarasaev',
   telegramFreeCall:
     'https://t.me/vkarasaev?text=' +
-    encodeURIComponent('Привет, хочу записаться на бесплатную 30-минутную встречу'),
+    encodeURIComponent('Привет, хочу записаться на бесплатную 15-минутную встречу-знакомство'),
   email: 'karasaev.valery@gmail.com',
   phone: '+7 (915) 310-71-78',
   phoneHref: 'tel:+79153107178',
 
   // Формат и цена (D4: курс 85, на RU - рубли, на EN - евро)
   session: {
-    duration: '55 минут, онлайн / очно',
+    duration: '50 минут, онлайн / очно',
     platforms: 'Google Meet / Яндекс.Телемост',
     offline: 'Москва, м. Краснопресненская', // Р2
     schedule: 'Пн-Чт, 11:00-21:00 МСК',
@@ -33,6 +33,20 @@ export const site = {
     priceEur: '60 €',
   },
   eurRate: 85,
+
+  // Запись на сессию (основной CTA по решению 2026-07-09)
+  telegramSession:
+    'https://t.me/vkarasaev?text=' + encodeURIComponent('Привет, хочу записаться на сессию'),
+
+  // Соцсети пиктограммами (главная, контакты)
+  socials: [
+    { id: 'telegram', label: 'Telegram', url: 'https://t.me/valera_outloud' },
+    { id: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/karasaev.psy' },
+    { id: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/valery.karasaev' },
+    { id: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/karasaev/' },
+    { id: 'vk', label: 'ВКонтакте', url: 'https://vk.com/vkarasaev' },
+    { id: 'threads', label: 'Threads', url: 'https://www.threads.com/@karasaev.psy' },
+  ],
 
   // Статистика главной (Р5: практика с 2014; Р4: 3 языка)
   stats: [

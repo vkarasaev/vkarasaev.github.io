@@ -128,7 +128,7 @@
   }
   .stat-label {
     font-size: 11px; letter-spacing: 1.5px;
-    text-transform: uppercase; color: #a8a49c;
+    text-transform: uppercase; color: #b8b4ac;
   }
 
   /* ── SEPARATOR ── */
@@ -189,7 +189,7 @@
     text-transform: uppercase; font-weight: 500;
     color: var(--text); margin-bottom: 5px;
   }
-  .approach-content p { font-size: 13.5px; line-height: 1.65; color: #a8a49c; }
+  .approach-content p { font-size: 13.5px; line-height: 1.65; color: #b8b4ac; }
 
   /* ── CERT BUTTON ── */
   .cert-btn {

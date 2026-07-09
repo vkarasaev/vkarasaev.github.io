@@ -1,0 +1,49 @@
+---
+// /format/ (правка 17): как выбрать формат работы.
+import Page from '../../layouts/Page.astro';
+import { site } from '../../data/site';
+---
+
+<Page
+  title="Как выбрать формат · Валерий Карасаев"
+  description="Индивидуальная терапия, группа или премиум-сопровождение: чем отличаются форматы, сколько стоят и с чего начать."
+>
+  <div class="page-head">
+    <div class="kicker">Форматы работы</div>
+    <h1 class="page-title">С чего начать: терапия, группа или сопровождение</h1>
+    <p class="lead">Короткая карта. Если после нее все равно непонятно - это нормально: для того и есть бесплатная встреча.</p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Индивидуальная терапия</span></div>
+  <div class="spec">
+    <div class="spec-row"><span class="spec-key">Для чего</span><span class="spec-val">кризисы, переходы, глубокая личная работа</span></div>
+    <div class="spec-row"><span class="spec-key">Ритм</span><span class="spec-val">50 минут · раз в неделю</span></div>
+    <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">{site.session.priceRub} / {site.session.priceEur}</span></div>
+  </div>
+  <div class="prose"><p>Основной формат. Подробно: <a href="/therapy/">как проходит терапия</a>.</p></div>
+
+  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Терапевтическая группа</span></div>
+  <div class="spec">
+    <div class="spec-row"><span class="spec-key">Для чего</span><span class="spec-val">увидеть свои способы контакта вживую</span></div>
+    <div class="spec-row"><span class="spec-key">Ритм</span><span class="spec-val">3 часа · раз в неделю · закрытый состав</span></div>
+    <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">3 000 ₽ за встречу</span></div>
+  </div>
+  <div class="prose"><p>Дешевле терапии на единицу времени, но другой опыт: не вместо, а вместе. Актуальный набор: <a href="/groups/">группы</a>.</p></div>
+
+  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Премиум-сопровождение</span></div>
+  <div class="spec">
+    <div class="spec-row"><span class="spec-key">Для чего</span><span class="spec-val">большой переход с целями и сроками</span></div>
+    <div class="spec-row"><span class="spec-key">Ритм</span><span class="spec-val">3 месяца · терапия + коучинг еженедельно</span></div>
+    <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">120 000 ₽ / 1 400 €</span></div>
+  </div>
+  <div class="prose"><p>Мало мест, вход через личный разговор. Подробно: <a href="/premium/">сопровождение</a>.</p></div>
+
+  <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Если коротко</span></div>
+  <div class="prose">
+    <p>
+      Не знаете, что с вами, - терапия. Знаете, но повторяется в отношениях с людьми, - группа.
+      Знаете, куда идете, и нужен плотный попутчик - сопровождение. Не знаете ничего - бесплатные
+      15 минут, разберемся вместе.
+    </p>
+  </div>
+</Page>
