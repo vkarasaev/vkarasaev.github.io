@@ -10,20 +10,20 @@
 .brand:hover { color: var(--gold); }
 .nav { display: flex; gap: 18px; margin-left: auto; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
 .nav::-webkit-scrollbar { display: none; }
-.nav a { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); text-decoration: none; white-space: nowrap; padding: 4px 0; transition: color 0.3s; }
+.nav a { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: #c3bfb7; text-decoration: none; white-space: nowrap; padding: 4px 0; transition: color 0.3s; }
 .nav a:hover, .nav a.active { color: var(--gold); }
 
 /* ── Заголовки страниц ── */
 .page-head { padding: 56px 0 8px; }
 .kicker { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
 h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; line-height: 1.15; color: var(--text); margin-bottom: 16px; }
-.lead { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-style: italic; line-height: 1.7; color: #d4d0c8; margin-bottom: 8px; }
+.lead { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-style: italic; line-height: 1.7; color: #e0dcd4; margin-bottom: 8px; }
 
 /* ── Проза ── */
-.prose { font-size: 17px; line-height: 1.8; color: #cfccc4; }
+.prose { font-size: 17px; line-height: 1.8; color: #e6e3db; }
 .prose p { margin: 0 0 18px; }
 .prose h2 { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; color: var(--text); margin: 44px 0 16px; line-height: 1.25; }
-.prose h3 { font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text); margin: 30px 0 10px; }
+.prose h3 { font-family: 'Jost', sans-serif; font-size: 15px; font-weight: 500; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold2); margin: 30px 0 10px; }
 .prose a { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201,169,110,0.35); }
 .prose a:hover { color: var(--gold2); }
 .prose strong { color: var(--text); font-weight: 500; }
@@ -40,7 +40,7 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 /* ── Спецификация: строки ключ-значение тонкими линейками ── */
 .spec { margin: 8px 0 26px; }
 .spec-row { display: flex; justify-content: space-between; gap: 20px; padding: 12px 2px; border-bottom: 1px solid var(--border); font-size: 15px; }
-.spec-key { color: var(--muted); letter-spacing: 0.3px; }
+.spec-key { color: #b6b2aa; letter-spacing: 0.3px; }
 .spec-val { color: var(--text); text-align: right; }
 
 /* ── FAQ ── */
@@ -49,7 +49,7 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::after { content: '+'; float: right; color: var(--gold); }
 .faq details[open] summary::after { content: '–'; }
-.faq .faq-body { padding: 0 18px 16px; font-size: 15.5px; line-height: 1.75; color: #b8b4ac; }
+.faq .faq-body { padding: 0 18px 16px; font-size: 15.5px; line-height: 1.75; color: #d5d1c9; }
 
 /* ── Карточки-сетки (credentials, blog) ── */
 .grid-2 { display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -63,13 +63,13 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 .cert-card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: top; display: block; filter: saturate(0.9); }
 .cert-meta { padding: 12px 14px 14px; }
 .cert-title { font-size: 14.5px; color: var(--text); line-height: 1.4; }
-.cert-org { font-size: 11.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+.cert-org { font-size: 11.5px; letter-spacing: 1.5px; text-transform: uppercase; color: #a8a49c; margin-top: 6px; }
 
 .post-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; text-decoration: none; display: block; transition: border-color 0.3s; }
 .post-card:hover { border-color: var(--gold); }
-.post-date { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
+.post-date { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #a8a49c; }
 .post-title { font-family: 'Cormorant Garamond', serif; font-size: 23px; color: var(--text); margin: 8px 0 8px; line-height: 1.3; }
-.post-desc { font-size: 14.5px; line-height: 1.65; color: #b8b4ac; }
+.post-desc { font-size: 14.5px; line-height: 1.65; color: #cfccc4; }
 .post-tags { margin-top: 12px; font-size: 12px; color: var(--gold); letter-spacing: 0.5px; }
 
 /* ── CTA-блок конца страницы ── */
@@ -79,14 +79,14 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 
 /* ── Футер ── */
 .site-footer { border-top: 1px solid var(--border); margin-top: 60px; padding: 26px 0 40px; }
-.site-footer-in { max-width: 960px; margin: 0 auto; padding: 0 20px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 13px; color: var(--muted); }
+.site-footer-in { max-width: 960px; margin: 0 auto; padding: 0 20px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; font-size: 13px; color: #a8a49c; }
 .site-footer a { color: var(--muted); text-decoration: none; }
 .site-footer a:hover { color: var(--gold); }
 
 /* ── Фото-вставки ── */
 .photo-band { margin: 30px 0; }
 .photo-band img { width: 100%; border-radius: var(--radius); display: block; }
-.photo-caption { font-size: 12.5px; color: var(--muted); margin-top: 8px; text-align: center; }
+.photo-caption { font-size: 12.5px; color: #a8a49c; margin-top: 8px; text-align: center; }
 
 @media (min-width: 720px) {
   h1.page-title { font-size: 52px; }
@@ -95,3 +95,140 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 /* ── Разделители *** и цитаты в статьях ── */
 .prose hr { border: none; height: 1px; width: 48px; margin: 34px auto; background: var(--gold); opacity: 0.6; }
 .prose blockquote p { margin-bottom: 6px; }
+
+
+/* ── Светлое полотно чтения (статьи): темная рамка сайта, светлый текст-блок ── */
+.reading-light { background: #f5f3ef; border-radius: var(--radius); padding: 28px 22px 34px; margin: 10px -22px 0; }
+@media (min-width: 720px) { .reading-light { padding: 44px 56px 52px; margin: 10px -56px 0; } }
+.reading-light .prose { color: #26262a; }
+.reading-light .prose h2 { color: #141416; }
+.reading-light .prose h3 { color: #7a5a24; }
+.reading-light .prose blockquote { color: #3a3a3e; border-left-color: #b08d4f; }
+.reading-light .prose a { color: #8a6428; border-bottom-color: rgba(138,100,40,0.4); }
+.reading-light .prose a:hover { color: #6d4e1f; }
+.reading-light .prose strong { color: #141416; }
+.reading-light .prose hr { background: #b08d4f; }
+.reading-light .photo-caption { color: #6f6b64; }
+
+/* ── Бургер-меню ── */
+.burger-box { position: relative; }
+.burger-toggle { display: none; }
+.burger-btn { position: relative; z-index: 61; display: flex; flex-direction: column; gap: 5px; width: 40px; height: 40px; padding: 10px 8px; cursor: pointer; border: 1px solid var(--border); border-radius: 10px; background: var(--surface); align-items: center; justify-content: center; }
+.burger-btn span { display: block; width: 20px; height: 2px; background: var(--gold); transition: 0.3s; }
+.burger-menu { display: none; position: absolute; right: 0; top: 48px; min-width: 250px; background: #17171b; border: 1px solid var(--border); border-radius: 14px; padding: 10px; box-shadow: 0 16px 48px rgba(0,0,0,0.5); z-index: 60; }
+.burger-overlay { display: none; position: fixed; inset: 0; z-index: 55; cursor: default; }
+.burger-toggle:checked ~ .burger-overlay { display: block; }
+.burger-toggle:checked ~ .burger-menu { display: block; }
+.burger-toggle:checked ~ .burger-btn span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger-toggle:checked ~ .burger-btn span:nth-child(2) { opacity: 0; }
+.burger-toggle:checked ~ .burger-btn span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.burger-menu a { display: block; padding: 11px 14px; color: var(--text); text-decoration: none; font-size: 14px; letter-spacing: 0.5px; border-radius: 9px; }
+.burger-menu a:hover { background: rgba(201,169,110,0.08); color: var(--gold2); }
+.burger-menu .bm-sep { height: 1px; background: var(--border); margin: 8px 6px; }
+.burger-menu .bm-label { font-size: 10.5px; letter-spacing: 2px; text-transform: uppercase; color: #a8a49c; padding: 8px 14px 4px; }
+
+/* ── Раскрывашки «с чем работаю»: серые плашки как в «о себе», раскрытие на черном ── */
+.wk details { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 10px; overflow: hidden; }
+.wk summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 16px 18px; font-size: 15px; color: var(--text); }
+.wk summary::-webkit-details-marker { display: none; }
+.wk summary::after { content: '+'; color: var(--gold); font-size: 19px; flex: 0 0 auto; transition: transform 0.25s; }
+.wk details[open] summary::after { content: '+'; transform: rotate(45deg); }
+.wk .wk-body { background: var(--bg); border-top: 1px solid var(--border); padding: 14px 18px 16px; font-size: 14.5px; line-height: 1.7; color: #d2cec6; }
+
+/* ── Теги блога ── */
+.tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0 22px; }
+.tag-chip { font-size: 12.5px; letter-spacing: 0.5px; padding: 7px 13px; border: 1px solid var(--border); border-radius: 100px; color: #d5d1c9; text-decoration: none; background: var(--surface); }
+.tag-chip:hover { border-color: var(--gold); color: var(--gold2); }
+.tag-chip.active { border-color: var(--gold); color: var(--gold2); background: rgba(201,169,110,0.08); }
+
+/* ── Карточки «где я пишу» ── */
+.write-card { display: flex; gap: 14px; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; text-decoration: none; transition: border-color 0.3s; }
+.write-card:hover { border-color: var(--gold); }
+.write-card img { width: 54px; height: 54px; border-radius: 12px; object-fit: cover; flex: 0 0 auto; }
+.write-title { font-size: 15px; color: var(--text); font-weight: 500; }
+.write-desc { font-size: 13px; color: #b6b2aa; line-height: 1.5; margin-top: 3px; }
+
+/* ── Ведущие в кружках (группы) ── */
+.hosts { display: flex; gap: 22px; flex-wrap: wrap; margin: 10px 0 6px; }
+.host { display: flex; gap: 14px; align-items: center; }
+.host img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+.host .host-name { color: var(--text); font-size: 15.5px; font-weight: 500; }
+.host .host-sub { color: #b6b2aa; font-size: 13px; margin-top: 2px; }
+.host a { color: var(--gold); font-size: 13px; text-decoration: none; }
+
+/* ═══ Редизайн страниц (therapy/группа), варианты A/B ═══ */
+
+/* Полноширинный hero страницы с фото справа */
+.p-hero { border-bottom: 1px solid var(--border); }
+.p-hero-in { max-width: 1120px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr; gap: 0; align-items: stretch; }
+.p-hero-txt { padding: 52px 0 40px; display: flex; flex-direction: column; justify-content: center; }
+.p-hero-txt h1 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 40px; line-height: 1.1; color: var(--text); margin: 16px 0 18px; }
+.p-hero-photo { position: relative; min-height: 300px; }
+.p-hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.p-hero-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg) 0%, transparent 25%), linear-gradient(180deg, transparent 60%, var(--bg) 100%); }
+
+/* Крупная цитата-разрыв на всю ширину */
+.pullquote { max-width: 820px; margin: 8px auto; padding: 40px 24px; text-align: center; }
+.pullquote p { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 27px; line-height: 1.45; color: #e6e2da; margin: 0; }
+.pullquote .attr { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-top: 16px; }
+
+/* Шаги-нумерация вертикально с линией */
+.vsteps { max-width: 720px; }
+.vstep { display: flex; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+.vstep:last-child { border-bottom: none; }
+.vstep-n { flex: 0 0 auto; font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--gold); width: 40px; line-height: 1.1; }
+.vstep-b h4 { font-size: 16px; font-weight: 500; color: var(--text); margin: 4px 0 6px; }
+.vstep-b p { font-size: 15px; line-height: 1.65; color: #c8c4bc; margin: 0; }
+
+/* Двухколоночный «подойдёт / не подойдёт» */
+.fit { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.fit-col { border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; background: var(--surface); }
+.fit-col.yes { border-left: 2px solid var(--gold); }
+.fit-col.no { border-left: 2px solid #5a5650; }
+.fit-col h3 { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; margin: 0 0 14px; }
+.fit-col.yes h3 { color: var(--gold); }
+.fit-col.no h3 { color: #9a968e; }
+.fit-col ul { margin: 0; padding: 0; list-style: none; }
+.fit-col li { font-size: 14.5px; line-height: 1.55; color: #d2cec6; padding: 7px 0 7px 20px; position: relative; }
+.fit-col li::before { content: ''; position: absolute; left: 0; top: 14px; width: 6px; height: 6px; border-radius: 50%; }
+.fit-col.yes li::before { background: var(--gold); }
+.fit-col.no li::before { background: #5a5650; }
+
+/* Сетка тем (для группы) */
+.themes { display: grid; grid-template-columns: 1fr; gap: 12px; counter-reset: th; }
+.theme { display: flex; gap: 16px; align-items: baseline; padding: 14px 18px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.theme-n { flex: 0 0 auto; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--gold); width: 28px; }
+.theme-t { font-size: 15px; color: #ded9d0; line-height: 1.5; }
+.theme-t b { color: var(--text); font-weight: 500; }
+
+/* Ведущий крупно */
+.lead-person { display: grid; grid-template-columns: 1fr; gap: 20px; align-items: center; }
+.lead-person img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
+
+@media (min-width: 820px) {
+  .fit { grid-template-columns: 1fr 1fr; }
+  .themes { grid-template-columns: 1fr 1fr; }
+  .p-hero-txt h1 { font-size: 50px; }
+  .lead-person { grid-template-columns: 130px 1fr; }
+}
+@media (min-width: 960px) {
+  .p-hero-in { grid-template-columns: 1fr 1fr; gap: 44px; }
+  .p-hero-txt { padding: 72px 0 60px; }
+  .p-hero-photo { margin-right: -24px; }
+}
+
+
+/* Бургер на главной-таплинке: привязан к колонке 480px, не к краю экрана */
+.top-controls { position: fixed; top: 14px; right: max(14px, calc(50% - 240px - 6px)); z-index: 70; }
+
+/* Пиктограммы соцсетей на главной */
+.soc-row { display: flex; gap: 12px; justify-content: center; margin-top: 16px; }
+.soc-row a { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border); border-radius: 12px; color: #b8b4ac; background: var(--surface); transition: all 0.25s; }
+.soc-row a:hover { color: var(--gold); border-color: var(--gold); }
+.soc-row svg { width: 20px; height: 20px; }
+/* Ровные отступы между элементами секций главной (правка про «прыгает») */
+.wk details { margin-bottom: 10px; }
+.links-list { display: flex; flex-direction: column; gap: 10px; }
+.links-list .link-btn { margin: 0; }
+
+.lang-sw { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold) !important; text-decoration: none; padding: 4px 0 4px 16px !important; margin-left: 4px; border-left: 1px solid var(--border); white-space: nowrap; }

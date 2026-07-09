@@ -2,6 +2,7 @@
 // Каркас внутренних страниц: шапка с меню, контент, CTA, футер.
 // Главная (/) остается отдельным одностраничником и этот layout не использует.
 import Base from './Base.astro';
+import Burger from '../components/Burger.astro';
 import { site } from '../data/site';
 import '../styles/main.css';
 import '../styles/inner.css';
@@ -44,8 +45,9 @@ const nav = ru
       <a class="brand" href={ru ? '/' : '/en/'}>{ru ? 'Валерий Карасаев' : 'Valeriy Karasaev'}</a>
       <nav class="nav">
         {nav.map(([href, label]) => <a href={href} class={isActive(href)}>{label}</a>)}
-        <a href={translation ?? (ru ? '/en/' : '/')}>{ru ? 'EN' : 'RU'}</a>
+        <a href={translation ?? (ru ? '/en/' : '/')} class="lang-sw">{ru ? 'EN' : 'RU'}</a>
       </nav>
+      <Burger lang={lang} />
     </div>
   </header>
 
@@ -53,7 +55,7 @@ const nav = ru
     <slot />
     {!hideCta && (
       <div class="cta-final">
-        <div class="cta-title">{ru ? 'Бесплатная встреча - 30 минут' : 'Free 30-minute intro call'}</div>
+        <div class="cta-title">{ru ? 'Встреча-знакомство - 15 минут' : 'Free 15-minute intro call'}</div>
         <div class="cta-sub">{ru ? 'Познакомиться, задать вопросы, решить - без обязательств' : 'Meet, ask questions, decide. No strings attached'}</div>
         <div class="btn-group" style="margin: 0;">
           <a href={site.telegramFreeCall} class="btn btn-primary">{ru ? 'Записаться в Telegram' : 'Message me on Telegram'}</a>
@@ -73,7 +75,8 @@ const nav = ru
       <span>
         <a href="/principles/">{ru ? 'Принципы' : 'Principles'}</a> ·
         <a href="/privacy/">{ru ? 'Конфиденциальность' : 'Privacy'}</a> ·
-        <a href="/terms/">{ru ? 'Условия' : 'Terms'}</a>
+        <a href="/terms/">{ru ? 'Условия' : 'Terms'}</a> ·
+        <a href="/sos/">{ru ? 'Экстренная помощь' : 'Emergency help'}</a>
       </span>
     </div>
   </footer>

@@ -1,0 +1,40 @@
+---
+// Бургер-меню: чистый CSS (checkbox), работает на главной и внутренних страницах.
+// RU/EN набор пунктов по lang.
+export interface Props { lang?: 'ru' | 'en' }
+const { lang = 'ru' } = Astro.props;
+const ru = lang === 'ru';
+const items = ru
+  ? [
+      ['/', 'Главная'],
+      ['/therapy/', 'Индивидуальная терапия'],
+      ['/groups/', 'Группы'],
+      ['/premium/', 'Премиум'],
+      ['/about/', 'Обо мне'],
+      ['/credentials/', 'Образование'],
+      ['/blog/', 'Блог'],
+      ['/contact/', 'Контакты'],
+    ]
+  : [
+      ['/en/', 'Home'],
+      ['/en/therapy/', 'Therapy'],
+      ['/en/groups/work-ambition/', 'Group «Work, People, Ambition»'],
+      ['/en/credentials/', 'Credentials'],
+      ['/en/articles/', 'Articles'],
+      ['/en/contact/', 'Contact'],
+    ];
+---
+
+<div class="burger-box">
+  <input type="checkbox" id="burger" class="burger-toggle" />
+  <label for="burger" class="burger-btn" aria-label={ru ? 'Меню' : 'Menu'}>
+    <span></span><span></span><span></span>
+  </label>
+  <label for="burger" class="burger-overlay" aria-hidden="true"></label>
+  <nav class="burger-menu">
+    {items.map(([href, label]) => <a href={href}>{label}</a>)}
+    <div class="bm-sep"></div>
+    <div class="bm-label">{ru ? 'Язык' : 'Language'}</div>
+    <a href={ru ? '/en/' : '/'}>{ru ? 'EN · English version' : 'RU · Русская версия'}</a>
+  </nav>
+</div>

@@ -28,7 +28,7 @@ const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dze
 >
   <article>
     <div class="page-head">
-      <div class="kicker">{fmt(d.date)}{d.categories.length > 0 && ' · ' + d.categories.join(' · ')}</div>
+      <div class="kicker">{fmt(d.date)}</div>
       <h1 class="page-title">{d.title}</h1>
       {d.placeholder && (
         <p style="font-size: 13px; color: var(--muted); border: 1px dashed var(--border); border-radius: 8px; padding: 10px 14px;">
@@ -36,11 +36,13 @@ const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dze
         </p>
       )}
     </div>
-    {d.cover && (
-      <div class="photo-band"><img src={d.cover} alt={d.title} /></div>
-    )}
-    <div class="prose">
-      <Content />
+    <div class="reading-light">
+      {d.cover && (
+        <div class="photo-band" style="margin-top: 0;"><img src={d.cover} alt={d.title} /></div>
+      )}
+      <div class="prose">
+        <Content />
+      </div>
     </div>
 
     <div class="spec" style="margin-top: 40px;">
@@ -56,8 +58,14 @@ const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dze
       )}
       <div class="spec-row">
         <span class="spec-key">{d.lang === 'en' ? 'More' : 'Еще тексты'}</span>
-        <span class="spec-val">{d.lang === 'en' ? <a href="/en/articles/" style="color: var(--gold); text-decoration: none;">in Articles</a> : <><a href="/blog/" style="color: var(--gold); text-decoration: none;">в блоге</a> и <a href="https://t.me/valera_outloud" style="color: var(--gold); text-decoration: none;">в канале</a></>}</span>
+        <span class="spec-val">{d.lang === 'en' ? <a href="/en/articles/" style="color: var(--gold); text-decoration: none;">in Articles</a> : <a href="https://t.me/valera_outloud" style="color: var(--gold); text-decoration: none;">в телеграм-канале «Валера. Вслух»</a>}</span>
       </div>
     </div>
+
+    {d.lang !== 'en' && d.tags.length > 0 && (
+      <div class="tag-row" style="margin-top: 18px;">
+        {d.tags.map((t) => <a href={`/blog/tag/${t}/`} class="tag-chip">#{t}</a>)}
+      </div>
+    )}
   </article>
 </Page>

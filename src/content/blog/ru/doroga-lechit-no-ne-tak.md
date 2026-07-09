@@ -3,7 +3,7 @@ title: "Дорога лечит. Но не так, как обещают"
 description: "Камино-де-Сантьяго и то, что 400 километров пешком реально делают с головой. Болванка: заменить на реальный текст Валерия."
 date: 2026-04-10
 categories: ["дорога"]
-tags: ["камино", "переходы"]
+tags: ["дорога", "кризисы"]
 source_channel: original
 cover: "/images/photo/cover-road.jpg"
 placeholder: true

@@ -1,0 +1,191 @@
+---
+// НОВАЯ ГЛАВНАЯ v2 (/home/, превью, noindex). Полный редизайн.
+// Логика: hero-обещание → «это про вас» → доверие (два мира) → как работает →
+// форматы → тексты → живой человек → финальный CTA. Всё в каноне Premium Dark.
+// После утверждения: этот файл → src/pages/index.astro, текущий линк-хаб → /start/.
+import Base from '../../layouts/Base.astro';
+import Burger from '../../components/Burger.astro';
+import { site } from '../../data/site';
+import { getCollection } from 'astro:content';
+import '../../styles/main.css';
+import '../../styles/inner.css';
+import '../../styles/home.css';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru' && data.featured))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Base
+  title="Валерий Карасаев · Психолог, гештальт-терапевт, executive-коуч"
+  description="Психолог и гештальт-терапевт для взрослых в кризисе или переходе: выгорание, развод, эмиграция, потеря смысла, одиночество руководителя. Практика с 2014. Онлайн и очно в Москве, 5000 ₽."
+  lang="ru"
+  noindex={true}
+>
+  <header class="site-header">
+    <div class="site-header-in" style="max-width: 1180px;">
+      <a class="brand" href="/home/">Валерий Карасаев</a>
+      <nav class="nav">
+        <a href="/therapy/">Терапия</a>
+        <a href="/groups/">Группы</a>
+        <a href="/about/">Обо мне</a>
+        <a href="/credentials/">Образование</a>
+        <a href="/blog/">Блог</a>
+        <a href="/contact/">Контакты</a>
+        <a href="/en/" class="lang-sw">EN</a>
+      </nav>
+      <Burger lang="ru" />
+    </div>
+  </header>
+
+  <section class="hx">
+    <div class="hx-grid">
+      <div class="hx-left">
+        <div class="hx-kicker">Психолог · Гештальт-терапевт · Executive-коуч</div>
+        <h1 class="hx-title">Когда справляться<br />в одиночку стало<br />слишком дорого</h1>
+        <p class="hx-lead">
+          Помогаю взрослым пройти через кризис или большой переход - и найти новую опору.
+          Я не обещаю быстро. Но обещаю честно.
+        </p>
+        <div class="hx-cta">
+          <a href={site.telegramSession} class="btn btn-primary">Записаться на сессию</a>
+          <a href={site.telegramFreeCall} class="btn btn-outline">Встреча-знакомство · 15 мин</a>
+        </div>
+      </div>
+      <div class="hx-photo">
+        <img src="/images/photo/home-hero.jpg" alt="Валерий Карасаев" width="1000" height="1100" />
+      </div>
+    </div>
+  </section>
+
+  <div class="factbar">
+    <div class="factbar-in">
+      <div class="fx"><div class="fx-n">с 2014</div><div class="fx-l">в частной практике</div></div>
+      <div class="fx"><div class="fx-n">2500+</div><div class="fx-l">часов подготовки</div></div>
+      <div class="fx"><div class="fx-n">17 лет</div><div class="fx-l">в международном бизнесе</div></div>
+      <div class="fx"><div class="fx-n">12 лет</div><div class="fx-l">собственной терапии</div></div>
+      <div class="fx"><div class="fx-n">RU · EN</div><div class="fx-l">онлайн и очно в Москве</div></div>
+    </div>
+  </div>
+
+  <div class="hx-wrap">
+    <section class="hx-sec">
+      <h2 class="hx-h2">Возможно, это про вас</h2>
+      <p class="hx-sub">Чаще всего ко мне приходят не с диагнозом, а вот с таким состоянием:</p>
+      <div class="pains">
+        <div class="pain"><div class="pain-q">«Снаружи всё в порядке, а внутри пусто. И непонятно, чего ещё хотеть».</div></div>
+        <div class="pain"><div class="pain-q">«Всё понимаю про себя - и всё равно не двигаюсь».</div></div>
+        <div class="pain"><div class="pain-q">«Роль, работа, отношения - будто пальто, из которого я вырос».</div></div>
+        <div class="pain"><div class="pain-q">«Принимаю решения за всех, а с собственной головой пойти не к кому».</div></div>
+      </div>
+    </section>
+
+    <section class="hx-sec">
+      <h2 class="hx-h2">Почему со мной можно про это</h2>
+      <p class="hx-sub">Я держу два мира сразу - и оба знаю не по учебнику.</p>
+      <div class="two">
+        <div class="two-col">
+          <h3>Глубина терапевта</h3>
+          <p>Гештальт-терапевт с психоаналитическим мышлением. Магистр психологии ВШЭ, 4-летняя программа МГИ, 2500+ часов подготовки.</p>
+          <p>12 лет собственной терапии, больше 1000 часов. Свои развод, эмиграцию и выгорание я прожил, а не изучил. Поэтому слышу то, что обычно прячут.</p>
+        </div>
+        <div class="two-col">
+          <h3>Язык вашей реальности</h3>
+          <p>До практики - 17 лет в международном бизнесе: Abbott, BMW, Bosch, команды до 300 человек в 30 странах.</p>
+          <p>Давление, ответственность, цена решения, одиночество наверху - мне не нужно это объяснять. Самые сложные системы - это не процессы. Это люди.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="hx-sec">
+      <h2 class="hx-h2">С чего начинается работа</h2>
+      <p class="hx-sub">Без обязательств и без «пакетов». Один честный шаг за раз.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-n">1</div>
+          <div class="step-b"><h4>Встреча-знакомство, 15 минут</h4><p>Знакомимся, вы рассказываете, что происходит, я отвечаю на вопросы. Решаете, подхожу ли я вам - без давления.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-n">2</div>
+          <div class="step-b"><h4>Первая сессия</h4><p>Разбираемся в запросе, даже если он ещё не сформулирован. Никаких обязательств, кроме оплаты одной встречи.</p></div>
+        </div>
+        <div class="step">
+          <div class="step-n">3</div>
+          <div class="step-b"><h4>Регулярная работа</h4><p>Обычно раз в неделю. Темп и глубину выбираем вместе и регулярно сверяемся, туда ли идём.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hx-sec">
+      <h2 class="hx-h2">Форматы работы</h2>
+      <p class="hx-sub">Не знаете, что подойдёт, - начните с бесплатной встречи, разберёмся вместе.</p>
+      <div class="fmts">
+        <a class="fmt lead-fmt" href="/therapy/">
+          <div class="fmt-tag">Основной формат</div>
+          <div class="fmt-t">Индивидуальная терапия</div>
+          <div class="fmt-d">Кризисы, переходы, глубокая личная работа. 50 минут, раз в неделю, онлайн или очно в Москве.</div>
+          <div class="fmt-price">5000 ₽ / 60 € за сессию</div>
+        </a>
+        <a class="fmt" href="/groups/">
+          <div class="fmt-tag">Набор открыт</div>
+          <div class="fmt-t">Терапевтические группы</div>
+          <div class="fmt-d">Увидеть свои способы быть с людьми вживую. «Вернуться в контакт» на русском и «Work, People, Ambition» на английском.</div>
+          <div class="fmt-price">от 3000 ₽ за встречу</div>
+        </a>
+        <a class="fmt" href="/format/">
+          <div class="fmt-tag">Не уверены?</div>
+          <div class="fmt-t">Как выбрать формат</div>
+          <div class="fmt-d">Короткая карта: терапия, группа или плотное сопровождение на квартал перехода - и с чего начать.</div>
+          <div class="fmt-price">Сравнить форматы →</div>
+        </a>
+      </div>
+    </section>
+
+    <section class="hx-sec">
+      <h2 class="hx-h2">Живой человек, а не функция</h2>
+      <div class="human">
+        <img src="/images/photo/home-life.jpg" alt="Валерий на Камино-де-Сантьяго" loading="lazy" />
+        <div class="prose">
+          <p>У меня двое детей и две гитары. Прошёл Камино-де-Сантьяго, поднимался на Эльбрус, купался в Ганге. Коллеги говорят, что я «больше папа, чем мама» и похож на морячка.</p>
+          <p>Я не решаю свои проблемы за счёт клиента и не изображаю невозмутимого эксперта. В кабинете - обычный живой человек, который сам прошёл через многое из того, с чем к нему приходят.</p>
+          <p><a href="/about/">Обо мне подробнее</a> · <a href="/business/">опыт в бизнесе</a> · <a href="/credentials/">образование</a></p>
+        </div>
+      </div>
+    </section>
+
+    {posts.length > 0 && (
+      <section class="hx-sec">
+        <h2 class="hx-h2">Как я думаю - в текстах</h2>
+        <p class="hx-sub">Про выгорание, кризисы и живость. Без советов и мотивационных концовок.</p>
+        <div class="posts3">
+          {posts.map((p) => (
+            <a class="post-card" href={`/blog/${p.id.replace(/^ru\//, '')}/`}>
+              {p.data.cover && <img src={p.data.cover} alt={p.data.title} style="width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" loading="lazy" />}
+              <div class="post-date">{fmt(p.data.date)}</div>
+              <div class="post-title">{p.data.title}</div>
+            </a>
+          ))}
+        </div>
+        <p style="margin-top: 18px;"><a href="/blog/" class="tag-chip">Все тексты и темы →</a></p>
+      </section>
+    )}
+  </div>
+
+  <section class="hx-final">
+    <div class="t">Первый шаг - самый простой</div>
+    <div class="s">Бесплатная встреча-знакомство, 15 минут: познакомиться, задать вопросы, решить. Без обязательств.</div>
+    <div class="btn-group" style="margin: 0; justify-content: center;">
+      <a href={site.telegramFreeCall} class="btn btn-primary">Записаться в Telegram</a>
+      <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="site-footer-in">
+      <span>Валерий Карасаев · психолог, гештальт-терапевт</span>
+      <span><a href={site.telegram}>{site.telegramHandle}</a> · <a href={'mailto:' + site.email}>{site.email}</a> · <a href={site.phoneHref}>{site.phone}</a></span>
+      <span><a href="/principles/">Принципы</a> · <a href="/privacy/">Конфиденциальность</a> · <a href="/terms/">Условия</a></span>
+    </div>
+  </footer>
+</Base>
