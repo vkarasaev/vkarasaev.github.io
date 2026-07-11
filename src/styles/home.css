@@ -3,7 +3,7 @@
 
 /* HERO: */
 .hx { position: relative; border-bottom: 1px solid var(--border); overflow: hidden; }
-.hx-grid { max-width: 1180px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr; gap: 0; align-items: stretch; }
+.hx-grid { max-width: 1060px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr; gap: 0; align-items: stretch; }
 .hx-left { padding: 44px 0 36px; display: flex; flex-direction: column; justify-content: center; }
 .hx-kicker { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; }
 .hx-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 44px; line-height: 1.08; color: var(--text); margin: 0 0 22px; }
@@ -15,13 +15,13 @@
 
 /* Факт-полоса: */
 .factbar { border-bottom: 1px solid var(--border); background: var(--bg2); }
-.factbar-in { max-width: 1180px; margin: 0 auto; padding: 22px 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
+.factbar-in { max-width: 1060px; margin: 0 auto; padding: 22px 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
 .fx { }
 .fx-n { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold); line-height: 1; }
 .fx-l { font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase; color: #b8b4ac; margin-top: 6px; }
 
 /* Общий контейнер секций: */
-.hx-wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.hx-wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
 .hx-sec { padding: 52px 0; border-bottom: 1px solid var(--border); }
 .hx-sec:last-of-type { border-bottom: none; }
 .hx-h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 32px; color: var(--text); margin: 0 0 6px; }
@@ -65,10 +65,34 @@
 .posts3 { display: grid; grid-template-columns: 1fr; gap: 16px; }
 
 /* Финальный CTA: */
-.hx-final { text-align: center; padding: 56px 24px; background:
-  radial-gradient(600px 300px at 50% 0%, rgba(201,169,110,0.06), transparent 70%); }
-.hx-final .t { font-family: 'Cormorant Garamond', serif; font-size: 30px; color: var(--text); margin-bottom: 10px; }
-.hx-final .s { font-size: 15px; color: #b6b2aa; margin-bottom: 22px; }
+/* Финальный CTA */
+
+.hx-final {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+  background:
+    radial-gradient(
+      600px 300px at 50% 0%,
+      rgba(201, 169, 110, 0.06),
+      transparent 70%
+    );
+}
+
+.hx-final .t {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.hx-final .s {
+  font-size: 15px;
+  color: #b6b2aa;
+  margin-bottom: 16px;
+}
 
 @media (min-width: 760px) {
   .factbar-in { grid-template-columns: repeat(5, 1fr); }
