@@ -27,6 +27,7 @@ const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dze
   ogImage={d.cover}
 >
   <article>
+  <div class="article-column">
     <div class="page-head">
       <div class="kicker">{fmt(d.date)}</div>
       <h1 class="page-title">{d.title}</h1>
@@ -44,8 +45,10 @@ const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dze
         <Content />
       </div>
     </div>
+  </div>
 
-    <div class="spec" style="margin-top: 40px;">
+
+    <div class="spec" style="margin: 40px auto 26px; max-width: 720px;">
       <div class="spec-row">
         <span class="spec-key">{d.lang === 'en' ? 'Author' : 'Автор'}</span>
         <span class="spec-val"><a href={d.lang === 'en' ? '/en/' : '/about/'} style="color: var(--gold); text-decoration: none;">{d.lang === 'en' ? 'Valeriy Karasaev' : 'Валерий Карасаев'}</a> {d.lang === 'en' ? '· psychologist, Gestalt therapist' : '· психолог, гештальт-терапевт'}</span>
@@ -63,7 +66,7 @@ const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dze
     </div>
 
     {d.lang !== 'en' && d.tags.length > 0 && (
-      <div class="tag-row" style="margin-top: 18px;">
+      <div class="tag-row" style="max-width: 720px; margin: 18px auto 22px;">
         {d.tags.map((t) => <a href={`/blog/tag/${t}/`} class="tag-chip">#{t}</a>)}
       </div>
     )}

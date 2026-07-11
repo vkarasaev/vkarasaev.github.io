@@ -51,11 +51,11 @@ const nav = ru
     </div>
   </header>
 
-  <main class={wide ? 'shell-wide' : 'shell'}>
+  <main class={wide ? 'shell shell-wide' : 'shell'}>
     <slot />
     {!hideCta && (
       <div class="cta-final">
-        <div class="cta-title">{ru ? 'Встреча-знакомство - 15 минут' : 'Free 15-minute intro call'}</div>
+        <div class="cta-title">{ru ? 'Бесплатная встреча - 15 минут' : 'Free 15-minute intro call'}</div>
         <div class="cta-sub">{ru ? 'Познакомиться, задать вопросы, решить - без обязательств' : 'Meet, ask questions, decide. No strings attached'}</div>
         <div class="btn-group" style="margin: 0;">
           <a href={site.telegramFreeCall} class="btn btn-primary">{ru ? 'Записаться в Telegram' : 'Message me on Telegram'}</a>
@@ -76,7 +76,7 @@ const nav = ru
         <a href="/principles/">{ru ? 'Принципы' : 'Principles'}</a> ·
         <a href="/privacy/">{ru ? 'Конфиденциальность' : 'Privacy'}</a> ·
         <a href="/terms/">{ru ? 'Условия' : 'Terms'}</a> ·
-        <a href="/sos/">{ru ? 'Экстренная помощь' : 'Emergency help'}</a>
+        <a href="/sos/">{ru ? 'SOS' : 'SOS'}</a>
       </span>
     </div>
   </footer>

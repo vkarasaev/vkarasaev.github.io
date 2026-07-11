@@ -7,7 +7,7 @@ const ru = lang === 'ru';
 const items = ru
   ? [
       ['/', 'Главная'],
-      ['/therapy/', 'Индивидуальная терапия'],
+      ['/therapy/', 'Терапия'],
       ['/groups/', 'Группы'],
       ['/premium/', 'Премиум'],
       ['/about/', 'Обо мне'],
@@ -34,7 +34,6 @@ const items = ru
   <nav class="burger-menu">
     {items.map(([href, label]) => <a href={href}>{label}</a>)}
     <div class="bm-sep"></div>
-    <div class="bm-label">{ru ? 'Язык' : 'Language'}</div>
-    <a href={ru ? '/en/' : '/'}>{ru ? 'EN · English version' : 'RU · Русская версия'}</a>
+    <a href={ru ? '/en/' : '/'} style="color: var(--gold);">{ru ? 'EN · English version' : 'RU · Русская версия'}</a>
   </nav>
 </div>

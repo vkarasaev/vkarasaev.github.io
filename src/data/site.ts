@@ -17,7 +17,7 @@ export const site = {
   telegramHandle: '@vkarasaev',
   telegramFreeCall:
     'https://t.me/vkarasaev?text=' +
-    encodeURIComponent('Привет, хочу записаться на бесплатную 15-минутную встречу-знакомство'),
+    encodeURIComponent('Привет, хочу записаться на бесплатную 15-минутную встречу'),
   email: 'karasaev.valery@gmail.com',
   phone: '+7 (915) 310-71-78',
   phoneHref: 'tel:+79153107178',
