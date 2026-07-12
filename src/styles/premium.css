@@ -1,0 +1,88 @@
+/* /premium/ - редизайн по черновику «Правки-5» п.9 (2026-07-13).
+   Новые визуальные элементы поверх канона Premium Dark (main.css + inner.css):
+   трёхстрочная цитата с золотым акцентом, контраст «чистая терапия / чистый коучинг»
+   со связующим боксом, двухколоночный тире-список, центральное italic-утверждение,
+   карточки ценности с верхней линейкой, колонки недель, карточки-артефакты с тегами,
+   ценовой блок с крупной цифрой, серые заметки-сноски. */
+
+/* Hero: курсивный акцент в заголовке, spec и подпись под кнопкой */
+.pm-hero-h1 em { font-style: italic; color: var(--gold); font-weight: 300; }
+.pm-hero .spec-row { font-size: 14px; }
+.pm-hero-note { font-size: 12.5px; color: #8a8680; margin-top: 12px; letter-spacing: 0.3px; }
+.pm-hero .btn-outline { border-color: rgba(201,169,110,0.6); color: var(--gold); }
+.pm-hero .btn-outline:hover { border-color: var(--gold); background: rgba(201,169,110,0.06); }
+
+/* Цитата: строка-акцент золотом */
+.pm-quote p { margin: 0; }
+.pm-quote .q-gold { color: var(--gold); }
+
+/* Контраст: два чистых контура + связующий бокс */
+.pm-two { display: grid; grid-template-columns: 1fr; gap: 26px 60px; max-width: 820px; margin: 0 auto; }
+.pm-two-col { text-align: center; }
+.pm-two-col h3 { font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
+.pm-two-col p { font-size: 16px; line-height: 1.65; color: #d2cec6; margin: 0; }
+.pm-merge-wrap { position: relative; max-width: 680px; margin: 0 auto; padding-top: 34px; }
+.pm-merge-wrap::before { content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 26px; background: var(--border); }
+.pm-merge { border: 1px solid rgba(201,169,110,0.45); border-radius: var(--radius); padding: 26px 30px; text-align: center; font-size: 16.5px; line-height: 1.7; color: #e0dcd4; }
+.pm-merge em { font-style: italic; color: var(--gold); }
+
+/* Двухколоночный тире-список */
+.pm-list2 { display: grid; grid-template-columns: 1fr; gap: 12px 48px; list-style: none; margin: 22px 0 0; padding: 0; }
+.pm-list2 li { position: relative; padding-left: 30px; font-size: 15.5px; line-height: 1.55; color: #d5d1c9; }
+.pm-list2 li::before { content: '\2014'; position: absolute; left: 0; color: var(--gold); }
+
+/* Центральное утверждение */
+.pm-statement { max-width: 640px; margin: 44px auto 6px; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; line-height: 1.55; color: #e6e2da; }
+.pm-statement em { font-style: italic; color: var(--gold); }
+
+/* Карточки ценности: тонкая верхняя линейка */
+.pm-cards { display: grid; grid-template-columns: 1fr; gap: 34px 56px; margin-top: 30px; }
+.pm-card { border-top: 1px solid rgba(201,169,110,0.35); padding-top: 18px; }
+.pm-card h4 { font-size: 16px; font-weight: 500; color: var(--text); margin: 0 0 10px; }
+.pm-card p { font-size: 14.5px; line-height: 1.7; color: #c3bfb7; margin: 0; }
+
+/* Недели: три колонки с тегом над линейкой */
+.pm-weeks { display: grid; grid-template-columns: 1fr; gap: 26px 40px; margin: 30px 0 34px; }
+.pm-week { border-top: 1px solid var(--border); padding-top: 16px; }
+.pm-week-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
+.pm-week h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 24px; color: var(--text); margin: 10px 0 8px; }
+.pm-week p { font-size: 14px; line-height: 1.65; color: #c3bfb7; margin: 0; }
+
+/* Артефакты: карточки с тегами */
+.pm-artifacts { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 30px; }
+.pm-artifact { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+.pm-artifact .pm-week-tag { display: block; margin-bottom: 10px; }
+.pm-artifact h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 24px; color: var(--text); margin: 0 0 10px; }
+.pm-artifact p { font-size: 14px; line-height: 1.7; color: #c3bfb7; margin: 0; }
+
+/* Вход и стоимость */
+.pm-price { display: grid; grid-template-columns: 1fr; gap: 30px 60px; align-items: center; margin-top: 30px; }
+.pm-price-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.pm-price-num { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 64px; line-height: 1; color: var(--text); }
+.pm-price-num .cur { color: var(--gold); }
+.pm-price-sub { font-size: 14px; color: #b0aca4; margin-top: 12px; letter-spacing: 0.3px; }
+.pm-price-txt { font-size: 16px; line-height: 1.75; color: #d5d1c9; }
+.pm-price-txt em { font-style: normal; color: var(--gold); }
+
+/* Серые заметки-сноски */
+.pm-notes { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 40px; }
+.pm-note { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; }
+.pm-note .pm-week-tag { color: #a8a49c; display: block; margin-bottom: 10px; }
+.pm-note p { font-size: 13.5px; line-height: 1.7; color: #b8b4ac; margin: 0; }
+.pm-note a { color: var(--gold); text-decoration: none; }
+
+/* Финальный CTA: кикер над заголовком */
+.pm-cta-kicker { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+
+@media (min-width: 760px) {
+  .pm-two { grid-template-columns: 1fr 1fr; }
+  .pm-two-col { position: relative; }
+  .pm-two-col + .pm-two-col::before { content: ''; position: absolute; left: -30px; top: 8px; bottom: 8px; width: 1px; background: var(--border); }
+  .pm-list2 { grid-template-columns: 1fr 1fr; }
+  .pm-cards { grid-template-columns: 1fr 1fr; }
+  .pm-weeks { grid-template-columns: repeat(3, 1fr); }
+  .pm-artifacts { grid-template-columns: repeat(3, 1fr); }
+  .pm-price { grid-template-columns: 0.9fr 1.1fr; }
+  .pm-notes { grid-template-columns: 1fr 1fr; }
+  .pm-statement { font-size: 24px; }
+}

@@ -1,6 +1,7 @@
 ---
-// /en/groups/work-ambition/ (Р7): английская группа с Ириной. Готовый текст,
-// сокращен под лендинг без потери голоса. Даты/цена TBA - как в исходнике.
+// /en/groups/work-ambition/ (переработка 2026-07-12): дизайн сверен с RU-группой
+// «Вернуться в контакт» (p-hero с фото, spec в hero, fit-колонки). Текст - прежний
+// авторский, сокращен под лендинг без потери голоса. Даты/цена TBA - как в исходнике.
 import Page from '../../../layouts/Page.astro';
 import { site } from '../../../data/site';
 ---
@@ -9,107 +10,138 @@ import { site } from '../../../data/site';
   title="Work, People, Ambition · English-speaking therapy group"
   description="An online therapy group in English about work, ambition, power, burnout and staying human among others. Facilitated by Valeriy Karasaev and Irina Tsyplenkova Baan."
   lang="en"
+  wide={true}
   hideCta={true}
 >
-  <div class="page-head">
-    <div class="kicker">Therapy group · Online · In English</div>
-    <h1 class="page-title">Work, People, Ambition</h1>
-    <p class="lead">An online therapy group about work, ambition, power, burnout and staying human among others.</p>
+  <!-- HERO -->
+  <div class="p-hero" style="margin: 0 -20px;">
+    <div class="p-hero-in">
+      <div class="p-hero-txt">
+        <div class="kicker">Therapy group · Online · In English</div>
+        <h1>Work, People, Ambition</h1>
+        <p class="lead" style="margin-bottom: 22px;">
+          An online therapy group about work, ambition, power, burnout
+          and staying human among others.
+        </p>
+        <div class="spec" style="margin: 0 0 22px;">
+          <div class="spec-row"><span class="spec-key">Format</span><span class="spec-val">online · in English · Wednesdays</span></div>
+          <div class="spec-row"><span class="spec-key">Length</span><span class="spec-val">10-12 weekly meetings · 2 hours</span></div>
+          <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val">8-10 participants · closed format</span></div>
+        </div>
+        <a href={'https://t.me/vkarasaev?text=' + encodeURIComponent('Hi! I am interested in the Work, People, Ambition group')} class="btn btn-primary" style="width: fit-content;">Apply via a short intro call</a>
+      </div>
+      <div class="p-hero-photo">
+        <img src="/images/photo/group-hero.jpg" alt="Online group work" />
+      </div>
+    </div>
   </div>
 
-  <div class="prose">
-    <h2>Work is never just work</h2>
-    <p>
-      It is also status, money, shame, envy, competition, authority, fear, desire, fatigue,
-      recognition, belonging - and the old childish hope that someone important will finally say:
-      «You are doing well. I see you. You matter.»
-    </p>
-    <p>
-      People come to work as adults. With roles, salaries, titles and responsibilities. And then
-      something strange happens. A manager does not praise you - and suddenly you feel like a small
-      child in short trousers. A colleague gets promoted - and you smile politely while something
-      inside you wants to disappear or destroy them. You want to grow, but the next level looks like
-      the same political game with a bigger budget and better lighting.
-    </p>
-    <p>This group is about that place. The place where work becomes psychological.</p>
-  </div>
+  <div class="shell content-narrow" style="margin-top: 44px;">
+    <div class="prose">
+      <h2>Work is never just work</h2>
+      <p>
+        It is also status, money, shame, envy, competition, authority, fear, desire, fatigue,
+        recognition, belonging - and the old childish hope that someone important will finally say:
+        «You are doing well. I see you. You matter.»
+      </p>
+      <p>
+        People come to work as adults. With roles, salaries, titles and responsibilities. And then
+        something strange happens. A manager does not praise you - and suddenly you feel like a small
+        child in short trousers. A colleague gets promoted - and you smile politely while something
+        inside you wants to disappear or destroy them. You want to grow, but the next level looks like
+        the same political game with a bigger budget and better lighting.
+      </p>
+    </div>
 
-  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">What this group is about</span></div>
-  <div class="prose">
-    <p>
-      Not a career coaching program, not a leadership course, not a networking club. A therapeutic
-      group for people who want to understand what happens to them in work, ambition, authority
-      and relationships. We start from real work situations - and look at what happens underneath:
-    </p>
-    <ul>
-      <li>Why do I feel like an impostor when everyone else seems adult and competent?</li>
-      <li>Why do I want recognition so badly - and feel ashamed of wanting it?</li>
-      <li>How do I compete without destroying others or disappearing myself?</li>
-      <li>What do I do with envy, greed and ambition?</li>
-      <li>Why do I become cold, controlling, pleasing, silent or aggressive at work?</li>
-      <li>How do I stay human in a demanding system?</li>
-    </ul>
-    <p>
-      The main value of a group: your patterns do not stay abstract. You do them here - explain,
-      disappear, compete, perform, please, withdraw, want to be seen and fear being seen.
-      And then we can work with it.
-    </p>
-  </div>
+    <div class="pullquote">
+      <p>«This group is about that place. The place where work becomes psychological».</p>
+    </div>
 
-  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">The setting</span></div>
-  <div class="spec">
-    <div class="spec-row"><span class="spec-key">Format</span><span class="spec-val">online group · in English</span></div>
-    <div class="spec-row"><span class="spec-key">Length</span><span class="spec-val">10-12 weekly meetings · 2 hours</span></div>
-    <div class="spec-row"><span class="spec-key">Day</span><span class="spec-val">Wednesdays</span></div>
-    <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val">8-10 participants · closed format</span></div>
-    <div class="spec-row"><span class="spec-key">Entry</span><span class="spec-val">short introductory call</span></div>
-    <div class="spec-row"><span class="spec-key">Dates and price</span><span class="spec-val">announced separately</span></div>
-  </div>
+    <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">What this group is about</span></div>
+    <div class="prose">
+      <p>
+        Not a career coaching program, not a leadership course, not a networking club. A therapeutic
+        group for people who want to understand what happens to them in work, ambition, authority
+        and relationships. We start from real work situations - and look at what happens underneath:
+      </p>
+      <ul>
+        <li>Why do I feel like an impostor when everyone else seems adult and competent?</li>
+        <li>Why do I want recognition so badly - and feel ashamed of wanting it?</li>
+        <li>How do I compete without destroying others or disappearing myself?</li>
+        <li>What do I do with envy, greed and ambition?</li>
+        <li>Why do I become cold, controlling, pleasing, silent or aggressive at work?</li>
+        <li>How do I stay human in a demanding system?</li>
+      </ul>
+      <p>
+        The main value of a group: your patterns do not stay abstract. You do them here - explain,
+        disappear, compete, perform, please, withdraw, want to be seen and fear being seen.
+        And then we can work with it.
+      </p>
+    </div>
 
-  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Who it is for</span></div>
-  <div class="prose">
-    <p>
-      Managers, founders, consultants, therapists, coaches and specialists - especially those working
-      in international environments or living between cultures: expats, internationals, digital nomads.
-      People who are successful on the outside, but often tense, ashamed, angry, tired or lonely inside.
-      People tired of understanding everything intellectually while repeating the same relational patterns.
-    </p>
-    <p>
-      <strong>Probably not a good fit</strong> if you want a lecture, quick tools and homework,
-      career advice only, or a place to hide and listen. The group is supportive, but not soft
-      in the sentimental sense: real contact includes interest, care, irritation, envy, disagreement
-      and repair.
-    </p>
-  </div>
+    <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">The setting</span></div>
+    <div class="spec">
+      <div class="spec-row"><span class="spec-key">Format</span><span class="spec-val">online group · in English</span></div>
+      <div class="spec-row"><span class="spec-key">Length</span><span class="spec-val">10-12 weekly meetings · 2 hours</span></div>
+      <div class="spec-row"><span class="spec-key">Day</span><span class="spec-val">Wednesdays</span></div>
+      <div class="spec-row"><span class="spec-key">Size</span><span class="spec-val">8-10 participants · closed format</span></div>
+      <div class="spec-row"><span class="spec-key">Entry</span><span class="spec-val">short introductory call</span></div>
+      <div class="spec-row"><span class="spec-key">Dates and price</span><span class="spec-val">announced separately</span></div>
+    </div>
 
-  <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Facilitators</span></div>
-  <div class="hosts">
-    <div class="host">
-      <img src="/images/photo/avatar.jpg" alt="Valeriy Karasaev" />
-      <div>
+    <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Who it is for - and who it isn't</span></div>
+    <div class="prose">
+      <p>
+        Managers, founders, consultants, therapists, coaches and specialists - especially those working
+        in international environments or living between cultures: expats, internationals, digital nomads.
+        People who are successful on the outside, but often tense, ashamed, angry, tired or lonely inside.
+        People tired of understanding everything intellectually while repeating the same relational patterns.
+      </p>
+    </div>
+    <div class="fit">
+      <div class="fit-col yes">
+        <h3>A good fit</h3>
+        <ul>
+          <li>You want to see how you actually operate with people - live, not in retelling</li>
+          <li>You are tired of understanding everything in your head</li>
+          <li>Themes of ambition, shame, competition, burnout and belonging feel close</li>
+          <li>You work internationally or live between cultures</li>
+        </ul>
+      </div>
+      <div class="fit-col no">
+        <h3>Probably not a fit</h3>
+        <ul>
+          <li>You want a lecture, quick tools and homework</li>
+          <li>You want career advice only</li>
+          <li>You want a place to hide and just listen</li>
+          <li>You expect softness in the sentimental sense: real contact includes interest, care, irritation, envy, disagreement and repair</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Facilitators</span></div>
+    <div class="hosts" style="margin-top: 24px;">
+      <div class="host">
+        <img src="/images/photo/avatar.jpg" alt="Valeriy Karasaev" />
         <div class="host-name">Valeriy Karasaev</div>
-        <div class="host-sub">Psychologist (MPsy), Gestalt therapist, executive coach</div>
-        <a href="https://www.linkedin.com/in/karasaev/" rel="noopener">View LinkedIn</a>
+        <div class="host-sub">Psychologist (MPsy) · Gestalt therapist · Executive coach</div>
+        <div class="host-bio">
+          In practice since 2014; before that - 17 years in corporate and international
+          business across Europe (DE/RU). <a href="/en/" style="border: none; padding: 0; margin: 0; text-transform: none; font-size: inherit; letter-spacing: normal; color: var(--gold);">More about Valeriy</a>.
+        </div>
+        <a href="https://www.linkedin.com/in/karasaev/" rel="noopener" target="_blank">View LinkedIn</a>
       </div>
-    </div>
-    <div class="host">
-      <img src="/images/photo/irina.jpg" alt="Irina Tsyplenkova Baan" />
-      <div>
+      <div class="host">
+        <img src="/images/photo/irina.jpg" alt="Irina Tsyplenkova Baan" />
         <div class="host-name">Irina Tsyplenkova Baan</div>
-        <div class="host-sub">Psychologist, therapist and group facilitator (NL)</div>
-        <a href="https://www.linkedin.com/in/irinabaan/" rel="noopener">View LinkedIn</a>
+        <div class="host-sub">Psychologist · Therapist · Group facilitator</div>
+        <div class="host-bio">
+          Individual and group practice (NL); international life and work with people
+          navigating relationships, identity, relocation and professional pressure.
+        </div>
+        <a href="https://www.linkedin.com/in/irinabaan/" rel="noopener" target="_blank">View LinkedIn</a>
       </div>
     </div>
-  </div>
-  <div class="prose">
-    <p>
-      <strong>Valeriy (DE/RU)</strong> - former Head of PMO with 15+ years of corporate and
-      international business experience across Europe. <a href="/en/">More about Valeriy</a>.
-    </p>
-    <p>
-      <strong>Irina (NL)</strong> - individual and group practice, international life and work
-      with people navigating relationships, identity, relocation and professional pressure.
-    </p>
   </div>
 
   <div class="cta-final">

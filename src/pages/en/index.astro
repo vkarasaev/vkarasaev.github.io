@@ -1,13 +1,15 @@
 ---
-// /en/ (T9, D1): не перевод главной, а адаптация под expat/corporate-аудиторию.
-// Берлин/Европа уместны (решение из 09). Цены в евро (D4). ДРАФТ на проверку.
+// /en/ (переработка 2026-07-12): не перевод главной, а адаптация под expat/corporate-
+// аудиторию. Отличия от RU (осознанные): интро-звонок 30 минут, контакты без телефона,
+// расписание в CET, цены только в евро, ссылки на EN-страницы. Структура и голос
+// сверены с актуальными RU-страницами (/ и /home/).
 import Page from '../../layouts/Page.astro';
 import { site } from '../../data/site';
 ---
 
 <Page
-  title="Valeriy Karasaev · Psychologist and Executive Coach · English-speaking therapy"
-  description="Gestalt therapist and executive coach for professionals and expats. Burnout, relocation, identity, career transitions, leadership loneliness. Online sessions in English, 60 €."
+  title="Valeriy Karasaev · Psychologist and Executive Coach · Therapy in English"
+  description="Gestalt therapist and executive coach for professionals and expats. Burnout, relocation, identity, career transitions, leadership loneliness. Online sessions in English, 60 €. Free 30-minute intro call."
   lang="en"
   translation="/"
   hideCta={true}
@@ -17,12 +19,12 @@ import { site } from '../../data/site';
     <div class="kicker">Psychologist · Gestalt Therapist · Executive Coach</div>
     <h1 class="page-title">Therapy in English, for people who carry a lot</h1>
     <p class="lead">
-      I work with professionals, leaders and expats navigating burnout, relocation,
-      career transitions and identity questions. In practice since 2014.
-      Before that - 17 years in international business, including 5 years living and working in Germany.
+      I help adults get through a crisis or a major transition - and find new ground.
+      I don't promise fast. I promise honest. In practice since 2014; before that -
+      17 years in international business, including 5 years living and working in Germany.
     </p>
     <div class="btn-group">
-      <a href={'https://t.me/vkarasaev?text=' + encodeURIComponent('Hi! I would like to book a free 15-minute intro call')} class="btn btn-primary">Free 30-min intro call</a>
+      <a href={site.en.telegramFreeCall} class="btn btn-primary">Free 30-min intro call</a>
       <a href={'mailto:' + site.email} class="btn btn-outline">Email me</a>
     </div>
   </div>
@@ -39,12 +41,48 @@ import { site } from '../../data/site';
       I know this territory from both sides. I spent 17 years in international corporations -
       Abbott, BMW, Bosch - leading teams of up to 300 people across 30 countries, based in Moscow
       and then Frankfurt. I have been through relocation, divorce, burnout and an identity crisis
-      myself - and worked through them in my own therapy, over 1,000 hours of it.
+      myself - and worked through them in my own therapy, 12 years and over 1,000 hours of it.
       I don't need your world explained to me. I have lived in it.
     </p>
   </div>
 
-  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">How I work</span></div>
+  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">What I work with</span></div>
+  <div class="wk" style="max-width: 720px; margin: 0 auto 8px;">
+    <details>
+      <summary><span class="wk-t">Burnout and chronic stress</span></summary>
+      <div class="wk-body">You took the vacation. It didn't help. Everything still runs on the outside; inside it went quiet long ago. This is not laziness - the shape of your life got too small, like an old coat. We look for where exactly it pinches.</div>
+    </details>
+    <details>
+      <summary><span class="wk-t">Loss of meaning, existential emptiness</span></summary>
+      <div class="wk-body">Goals achieved, zero joy. At 3 a.m. the question "what is all this for" arrives - and silence answers. I don't hand out new meaning. I help you hear what you actually want.</div>
+    </details>
+    <details>
+      <summary><span class="wk-t">Expat life: identity, adaptation, loneliness</span></summary>
+      <div class="wk-body">Home stayed there, and you are here. The language is foreign, your status got reset, your friends live in a messenger. "Who am I now" is not a rhetorical question. I have lived through emigration myself and work with it constantly.</div>
+    </details>
+    <details>
+      <summary><span class="wk-t">Divorce, separation, recovery after a breakup</span></summary>
+      <div class="wk-body">Anger, guilt, relief, grief - all at once, and all of it feeling somehow "wrong". I know what it is to reassemble yourself. Not the old you. A different one.</div>
+    </details>
+    <details>
+      <summary><span class="wk-t">Career transitions: out of corporate, into your own thing</span></summary>
+      <div class="wk-body">Leaving is scary, staying is unbearable. The head keeps calculating risks; the body decided long ago. We look at what holds you: money, fear - or grief for the life you will have to let go of.</div>
+    </details>
+    <details>
+      <summary><span class="wk-t">Leadership loneliness, the weight of responsibility</span></summary>
+      <div class="wk-body">You can't complain to your team - you are their anchor. Upwards is where they evaluate you. One hour a week where you don't have to be strong. I spent 17 years in that role.</div>
+    </details>
+    <details>
+      <summary><span class="wk-t">Relationship patterns that keep repeating</span></summary>
+      <div class="wk-body">Partners change, the script stays the same. Closeness - escape. Resentment - silence. We look not at "him" or "her", but at how you build contact.</div>
+    </details>
+    <details>
+      <summary><span class="wk-t">Men's experience: vulnerability, aggression, self-worth</span></summary>
+      <div class="wk-body">Anger with nowhere to go. Weakness that must not show. Here you can be angry, cry and stay silent. For real. Without shame.</div>
+    </details>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">How I work</span></div>
   <div class="prose">
     <p>
       My core method is Gestalt therapy - working with what happens in contact, here and now.
@@ -52,19 +90,20 @@ import { site } from '../../data/site';
       Coaching tools (Erickson International, ICF-accredited) come in when structure and concrete
       steps are needed. 2,500+ hours of professional training altogether. I ask direct,
       sometimes uncomfortable questions - and I can hold what comes up: shame, anger, fear, emptiness.
+      More about the process: <a href="/en/therapy/">how therapy works</a>.
     </p>
   </div>
 
-  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Format and fees</span></div>
+  <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Format and fees</span></div>
   <div class="spec">
     <div class="spec-row"><span class="spec-key">Session</span><span class="spec-val">50 minutes · online</span></div>
     <div class="spec-row"><span class="spec-key">Fee</span><span class="spec-val">60 € per session</span></div>
-    <div class="spec-row"><span class="spec-key">Schedule</span><span class="spec-val">Mon-Thu · 9:00-19:00 CET</span></div>
+    <div class="spec-row"><span class="spec-key">Schedule</span><span class="spec-val">{site.en.schedule}</span></div>
     <div class="spec-row"><span class="spec-key">Payment</span><span class="spec-val">PayPal · IBAN · card</span></div>
     <div class="spec-row"><span class="spec-key">Languages</span><span class="spec-val">English · Russian</span></div>
   </div>
 
-  <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Group</span></div>
+  <div class="meta-line"><span class="meta-num">05</span><span class="meta-label">Group</span></div>
   <div class="prose">
     <p>
       Together with my colleague Irina, I run an English-speaking therapy group -
@@ -73,7 +112,7 @@ import { site } from '../../data/site';
     </p>
   </div>
 
-  <div class="meta-line"><span class="meta-num">05</span><span class="meta-label">Credentials, in short</span></div>
+  <div class="meta-line"><span class="meta-num">06</span><span class="meta-label">Credentials, in short</span></div>
   <div class="spec">
     <div class="spec-row"><span class="spec-key">MSc in Psychology, psychoanalytic track</span><span class="spec-val">HSE University · 2015-2018</span></div>
     <div class="spec-row"><span class="spec-key">Gestalt therapist · 4-year program, 733 hours</span><span class="spec-val">Moscow Gestalt Institute · 2017-2021</span></div>
@@ -81,14 +120,25 @@ import { site } from '../../data/site';
     <div class="spec-row"><span class="spec-key">Own therapy</span><span class="spec-val">12 years · 1,000+ hours</span></div>
   </div>
   <div class="prose">
-    <p>Diplomas and certificates: <a href="/credentials/">scans here</a> (page in Russian, documents speak for themselves).</p>
+    <p>Diplomas, certificates and the full list: <a href="/en/credentials/">credentials with scans</a>.</p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">07</span><span class="meta-label">Reading</span></div>
+  <div class="prose">
+    <p>
+      I write about burnout, transitions and staying alive at work - no advice, no tidy wisdom
+      at the end. English essays are collected in <a href="/en/articles/">Articles</a>;
+      most of my writing lives in Russian on
+      <a href="https://t.me/valera_outloud" target="_blank" rel="noopener">Telegram</a> and
+      <a href="https://www.linkedin.com/in/karasaev/" target="_blank" rel="noopener">LinkedIn</a>.
+    </p>
   </div>
 
   <div class="cta-final">
-    <div class="cta-title">Free 15-minute intro call</div>
+    <div class="cta-title">Free 30-minute intro call</div>
     <div class="cta-sub">Meet, ask anything, see if we click. No strings attached</div>
     <div class="btn-group" style="margin: 0;">
-      <a href={'https://t.me/vkarasaev?text=' + encodeURIComponent('Hi! I would like to book a free 15-minute intro call')} class="btn btn-primary">Message me on Telegram</a>
+      <a href={site.en.telegramFreeCall} class="btn btn-primary">Message me on Telegram</a>
       <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
     </div>
   </div>

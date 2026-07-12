@@ -55,7 +55,7 @@ const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dze
       </div>
       {d.source_url && srcNames[d.source_channel] && (
         <div class="spec-row">
-          <span class="spec-key">Оригинал</span>
+          <span class="spec-key">{d.lang === 'en' ? 'Original' : 'Оригинал'}</span>
           <span class="spec-val"><a href={d.source_url} style="color: var(--gold); text-decoration: none;">{srcNames[d.source_channel]}</a></span>
         </div>
       )}

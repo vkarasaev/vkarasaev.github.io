@@ -1,0 +1,88 @@
+---
+// /en/principles/ (создана 2026-07-12): правила работы человеческим языком,
+// адаптация RU /principles/. EN-отличия: онлайн-only, 60 €, без телефона.
+import Page from '../../../layouts/Page.astro';
+import { site } from '../../../data/site';
+---
+
+<Page
+  title="Working Principles · Valeriy Karasaev"
+  description="How working with me is set up: schedule, cancellations and rescheduling, payment, confidentiality, boundaries. Short and human; the full version is in a PDF."
+  lang="en"
+  translation="/principles/"
+>
+  <div class="page-head">
+    <div class="kicker">Working Principles</div>
+    <h1 class="page-title">Rules are not bureaucracy. They are the frame that makes it safe</h1>
+    <p class="lead">
+      Therapy works when it has stable boundaries: time, money, agreements.
+      Here is what matters most. The full version is in a
+      <a href="/docs/working-rules-en.pdf" target="_blank" rel="noopener" style="color: var(--gold);">PDF</a>.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Session format</span></div>
+  <div class="prose">
+    <p>
+      A session lasts 50 minutes, usually once a week at a time slot reserved for you.
+      Online - Google Meet or Zoom, camera on. Being late does not extend the session:
+      I wait for you for 20 minutes, after that the meeting counts as missed.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Cancellations and rescheduling</span></div>
+  <div class="prose">
+    <p>
+      You can cancel or reschedule a session free of charge no later than 24 hours in advance.
+      With a later cancellation, the session is paid in full - that is fair to the time
+      reserved for you.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Payment</span></div>
+  <div class="prose">
+    <p>
+      A session costs {site.session.priceEur}. Payment before or right after the session:
+      PayPal, IBAN or card. The fee may be reviewed no more than once a year,
+      with at least a month's notice.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Confidentiality</span></div>
+  <div class="prose">
+    <p>
+      Everything that happens in sessions stays between us. Two exceptions: supervision
+      (discussing the work without names or recognizable details - a professional standard)
+      and a direct threat to life, yours or someone else's.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">05</span><span class="meta-label">Boundaries</span></div>
+  <div class="prose">
+    <p>
+      I don't do therapy by text and I don't combine therapy with other relationships -
+      business or personal. Between sessions you can write about organizational matters;
+      if you want to share something important, better bring it to the meeting -
+      that is where it belongs.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">06</span><span class="meta-label">Ending</span></div>
+  <div class="prose">
+    <p>
+      You can end therapy at any moment - that is your right. One request: come to a closing
+      session. Leaving after saying goodbye is a different experience than simply disappearing.
+      Often that is exactly where something important happens.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">07</span><span class="meta-label">In session you can</span></div>
+  <div class="prose">
+    <p>
+      Cry and laugh. Swear. Talk about sex, money and envy. Be angry - including at me.
+      Be unsuccessful, confused and humanly vulnerable. Say the things you have never told anyone.
+      Stay silent when there are no words yet. You don't have to be convenient here -
+      you have to be real.
+    </p>
+  </div>
+</Page>

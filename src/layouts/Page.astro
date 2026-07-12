@@ -55,10 +55,10 @@ const nav = ru
     <slot />
     {!hideCta && (
       <div class="cta-final">
-        <div class="cta-title">{ru ? 'Бесплатная встреча - 15 минут' : 'Free 15-minute intro call'}</div>
+        <div class="cta-title">{ru ? 'Бесплатная встреча - 15 минут' : 'Free 30-minute intro call'}</div>
         <div class="cta-sub">{ru ? 'Познакомиться, задать вопросы, решить - без обязательств' : 'Meet, ask questions, decide. No strings attached'}</div>
         <div class="btn-group" style="margin: 0;">
-          <a href={site.telegramFreeCall} class="btn btn-primary">{ru ? 'Записаться в Telegram' : 'Message me on Telegram'}</a>
+          <a href={ru ? site.telegramFreeCall : site.en.telegramFreeCall} class="btn btn-primary">{ru ? 'Записаться в Telegram' : 'Message me on Telegram'}</a>
           <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
         </div>
       </div>
@@ -73,10 +73,10 @@ const nav = ru
         <a href={'mailto:' + site.email}>{site.email}</a>
       </span>
       <span>
-        <a href="/principles/">{ru ? 'Принципы' : 'Principles'}</a> ·
-        <a href="/privacy/">{ru ? 'Конфиденциальность' : 'Privacy'}</a> ·
-        <a href="/terms/">{ru ? 'Условия' : 'Terms'}</a> ·
-        <a href="/sos/">{ru ? 'SOS' : 'SOS'}</a>
+        <a href={ru ? '/principles/' : '/en/principles/'}>{ru ? 'Принципы' : 'Principles'}</a> ·
+        <a href={ru ? '/privacy/' : '/en/privacy/'}>{ru ? 'Конфиденциальность' : 'Privacy'}</a> ·
+        <a href={ru ? '/terms/' : '/en/terms/'}>{ru ? 'Условия' : 'Terms'}</a> ·
+        <a href={ru ? '/sos/' : '/en/sos/'}>{ru ? 'SOS' : 'SOS'}</a>
       </span>
     </div>
   </footer>

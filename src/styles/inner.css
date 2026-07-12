@@ -54,10 +54,10 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 
 /* ── FAQ ── */
 .faq details { border: 1px solid var(--border); background: var(--surface); border-radius: var(--radius); margin-bottom: 10px; }
-.faq summary { cursor: pointer; list-style: none; padding: 16px 18px; font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--text); }
+.faq summary { cursor: pointer; list-style: none; padding: 16px 18px; font-family: 'Cormorant Garamond', serif; font-size: 19px; color: var(--text); display: flex; align-items: center; gap: 14px; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary::after { content: '+'; float: right; color: var(--gold); }
-.faq details[open] summary::after { content: '-'; }
+.faq summary::after { content: '+'; margin-left: auto; flex: 0 0 auto; color: var(--gold); font-family: 'Jost', sans-serif; font-size: 18px; line-height: 1; transition: transform 0.25s; }
+.faq details[open] summary::after { transform: rotate(45deg); }
 .faq .faq-body { padding: 0 18px 16px; font-size: 15.5px; line-height: 1.75; color: #d5d1c9; }
 
 /* ── Карточки-сетки (credentials, blog) ── */
@@ -161,13 +161,16 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 .write-title { font-size: 15px; color: var(--text); font-weight: 500; }
 .write-desc { font-size: 13px; color: #b6b2aa; line-height: 1.5; margin-top: 3px; }
 
-/* ── Ведущие в кружках (группы) ── */
-.hosts { display: flex; gap: 22px; flex-wrap: wrap; margin: 10px 0 6px; }
-.host { display: flex; gap: 14px; align-items: center; }
-.host img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); }
-.host .host-name { color: var(--text); font-size: 15.5px; font-weight: 500; }
-.host .host-sub { color: #b6b2aa; font-size: 13px; margin-top: 2px; }
-.host a { color: var(--gold); font-size: 13px; text-decoration: none; }
+/* ── Ведущие (группы): карточки с воздухом, фото и описание по центру ── */
+.hosts { display: grid; grid-template-columns: 1fr; gap: 16px; margin: 10px 0 6px; }
+@media (min-width: 640px) { .hosts { grid-template-columns: 1fr 1fr; } }
+.host { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px 26px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.host img { width: 104px; height: 104px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); margin-bottom: 16px; }
+.host .host-name { color: var(--text); font-family: 'Cormorant Garamond', serif; font-size: 22px; }
+.host .host-sub { color: var(--gold); font-size: 11.5px; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 6px; }
+.host .host-bio { color: #c8c4bc; font-size: 14.5px; line-height: 1.7; margin-top: 14px; }
+.host a { color: var(--gold); font-size: 13px; text-decoration: none; margin-top: 14px; border: 1px solid rgba(201,169,110,0.5); border-radius: 100px; padding: 7px 16px; letter-spacing: 1px; text-transform: uppercase; font-size: 11px; transition: all 0.25s; }
+.host a:hover { border-color: var(--gold); background: rgba(201,169,110,0.06); }
 
 /* ═══ Редизайн страниц (therapy/группа), варианты A/B ═══ */
 
@@ -264,3 +267,9 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
   max-width: 720px;
   margin-left: auto;
   margin-right: auto;}
+
+/* ── Мобильные правки (2026-07-13): меню прячется (есть бургер), футер по центру ── */
+@media (max-width: 759px) {
+  .site-header-in .nav { display: none; }
+  .site-footer-in { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+}

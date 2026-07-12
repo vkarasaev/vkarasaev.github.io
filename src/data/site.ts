@@ -38,6 +38,20 @@ export const site = {
   telegramSession:
     'https://t.me/vkarasaev?text=' + encodeURIComponent('Привет, хочу записаться на сессию'),
 
+  // EN-версия живет сама по себе: интро-звонок 30 минут, префиллы на английском,
+  // расписание в CET, телефон не показываем (задача от 2026-07-12).
+  en: {
+    introCallMinutes: 30,
+    telegramFreeCall:
+      'https://t.me/vkarasaev?text=' +
+      encodeURIComponent('Hi! I would like to book a free 30-minute intro call'),
+    telegramSession:
+      'https://t.me/vkarasaev?text=' + encodeURIComponent('Hi! I would like to book a session'),
+    telegramQuestion:
+      'https://t.me/vkarasaev?text=' + encodeURIComponent('Hi! I have a question'),
+    schedule: 'Mon-Thu · 9:00-19:00 CET',
+  },
+
   // Соцсети пиктограммами (главная, контакты)
   socials: [
     { id: 'telegram', label: 'Telegram', url: 'https://t.me/valera_outloud' },

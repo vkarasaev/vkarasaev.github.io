@@ -1,31 +1,53 @@
 /* Новая главная v2 (/home/). Полноширинный редакторский лейаут в каноне Premium Dark.
-   Логика страницы: обещание → «это про вас» → доверие → как работает → форматы → тексты → человек → CTA. */
+   Логика страницы: обещание → «это про вас» → доверие → как работает → форматы → тексты → человек → CTA.
+
+   Правки 2026-07-13 (по «Правки по сайту - 5»):
+   - десктоп: фото hero больше не вылезает за контентную сетку (margin-right: 0,
+     как на p-hero страницах) - правый край совпадает с бургером;
+   - десктоп: первый экран компактный - фото в рамке 4/5 с ограничением высоты,
+     сетка выровнена по центру; кикер ярче (gold2, weight 500);
+   - мобайл: порядок hero = фото → кикер/заголовок/послание → кнопки с иконками;
+     факт-полоса превращается в карточки 2 в ряд (как статы на первой главной);
+   - шаги «С чего начинается работа»: вместо кружков - editorial-номера 01/02/03
+     над тонкой линейкой (канон meta-line), ровно на всех ширинах. */
 
 /* HERO: */
 .hx { position: relative; border-bottom: 1px solid var(--border); overflow: hidden; }
-.hx-grid { max-width: 1060px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 1fr; gap: 0; align-items: stretch; }
-.hx-left { padding: 44px 0 36px; display: flex; flex-direction: column; justify-content: center; }
-.hx-kicker { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; }
-.hx-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 44px; line-height: 1.08; color: var(--text); margin: 0 0 22px; }
-.hx-lead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; line-height: 1.6; color: #e2ded6; max-width: 500px; margin: 0 0 30px; }
+.hx-grid { max-width: 1060px; margin: 0 auto; padding: 28px 20px 8px; display: grid; grid-template-columns: 1fr; gap: 0; align-items: stretch; }
+.hx-left { padding: 26px 0 34px; display: flex; flex-direction: column; justify-content: center; }
+.hx-kicker { font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--gold2); font-weight: 500; margin-bottom: 18px; }
+.hx-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 40px; line-height: 1.1; color: var(--text); margin: 0 0 20px; }
+.hx-lead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; line-height: 1.6; color: #e2ded6; max-width: 500px; margin: 0 0 26px; }
 .hx-cta { display: flex; flex-direction: column; gap: 12px; max-width: 440px; }
-.hx-photo { position: relative; min-height: 300px; max-height: 62vh; overflow: hidden; }
-.hx-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; display: block; }
-.hx-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, var(--bg) 100%), linear-gradient(90deg, var(--bg) 0%, transparent 22%); }
+
+/* Фото: на мобильном - первым (order: -1), компактная рамка */
+.hx-photo { position: relative; order: -1; height: 340px; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border); }
+.hx-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 22%; display: block; }
+.hx-photo::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 62%, rgba(14,14,16,0.55) 100%); }
 
 /* Факт-полоса: */
-.factbar { border-bottom: 1px solid var(--border); background: var(--bg2); }
-.factbar-in { max-width: 1060px; margin: 0 auto; padding: 22px 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
-.fx { }
-.fx-n { font-family: 'Cormorant Garamond', serif; font-size: 28px; color: var(--gold); line-height: 1; }
-.fx-l { font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase; color: #b8b4ac; margin-top: 6px; }
+.factbar { border-bottom: 1px solid var(--border); }
+.factbar-in { max-width: 1060px; margin: 0 auto; padding: 8px 20px 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.fx { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px 12px; text-align: center; }
+.fx:last-child { grid-column: 1 / -1; }
+.fx-n { font-family: 'Cormorant Garamond', serif; font-size: 27px; color: var(--gold); line-height: 1; }
+.fx-l { font-size: 11px; letter-spacing: 1.2px; text-transform: uppercase; color: #b8b4ac; margin-top: 7px; line-height: 1.5; }
 
 /* Общий контейнер секций: */
-.hx-wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+.hx-wrap { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
 .hx-sec { padding: 52px 0; border-bottom: 1px solid var(--border); }
 .hx-sec:last-of-type { border-bottom: none; }
 .hx-h2 { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 32px; color: var(--text); margin: 0 0 6px; }
 .hx-sub { font-size: 15px; color: #b6b2aa; margin: 0 0 28px; max-width: 640px; line-height: 1.6; }
+/* Единый отступ контента после заголовка, когда подзаголовка нет: */
+.hx-sec .hx-h2 + .wk,
+.hx-sec .hx-h2 + .pains,
+.hx-sec .hx-h2 + .two,
+.hx-sec .hx-h2 + .steps,
+.hx-sec .hx-h2 + .fmts,
+.hx-sec .hx-h2 + .human,
+.hx-sec .hx-h2 + .posts3,
+.hx-sec .hx-h2 + .grid-2 { margin-top: 28px; }
 
 /* «Это про вас» колонки болей: */
 .pains { display: grid; grid-template-columns: 1fr; gap: 14px; }
@@ -39,11 +61,11 @@
 .two-col p { font-size: 15.5px; line-height: 1.7; color: #d2cec6; margin: 0 0 12px; }
 .two-col p:last-child { margin-bottom: 0; }
 
-/* Как работает: шаги: */
-.steps { display: grid; grid-template-columns: 1fr; gap: 16px; counter-reset: st; }
-.step { display: flex; gap: 18px; align-items: flex-start; }
-.step-n { flex: 0 0 auto; width: 44px; height: 44px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 22px; color: var(--gold); }
-.step-b h4 { font-size: 16px; color: var(--text); margin: 8px 0 6px; font-weight: 500; }
+/* Как работает: editorial-шаги с номерами над линейкой (вместо кружков) */
+.steps { display: grid; grid-template-columns: 1fr; gap: 22px; }
+.step { display: block; border-top: 1px solid var(--border); padding-top: 16px; }
+.step-n { font-family: 'Cormorant Garamond', serif; font-size: 16px; letter-spacing: 1.5px; color: var(--gold); line-height: 1; }
+.step-b h4 { font-size: 16px; color: var(--text); margin: 10px 0 6px; font-weight: 500; }
 .step-b p { font-size: 14.5px; line-height: 1.65; color: #c3bfb7; margin: 0; }
 
 /* Форматы: */
@@ -64,57 +86,41 @@
 /* Тексты preview: */
 .posts3 { display: grid; grid-template-columns: 1fr; gap: 16px; }
 
-/* Финальный CTA: */
-/* Финальный CTA */
-
-.hx-final {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-  background:
-    radial-gradient(
-      600px 300px at 50% 0%,
-      rgba(201, 169, 110, 0.06),
-      transparent 70%
-    );
-}
-
-.hx-final .t {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 30px;
-  color: var(--text);
-  margin-bottom: 6px;
-}
-
-.hx-final .s {
-  font-size: 15px;
-  color: #b6b2aa;
-  margin-bottom: 16px;
+/* Финальный CTA: общесайтовый .cta-final + мягкая подсветка сверху */
+.hx-cta-final-wrap {
+  padding: 0 20px;
+  background: radial-gradient(600px 300px at 50% 0%, rgba(201, 169, 110, 0.06), transparent 70%);
 }
 
 @media (min-width: 760px) {
-  .factbar-in { grid-template-columns: repeat(5, 1fr); }
+  /* Факт-полоса на широких экранах: ровная линейка с разделителями */
+  .factbar { background: var(--bg2); }
+  .factbar-in { grid-template-columns: repeat(5, 1fr); gap: 0; padding: 24px 20px; }
+  .fx { background: transparent; border: none; border-radius: 0; border-left: 1px solid var(--border); padding: 2px 16px; }
+  .fx:first-child { border-left: none; }
+  .fx:last-child { grid-column: auto; }
   .pains { grid-template-columns: repeat(2, 1fr); }
   .two { grid-template-columns: 1fr 1fr; }
-  .steps { grid-template-columns: repeat(3, 1fr); }
-  .steps .step { flex-direction: column; }
+  .steps { grid-template-columns: repeat(3, 1fr); gap: 28px 36px; }
   .fmts { grid-template-columns: repeat(3, 1fr); }
   .posts3 { grid-template-columns: repeat(3, 1fr); }
   .human { grid-template-columns: 320px 1fr; }
 }
+
 @media (min-width: 960px) {
-  .hx-grid { grid-template-columns: 1.05fr 0.95fr; gap: 40px; }
-  .hx-left { padding: 56px 0 48px; }
-  .hx-title { font-size: 54px; }
-  .hx-photo { margin-right: -24px; }
+  /* Компактный первый экран: текст и фото-портрет в рамке, по центру,
+     правый край фото = контентная сетка = правый край бургера */
+  .hx-grid { grid-template-columns: 1.08fr 0.92fr; gap: 48px; align-items: center; padding: 0 20px; }
+  .hx-left { padding: 48px 0; }
+  .hx-kicker { font-size: 12px; letter-spacing: 2.5px; }
+  .hx-title { font-size: 50px; line-height: 1.08; }
+  .hx-lead { font-size: 21px; }
+  .hx-photo { order: 0; height: auto; aspect-ratio: 5/6; max-height: 520px; margin: 36px 0; align-self: center; width: 100%; }
+  .hx-photo img { object-position: center 15%; }
+  .hx-photo::after { background: linear-gradient(180deg, transparent 70%, rgba(14,14,16,0.45) 100%); }
+  .factbar-in { padding: 26px 20px; }
+  .fx-n { font-size: 28px; }
 }
 
 /* Переключатель языка: визуально отделен от меню */
 .lang-sw { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold) !important; text-decoration: none; padding: 4px 0 4px 16px !important; margin-left: 4px; border-left: 1px solid var(--border); white-space: nowrap; }
-/* Фото hero не выше первого экрана, факт-полоса подтянута */
-@media (min-width: 960px) {
-  .hx-grid { min-height: 0; }
-  .hx-photo img { object-position: center 15%; }
-}
