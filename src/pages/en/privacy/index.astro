@@ -1,0 +1,50 @@
+---
+// /en/privacy/ (создана 2026-07-12): адаптация RU /privacy/.
+// ДРАФТ - юридическую формулировку при необходимости сверить со специалистом.
+import Page from '../../../layouts/Page.astro';
+import { site } from '../../../data/site';
+---
+
+<Page
+  title="Privacy · Valeriy Karasaev"
+  description="What data karasaev.com collects, and what happens to the information you share when booking and working with me."
+  lang="en"
+  translation="/privacy/"
+  hideCta={true}
+>
+  <div class="page-head">
+    <div class="kicker">Privacy</div>
+    <h1 class="page-title">What happens to your data</h1>
+    <p class="lead">In short: this site collects almost nothing about you. And what you tell me personally is protected by professional ethics.</p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">The website</span></div>
+  <div class="prose">
+    <p>
+      karasaev.com is a static website. It doesn't use cookies, doesn't show ads and contains
+      no social media trackers. Forms on the site don't collect data: all communication goes
+      directly through Telegram or email. Fonts are loaded from Google Fonts - when a page loads,
+      your browser contacts Google's servers under their rules.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Booking and correspondence</span></div>
+  <div class="prose">
+    <p>
+      When you write to me on Telegram or by email, I receive what you sent: your name, contact
+      and the text of your message. I use this data only to get in touch with you and organize
+      our work. I don't pass it to third parties and don't use it for mailings without your consent.
+    </p>
+  </div>
+
+  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Therapy</span></div>
+  <div class="prose">
+    <p>
+      Everything said in sessions is confidential. Two exceptions: supervision (discussing the work
+      without names or identifying details - a professional standard) and a direct threat to life.
+      Details are in the <a href="/docs/working-rules-en.pdf" target="_blank" rel="noopener">working rules (PDF)</a>
+      and on the <a href="/en/principles/">Working Principles</a> page.
+    </p>
+    <p>Questions about data: <a href={'mailto:' + site.email}>{site.email}</a>.</p>
+  </div>
+</Page>

@@ -1,118 +1,159 @@
 ---
-// /en/therapy/ (Ф2): адаптация RU /therapy/ под EN-аудиторию, не дословный перевод.
-// Цены в евро (D4), расписание в CET. Парная страница: /therapy/.
+// /en/therapy/ (переработка 2026-07-12): структура сверена с боевой RU /therapy/
+// (hero с фото, pullquote, «in session you can», FAQ по логике продаж).
+// EN-отличия: онлайн-only, 60 €, CET, интро-звонок 30 минут, префиллы на английском.
 import Page from '../../../layouts/Page.astro';
 import { site } from '../../../data/site';
 ---
 
 <Page
   title="Individual Therapy in English · Valeriy Karasaev"
-  description="How therapy works: first session, 55-minute online format, 60 € per session, confidentiality, FAQ. Gestalt therapist and executive coach, in practice since 2014."
+  description="How therapy works: first session, 50-minute online format, 60 € per session, confidentiality, FAQ. Gestalt therapist and executive coach, in practice since 2014."
   lang="en"
+  wide={true}
   translation="/therapy/"
 >
-  <div class="page-head">
-    <div class="kicker">Individual Therapy</div>
-    <h1 class="page-title">When handling it alone got too expensive</h1>
-    <p class="lead">
-      Everything looks fine on paper - and feels empty inside. You understand everything -
-      and still don't move. You are tired of thinking the same thoughts in circles.
-      If this sounds familiar, you are in the right place.
-    </p>
+  <!-- HERO -->
+  <div class="p-hero" style="margin: 0 -20px;">
+    <div class="p-hero-in">
+      <div class="p-hero-txt">
+        <div class="kicker">Individual Therapy</div>
+        <h1>When handling it alone got too expensive</h1>
+        <p class="lead" style="margin-bottom: 24px;">
+          Everything looks fine on paper - and feels empty inside. You understand everything -
+          and still don't move. If this sounds familiar, you are in the right place.
+        </p>
+        <div class="btn-group" style="justify-content: flex-start; margin: 0;">
+          <a href={site.en.telegramSession} class="btn btn-primary">Book a first session</a>
+          <a href={site.en.telegramQuestion} class="btn btn-outline">Ask a question</a>
+        </div>
+      </div>
+      <div class="p-hero-photo">
+        <img src="/images/photo/therapy-hero.jpg" alt="Valeriy Karasaev" />
+      </div>
+    </div>
   </div>
 
-  <div class="prose">
-    <p>
-      People usually come to me at times of crisis and transition: burnout, divorce, relocation,
-      job loss, loss of meaning, hard decisions. These are the moments when life is changing -
-      and you need a reliable second person next to you to untangle things and find new ground.
-    </p>
-    <p>
-      I don't hand out advice or checklists. I help you find the point where something actually
-      shifts. I hold three lenses at once: Gestalt - contact and the body; psychoanalytic thinking -
-      recurring life scripts; coaching - structure and concrete steps.
-    </p>
-  </div>
+  <div class="shell content-narrow" style="margin-top: 44px;">
+    <div class="prose">
+      <p>
+        People usually come to me at times of crisis and transition: burnout, divorce, relocation,
+        job loss, loss of meaning, hard decisions. These are the moments when life is changing -
+        and you need a reliable second person next to you, to untangle things and find new ground.
+      </p>
+    </div>
 
-  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">The first session</span></div>
-  <div class="prose">
-    <p>
-      The first session is an introduction. We look at what brings you, I explain how I work,
-      and you decide whether to continue. No commitments beyond paying for one session.
-      Before that, we can have a free 15-minute call - to meet and see whether we click.
-    </p>
-  </div>
+    <!-- Pullquote -->
+    <div class="pullquote">
+      <p>«Therapy begins when you can no longer live a life that isn't yours».</p>
+      <div class="attr">Valeriy Karasaev</div>
+    </div>
 
-  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Format and fees</span></div>
-  <div class="spec">
-    <div class="spec-row"><span class="spec-key">Session</span><span class="spec-val">50 minutes · online, camera on</span></div>
-    <div class="spec-row"><span class="spec-key">Fee</span><span class="spec-val">{site.session.priceEur} per session</span></div>
-    <div class="spec-row"><span class="spec-key">Schedule</span><span class="spec-val">Mon-Thu · 9:00-19:00 CET</span></div>
-    <div class="spec-row"><span class="spec-key">Platforms</span><span class="spec-val">Google Meet / Zoom</span></div>
-    <div class="spec-row"><span class="spec-key">Payment</span><span class="spec-val">PayPal · IBAN · card</span></div>
-    <div class="spec-row"><span class="spec-key">Languages</span><span class="spec-val">English · Russian</span></div>
-  </div>
-  <div class="prose">
-    <p>
-      Full working agreements - cancellations, confidentiality, boundaries - are collected
-      in one document: <a href="/docs/pravila-raboty.pdf" target="_blank" rel="noopener">Working Rules (PDF, in Russian; English version on request)</a>.
-    </p>
-  </div>
+    <!-- First session -->
+    <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">The first session</span></div>
+    <div class="prose">
+      <p>
+        The first session is an introduction. We look at what brings you, I explain how I work,
+        and you decide whether to continue. No commitments beyond paying for one session.
+        Before that, we can have a free 30-minute intro call - to meet, ask questions
+        and see whether we click.
+      </p>
+    </div>
 
-  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">FAQ</span></div>
-  <div class="faq">
-    <details>
-      <summary>Do I need to prepare for a session?</summary>
-      <div class="faq-body">
-        No. Come as you are - tired, confused, angry, without a clear request. Figuring out
-        what is going on is already part of the work, and we do it together.
-      </div>
-    </details>
-    <details>
-      <summary>What if I don't know what my "request" is?</summary>
-      <div class="faq-body">
-        That's normal. «I want to figure things out» and «something is off, I don't know what»
-        are the most common starting points. Clarity comes in the first sessions - it's not
-        an entrance ticket.
-      </div>
-    </details>
-    <details>
-      <summary>How many sessions will I need?</summary>
-      <div class="faq-body">
-        It depends on the task. Short-term focused work - blocks of 5-10 sessions. An acute
-        crisis - sometimes 10-20. Deep work with patterns and your way of living - from half
-        a year to several years. We discuss it openly and review regularly.
-      </div>
-    </details>
-    <details>
-      <summary>Therapy or coaching - which one do I need?</summary>
-      <div class="faq-body">
-        Coaching is about goals and steps: where am I going and how do I get there. Therapy is
-        about what keeps repeating and getting in the way: feelings, scripts, relationships.
-        I am a certified coach and a Gestalt therapist, so we can work in the layer you need -
-        and switch when it makes sense.
-      </div>
-    </details>
-    <details>
-      <summary>Does online therapy actually work?</summary>
-      <div class="faq-body">
-        Yes. Most of my practice is online and it works as well as in-person. You need a private
-        space, stable internet and your camera on - I don't work without video.
-      </div>
-    </details>
-    <details>
-      <summary>What don't you work with?</summary>
-      <div class="faq-body">
-        I work with adults 18+. I don't work with children and teenagers, chemical addictions
-        or severe psychiatric conditions - in those cases I can recommend a psychiatrist.
-      </div>
-    </details>
-    <details>
-      <summary>Is it confidential?</summary>
-      <div class="faq-body">
-        Yes. Two exceptions: supervision (discussing the work without names or identifying
-        details - a professional standard) and a direct threat to life.
-      </div>
-    </details>
+    <!-- How we work -->
+    <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">How we work</span></div>
+    <div class="prose">
+      <p>
+        In short - in three layers. We look at what is happening with you right now: in feelings,
+        in the body, in contact. We notice the scripts that have been repeating for years.
+        And when it is time to act, we add structure and concrete steps. Whatever you need now -
+        that is what we work with.
+      </p>
+      <p>
+        Therapy is a dialogue. I don't hand out advice: my role is to be next to you,
+        not to drag you behind me. Only then do your decisions become truly yours -
+        and integrate as part of your life.
+      </p>
+    </div>
+
+    <!-- Format and fees -->
+    <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Format and fees</span></div>
+    <div class="spec">
+      <div class="spec-row"><span class="spec-key">Session</span><span class="spec-val">50 minutes · online, camera on</span></div>
+      <div class="spec-row"><span class="spec-key">Fee</span><span class="spec-val">{site.session.priceEur} per session</span></div>
+      <div class="spec-row"><span class="spec-key">Schedule</span><span class="spec-val">{site.en.schedule}</span></div>
+      <div class="spec-row"><span class="spec-key">Platforms</span><span class="spec-val">Google Meet / Zoom</span></div>
+      <div class="spec-row"><span class="spec-key">Payment</span><span class="spec-val">PayPal · IBAN · card</span></div>
+      <div class="spec-row"><span class="spec-key">Languages</span><span class="spec-val">English · Russian</span></div>
+    </div>
+    <div class="prose">
+      <p>
+        Full working agreements - cancellations, rescheduling, confidentiality, boundaries -
+        are collected in one document:
+        <a href="/docs/working-rules-en.pdf" target="_blank" rel="noopener">Working Rules (PDF)</a>.
+        The essentials, in plain language: <a href="/en/principles/">Working Principles</a>.
+      </p>
+    </div>
+
+    <!-- In session you can -->
+    <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">In session you can</span></div>
+    <div class="prose">
+      <p>
+        Cry and laugh. Swear. Talk about sex, money and envy. Be angry - including at me.
+        Be unsuccessful, confused and humanly vulnerable. Say the things you have never told anyone.
+        Stay silent when there are no words yet. You don't have to be convenient here -
+        you have to be real.
+      </p>
+    </div>
+
+    <!-- FAQ -->
+    <div id="faq" class="meta-line"><span class="meta-num">05</span><span class="meta-label">FAQ</span></div>
+    <div class="faq">
+      <details>
+        <summary>What do people come to you with most often?</summary>
+        <div class="faq-body">Burnout and chronic stress. Loss of meaning. Divorce and separation. Expat life. Repeating relationship patterns. Leadership loneliness. Career transitions. Men's topics: vulnerability, aggression, self-worth. And much more. This is not a closed list - if in doubt, write to me.</div>
+      </details>
+      <details>
+        <summary>What if I don't know my "request"? Do I need to prepare?</summary>
+        <div class="faq-body">No preparation needed. Come as you are - tired, confused, angry, without formulations. «I want to figure things out» and «something is off, I don't know what» are already a good start. Figuring out what is going on is part of the work, and we do it together.</div>
+      </details>
+      <details>
+        <summary>Therapy or coaching - which one do I need?</summary>
+        <div class="faq-body">Coaching is about goals and steps: where am I going and how do I get there. Therapy is about what keeps repeating and getting in the way: feelings, scripts, relationships. I am a certified coach and a Gestalt therapist, so we can work in the layer you need - and switch when it makes sense.</div>
+      </details>
+      <details>
+        <summary>How often do we meet, and how many sessions will I need?</summary>
+        <div class="faq-body">Usually once a week. It can be more or less often - regularity depends on your request, state and possibilities, and we discuss it openly. As for numbers: short-term focused work - blocks of 5-10 sessions; an acute crisis - sometimes 10-20; deep work with patterns - from half a year. We review regularly whether we are heading the right way.</div>
+      </details>
+      <details>
+        <summary>Can a session be longer?</summary>
+        <div class="faq-body">Yes. A standard session is 50 minutes. We can work for 80 or 100 minutes - let's discuss what fits your task.</div>
+      </details>
+      <details>
+        <summary>Why book several sessions in advance?</summary>
+        <div class="faq-body">Effective work is regular. Your chosen time slot is reserved for you: the work builds best in the same place, at the same time, on the same day.</div>
+      </details>
+      <details>
+        <summary>Does online therapy actually work?</summary>
+        <div class="faq-body">Yes. Most of my practice is online and it works as well as in-person meetings. You need a private space, stable internet and your camera on.</div>
+      </details>
+      <details>
+        <summary>What don't you work with?</summary>
+        <div class="faq-body">I work with adults 18+. I don't work with children and teenagers, chemical addictions or severe psychiatric conditions - in those cases I can recommend a psychiatrist.</div>
+      </details>
+      <details>
+        <summary>Is it confidential?</summary>
+        <div class="faq-body">Yes. Everything said in sessions stays between us. Two exceptions: supervision (discussing the work without names or identifying details - a professional standard) and a direct threat to life. Details are in the working rules.</div>
+      </details>
+    </div>
+
+    <div class="prose" style="margin-top: 26px;">
+      <p>
+        Not sure individual therapy is what you need? There is also an English-speaking
+        therapy group - <a href="/en/groups/work-ambition/">«Work, People, Ambition»</a>.
+        Or simply <a href={site.en.telegramFreeCall}>book a free 30-minute call</a> -
+        we will figure it out together.
+      </p>
+    </div>
   </div>
 </Page>

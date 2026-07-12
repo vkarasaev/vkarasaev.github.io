@@ -7,6 +7,7 @@ categories: ["leadership"]
 tags: ["leadership", "loneliness"]
 source_channel: original
 placeholder: true
+cover: "/images/photo/cover-odinochestvo.jpg"
 ---
 
 There is one topic leaders don't discuss out loud. Not money, not power, not layoffs.

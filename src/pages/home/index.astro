@@ -2,6 +2,12 @@
 // НОВАЯ ГЛАВНАЯ v2 (/home/, превью, noindex). Полный редизайн.
 // Логика: hero-обещание → «это про вас» → доверие (два мира) → как работает →
 // форматы → тексты → живой человек → финальный CTA. Всё в каноне Premium Dark.
+//
+// СТРАТЕГИЯ ДВУХ ГЛАВНЫХ (обновлено 2026-07-13, «Правки-5»):
+// - / (линк-хаб) - каноническая главная: индексируется.
+// - /home/ - noindex, дорабатывается под ОБА форм-фактора (мобильный hero
+//   пересобран: фото → послание → кнопки → факт-карточки). Редирект по ширине
+//   экрана убран - страница должна выглядеть нормально на телефоне сама.
 // После утверждения: этот файл → src/pages/index.astro, текущий линк-хаб → /start/.
 import Base from '../../layouts/Base.astro';
 import Burger from '../../components/Burger.astro';
@@ -25,7 +31,7 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
   noindex={true}
 >
   <header class="site-header">
-    <div class="site-header-in" style="max-width: 1060px;">
+    <div class="site-header-in">
       <a class="brand" href="/home/">Валерий Карасаев</a>
       <nav class="nav">
         <a href="/therapy/">Терапия</a>
@@ -50,8 +56,8 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
           Я не обещаю быстро. Но обещаю честно.
         </p>
         <div class="hx-cta">
-          <a href={site.telegramSession} class="btn btn-primary">Записаться на сессию</a>
-          <a href={site.telegramFreeCall} class="btn btn-outline">Бесплатная встреча · 15 мин</a>
+          <a href={site.telegramSession} class="btn btn-primary"><span class="btn-icon">✈</span> Записаться на сессию</a>
+          <a href={site.telegramFreeCall} class="btn btn-outline"><span class="btn-icon">◎</span> Бесплатная встреча · 15 мин</a>
         </div>
       </div>
       <div class="hx-photo">
@@ -80,11 +86,10 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
         <div class="pain"><div class="pain-q">Близкие отношения, которые не строятся: трудно выносить чужие чувства и различия. Сближение - и сразу бегство. А за близостью - невыносимость.</div></div>
         <div class="pain"><div class="pain-q">Предприниматель с целями, который сам себя ограничивает. Все знает, но не делает. Работали в обе стороны: коучинг - на движение, терапия - на препятствия.</div></div>
       </div>
-
+    </section>
 
     <section class="hx-sec">
       <h2 class="hx-h2">Полный список того, с чем я работаю</h2>
-      <p class="hx-sub" style="margin: 26px 0 14px;"></p>
       <div class="wk" style="max-width: 720px;">
         <details>
           <summary><span class="wk-t">Выгорание и хронический стресс</span></summary>
@@ -143,15 +148,15 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       <p class="hx-sub">Без обязательств и без «пакетов». Один честный шаг за раз.</p>
       <div class="steps">
         <div class="step">
-          <div class="step-n">1</div>
+          <div class="step-n">01</div>
           <div class="step-b"><h4>Написать мне</h4><p>Договориться о времени, задать вопросы - или созвониться на 15 минут, познакомиться.</p></div>
         </div>
         <div class="step">
-          <div class="step-n">2</div>
+          <div class="step-n">02</div>
           <div class="step-b"><h4>Первая сессия</h4><p>Знакомимся, разбираемся в запросе - даже если он ещё не сформулирован - и начинаем работать.</p></div>
         </div>
         <div class="step">
-          <div class="step-n">3</div>
+          <div class="step-n">03</div>
           <div class="step-b"><h4>Регулярная работа</h4><p>Обычно раз в неделю. Темп и глубину выбираем вместе и регулярно сверяемся, туда ли идём.</p></div>
         </div>
       </div>
@@ -185,7 +190,6 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
 
     <section class="hx-sec">
       <h2 class="hx-h2">Живой человек, а не функция</h2>
-      <p class="hx-sub" style="margin: 26px 0 14px;"></p>
       <div class="human">
         <img src="/images/photo/home-life.jpg" alt="Валерий на Камино-де-Сантьяго" loading="lazy" />
         <div class="prose">
@@ -216,7 +220,6 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
 
     <section class="hx-sec">
       <h2 class="hx-h2">Где я пишу</h2>
-      <p class="hx-sub" style="margin: 26px 0 14px;"></p>
       <div class="grid-2">
         <a class="write-card" href="/blog/">
           <img src="/images/photo/cover-sobaka.jpg" alt="Блог" />
@@ -251,12 +254,14 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
     </section>
   </div>
 
-  <section class="hx-final">
-    <div class="t">Первый шаг - самый простой</div>
-    <div class="s">Бесплатная встреча, 15 минут: познакомиться, задать вопросы, решить. Без обязательств.</div>
-    <div class="btn-group" style="margin: 0; justify-content: center;">
-      <a href={site.telegramFreeCall} class="btn btn-primary">Записаться в Telegram</a>
-      <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
+  <section class="hx-cta-final-wrap">
+    <div class="cta-final">
+      <div class="cta-title">Первый шаг - самый простой</div>
+      <div class="cta-sub">Бесплатная встреча, 15 минут: познакомиться, задать вопросы, решить. Без обязательств</div>
+      <div class="btn-group" style="margin: 0;">
+        <a href={site.telegramFreeCall} class="btn btn-primary">Записаться в Telegram</a>
+        <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
+      </div>
     </div>
   </section>
 
