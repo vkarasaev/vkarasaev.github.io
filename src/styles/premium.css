@@ -1,9 +1,33 @@
 /* /premium/ - редизайн по черновику «Правки-5» п.9 (2026-07-13).
-   Новые визуальные элементы поверх канона Premium Dark (main.css + inner.css):
-   трёхстрочная цитата с золотым акцентом, контраст «чистая терапия / чистый коучинг»
-   со связующим боксом, двухколоночный тире-список, центральное italic-утверждение,
-   карточки ценности с верхней линейкой, колонки недель, карточки-артефакты с тегами,
-   ценовой блок с крупной цифрой, серые заметки-сноски. */
+   Новые визуальные элементы поверх канона Premium Dark (main.css + inner.css).
+
+   Сетка (пасс 2026-07-12, финальный): единая рабочая сетка 1060 для всех
+   нумерованных секций. Обёртка тела - .pm-body (см. блок «Сетка страницы»
+   ниже), вместо прежнего .shell.content-narrow, который двойным padding
+   сдвигал кромку и центрировал prose/meta-line/spec на 720.
+   Заголовки секций и гриды - на всю сетку; текст ограничен по длине строки
+   (720), но прижат к левой кромке. Центрирование - только у интерлюдий
+   (цитата, контраст, утверждение), все на 720. Ширины 640/680/820 убраны.
+
+   Горизонтали (пасс 2026-07-12): в 03 карточки получили короткий золотой
+   штрих вместо линейки во всю ширину; в 04 колонки недель держатся на
+   золотом теге без линеек. Длинные горизонтали остаются только у meta-line
+   и spec-строк (канон). */
+
+/* ── Сетка страницы ─────────────────────────────────────────────────────
+   Тело секций живёт в .pm-body (НЕ .shell и НЕ .content-narrow):
+   - без .shell нет двойного padding, левая кромка тела совпадает с hero;
+   - без .content-narrow не срабатывает принудительное центрирование
+     prose/meta-line/spec на 720 из конца inner.css.
+   Селекторы через .shell-wide .pm-body (0,3,0) - бьют .shell-wide .prose
+   и др. (0,2,0) независимо от порядка подключения файлов.
+   Правило: заголовки секций и гриды - на всю сетку 1060; текст ограничен
+   по длине строки (720), но прижат к общей левой кромке; центрированы
+   только интерлюдии (цитата, контраст, утверждение) - все на 720. */
+.shell-wide .pm-body .meta-line { max-width: none; margin-left: 0; margin-right: 0; }
+.shell-wide .pm-body .prose { max-width: 720px; margin-left: 0; margin-right: 0; }
+.shell-wide .pm-body .spec { max-width: none; margin-left: 0; margin-right: 0; }
+.shell-wide .pm-body .pullquote { max-width: 720px; margin-left: auto; margin-right: auto; }
 
 /* Hero: курсивный акцент в заголовке, spec и подпись под кнопкой */
 .pm-hero-h1 em { font-style: italic; color: var(--gold); font-weight: 300; }
@@ -17,33 +41,32 @@
 .pm-quote .q-gold { color: var(--gold); }
 
 /* Контраст: два чистых контура + связующий бокс */
-.pm-two { display: grid; grid-template-columns: 1fr; gap: 26px 60px; max-width: 820px; margin: 0 auto; }
+.pm-two { display: grid; grid-template-columns: 1fr; gap: 26px 60px; max-width: 720px; margin: 0 auto; }
 .pm-two-col { text-align: center; }
 .pm-two-col h3 { font-family: 'Jost', sans-serif; font-size: 12px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin: 0 0 12px; }
 .pm-two-col p { font-size: 16px; line-height: 1.65; color: #d2cec6; margin: 0; }
-.pm-merge-wrap { position: relative; max-width: 680px; margin: 0 auto; padding-top: 34px; }
+.pm-merge-wrap { position: relative; max-width: 720px; margin: 0 auto; padding-top: 34px; }
 .pm-merge-wrap::before { content: ''; position: absolute; top: 0; left: 50%; width: 1px; height: 26px; background: var(--border); }
 .pm-merge { border: 1px solid rgba(201,169,110,0.45); border-radius: var(--radius); padding: 26px 30px; text-align: center; font-size: 16.5px; line-height: 1.7; color: #e0dcd4; }
 .pm-merge em { font-style: italic; color: var(--gold); }
 
 /* Двухколоночный тире-список */
-.pm-list2 { display: grid; grid-template-columns: 1fr; gap: 12px 48px; list-style: none; margin: 22px 0 0; padding: 0; }
+.pm-list2 { display: grid; grid-template-columns: 1fr; gap: 12px 64px; list-style: none; margin: 22px 0 0; padding: 0; }
 .pm-list2 li { position: relative; padding-left: 30px; font-size: 15.5px; line-height: 1.55; color: #d5d1c9; }
 .pm-list2 li::before { content: '\2014'; position: absolute; left: 0; color: var(--gold); }
 
 /* Центральное утверждение */
-.pm-statement { max-width: 640px; margin: 44px auto 6px; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; line-height: 1.55; color: #e6e2da; }
+.pm-statement { max-width: 720px; margin: 44px auto 6px; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; line-height: 1.55; color: #e6e2da; }
 .pm-statement em { font-style: italic; color: var(--gold); }
 
-/* Карточки ценности: тонкая верхняя линейка */
-.pm-cards { display: grid; grid-template-columns: 1fr; gap: 34px 56px; margin-top: 30px; }
-.pm-card { border-top: 1px solid rgba(201,169,110,0.35); padding-top: 18px; }
+/* Карточки ценности: короткий золотой штрих вместо линейки во всю ширину */
+.pm-cards { display: grid; grid-template-columns: 1fr; gap: 38px 56px; margin-top: 30px; }
+.pm-card::before { content: ''; display: block; width: 34px; height: 1px; background: rgba(201,169,110,0.7); margin-bottom: 18px; }
 .pm-card h4 { font-size: 16px; font-weight: 500; color: var(--text); margin: 0 0 10px; }
 .pm-card p { font-size: 14.5px; line-height: 1.7; color: #c3bfb7; margin: 0; }
 
-/* Недели: три колонки с тегом над линейкой */
-.pm-weeks { display: grid; grid-template-columns: 1fr; gap: 26px 40px; margin: 30px 0 34px; }
-.pm-week { border-top: 1px solid var(--border); padding-top: 16px; }
+/* Недели: три колонки, держатся на золотом теге, без линеек */
+.pm-weeks { display: grid; grid-template-columns: 1fr; gap: 28px 40px; margin: 30px 0 34px; }
 .pm-week-tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); }
 .pm-week h4 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 24px; color: var(--text); margin: 10px 0 8px; }
 .pm-week p { font-size: 14px; line-height: 1.65; color: #c3bfb7; margin: 0; }
