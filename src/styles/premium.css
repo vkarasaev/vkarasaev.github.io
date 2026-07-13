@@ -32,9 +32,33 @@
 /* Hero: курсивный акцент в заголовке, spec и подпись под кнопкой */
 .pm-hero-h1 em { font-style: italic; color: var(--gold); font-weight: 300; }
 .pm-hero .spec-row { font-size: 14px; }
-.pm-hero-note { font-size: 12.5px; color: #8a8680; margin-top: 12px; letter-spacing: 0.3px; }
+.pm-hero-note { font-size: 12.5px; color: #8a8680; margin-top: 12px; letter-spacing: 0.3px; text-align: center; }
 .pm-hero .btn-outline { border-color: rgba(201,169,110,0.6); color: var(--gold); }
 .pm-hero .btn-outline:hover { border-color: var(--gold); background: rgba(201,169,110,0.06); }
+
+/* «Правки-6» п.8 (вторая итерация): основная кнопка hero. Ширина - как на
+   остальных страницах (весь контейнер), характер - премиальный: золотой контур
+   с едва заметной заливкой вместо сплошной золотой плиты. */
+.pm-cta-btn {
+  width: 100%;
+  padding: 16px 24px;
+  border: 1px solid rgba(201,169,110,0.55);
+  color: var(--gold);
+  background: rgba(201,169,110,0.07);
+}
+.pm-cta-btn:hover { border-color: var(--gold); background: rgba(201,169,110,0.14); color: var(--gold2); }
+
+/* «Правки-6» п.7 (вторая итерация): мобильный первый экран завершается кнопкой
+   и подписью про вход. Компактность - за счёт вертикальных отступов, размер
+   текста не трогаем, чтобы не дешевить страницу. Только до 960px. */
+@media (max-width: 959px) {
+  .pm-hero .p-hero-txt { padding: 40px 0 30px; }
+  .pm-hero .p-hero-txt h1 { margin: 12px 0 14px; }
+  .pm-hero .lead { margin-bottom: 16px !important; }
+  .pm-hero .spec { margin-bottom: 18px !important; }
+  .pm-hero .spec-row { padding: 9px 2px; }
+  .pm-hero-note { margin-top: 10px; }
+}
 
 /* Цитата: строка-акцент золотом */
 .pm-quote p { margin: 0; }

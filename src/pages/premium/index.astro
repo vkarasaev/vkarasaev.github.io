@@ -38,7 +38,12 @@ import '../../styles/premium.css';
           <div class="spec-row"><span class="spec-key">Формат</span><span class="spec-val">очно в Москве или онлайн · индивидуально</span></div>
           <div class="spec-row"><span class="spec-key">Мест</span><span class="spec-val">не больше 3 одновременно</span></div>
         </div>
-        <a href={'https://t.me/vkarasaev?text=' + encodeURIComponent('Привет! Интересует премиум-сопровождение')} class="btn btn-outline" style="width: fit-content;">Обсудить сопровождение</a>
+        <!-- «Правки-6» п.8, вторая итерация: ширина кнопки приведена к общей
+             логике (вся ширина контейнера), но характер оставлен премиальным -
+             контур с золотой рамкой и лёгкой заливкой вместо сплошной золотой
+             плиты. Подпись про вход центрирована под кнопкой как часть композиции.
+             Если захочется сплошную золотую: заменить pm-cta-btn на btn-primary. -->
+        <a href={'https://t.me/vkarasaev?text=' + encodeURIComponent('Привет! Интересует премиум-сопровождение')} class="btn pm-cta-btn">Обсудить сопровождение</a>
         <div class="pm-hero-note">Вход - стратегическая сессия 90 минут</div>
       </div>
       <div class="p-hero-photo">
