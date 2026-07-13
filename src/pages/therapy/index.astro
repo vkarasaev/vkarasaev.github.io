@@ -11,13 +11,8 @@ import { site } from '../../data/site';
   wide={true}
   translation="/en/therapy/"
 >
-  <!-- HERO. «Правки-6» п.6: на мобильном hero приведен к логике группы и премиума -
-       компактный spec с ключевой информацией сразу в первом экране, плотнее ритм,
-       фото в рамке вместо полноэкранной фотографии. Правка изолирована: класс
-       th-hero + scoped-стили ниже действуют только на этой странице и только
-       до 960px; десктопный hero и hero остальных страниц не тронуты
-       (spec скрыт на десктопе через th-hero-spec). -->
-  <div class="p-hero th-hero" style="margin: 0 -20px;">
+  <!-- HERO -->
+  <div class="p-hero" style="margin: 0 -20px;">
     <div class="p-hero-in">
       <div class="p-hero-txt">
         <div class="kicker">Индивидуальная терапия</div>
@@ -26,11 +21,6 @@ import { site } from '../../data/site';
           Снаружи всё ок, а внутри пусто. Всё понимаешь - и не двигаешься.
           Если это знакомо, вы по адресу.
         </p>
-        <div class="spec th-hero-spec">
-          <div class="spec-row"><span class="spec-key">Сессия</span><span class="spec-val">{site.session.duration}</span></div>
-          <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">{site.session.priceRub} или {site.session.priceEur}</span></div>
-          <div class="spec-row"><span class="spec-key">Первый шаг</span><span class="spec-val">бесплатная встреча · 15 минут</span></div>
-        </div>
         <div class="btn-group" style="justify-content: flex-start; margin: 0;">
           <a href={site.telegramSession} class="btn btn-primary">Записаться на первую сессию</a>
           <a href={'https://t.me/vkarasaev?text=' + encodeURIComponent('Привет! У меня вопрос')} class="btn btn-outline">Задать вопрос</a>
@@ -41,25 +31,6 @@ import { site } from '../../data/site';
       </div>
     </div>
   </div>
-
-  <style>
-    /* Мобильный hero страницы «Терапия» («Правки-6» п.6). Только эта страница. */
-    .th-hero-spec { display: none; }
-    @media (max-width: 959px) {
-      .th-hero .p-hero-txt { padding: 40px 0 32px; }
-      .th-hero h1 { font-size: 34px; margin: 14px 0 14px; }
-      .th-hero .lead { font-size: 18.5px; line-height: 1.6; margin-bottom: 18px !important; }
-      .th-hero-spec { display: block; margin: 0 0 20px; }
-      .th-hero-spec .spec-row { font-size: 14px; padding: 9px 2px; }
-      .th-hero .btn-group { gap: 10px; }
-      .th-hero .btn-outline { padding: 12px 20px; }
-      /* Фото: не полноэкранная «простыня», а компактный портрет в рамке -
-         как в мобильном hero страницы Home. */
-      .th-hero .p-hero-photo { min-height: 0; height: 250px; margin: 0 20px 30px; border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; }
-      .th-hero .p-hero-photo img { object-position: center 18%; }
-      .th-hero .p-hero-photo::after { background: linear-gradient(180deg, transparent 65%, rgba(14,14,16,0.5) 100%); }
-    }
-  </style>
 
   <div class="shell content-narrow" style="margin-top: 44px;">
     <div class="prose">
@@ -178,5 +149,4 @@ import { site } from '../../data/site';
       </p>
     </div>
   </div>
-
 </Page>
