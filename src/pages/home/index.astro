@@ -35,7 +35,7 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       <a class="brand" href="/home/">Валерий Карасаев</a>
       <nav class="nav">
         <a href="/therapy/">Терапия</a>
-        <a href="/groups/">Группы</a>
+        <a href="/groups/vernutsya-v-kontakt/">Группа</a>
         <a href="/about/">Обо мне</a>
         <a href="/credentials/">Образование</a>
         <a href="/blog/">Блог</a>
@@ -145,7 +145,7 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
 
     <section class="hx-sec">
       <h2 class="hx-h2">С чего начинается работа</h2>
-      <p class="hx-sub">Без обязательств и без «пакетов». Один честный шаг за раз.</p>
+      <p class="hx-sub">Без обязательств и «пакетов». Один честный шаг за раз.</p>
       <div class="steps">
         <div class="step">
           <div class="step-n">01</div>
@@ -180,8 +180,8 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
         </a>
         <a class="fmt" href="/premium/">
           <div class="fmt-tag">Интенсивный формат</div>
-          <div class="fmt-t">Сопровождение</div>
-          <div class="fmt-d">Квартал на стыке терапии, коучинга и советничества - для периодов высокой ставки. Мест мало.</div>
+          <div class="fmt-t">Премиум-сопровождение</div>
+          <div class="fmt-d">Сплав терапии и executive-коучинга - для периодов интенсивного роста и движения к значимым целям. Мест мало.</div>
           <div class="fmt-price">120 000 ₽ за 3 месяца</div>
         </a>
       </div>
@@ -193,7 +193,7 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       <div class="human">
         <img src="/images/photo/home-life.jpg" alt="Валерий на Камино-де-Сантьяго" loading="lazy" />
         <div class="prose">
-          <p>У меня двое детей и две гитары. Я прошёл Камино-де-Сантьяго, поднимался на Эльбрус, купался в Ганге. Коллеги говорят, что я «больше папа, чем мама» и похож на морячка.</p>
+          <p>У меня двое детей и три гитары. Я прошёл Камино-де-Сантьяго, поднимался на Эльбрус, купался в Ганге. Коллеги говорят, что я «больше папа, чем мама» и похож на морячка.</p>
           <p>Я не решаю свои проблемы за счёт клиента и не изображаю невозмутимого эксперта. В кабинете - обычный живой человек, который сам прошёл через многое из того, с чем к нему приходят.</p>
           <p>Пишу канал «Валера. Вслух» - про злость, тело, желание и жизненные радости. Играю блюз. Люблю дорогу и не люблю умные слова, за которыми пусто.</p>
           <p><a href="/about/">Обо мне подробнее</a> · <a href="/business/">опыт в бизнесе</a> · <a href="/credentials/">образование</a></p>
@@ -218,7 +218,8 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       </section>
     )}
 
-    <section class="hx-sec">
+    <!-- «Правки-6» п.12: дополнительный воздух перед блоком -->
+    <section class="hx-sec hx-sec-gap">
       <h2 class="hx-h2">Где я пишу</h2>
       <div class="grid-2">
         <a class="write-card" href="/blog/">
@@ -256,10 +257,12 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
 
   <section class="hx-cta-final-wrap">
     <div class="cta-final">
-      <div class="cta-title">Первый шаг - самый простой</div>
-      <div class="cta-sub">Бесплатная встреча, 15 минут: познакомиться, задать вопросы, решить. Без обязательств</div>
+      <!-- «Правки-6» п.11: CTA приглашает к контакту, а не продвигает один
+           сценарий. Основная кнопка - просто «написать», варианты - в подписи. -->
+      <div class="cta-title">Первый шаг - просто написать</div>
+      <div class="cta-sub">Задать вопрос, договориться о бесплатном 15-минутном созвоне - или сразу записаться на сессию. Как вам удобнее</div>
       <div class="btn-group" style="margin: 0;">
-        <a href={site.telegramFreeCall} class="btn btn-primary">Записаться в Telegram</a>
+        <a href={site.telegram} class="btn btn-primary">Написать в Telegram</a>
         <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
       </div>
     </div>

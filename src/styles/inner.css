@@ -18,7 +18,13 @@
 
 /* ── Заголовки страниц ── */
 .page-head {max-width: 720px; margin-left: auto; margin-right: auto; padding: 56px 0 8px;}
-.kicker { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.kicker { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; text-wrap: balance; }
+/* «Правки-6» п.16: длинный EN-кикер на мобильном в одну строку физически не
+   помещается; чуть плотнее типографика на узких экранах + balance выше дают
+   ровный перенос без отдельных EN-стилей. */
+@media (max-width: 479px) {
+  .page-head .kicker { font-size: 10.5px; letter-spacing: 1.8px; }
+}
 h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; line-height: 1.15; color: var(--text); margin-bottom: 16px; }
 .lead { font-family: 'Cormorant Garamond', serif; font-size: 21px; font-style: italic; line-height: 1.7; color: #e0dcd4; margin-bottom: 8px; }
 
@@ -271,5 +277,8 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 /* ── Мобильные правки (2026-07-13): меню прячется (есть бургер), футер по центру ── */
 @media (max-width: 759px) {
   .site-header-in .nav { display: none; }
+  /* «Правки-6» п.4: когда меню скрыто, auto-прижим к правому краю переезжает
+     с .nav на бургер - иначе он прилипает к логотипу слева. */
+  .site-header-in .burger-box { margin-left: auto; }
   .site-footer-in { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
 }
