@@ -49,7 +49,12 @@ export const site = {
       'https://t.me/vkarasaev?text=' + encodeURIComponent('Hi! I would like to book a session'),
     telegramQuestion:
       'https://t.me/vkarasaev?text=' + encodeURIComponent('Hi! I have a question'),
-    schedule: 'Mon-Thu · 9:00-19:00 CET',
+    // «Правки-6» п.17: WhatsApp - основной канал для EN-аудитории (Германия).
+    // Номер не позиционируем как мобильный и не предлагаем звонить - только сообщения.
+    whatsapp: '+49 151 140 37 118',
+    whatsappHref: 'https://wa.me/4915114037118',
+    // «Правки-6» п.17: часы расширены до 21:00, чтобы не отсекать обращения после рабочего дня.
+    schedule: 'Mon-Thu · 9:00-21:00 CET',
   },
 
   // Соцсети пиктограммами (главная, контакты)

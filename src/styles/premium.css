@@ -97,6 +97,18 @@
 /* Финальный CTA: кикер над заголовком */
 .pm-cta-kicker { font-size: 11px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
 
+/* «Правки-6» п.7: мобильный первый экран /premium/ не влезал (кнопка и строка
+   «Вход - стратегическая сессия» резались). Компактнее вертикальный ритм hero -
+   только на этой странице и только до 960px. */
+@media (max-width: 959px) {
+  .pm-hero .p-hero-txt { padding: 38px 0 30px; }
+  .pm-hero .p-hero-txt h1 { font-size: 34px; margin: 12px 0 14px; }
+  .pm-hero .lead { font-size: 17.5px; line-height: 1.55; margin-bottom: 16px !important; }
+  .pm-hero .spec-row { padding: 8px 2px; font-size: 13.5px; }
+  .pm-hero .spec { margin-bottom: 18px !important; }
+  .pm-hero-note { margin-top: 10px; }
+}
+
 @media (min-width: 760px) {
   .pm-two { grid-template-columns: 1fr 1fr; }
   .pm-two-col { position: relative; }

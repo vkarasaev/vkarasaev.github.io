@@ -1,7 +1,6 @@
 ---
-// Главная. Перенос текущего одностраничника пиксель-в-пиксель (T2).
-// Правки против прода: метро (Р2), карточка практики (Р5), без ВК (Р10),
-// добавлен Дзен, аватар файлом, favicon/OG/canonical в Base.
+// Главная. Основной линк-хаб, с которого на широких экранах (>=960px) редирект на /home/.
+// Параметр ?stay оставляет линк-хаб на любом экране (для проверки и внешних ссылок).
 import Base from '../layouts/Base.astro';
 import Burger from '../components/Burger.astro';
 import SocIcons from '../components/SocIcons.astro';
@@ -16,6 +15,17 @@ import '../styles/inner.css';
   translation="/en/"
 >
 
+  <!-- Логика главной («Правки-6» п.1, 2026-07-13): на широких экранах (>=960px)
+       главная открывает полную страницу Home; телефоны и узкие планшеты остаются
+       на компактном линк-хабе. Параметр ?stay оставляет линк-хаб на любом экране
+       (для проверки и внешних ссылок). Редирект по ширине был убран в «Правках-5» -
+       возвращаем только для десктопа. -->
+  <script is:inline>
+    if (window.matchMedia('(min-width: 960px)').matches && !location.search.includes('stay')) {
+      location.replace('/home/');
+    }
+  </script>
+
   <div class="top-controls">
     <Burger lang="ru" />
   </div>
@@ -23,7 +33,8 @@ import '../styles/inner.css';
 
   <!-- ══ HERO ══ -->
   <div class="hero">
-    <div class="logo-wrap"><img src="/images/photo/avatar.jpg" alt="Валерий Карасаев" width="108" height="108" alt="Валерий Карасаев"></div>
+    <!-- Аватар: портрет со страницы Home -->
+    <div class="logo-wrap"><img src="/images/photo/avatar.jpg" alt="Валерий Карасаев" width="108" height="108"></div>
     <div class="name">Валерий<br>Карасаев</div>
     <div class="tagline">Психолог · Гештальт-терапевт · Executive коуч</div>
     <div class="divider-gold"></div>
@@ -220,7 +231,7 @@ import '../styles/inner.css';
   <div class="section">
     <div class="section-label">Другие форматы</div>
     <div class="links-list">
-      <a href="/groups/vernutsya-v-kontakt/" class="link-btn"><span class="link-title">Терапевтические группы</span><span class="link-arrow">→</span></a>
+      <a href="/groups/" class="link-btn"><span class="link-title">Терапевтические группы</span><span class="link-arrow">→</span></a>
       <a href="/premium/" class="link-btn"><span class="link-title">Премиум - сопровождение</span><span class="link-arrow">→</span></a>
     </div>
     <p style="text-align: left; font-size: 13.5px; margin-top: 14px;">

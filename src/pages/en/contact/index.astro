@@ -9,22 +9,28 @@ import SocIcons from '../../../components/SocIcons.astro';
 
 <Page
   title="Contact · Valeriy Karasaev"
-  description="How to reach Valeriy Karasaev: Telegram, email. Book a free 30-minute intro call. Sessions in English, online."
+  description="How to reach Valeriy Karasaev: WhatsApp, Telegram, email. Book a free 30-minute intro call. Sessions in English, online."
   lang="en"
   translation="/contact/"
 >
+  <!-- «Правки-6» п.17: для аудитории из Германии основной канал - WhatsApp,
+       Telegram - дополнительный. Номер не подаем как телефон для звонков:
+       прямо пишем «send a message», дальше договариваемся о видеозвонке. -->
   <div class="page-head">
     <div class="kicker">Contact</div>
     <h1 class="page-title">Writing to me is already a step</h1>
     <p class="lead">
-      The fastest way is <a href={site.telegram} style="color: var(--gold);">Telegram</a>.
-      I answer personally, usually within a day. You can simply write
-      «I'd like a free intro call» - and we will find a time.
+      The easiest way is to send me a message on
+      <a href={site.en.whatsappHref} style="color: var(--gold);">WhatsApp</a> or <a href="https://t.me/vkarasaev" style="color: var(--gold);">Telegram</a>.
+      I answer personally, usually within a day. We will agree on a time for a video
+      call, and I will send you the meeting link. You can simply write
+      «I'd like a free intro call». Telegram and email work just as well.
     </p>
   </div>
 
   <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Reach me</span></div>
   <div class="spec">
+    <div class="spec-row"><span class="spec-key">WhatsApp</span><span class="spec-val"><a href={site.en.whatsappHref} style="color: var(--gold); text-decoration: none;">{site.en.whatsapp}</a></span></div>
     <div class="spec-row"><span class="spec-key">Telegram</span><span class="spec-val"><a href={site.telegram} style="color: var(--gold); text-decoration: none;">{site.telegramHandle}</a></span></div>
     <div class="spec-row"><span class="spec-key">Email</span><span class="spec-val"><a href={'mailto:' + site.email} style="color: var(--gold); text-decoration: none;">{site.email}</a></span></div>
     <div class="spec-row"><span class="spec-key">Session hours</span><span class="spec-val">{site.en.schedule}</span></div>
