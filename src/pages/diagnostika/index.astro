@@ -1,0 +1,195 @@
+---
+// /diagnostika/ (линейка 10_01, файл 02, ред. 2026-07-16c): самостоятельный продукт
+// и вход в терапию, сопровождение или группу. Единственный вход в сопровождение.
+// В верхнее меню НЕ выносится - три бакета сохраняются (решение файла 05).
+// Полный редизайн тела под канон /soprovozhdenie/: буллет-списки заменены
+// на структурные блоки. 01 как проходит (pm-weeks--3) → 02 для кого (pm-who,
+// 4 карточки с ярлыками; 4-я карточка - новый копирайт) → 03 что на руках
+// (pm-cards 2x2, документы как артефакты) → 04 маршрут (строки-развилки
+// с разделителями: название + условие) → 05 цена (pm-price). Блоки 04-05
+// в читательской колонке 720 (широкие только карточки 01-03); ссылки маршрутов
+// и pm-price-txt - инлайн var(--gold), т.к. вне .prose наследуют дефолтный цвет. cta-final вне pm-body.
+// Фото героя: /images/photo/diagnostika-hero.jpg. Страница индексируется.
+import Page from '../../layouts/Page.astro';
+import { site } from '../../data/site';
+import '../../styles/premium.css';
+
+const tgDiag = 'https://t.me/vkarasaev?text=' + encodeURIComponent('Привет! Хочу записаться на диагностику');
+---
+
+<Page
+  title="Диагностика · 3 встречи и карта маршрута · Валерий Карасаев"
+  description="Три встречи за 2-3 недели, после которых понятно, что с вами происходит и куда двигаться: письменная карта целей и сопротивлений плюс честная рекомендация маршрута - терапия, сопровождение или группа."
+  wide={true}
+  hideCta={true}
+>
+  <!-- HERO -->
+  <div class="p-hero pm-hero" style="margin: 0 -20px;">
+    <div class="p-hero-in">
+      <div class="p-hero-txt">
+        <div class="kicker">Диагностика</div>
+        <h1 class="pm-hero-h1">Три встречи, чтобы понять, что с вами <em>и куда двигаться</em></h1>
+        <p class="lead" style="margin-bottom: 22px;">
+          Вы приходите с ситуацией: буксует бизнес, рассыпаются отношения, «знаю, но
+          не делаю», или просто «что-то не так». Через 3 недели у вас есть понимание:
+          что происходит, что останавливает и что делать, чтобы сдвинуться.
+        </p>
+        <div class="spec" style="margin: 0 0 24px;">
+          <div class="spec-row"><span class="spec-key">Формат</span><span class="spec-val">3 встречи (90 / 60 / 60 мин) · очно или онлайн</span></div>
+          <div class="spec-row"><span class="spec-key">Срок</span><span class="spec-val">3 недели</span></div>
+          <div class="spec-row"><span class="spec-key">Результат</span><span class="spec-val">письменная карта и маршрут</span></div>
+        </div>
+        <a href={tgDiag} class="btn pm-cta-btn">Записаться на диагностику</a>
+      </div>
+      <div class="p-hero-photo">
+        <img src="/images/photo/diagnostika-hero.jpg" alt="Валерий Карасаев" />
+      </div>
+    </div>
+  </div>
+
+  <div class="pm-body" style="margin-top: 34px;">
+    <!-- Манифест -->
+    <div class="pm-statement">
+      Волшебной таблетки не существует. Изменения происходят не сразу, не в одиночку
+      и не вызваны одной причиной. Задача диагностики - системный анализ и выбор
+      <em>верного инструмента изменений</em> для вашей ситуации и целей.
+    </div>
+
+    <!-- 01 Как проходит -->
+    <div class="meta-line" style="margin-top: 44px;"><span class="meta-num">01</span><span class="meta-label">Как проходит</span></div>
+    <div class="pm-weeks pm-weeks--3">
+      <div class="pm-week">
+        <span class="pm-week-tag">Встреча 1 · 90 минут</span>
+        <h4>Ситуация и человек</h4>
+        <p>Ваша ситуация, история, запрос и что уже пробовали. Я смотрю не только на задачу,
+        но и на то, как вы устроены: где есть энергия, где она гаснет, и как вы себя останавливаете.</p>
+      </div>
+      <div class="pm-week">
+        <span class="pm-week-tag">Встреча 2 · 60 минут</span>
+        <h4>Цели и тормоза</h4>
+        <p>Чего вы на самом деле хотите - и что из ваших целей живое, а что надуманное или чужое.
+        Первые гипотезы о ваших паттернах сопротивления. Небольшие провокации для теста.</p>
+      </div>
+      <div class="pm-week">
+        <span class="pm-week-tag">Встреча 3 · 60 минут</span>
+        <h4>Карта и маршрут</h4>
+        <p>Разбираем вместе собранный срез: ваши цели, сопротивления, ключевые темы - и как они
+        связаны. Даю рекомендацию, что делать дальше. Обсуждаем и намечаем шаги.</p>
+      </div>
+    </div>
+
+    <!-- Читательская колонка 720 для блоков 04-05 -->
+    <div style="width: 100%; max-width: 720px; margin: 0 auto;">
+
+    <!-- 02 Для кого -->
+    <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Для кого это особенно полезно</span></div>
+    <div class="pm-who">
+      <div class="pm-who-card">
+        <h4>Большое решение</h4>
+        <p>Вы стоите перед серьёзным выбором и хотите понять, что вас на самом деле держит,
+        прежде чем сделать шаг.</p>
+      </div>
+      <div class="pm-who-card">
+        <h4>«Что-то не то»</h4>
+        <p>Вы уже пробовали терапию или коучинг, но что-то не сработало - и не ясно,
+        какой формат вообще ваш.</p>
+      </div>
+      <div class="pm-who-card">
+        <h4>Не готовы вслепую</h4>
+        <p>Вы хотите начать работу с собой, но не готовы подписываться на месяцы,
+        не понимая, что именно нужно.</p>
+      </div>
+      <div class="pm-who-card">
+        <h4>Картина не складывается</h4>
+        <p>Вы много разбирались в себе сами - книги, разговоры, заметки - но целостной
+        картины и вектора так и нет.</p>
+      </div>
+    </div>
+    
+    <!-- 03 Что у вас на руках после -->
+    <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Что у вас на руках после</span></div>
+    <div class="pm-cards">
+      <div class="pm-card">
+        <h4>Диагностическое резюме</h4>
+        <p>Что с вами происходит и что сейчас главное - на двух страницах, человеческим
+        языком. Гипотезами, а не диагнозами.</p>
+      </div>
+      <div class="pm-card">
+        <h4>Карта целей</h4>
+        <p>Что на повестке, какая за этим мотивация, что из целей живое, а что надуманное
+        или чужое - и что стоит уточнить или проверить.</p>
+      </div>
+      <div class="pm-card">
+        <h4>Карта сопротивлений</h4>
+        <p>Как именно вы себя останавливаете: первичная карта ваших паттернов
+        избегания и саботажа.</p>
+      </div>
+      <div class="pm-card">
+        <h4>Карта ключевых тем</h4>
+        <p>Внутренняя логика ваших ключевых паттернов: как связаны цели, тормоза
+        и повторяющиеся сюжеты вашей жизни.</p>
+      </div>
+    </div>
+    <div class="prose" style="margin-top: 24px;">
+      <p>
+        Это ваши документы - они остаются у вас независимо от того, продолжим мы работу
+        или нет. И пятый, главный результат - рекомендация маршрута.
+      </p>
+    </div>
+
+    <!-- 04 Рекомендация маршрута -->
+    <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Рекомендация маршрута</span></div>
+    <div class="prose">
+      <p style="margin-bottom: 6px;">По итогам я рекомендую один из маршрутов:</p>
+    </div>
+    <div style="border-top: 1px solid var(--border); margin-top: 14px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; padding: 18px 0; border-bottom: 1px solid var(--border); align-items: baseline;">
+        <strong style="flex: 0 0 210px;"><a href="/therapy/" style="color: var(--gold);">Личная терапия</a></strong>
+        <span style="flex: 1 1 300px; opacity: 0.85;">если главный ограничитель в том, что с вами происходит, а не в том, что вы не делаете</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; padding: 18px 0; border-bottom: 1px solid var(--border); align-items: baseline;">
+        <strong style="flex: 0 0 210px;"><a href="/groups/" style="color: var(--gold);">Терапевтическая группа</a></strong>
+        <span style="flex: 1 1 300px; opacity: 0.85;">если ключевые паттерны находятся в отношениях с людьми - то они там же и лечатся</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; padding: 18px 0; border-bottom: 1px solid var(--border); align-items: baseline;">
+        <strong style="flex: 0 0 210px;"><a href="/soprovozhdenie/" style="color: var(--gold);">Сопровождение</a></strong>
+        <span style="flex: 1 1 300px; opacity: 0.85;">если вы понимаете себя, но буксует именно движение к целям и фокус на результат</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; padding: 18px 0; border-bottom: 1px solid var(--border); align-items: baseline;">
+        <strong style="flex: 0 0 210px;">Комбинация</strong>
+        <span style="flex: 1 1 300px; opacity: 0.85;">сначала одно, потом другое - последовательность на ваш выбор с обсуждением</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 6px 28px; padding: 18px 0; border-bottom: 1px solid var(--border); align-items: baseline;">
+        <strong style="flex: 0 0 210px;">Не ко мне</strong>
+        <span style="flex: 1 1 300px; opacity: 0.85;">если вам нужен другой специалист или другой тип помощи (психиатр, ментор, тренер, консультант), я скажу это прямо и подскажу куда</span>
+      </div>
+    </div>
+    <div class="prose" style="margin-top: 20px;">
+      <p>Диагностика не обязывает вас работать со мной дальше. Карта и рекомендация - завершённый результат.</p>
+    </div>
+
+    <!-- 05 Стоимость -->
+    <div class="meta-line"><span class="meta-num">05</span><span class="meta-label">Стоимость</span></div>
+    <div class="pm-price" style="margin-top: 22px;">
+      <div>
+        <div class="pm-price-label">Диагностика</div>
+        <div class="pm-price-num">20 000 <span class="cur">₽</span></div>
+        <div class="pm-price-sub">за три встречи и полный пакет документов</div>
+      </div>
+      <div class="pm-price-txt">
+        При переходе в <a href="/soprovozhdenie/" style="color: var(--gold);">сопровождение</a> стоимость диагностики
+        засчитывается в первый месяц.
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="cta-final">
+    <div class="cta-title">Записаться на диагностику</div>
+    <div class="cta-sub">3 встречи за 3 недели · карта и рекомендация маршрута у вас на руках</div>
+    <div class="btn-group" style="margin: 0;">
+      <a href={tgDiag} class="btn btn-primary"><span class="btn-icon">✈</span> Написать в Telegram</a>
+      <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
+    </div>
+  </div>
+</Page>

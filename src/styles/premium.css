@@ -80,6 +80,12 @@
 .pm-list2 li::before { content: '\2014'; position: absolute; left: 0; color: var(--gold); }
 
 /* Центральное утверждение */
+/* 01 «Для кого» - 4 плашки (линейка 10_01, файл 01: вместо тире-списка) */
+.pm-who { display: grid; grid-template-columns: 1fr; gap: 14px; margin-top: 24px; }
+.pm-who-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 24px; }
+.pm-who-card h4 { font-size: 15px; font-weight: 500; color: var(--text); margin: 0 0 8px; }
+.pm-who-card p { font-size: 14px; line-height: 1.65; color: #c3bfb7; margin: 0; }
+
 .pm-statement { max-width: 720px; margin: 44px auto 6px; text-align: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; line-height: 1.55; color: #e6e2da; }
 .pm-statement em { font-style: italic; color: var(--gold); }
 
@@ -128,8 +134,13 @@
   .pm-list2 { grid-template-columns: 1fr 1fr; }
   .pm-cards { grid-template-columns: 1fr 1fr; }
   .pm-weeks { grid-template-columns: repeat(3, 1fr); }
+  .pm-weeks--4 { grid-template-columns: repeat(2, 1fr); }
+  .pm-who { grid-template-columns: repeat(2, 1fr); }
   .pm-artifacts { grid-template-columns: repeat(3, 1fr); }
   .pm-price { grid-template-columns: 0.9fr 1.1fr; }
   .pm-notes { grid-template-columns: 1fr 1fr; }
   .pm-statement { font-size: 24px; }
 }
+
+/* Ссылка внутри блока недели (04 «Как устроено»: вход через диагностику) */
+.pm-week p a { color: var(--gold); text-decoration: none; }
