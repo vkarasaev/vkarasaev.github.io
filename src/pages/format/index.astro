@@ -1,12 +1,15 @@
 ---
-// /format/ (правка 17): как выбрать формат работы.
+// /format/ (правка 17 + линейка 10_01, файл 03, 2026-07-14): как выбрать формат.
+// Добавлены: блок «начните с диагностики» первым после вступления, секция
+// Диагностика, «Премиум-сопровождение» переписан в «Сопровождение» (новые ритм,
+// цена, ссылка на /soprovozhdenie/).
 import Page from '../../layouts/Page.astro';
 import { site } from '../../data/site';
 ---
 
 <Page
   title="Как выбрать формат · Валерий Карасаев"
-  description="Индивидуальная терапия, группа или премиум-сопровождение: чем отличаются форматы, сколько стоят и с чего начать."
+  description="Терапия, группа или сопровождение: чем отличаются форматы, сколько стоят и с чего начать."
 >
   <div class="page-head">
     <div class="kicker">Форматы работы</div>
@@ -16,34 +19,57 @@ import { site } from '../../data/site';
 
   <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Индивидуальная терапия</span></div>
   <div class="spec">
+    <div class="spec-row"><span class="spec-key">Главный вопрос</span><span class="spec-val">что со мной происходит внутри?</span></div>
     <div class="spec-row"><span class="spec-key">Для чего</span><span class="spec-val">кризисы, переходы, глубокая личная работа</span></div>
-    <div class="spec-row"><span class="spec-key">Ритм</span><span class="spec-val">50 минут · раз в неделю</span></div>
+    <div class="spec-row"><span class="spec-key">Ритм</span><span class="spec-val">50 минут · раз в неделю · срок открытый</span></div>
     <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">{site.session.priceRub} / {site.session.priceEur}</span></div>
   </div>
   <div class="prose"><p>Основной формат. Подробно: <a href="/therapy/">как проходит терапия</a>.</p></div>
 
   <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Терапевтические группы</span></div>
   <div class="spec">
+    <div class="spec-row"><span class="spec-key">Главный вопрос</span><span class="spec-val">что со мной происходит среди людей?</span></div>
     <div class="spec-row"><span class="spec-key">Для чего</span><span class="spec-val">увидеть свои способы контакта вживую</span></div>
     <div class="spec-row"><span class="spec-key">Ритм</span><span class="spec-val">3 часа · раз в неделю · закрытый состав</span></div>
     <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">от 3 000 ₽ за встречу</span></div>
   </div>
   <div class="prose"><p>Дешевле терапии на единицу времени, но другой опыт: не вместо, а вместе. Актуальный набор: <a href="/groups/">группы</a>.</p></div>
 
-  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Премиум-сопровождение</span></div>
+  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Сопровождение</span></div>
   <div class="spec">
-    <div class="spec-row"><span class="spec-key">Для чего</span><span class="spec-val">большой переход с целями и сроками</span></div>
-    <div class="spec-row"><span class="spec-key">Ритм</span><span class="spec-val">3 месяца · терапия + коучинг еженедельно</span></div>
-    <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">120 000 ₽ / 1 400 €</span></div>
+    <div class="spec-row"><span class="spec-key">Главный вопрос</span><span class="spec-val">как двигаться к важным целям и не застревать?</span></div>
+    <div class="spec-row"><span class="spec-key">Для чего</span><span class="spec-val">большой переход с целями и сроками, интенсивный рост</span></div>
+    <div class="spec-row"><span class="spec-key">Ритм</span><span class="spec-val">еженедельные сессии · действия · обзор динамики</span></div>
+    <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">25 000 ₽ в месяц</span></div>
   </div>
-  <div class="prose"><p>Мало мест, вход через личный разговор. Подробно: <a href="/premium/">сопровождение</a>.</p></div>
+<div class="prose"><p>Минимальный цикл - 3 месяца. Перед началом обсуждаем задачу и проверяем, подходит ли этот формат. Подробно: <a href="/soprovozhdenie/">сопровождение</a>.</p></div>
 
-  <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Если коротко</span></div>
-  <div class="prose">
-    <p>
-      Не знаете, что с вами, - терапия. Знаете, но повторяется в отношениях с людьми, - группа.
-      Знаете, куда идете, и нужен плотный попутчик - сопровождение. Не знаете ничего - бесплатные
-      15 минут, разберемся вместе.
-    </p>
-  </div>
+<div class="meta-line">
+  <span class="meta-num">04</span>
+  <span class="meta-label">Диагностика</span>
+</div>
+
+<div class="prose">
+  <p>
+    Для сложного или размытого запроса я еще могу предложить
+    отдельную диагностику - три встречи с письменной картой целей, психологических тем и сопротивлений. Помогает лучше понять ситуацию и решить как действовать дальше.
+    <a href="/diagnostika/">Подробнее о диагностике →</a>
+  </p>
+
+<div class="meta-line">
+  <span class="meta-num">05</span>
+  <span class="meta-label">Если коротко</span>
+</div>
+
+<div class="prose">
+  <p>
+    Не знаете, что с вами происходит, - терапия.
+    Замечаете повторяющиеся сложности в отношениях с людьми, - группа.
+    Знаете, куда хотите прийти, и нужна поддержка высокой интенсивности, - сопровождение.
+  </p>
+  <p>
+   Не знаете ничего - диагностика или бесплатные 15 минут, разберемся вместе.
+  </p>
+  
+</div>
 </Page>
