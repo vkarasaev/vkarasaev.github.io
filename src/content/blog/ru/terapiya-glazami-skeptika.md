@@ -5,7 +5,7 @@ date: 2026-05-20
 categories: ["терапия"]
 tags: ["терапия"]
 source_channel: original
-placeholder: true
+placeholder: false
 cover: "/images/photo/cover-skeptik.jpg"
 ---
 

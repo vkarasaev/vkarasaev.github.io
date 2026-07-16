@@ -5,7 +5,7 @@ date: 2026-06-15
 categories: ["выгорание"]
 tags: ["выгорание"]
 source_channel: original
-placeholder: true
+placeholder: false
 cover: "/images/photo/cover-snaruzhi.jpg"
 ---
 

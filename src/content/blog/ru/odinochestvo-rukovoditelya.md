@@ -5,7 +5,7 @@ date: 2026-03-05
 categories: ["руководители"]
 tags: ["руководители"]
 source_channel: original
-placeholder: true
+placeholder: false
 cover: "/images/photo/cover-odinochestvo.jpg"
 ---
 

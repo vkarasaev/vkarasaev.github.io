@@ -5,7 +5,7 @@ date: 2026-07-01
 categories: ["терапия"]
 tags: ["терапия", "выбор"]
 source_channel: original
-placeholder: true
+placeholder: false
 cover: "/images/photo/cover-godfather.jpg"
 ---
 
