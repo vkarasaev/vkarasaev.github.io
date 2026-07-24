@@ -61,6 +61,7 @@ export const site = {
   socials: [
     { id: 'telegram', label: 'Telegram', url: 'https://t.me/valera_outloud' },
     { id: 'instagram', label: 'Instagram', url: 'https://www.instagram.com/karasaev.psy' },
+    { id: 'youtube', label: 'YouTube', url: 'https://www.youtube.com/@vkarasaev' },
     { id: 'facebook', label: 'Facebook', url: 'https://www.facebook.com/valery.karasaev' },
     { id: 'linkedin', label: 'LinkedIn', url: 'https://www.linkedin.com/in/karasaev/' },
     { id: 'vk', label: 'ВКонтакте', url: 'https://vk.com/vkarasaev' },

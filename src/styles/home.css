@@ -136,3 +136,7 @@
 
 /* Переключатель языка: визуально отделен от меню */
 .lang-sw { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gold) !important; text-decoration: none; padding: 4px 0 4px 16px !important; margin-left: 4px; border-left: 1px solid var(--border); white-space: nowrap; }
+
+/* Иконки соцсетей - Ограничивает область иконок шириной кнопок слева. Благодаря этому они центрируются под кнопками, а не относительно всей левой половины экрана. Плюс - отступ от кнопок */
+.hero-socials {max-width: 440px; margin-top: 16px;}
+.hero-socials .soc-row {justify-content: center; gap: 12px;}

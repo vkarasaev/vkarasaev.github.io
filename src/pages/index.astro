@@ -16,6 +16,10 @@ import '../styles/home.css';
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru' && data.featured))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .slice(0, 3);
+// «Правки-6» п.10: на главной показываем только 3 последних текста, а полный список - на /blog/
+const allBlogPosts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru');
+const tags = [...new Set(allBlogPosts.flatMap((p) => p.data.tags ?? []))].sort();
+
 const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
 ---
 
@@ -53,6 +57,9 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
         <div class="hx-cta">
           <a href={site.telegramSession} class="btn btn-primary"><span class="btn-icon">✈</span> Записаться на сессию</a>
           <a href={site.telegramFreeCall} class="btn btn-outline"><span class="btn-icon">◎</span> Бесплатная встреча · 15 мин</a>
+        </div>
+        <div class="hero-socials">
+            <SocIcons ids={['instagram', 'telegram', 'youtube', 'vk']} />
         </div>
       </div>
       <div class="hx-photo">
@@ -199,7 +206,11 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
     {posts.length > 0 && (
       <section class="hx-sec">
         <h2 class="hx-h2">Как я думаю - в текстах</h2>
-        <p class="hx-sub">Про выгорание, кризисы и живость. Без советов и мотивационных концовок.</p>
+        <p class="hx-sub">Про выгорание, кризисы и живость. Без советов и мотивационных сказок.</p>
+        <div class="tag-row" style="margin-bottom: 24px;">
+          <a href="/blog/" class="tag-chip active">Все</a>
+          {tags.map((tag) => (<a href={`/blog/tag/${tag}/`} class="tag-chip"> #{tag}</a>))}
+        </div>
         <div class="posts3">
           {posts.map((p) => (
             <a class="post-card" href={`/blog/${p.id.replace(/^ru\//, '')}/`}>
@@ -209,23 +220,23 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
             </a>
           ))}
         </div>
-        <p style="margin-top: 18px;"><a href="/blog/" class="tag-chip">Все тексты и темы →</a></p>
+        <p style="margin-top: 24px;"><a href="/blog/" class="tag-chip">Показать еще →</a></p>
       </section>
     )}
 
     <!-- «Правки-6» п.12: дополнительный воздух перед блоком -->
     <section class="hx-sec hx-sec-gap">
-      <h2 class="hx-h2">Где я пишу</h2>
+      <h2 class="hx-h2">Где еще я пишу</h2>
       <div class="grid-2">
         <a class="write-card" href="/blog/">
           <img src="/images/photo/cover-sobaka.jpg" alt="Блог" />
           <div>
-            <div class="write-title">Избранные статьи на сайте</div>
+            <div class="write-title">Избранные статьи на этом сайте</div>
             <div class="write-desc">Выгорание, кризисы, терапия без ботвы</div>
           </div>
         </a>
         <a class="write-card" href="https://t.me/valera_outloud">
-          <img src="/images/photo/avatar.jpg" alt="Валера. Вслух" />
+          <img src="/images/photo/valera-vsluh.jpg" alt="Валера. Вслух" />
           <div>
             <div class="write-title">Телеграм-канал «Валера. Вслух»</div>
             <div class="write-desc">Про злость, тело, желание, стыд и жизненные радости</div>
@@ -246,7 +257,7 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
           </div>
         </a>
       </div>
-      <SocIcons />
+      <SocIcons ids={['instagram', 'youtube', 'facebook','linkedin', 'vk']} />
     </section>
   </div>
 
