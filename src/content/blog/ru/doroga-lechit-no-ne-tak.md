@@ -7,6 +7,8 @@ tags: ["дорога", "кризисы"]
 source_channel: original
 cover: "/images/photo/cover-road.jpg"
 placeholder: false
+featured: false
+
 ---
 
 Есть красивая легенда: пройдёшь Камино - и найдёшь себя. Дорога всё расставит, ответы придут, вернёшься другим человеком.

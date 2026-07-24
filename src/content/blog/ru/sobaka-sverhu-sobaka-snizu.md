@@ -5,8 +5,9 @@ date: 2026-06-17
 categories: ["терапия"]
 tags: ["терапия", "выгорание"]
 source_channel: telegram
-featured: true
 cover: "/images/photo/cover-sobaka.jpg"
+placeholder: false
+featured: true
 ---
 
 С этого началось мое знакомство с гештальтом.

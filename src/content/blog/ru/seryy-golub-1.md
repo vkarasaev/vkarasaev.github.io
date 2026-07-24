@@ -6,6 +6,8 @@ categories: ["нарциссизм"]
 tags: ["нарциссизм", "стыд"]
 source_channel: telegram
 cover: "/images/photo/cover-golub-1.jpg"
+placeholder: false
+featured: false
 ---
 
 Будет три части - про голубя, ярость и полет. И это первая часть - отвратительная.

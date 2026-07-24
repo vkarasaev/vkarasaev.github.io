@@ -1,12 +1,15 @@
 ---
-title: "Терапия глазами скептика"
+title: Терапия глазами скептика
 description: "Что на самом деле происходит на сессии, если убрать мистику и глянец. Болванка: заменить на реальный текст Валерия."
 date: 2026-05-20
-categories: ["терапия"]
-tags: ["терапия"]
+categories:
+  - терапия
+tags:
+  - терапия
 source_channel: original
-placeholder: false
-cover: "/images/photo/cover-skeptik.jpg"
+cover: /images/photo/cover-skeptik.jpg
+placeholder: true
+featured: false
 ---
 
 Я 17 лет проработал в бизнесе, и я знаю этот взгляд. «Терапия? Это где за мои деньги кивают и спрашивают, что я чувствую?»

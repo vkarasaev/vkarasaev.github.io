@@ -5,8 +5,9 @@ date: 2026-05-25
 categories: ["терапия"]
 tags: ["терапия", "живое"]
 source_channel: telegram
-featured: true
 cover: "/images/photo/cover-risk.jpg"
+placeholder: false
+featured: true
 ---
 
 Поговорим о том, что такое терапия.
