@@ -119,14 +119,20 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 @media (min-width: 720px) { .reading-light { padding: 44px 50px 52px; margin: 10px -50px 0; } }
 .reading-light .prose { max-width: 650px;font-family: 'Jost', sans-serif; font-size: 17px; line-height: 1.54; letter-spacing: -0.01em; font-weight: 400; color: #26262a; }
 .reading-light .prose p { margin: 0 0 1.05em; }
-.reading-light .prose h2 { color: #141416; }
+.reading-light .prose h1 { font-family: 'Cormorant Garamond', serif; font-size: 38px; font-weight: 400; line-height: 1.12; color: #141416; margin: 0 0 16px;}
+.reading-light .prose h2 {color: #141416; margin-top: 32px; margin-bottom: 12px;}
 .reading-light .prose h3 { color: #7a5a24; }
 .reading-light .prose blockquote { color: #3a3a3e; border-left-color: #b08d4f; }
 .reading-light .prose a { color: #8a6428; border-bottom-color: rgba(138,100,40,0.4); }
 .reading-light .prose a:hover { color: #6d4e1f; }
 .reading-light .prose strong { color: #141416; }
-.reading-light .prose hr { background: #b98b3f; opacity: 1; height: 2px;}
+.reading-light .prose hr {width: 36px; height: 2px; margin: 34px auto; border: 0; background: #b98b3f; opacity: 0.85;}
 .reading-light .photo-caption { color: #6f6b64; }
+.reading-light .prose blockquote {margin: 28px 0 30px; padding: 14px 18px; border-left: 2px solid #b98b3f; background: rgba(185, 139, 63, 0.045); font-family: 'Jost', sans-serif; font-size: 17px; line-height: 1.65; font-style: normal; font-weight: 400; color: #343438;}
+.reading-light .prose blockquote p {  margin: 0;}
+.reading-light .prose ul {padding-left: 1.25em;}
+.reading-light .prose li {margin-bottom: 0.7em; padding-left: 0.2em;}
+.reading-light .prose li::marker {color: #b98b3f; font-size: 0.85em;}
 
 /* ── Бургер-меню ── */
 .burger-box { position: relative; }
