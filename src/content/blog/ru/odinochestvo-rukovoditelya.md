@@ -1,12 +1,15 @@
 ---
-title: "Одиночество руководителя"
+title: Одиночество руководителя
 description: "Почему наверху не с кем поговорить и что с этим делать. Болванка: заменить на реальный текст Валерия."
 date: 2026-03-05
-categories: ["руководители"]
-tags: ["руководители"]
+categories:
+  - руководители
+tags:
+  - руководители
 source_channel: original
-placeholder: false
-cover: "/images/photo/cover-odinochestvo.jpg"
+cover: /images/photo/cover-odinochestvo.jpg
+placeholder: true
+featured: false
 ---
 
 У руководителя есть одна тема, о которой не принято говорить вслух. Не деньги, не власть, не увольнения.

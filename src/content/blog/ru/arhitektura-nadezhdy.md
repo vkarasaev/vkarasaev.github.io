@@ -6,6 +6,8 @@ categories: ["живое"]
 tags: ["живое"]
 source_channel: telegram
 cover: "/images/photo/cover-nadezhda.jpg"
+placeholder: false
+featured: false
 ---
 
 Апатия, пессимизм и цинизм - это не норма.

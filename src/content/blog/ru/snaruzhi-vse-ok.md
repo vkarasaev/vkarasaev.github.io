@@ -1,12 +1,15 @@
 ---
-title: "Снаружи всё ок"
+title: Снаружи всё ок
 description: "Про выгорание, которое не выглядит как выгорание. Болванка: заменить на реальный текст Валерия."
 date: 2026-06-15
-categories: ["выгорание"]
-tags: ["выгорание"]
+categories:
+  - выгорание
+tags:
+  - выгорание
 source_channel: original
-placeholder: false
-cover: "/images/photo/cover-snaruzhi.jpg"
+cover: /images/photo/cover-snaruzhi.jpg
+placeholder: true
+featured: false
 ---
 
 Снаружи всё ок. Работа есть. Деньги есть. Семья на месте. Даже отпуск был - фотографии красивые.

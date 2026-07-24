@@ -5,8 +5,9 @@ date: 2026-07-01
 categories: ["терапия"]
 tags: ["терапия", "выбор"]
 source_channel: original
-placeholder: false
 cover: "/images/photo/cover-godfather.jpg"
+placeholder: false
+featured: false
 ---
 
 Выбор терапевта выглядит сложным, потому что непонятно, на что смотреть. Дипломы у всех красивые. Отзывы у всех хорошие. Слова у всех правильные.

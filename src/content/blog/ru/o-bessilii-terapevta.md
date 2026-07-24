@@ -6,6 +6,8 @@ categories: ["терапия"]
 tags: ["терапия"]
 source_channel: telegram
 cover: "/images/photo/cover-temp.jpg"
+placeholder: false
+featured: false
 ---
 
 Психика меняется только в темпе, который человек способен выдержать. И это не техническое ограничение, а структурное. Об него можно биться. Злиться. Но оно есть.

@@ -6,6 +6,8 @@ categories: ["нарциссизм"]
 tags: ["нарциссизм", "живое"]
 source_channel: telegram
 cover: "/images/photo/cover-golub-3.jpg"
+placeholder: false
+featured: false
 ---
 
 Третья часть про голубя. Про полет. И это самая интересная часть.

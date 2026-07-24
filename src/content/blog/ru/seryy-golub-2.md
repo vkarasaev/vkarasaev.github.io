@@ -6,6 +6,8 @@ categories: ["нарциссизм"]
 tags: ["нарциссизм"]
 source_channel: telegram
 cover: "/images/photo/cover-golub-2.jpg"
+placeholder: false
+featured: false
 ---
 
 Это вторая часть про голубя. И она про разрушительную сторону нарциссизма: ярость.

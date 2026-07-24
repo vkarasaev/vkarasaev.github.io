@@ -6,6 +6,8 @@ categories: ["выгорание"]
 tags: ["нарциссизм", "живое"]
 source_channel: telegram
 cover: "/images/photo/cover-sailing.jpg"
+placeholder: false
+featured: false
 ---
 
 Меня тут спросили: «что за морячок и зачем выпускать его из трюма»?
