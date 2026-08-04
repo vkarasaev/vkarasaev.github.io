@@ -5,7 +5,7 @@ date: 2026-05-25
 categories: ["терапия"]
 tags: ["терапия", "живое"]
 source_channel: telegram
-cover: "/images/photo/cover-risk.jpg"
+cover: "/images/cover/cover-risk.jpg"
 placeholder: false
 featured: true
 ---

@@ -5,7 +5,7 @@ date: 2026-04-10
 categories: ["дорога"]
 tags: ["дорога", "кризисы"]
 source_channel: original
-cover: "/images/photo/cover-road.jpg"
+cover: "/images/cover/cover-road.jpg"
 placeholder: false
 featured: false
 

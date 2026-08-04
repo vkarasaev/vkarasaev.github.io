@@ -5,7 +5,7 @@ date: 2026-06-05
 categories: ["нарциссизм"]
 tags: ["нарциссизм", "живое"]
 source_channel: telegram
-cover: "/images/photo/cover-golub-3.jpg"
+cover: "/images/cover/cover-golub-3.jpg"
 placeholder: false
 featured: false
 ---

@@ -37,16 +37,14 @@ const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dze
         </p>
       )}
     </div>
-    <div class="reading-light blog-article-body">
-      {d.cover && (<div class="photo-band" style="margin-top: 0;">
-        <img src={d.cover} alt={d.title} />
+    <div class="reading-light">
+      {d.cover && (
+        <div class="photo-band" style="margin-top: 0;"><img src={d.cover} alt={d.title} /></div>
+      )}
+      <div class="prose">
+        <Content />
+      </div>
     </div>
-  )}
-  <div class="prose blog-article-prose">
-    <Content />
-  </div>
-
-</div>
   </div>
 
 

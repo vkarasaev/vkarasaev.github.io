@@ -5,7 +5,7 @@ date: 2026-06-17
 categories: ["терапия"]
 tags: ["терапия", "выгорание"]
 source_channel: telegram
-cover: "/images/photo/cover-sobaka.jpg"
+cover: "/images/cover/cover-sobaka.jpg"
 placeholder: false
 featured: true
 ---

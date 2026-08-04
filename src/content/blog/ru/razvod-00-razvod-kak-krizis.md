@@ -9,7 +9,7 @@ tags:
   - кризисы
   - переходы
 source_channel: original
-cover: /images/photo/cover-razvod-00-kak-krizis.jpg
+cover: /images/cover/cover-razvod-00-kak-krizis.jpg
 placeholder: false
 featured: true
 ---

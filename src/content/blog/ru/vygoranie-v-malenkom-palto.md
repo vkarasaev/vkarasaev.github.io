@@ -8,7 +8,7 @@ tags:
   - выгорание
   - живое
 source_channel: telegram
-cover: /images/photo/cover-palto.jpg
+cover: /images/cover/cover-palto.jpg
 placeholder: false
 featured: false
 ---

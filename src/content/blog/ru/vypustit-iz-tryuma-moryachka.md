@@ -5,7 +5,7 @@ date: 2025-09-15
 categories: ["выгорание"]
 tags: ["нарциссизм", "живое"]
 source_channel: telegram
-cover: "/images/photo/cover-sailing.jpg"
+cover: "/images/cover/cover-sailing.jpg"
 placeholder: false
 featured: false
 ---

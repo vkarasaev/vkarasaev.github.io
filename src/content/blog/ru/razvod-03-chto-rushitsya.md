@@ -9,7 +9,7 @@ tags:
   - отношения
   - переходы
 source_channel: original
-cover: /images/photo/cover-razvod-03.jpg
+cover: /images/cover/cover-razvod-03.jpg
 placeholder: false
 featured: false
 ---
