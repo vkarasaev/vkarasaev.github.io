@@ -5,7 +5,7 @@ date: 2026-06-01
 categories: ["нарциссизм"]
 tags: ["нарциссизм", "стыд"]
 source_channel: telegram
-cover: "/images/photo/cover-golub-1.jpg"
+cover: "/images/cover/cover-golub-1.jpg"
 placeholder: false
 featured: false
 ---

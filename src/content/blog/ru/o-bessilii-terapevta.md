@@ -5,7 +5,7 @@ date: 2026-04-11
 categories: ["терапия"]
 tags: ["терапия"]
 source_channel: telegram
-cover: "/images/photo/cover-temp.jpg"
+cover: "/images/cover/cover-temp.jpg"
 placeholder: false
 featured: false
 ---

@@ -5,7 +5,7 @@ date: 2026-06-21
 categories: ["дорога"]
 tags: ["дорога", "кризисы"]
 source_channel: dzen
-cover: "/images/photo/cover-backpack.jpg"
+cover: "/images/cover/cover-backpack.jpg"
 placeholder: false
 featured: false
 ---

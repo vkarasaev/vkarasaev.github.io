@@ -5,7 +5,7 @@ date: 2026-02-10
 categories: ["выгорание"]
 tags: ["выгорание"]
 source_channel: b17
-cover: "/images/photo/cover-sil-net.jpg"
+cover: "/images/cover/cover-sil-net.jpg"
 placeholder: false
 featured: false
 ---

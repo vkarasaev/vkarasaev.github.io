@@ -5,7 +5,7 @@ date: 2026-04-08
 categories: ["живое"]
 tags: ["живое"]
 source_channel: telegram
-cover: "/images/photo/cover-nadezhda.jpg"
+cover: "/images/cover/cover-nadezhda.jpg"
 placeholder: false
 featured: false
 ---
