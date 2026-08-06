@@ -2,6 +2,7 @@
 // Страницы тегов /blog/tag/<tag>/ (правка 13): рабочая фильтрация по тегам.
 import Page from '../../../layouts/Page.astro';
 import { getCollection } from 'astro:content';
+import { getBlogFormatLabel, getBlogHref } from '../../../utils/blog';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru');
@@ -33,12 +34,15 @@ const fmt = (d: Date) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 
 
   <div class="grid-2">
     {posts.map((p) => (
-      <a class="post-card" href={`/blog/${p.id.replace(/^ru\//, '')}/`}>
+      <article class="post-card">
         {p.data.cover && <img src={p.data.cover} alt={p.data.title} style="width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" loading="lazy" />}
-        <div class="post-date">{fmt(p.data.date)}</div>
-        <div class="post-title">{p.data.title}</div>
-        <div class="post-desc">{p.data.description.replace(' Болванка: заменить на реальный текст Валерия.', '')}</div>
-      </a>
+        <div class="post-card-meta">
+          <a href={`/blog/format/${p.data.format}/`} class="post-format">{getBlogFormatLabel(p.data.format)}</a>
+          <span class="post-date">{fmt(p.data.date)}</span>
+        </div>
+        <div class="post-title"><a class="post-main-link" href={getBlogHref(p)}>{p.data.title}</a></div>
+        <div class="post-desc">{p.data.description}</div>
+      </article>
     ))}
   </div>
 </Page>

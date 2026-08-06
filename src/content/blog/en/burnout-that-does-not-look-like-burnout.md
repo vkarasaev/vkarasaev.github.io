@@ -7,8 +7,8 @@ categories: ["burnout"]
 tags: ["burnout", "work"]
 source_channel: original
 featured: true
-placeholder: true
-cover: "/images/photo/cover-snaruzhi.jpg"
+draft: true
+cover: "/images/cover/cover-palto.jpg"
 ---
 
 Everything is fine on paper. The job is there. The money is there. The family is in place. There was even a vacation - the photos look great.

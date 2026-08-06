@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import remarkArticleToc from './src/plugins/remark-article-toc.mjs';
 
 export default defineConfig({
   site: 'https://karasaev.com',
@@ -15,4 +16,7 @@ export default defineConfig({
       filter: (page) => !page.includes('/premium/') && !page.includes('/lp/') && !page.includes('/home/') && !page.includes('/sos/') && !page.includes('/oferta/') && !page.includes('-a/') && !page.includes('-b/'),
     }),
   ],
+  markdown: {
+    remarkPlugins: [remarkArticleToc],
+  },
 });

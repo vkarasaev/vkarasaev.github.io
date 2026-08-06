@@ -6,7 +6,7 @@ lang: en
 categories: ["therapy"]
 tags: ["therapy"]
 source_channel: telegram
-cover: "/images/photo/cover-temp.jpg"
+cover: "/images/cover/cover-temp.jpg"
 ---
 
 The psyche changes only at the pace a person can withstand. And this is not a technical limitation - it is a structural one. You can fight against it. Be angry at it. But it is there.

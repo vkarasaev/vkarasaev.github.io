@@ -7,7 +7,7 @@ categories: ["crises"]
 tags: ["choice", "crises"]
 source_channel: b17
 featured: true
-cover: "/images/photo/cover-vybor.jpg"
+cover: "/images/cover/cover-vybor.jpg"
 ---
 
 You have been making this decision for months. Maybe a year. To leave or to stay. Now or later. You make lists, discuss it with people close to you, read articles - and return to the same point. Thoughts move in circles. Nothing shifts. And slowly a feeling grows that the problem is not the situation - it's you.

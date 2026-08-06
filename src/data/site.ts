@@ -76,11 +76,11 @@ export const site = {
     { num: '3', label: 'языка работы' },
   ],
 
-  // Экосистема ссылок (Р10: без ВК; Дзен - valera_toptop)
+  // Основные внешние каналы русской версии
   channels: [
-    { label: 'Telegram-канал', url: 'https://t.me/valera_outloud' },
-    { label: 'Статьи на B17', url: 'https://www.b17.ru/karasaev/#article' },
-    { label: 'Дзен «Топ-топ»', url: 'https://dzen.ru/valera_toptop' },
+    { label: 'Telegram · «Валера. Вслух»', url: 'https://t.me/valera_outloud' },
     { label: 'Instagram', url: 'https://www.instagram.com/karasaev.psy' },
+    { label: 'YouTube', url: 'https://www.youtube.com/@vkarasaev' },
+    { label: '«Топ-топ» · Camino', url: 'https://dzen.ru/valera_toptop' },
   ],
 };

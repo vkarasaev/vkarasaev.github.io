@@ -9,6 +9,7 @@ import Burger from '../components/Burger.astro';
 import SocIcons from '../components/SocIcons.astro';
 import { site } from '../data/site';
 import { getCollection } from 'astro:content';
+import { getBlogFormatLabel, getBlogHref } from '../utils/blog';
 import '../styles/main.css';
 import '../styles/inner.css';
 import '../styles/home.css';
@@ -213,11 +214,14 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
         </div>
         <div class="posts3">
           {posts.map((p) => (
-            <a class="post-card" href={`/blog/${p.id.replace(/^ru\//, '')}/`}>
+            <article class="post-card">
               {p.data.cover && <img src={p.data.cover} alt={p.data.title} style="width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" loading="lazy" />}
-              <div class="post-date">{fmt(p.data.date)}</div>
-              <div class="post-title">{p.data.title}</div>
-            </a>
+              <div class="post-card-meta">
+                <a href={`/blog/format/${p.data.format}/`} class="post-format">{getBlogFormatLabel(p.data.format)}</a>
+                <span class="post-date">{fmt(p.data.date)}</span>
+              </div>
+              <div class="post-title"><a class="post-main-link" href={getBlogHref(p)}>{p.data.title}</a></div>
+            </article>
           ))}
         </div>
         <p style="margin-top: 24px;"><a href="/blog/" class="tag-chip">Показать еще →</a></p>
@@ -226,38 +230,37 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
 
     <!-- «Правки-6» п.12: дополнительный воздух перед блоком -->
     <section class="hx-sec hx-sec-gap">
-      <h2 class="hx-h2">Где еще я пишу</h2>
+      <h2 class="hx-h2">Где ещё меня читать и смотреть</h2>
       <div class="grid-2">
-        <a class="write-card" href="/blog/">
-          <img src="/images/photo/cover-sobaka.jpg" alt="Блог" />
-          <div>
-            <div class="write-title">Избранные статьи на этом сайте</div>
-            <div class="write-desc">Выгорание, кризисы, терапия без ботвы</div>
-          </div>
-        </a>
-        <a class="write-card" href="https://t.me/valera_outloud">
+        <a class="write-card" href="https://t.me/valera_outloud" target="_blank" rel="noopener">
           <img src="/images/photo/valera-vsluh.jpg" alt="Валера. Вслух" />
           <div>
-            <div class="write-title">Телеграм-канал «Валера. Вслух»</div>
-            <div class="write-desc">Про злость, тело, желание, стыд и жизненные радости</div>
+            <div class="write-title">Telegram · «Валера. Вслух»</div>
+            <div class="write-desc">Личные эссе о злости, теле, желании, стыде и живой жизни</div>
           </div>
         </a>
-        <a class="write-card" href="https://dzen.ru/valera_toptop">
-          <img src="/images/photo/cover-backpack.jpg" alt="Топ-топ" />
+        <a class="write-card" href="https://www.instagram.com/karasaev.psy" target="_blank" rel="noopener">
+          <img src="/images/photo/instagram-green.jpg" alt="Instagram" />
           <div>
-            <div class="write-title">Блог о дороге «Топ-топ»</div>
-            <div class="write-desc">Camino, дороги, города и внутренние переходы</div>
+            <div class="write-title">Instagram · фотографии и сторис</div>
+            <div class="write-desc">Будни, лица и всё, что проще показать, чем объяснить</div>
           </div>
         </a>
-        <a class="write-card" href="https://www.b17.ru/karasaev/#article">
-          <img src="/images/photo/about-today.jpg" alt="B17" />
+        <a class="write-card" href="https://www.youtube.com/@vkarasaev" target="_blank" rel="noopener">
+          <img src="/images/photo/youtube-pipe-avatar.jpg" alt="YouTube" />
           <div>
-            <div class="write-title">Статьи о психологии на B17</div>
-            <div class="write-desc">Кейсы, разборы теории и практики</div>
+            <div class="write-title">YouTube · подкасты и видео</div>
+            <div class="write-desc">Подкасты и длинные разговоры о терапии, кризисах и переменах</div>
+          </div>
+        </a>
+        <a class="write-card" href="https://dzen.ru/valera_toptop" target="_blank" rel="noopener">
+          <img src="/images/photo/about-camino.jpg" alt="Camino" />
+          <div>
+            <div class="write-title">«Топ-топ» · путевой дневник</div>
+            <div class="write-desc">Записки с Camino, дорога, города и стертые пятки</div>
           </div>
         </a>
       </div>
-      <SocIcons ids={['instagram', 'youtube', 'facebook','linkedin', 'vk']} />
     </section>
   </div>
 
