@@ -3,13 +3,13 @@
 // блок «где я пишу еще». Болванки помечены в самих статьях.
 import Page from '../../layouts/Page.astro';
 import { getCollection } from 'astro:content';
+import { getBlogFormatLabel, getBlogHref } from '../../utils/blog';
 
 const all = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru'))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 const featured = all.filter((p) => p.data.featured);
 const tags = [...new Set(all.flatMap((p) => p.data.tags))].sort();
 const fmt = (d: Date) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
-const clean = (t: string) => t.replace(' Болванка: заменить на реальный текст Валерия.', '');
 ---
 
 <Page
@@ -34,56 +34,62 @@ const clean = (t: string) => t.replace(' Болванка: заменить на
   <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Избранное</span></div>
   <div class="grid-3">
     {featured.map((p) => (
-      <a class="post-card" href={`/blog/${p.id.replace(/^ru\//, '')}/`}>
+      <article class="post-card">
         {p.data.cover && <img src={p.data.cover} alt={p.data.title} style="width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" loading="lazy" />}
-        <div class="post-date">{fmt(p.data.date)}</div>
-        <div class="post-title">{p.data.title}</div>
-        <div class="post-desc">{clean(p.data.description)}</div>
-      </a>
+        <div class="post-card-meta">
+          <a href={`/blog/format/${p.data.format}/`} class="post-format">{getBlogFormatLabel(p.data.format)}</a>
+          <span class="post-date">{fmt(p.data.date)}</span>
+        </div>
+        <div class="post-title"><a class="post-main-link" href={getBlogHref(p)}>{p.data.title}</a></div>
+        <div class="post-desc">{p.data.description}</div>
+      </article>
     ))}
   </div>
 
   <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Все тексты</span></div>
   <div class="grid-2">
     {all.map((p) => (
-      <a class="post-card" href={`/blog/${p.id.replace(/^ru\//, '')}/`}>
+      <article class="post-card">
         {p.data.cover && <img src={p.data.cover} alt={p.data.title} style="width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" loading="lazy" />}
-        <div class="post-date">{fmt(p.data.date)}</div>
-        <div class="post-title">{p.data.title}</div>
-        <div class="post-desc">{clean(p.data.description)}</div>
-        {p.data.tags.length > 0 && <div class="post-tags">{p.data.tags.map((t) => '#' + t).join('  ')}</div>}
-      </a>
+        <div class="post-card-meta">
+          <a href={`/blog/format/${p.data.format}/`} class="post-format">{getBlogFormatLabel(p.data.format)}</a>
+          <span class="post-date">{fmt(p.data.date)}</span>
+        </div>
+        <div class="post-title"><a class="post-main-link" href={getBlogHref(p)}>{p.data.title}</a></div>
+        <div class="post-desc">{p.data.description}</div>
+        {p.data.tags.length > 0 && <div class="post-tags">{p.data.tags.map((t) => <a href={`/blog/tag/${t}/`}>#{t}</a>)}</div>}
+      </article>
     ))}
   </div>
 
-  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Где я пишу еще</span></div>
+  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Где ещё меня читать и смотреть</span></div>
   <div class="grid-2">
-    <a class="write-card" href="https://t.me/valera_outloud">
-      <img src="/images/photo/avatar.jpg" alt="Валера. Вслух" />
+    <a class="write-card" href="https://t.me/valera_outloud" target="_blank" rel="noopener">
+      <img src="/images/photo/valera-vsluh.jpg" alt="Валера. Вслух" />
       <div>
         <div class="write-title">Telegram · «Валера. Вслух»</div>
-        <div class="write-desc">Размышляю вслух: про злость, тело, желание, стыд, жадность и жизненные радости</div>
+        <div class="write-desc">Личные эссе о злости, теле, желании, стыде и живой жизни</div>
       </div>
     </a>
-    <a class="write-card" href="https://www.b17.ru/karasaev/#article">
-      <img src="/images/photo/about-today.jpg" alt="B17" />
+    <a class="write-card" href="https://www.instagram.com/karasaev.psy" target="_blank" rel="noopener">
+      <img src="/images/photo/instagram-green.jpg" alt="Instagram" />
       <div>
-        <div class="write-title">B17 · профессиональные тексты</div>
-        <div class="write-desc">Про терапию без ботвы: кейсы, разборы теории и практики</div>
+        <div class="write-title">Instagram · фотографии и сторис</div>
+        <div class="write-desc">Будни, лица и всё, что проще показать, чем объяснить</div>
       </div>
     </a>
-    <a class="write-card" href="https://dzen.ru/valera_toptop">
-      <img src="/images/photo/cover-backpack.jpg" alt="Топ-топ" />
+    <a class="write-card" href="https://www.youtube.com/@vkarasaev" target="_blank" rel="noopener">
+      <img src="/images/photo/youtube-pipe-avatar.jpg" alt="YouTube" />
       <div>
-        <div class="write-title">Дзен · «Топ-топ»</div>
-        <div class="write-desc">Записки человека, который идет: Camino, дороги, города и внутренние переходы</div>
+        <div class="write-title">YouTube · подкасты и видео</div>
+        <div class="write-desc">Подкасты и длинные разговоры о терапии, кризисах и переменах</div>
       </div>
     </a>
-    <a class="write-card" href="https://www.instagram.com/karasaev.psy">
-      <img src="/images/photo/about-camino.jpg" alt="Instagram" />
+    <a class="write-card" href="https://dzen.ru/valera_toptop" target="_blank" rel="noopener">
+      <img src="/images/photo/about-camino.jpg" alt="Camino" />
       <div>
-        <div class="write-title">Instagram</div>
-        <div class="write-desc">Визуальная часть той же жизни</div>
+        <div class="write-title">«Топ-топ» · путевой дневник</div>
+        <div class="write-desc">Записки с Camino, дорога, города и стертые пятки</div>
       </div>
     </a>
   </div>

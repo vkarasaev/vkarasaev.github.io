@@ -7,7 +7,7 @@ categories: ["burnout"]
 tags: ["burnout"]
 source_channel: b17
 featured: true
-cover: "/images/photo/cover-sil-net.jpg"
+cover: "/images/cover/cover-sil-net.jpg"
 ---
 
 You keep working. You get up, do things, answer messages. On the outside everything is in order: the title, the salary, the familiar rhythm. But inside there is a feeling that something important has been silent for a long time. Vacation doesn't help. Weekends don't restore you. And you start to suspect that this is no longer about being tired.

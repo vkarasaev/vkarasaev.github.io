@@ -2,12 +2,11 @@
 // /contact/ (T8): все способы связи + куда подписаться. Данные только из site.ts.
 import Page from '../../layouts/Page.astro';
 import { site } from '../../data/site';
-import SocIcons from '../../components/SocIcons.astro';
 ---
 
 <Page
   title="Контакты · Валерий Карасаев"
-  description="Как связаться с Валерием Карасаевым: Telegram, почта, телефон. Запись на сессию и бесплатную 15-минутную встречу. Telegram-канал, B17, Дзен."
+  description="Как связаться с Валерием Карасаевым: Telegram, почта, телефон. Запись на сессию и бесплатную 15-минутную встречу. Telegram, Instagram, YouTube и блог о Camino."
   translation="/en/contact/"
 >
   <div class="page-head">
@@ -40,36 +39,35 @@ import SocIcons from '../../components/SocIcons.astro';
   <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3Ad1afb52f68b6c0a04a59437ffd053f6a0b9a5ed5e1cc8964fa3c2c950c5a6144&amp;source=constructor" width="100%" height="350" frameborder="0"></iframe>
 </div>
 
-  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Где меня читать</span></div>
+  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Где ещё меня читать и смотреть</span></div>
   <div class="grid-2 contact-links">
-    <a class="write-card" href="/blog/">
-      <img src="/images/photo/cover-sobaka.jpg" alt="Блог" />
+    <a class="write-card" href="https://t.me/valera_outloud" target="_blank" rel="noopener">
+      <img src="/images/photo/valera-vsluh.jpg" alt="Валера. Вслух" />
       <div>
-        <div class="write-title">Избранные статьи на сайте</div>
-        <div class="write-desc">Выгорание, кризисы, терапия без ботвы - лучшие тексты собраны в блоге</div>
+        <div class="write-title">Telegram · «Валера. Вслух»</div>
+        <div class="write-desc">Личные эссе о злости, теле, желании, стыде и живой жизни</div>
       </div>
     </a>
-    <a class="write-card" href="https://t.me/valera_outloud">
-      <img src="/images/photo/avatar.jpg" alt="Валера. Вслух" />
+    <a class="write-card" href="https://www.instagram.com/karasaev.psy" target="_blank" rel="noopener">
+      <img src="/images/photo/instagram-green.jpg" alt="Instagram" />
       <div>
-        <div class="write-title">Телеграм-канал «Валера. Вслух»</div>
-        <div class="write-desc">Про злость, тело, желание, стыд, жадность и жизненные радости</div>
+        <div class="write-title">Instagram · фотографии и сторис</div>
+        <div class="write-desc">Будни, лица и всё, что проще показать, чем объяснить</div>
       </div>
     </a>
-    <a class="write-card" href="https://dzen.ru/valera_toptop">
-      <img src="/images/photo/cover-backpack.jpg" alt="Топ-топ" />
+    <a class="write-card" href="https://www.youtube.com/@vkarasaev" target="_blank" rel="noopener">
+      <img src="/images/photo/youtube-pipe-avatar.jpg" alt="YouTube" />
       <div>
-        <div class="write-title">Блог о дороге «Топ-топ»</div>
-        <div class="write-desc">Camino, дороги, города и внутренние переходы</div>
+        <div class="write-title">YouTube · подкасты и видео</div>
+        <div class="write-desc">Подкасты и длинные разговоры о терапии, кризисах и переменах</div>
       </div>
     </a>
-    <a class="write-card" href="https://www.b17.ru/karasaev/#article">
-      <img src="/images/photo/about-today.jpg" alt="B17" />
+    <a class="write-card" href="https://dzen.ru/valera_toptop" target="_blank" rel="noopener">
+      <img src="/images/photo/about-camino.jpg" alt="Camino" />
       <div>
-        <div class="write-title">Статьи о психологии на B17</div>
-        <div class="write-desc">Кейсы, разборы теории и практики</div>
+        <div class="write-title">«Топ-топ» · путевой дневник</div>
+        <div class="write-desc">Записки с Camino, дорога, города и стертые пятки</div>
       </div>
     </a>
   </div>
-  <SocIcons />
 </Page>

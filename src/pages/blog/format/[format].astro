@@ -1,0 +1,58 @@
+---
+import Page from '../../../layouts/Page.astro';
+import { getCollection } from 'astro:content';
+import { BLOG_FORMAT_LABELS, getBlogFormatLabel, getBlogHref, type BlogFormat } from '../../../utils/blog';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru');
+  const formats = (Object.keys(BLOG_FORMAT_LABELS) as BlogFormat[]).filter((format) =>
+    posts.some((post) => post.data.format === format),
+  );
+  return formats.map((format) => ({
+    params: { format },
+    props: {
+      posts: posts.filter((post) => post.data.format === format).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf()),
+      format,
+      formats,
+    },
+  }));
+}
+
+const { posts, format, formats } = Astro.props;
+const label = getBlogFormatLabel(format);
+const fmt = (date: Date) => date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' });
+---
+
+<Page
+  title={`${label} · Блог · Валерий Карасаев`}
+  description={`${label}: тексты психолога и гештальт-терапевта Валерия Карасаева.`}
+  wide={true}
+  hideCta={true}
+>
+  <div class="page-head">
+    <div class="kicker">Блог · формат</div>
+    <h1 class="page-title">{label}</h1>
+  </div>
+
+  <div class="tag-row">
+    <a href="/blog/" class="tag-chip">Все тексты</a>
+    {formats.map((item: BlogFormat) => (
+      <a href={`/blog/format/${item}/`} class={'tag-chip' + (item === format ? ' active' : '')}>{getBlogFormatLabel(item)}</a>
+    ))}
+  </div>
+
+  <div class="grid-2">
+    {posts.map((post) => (
+      <article class="post-card">
+        {post.data.cover && <img src={post.data.cover} alt={post.data.title} style="width: 100%; aspect-ratio: 3/2; object-fit: cover; border-radius: 8px; margin-bottom: 12px;" loading="lazy" />}
+        <div class="post-card-meta">
+          <a href={`/blog/format/${post.data.format}/`} class="post-format">{getBlogFormatLabel(post.data.format)}</a>
+          <span class="post-date">{fmt(post.data.date)}</span>
+        </div>
+        <div class="post-title"><a class="post-main-link" href={getBlogHref(post)}>{post.data.title}</a></div>
+        <div class="post-desc">{post.data.description}</div>
+        {post.data.tags.length > 0 && <div class="post-tags">{post.data.tags.map((tag) => <a href={`/blog/tag/${tag}/`}>#{tag}</a>)}</div>}
+      </article>
+    ))}
+  </div>
+</Page>

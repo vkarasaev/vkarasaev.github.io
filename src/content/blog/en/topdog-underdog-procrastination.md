@@ -7,7 +7,7 @@ categories: ["therapy"]
 tags: ["therapy", "burnout"]
 source_channel: telegram
 featured: true
-cover: "/images/photo/cover-sobaka.jpg"
+cover: "/images/cover/cover-sobaka.jpg"
 ---
 
 This is where my acquaintance with Gestalt began.

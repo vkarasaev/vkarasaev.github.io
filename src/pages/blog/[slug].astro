@@ -3,11 +3,12 @@
 // автоматическая подпись + CTA. Кнопка «оригинал» ведет на площадку-источник.
 import Page from '../../layouts/Page.astro';
 import { getCollection, render } from 'astro:content';
+import { getBlogFormatLabel, getBlogHref, getBlogSlug } from '../../utils/blog';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.map((post) => ({
-    params: { slug: post.id.replace(/^(ru|en)\//, '') },
+    params: { slug: getBlogSlug(post) },
     props: { post },
   }));
 }
@@ -17,24 +18,50 @@ const { Content } = await render(post);
 const d = post.data;
 const ru = d.lang !== 'en';
 const fmt = (x: Date) => x.toLocaleDateString(ru ? 'ru-RU' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
-const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dzen: 'Дзен', vc: 'VC.ru', linkedin: 'LinkedIn', original: '' };
+
+const availableRelated = await getCollection('blog', ({ data }) => !data.draft && data.lang === d.lang);
+const relatedBySlug = new Map(availableRelated.map((item) => [getBlogSlug(item), item]));
+const currentHref = getBlogHref(post);
+const parentSeries = availableRelated.filter((item) =>
+  item.id !== post.id
+  && item.data.format === 'series'
+  && item.body.includes(currentHref)
+);
+const parentSeriesIds = new Set(parentSeries.map((item) => item.id));
+const manualRelated = d.related
+  .map((slug) => relatedBySlug.get(slug))
+  .filter((item) => item && item.id !== post.id && !parentSeriesIds.has(item.id));
+const manualIds = new Set(manualRelated.map((item) => item.id));
+const automaticRelated = availableRelated
+  .filter((item) => item.id !== post.id && !parentSeriesIds.has(item.id) && !manualIds.has(item.id))
+  .map((item) => {
+    const sharedTags = item.data.tags.filter((tag) => d.tags.includes(tag)).length;
+    const score = sharedTags * 10 + (item.data.format === d.format ? 2 : 0);
+    return { item, score };
+  })
+  .sort((a, b) => b.score - a.score || b.item.data.date.valueOf() - a.item.data.date.valueOf())
+  .map(({ item }) => item);
+const relatedPosts = [...parentSeries, ...manualRelated, ...automaticRelated].slice(0, 3);
 ---
 
 <Page
   title={d.title + (d.lang === 'en' ? ' · Valeriy Karasaev' : ' · Валерий Карасаев')}
-  description={d.description.replace(' Болванка: заменить на реальный текст Валерия.', '').replace(' Placeholder essay: to be replaced or edited by Valeriy.', '')}
+  description={d.description}
   lang={d.lang}
   ogImage={d.cover}
 >
-  <article>
+  <article class="blog-article">
   <div class="article-column">
     <div class="page-head">
-      <div class="kicker">{fmt(d.date)}</div>
+      <div class="article-meta">
+        {ru && <a href={`/blog/format/${d.format}/`} class="post-format">{getBlogFormatLabel(d.format)}</a>}
+        <span class="kicker">{fmt(d.date)}</span>
+      </div>
       <h1 class="page-title">{d.title}</h1>
-      {d.placeholder && (
-        <p style="font-size: 13px; color: var(--muted); border: 1px dashed var(--border); border-radius: 8px; padding: 10px 14px;">
-          {d.lang === 'en' ? 'This is a placeholder essay written by AI around Valeriy\'s themes; it will be replaced or edited.' : 'Это болванка для проверки шаблона. Текст написан ИИ по мотивам тем Валерия и будет заменен реальной статьей.'}
-        </p>
+      {ru && d.tags.length > 0 && (
+        <div class="tag-row article-head-tags" aria-label="Темы статьи">
+          {d.tags.map((t) => <a href={`/blog/tag/${t}/`} class="tag-chip">#{t}</a>)}
+        </div>
       )}
     </div>
     <div class="reading-light">
@@ -44,31 +71,58 @@ const srcNames: Record<string, string> = { telegram: 'Telegram', b17: 'B17', dze
       <div class="prose">
         <Content />
       </div>
+      <footer class="article-signature" id="article-end">
+        <a href={ru ? '/about/' : '/en/'} class="article-signature-photo" aria-label={ru ? 'Об авторе' : 'About the author'}>
+          <img src="/images/photo/author-valeriy.jpg" alt={ru ? 'Валерий Карасаев' : 'Valeriy Karasaev'} />
+        </a>
+        <div class="article-signature-copy">
+          <a href={ru ? '/about/' : '/en/'} class="article-signature-name">
+            {ru ? 'Валерий Карасаев' : 'Valeriy Karasaev'}
+          </a>
+          <div class="article-signature-meta">
+            {ru ? 'Психолог, гештальт-терапевт' : 'Psychologist and Gestalt therapist'}
+          </div>
+        </div>
+      </footer>
     </div>
   </div>
 
-
-    <div class="spec" style="margin: 40px auto 26px; max-width: 720px;">
-      <div class="spec-row">
-        <span class="spec-key">{d.lang === 'en' ? 'Author' : 'Автор'}</span>
-        <span class="spec-val"><a href={d.lang === 'en' ? '/en/' : '/about/'} style="color: var(--gold); text-decoration: none;">{d.lang === 'en' ? 'Valeriy Karasaev' : 'Валерий Карасаев'}</a> {d.lang === 'en' ? '· psychologist, Gestalt therapist' : '· психолог, гештальт-терапевт'}</span>
-      </div>
-      {d.source_url && srcNames[d.source_channel] && (
-        <div class="spec-row">
-          <span class="spec-key">{d.lang === 'en' ? 'Original' : 'Оригинал'}</span>
-          <span class="spec-val"><a href={d.source_url} style="color: var(--gold); text-decoration: none;">{srcNames[d.source_channel]}</a></span>
+    {relatedPosts.length > 0 && (
+      <section class="article-after-section">
+        <div class="meta-line"><span class="meta-label">{ru ? 'Вам может понравиться' : 'You may also like'}</span></div>
+        <div class="grid-3 article-related-grid">
+          {relatedPosts.map((item) => (
+            <a class="post-card article-related-card" href={getBlogHref(item)}>
+              {item.data.cover && <img src={item.data.cover} alt={item.data.title} loading="lazy" />}
+              <div class="post-date">
+                {parentSeriesIds.has(item.id)
+                  ? (ru ? 'Из цикла' : 'From the series')
+                  : `${ru ? `${getBlogFormatLabel(item.data.format)} · ` : ''}${fmt(item.data.date)}`}
+              </div>
+              <div class="post-title">{item.data.title}</div>
+            </a>
+          ))}
         </div>
-      )}
-      <div class="spec-row">
-        <span class="spec-key">{d.lang === 'en' ? 'More' : 'Еще тексты'}</span>
-        <span class="spec-val">{d.lang === 'en' ? <a href="/en/articles/" style="color: var(--gold); text-decoration: none;">in Articles</a> : <a href="https://t.me/valera_outloud" style="color: var(--gold); text-decoration: none;">в телеграм-канале «Валера. Вслух»</a>}</span>
-      </div>
-    </div>
+      </section>
+    )}
 
-    {d.lang !== 'en' && d.tags.length > 0 && (
-      <div class="tag-row" style="max-width: 720px; margin: 18px auto 22px;">
-        {d.tags.map((t) => <a href={`/blog/tag/${t}/`} class="tag-chip">#{t}</a>)}
-      </div>
+    {ru && (
+      <section class="article-after-section article-subscribe-section" id="follow">
+        <div class="article-subscribe">
+          <div class="article-subscribe-copy">
+            <div class="article-subscribe-kicker">Новые тексты</div>
+            <h2>Продолжим в Telegram</h2>
+            <p>Личные эссе, наблюдения и анонсы новых материалов - в канале «Валера. Вслух».</p>
+            <div class="article-social-links">
+              <span>Ещё:</span>
+              <a href="https://www.instagram.com/karasaev.psy" target="_blank" rel="noopener">Instagram</a>
+              <a href="https://www.youtube.com/@vkarasaev" target="_blank" rel="noopener">YouTube</a>
+              <a href="https://dzen.ru/valera_toptop" target="_blank" rel="noopener">Camino</a>
+            </div>
+          </div>
+          <a class="article-subscribe-button" href="https://t.me/valera_outloud" target="_blank" rel="noopener">Подписаться</a>
+        </div>
+      </section>
     )}
   </article>
 </Page>
