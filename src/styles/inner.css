@@ -105,6 +105,14 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 .tag-row.article-head-tags { align-items: baseline; margin: 24px 0 0; gap: 6px 16px; }
 .article-head-tags .tag-chip { padding: 0; border: 0; border-radius: 0; background: transparent; color: #aaa69e; font-size: 13px; line-height: 1.4; }
 .article-head-tags .tag-chip:hover { color: var(--gold2); }
+.article-series-nav { display: flex; flex-direction: column; gap: 8px; margin-top: 22px; }
+.article-series-link { display: flex; align-items: baseline; gap: 12px; padding: 11px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); color: var(--text); text-decoration: none; }
+.article-series-link + .article-series-link { margin-top: -9px; border-top: 0; }
+.article-series-kicker { flex: 0 0 auto; color: var(--gold); font-size: 10.5px; letter-spacing: 1.6px; text-transform: uppercase; }
+.article-series-title { min-width: 0; color: #d8d4cc; font-family: 'Cormorant Garamond', serif; font-size: 18px; line-height: 1.2; }
+.article-series-action { flex: 0 0 auto; margin-left: auto; color: #aaa69e; font-size: 11.5px; letter-spacing: 0.3px; }
+.article-series-link:hover .article-series-title,
+.article-series-link:hover .article-series-action { color: var(--gold2); }
 .article-after-section { width: 100%; max-width: 1060px; margin: 24px auto 0; }
 .article-column + .article-after-section { margin-top: 48px; }
 .article-after-section .meta-line { max-width: none; margin-top: 0; }
@@ -123,6 +131,9 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
 .article-social-links a:hover { color: var(--gold2); }
 
 @media (max-width: 639px) {
+  .article-series-link { align-items: flex-start; flex-wrap: wrap; gap: 5px 9px; }
+  .article-series-title { flex: 1 1 calc(100% - 85px); }
+  .article-series-action { flex-basis: 100%; margin-left: 0; padding-left: 85px; }
   .article-subscribe { align-items: flex-start; flex-direction: column; gap: 18px; padding: 22px; }
   .article-subscribe-button { width: 100%; text-align: center; }
 }

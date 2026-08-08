@@ -21,6 +21,7 @@ const fmt = (x: Date) => x.toLocaleDateString(ru ? 'ru-RU' : 'en-GB', { day: 'nu
 
 const availableRelated = await getCollection('blog', ({ data }) => !data.draft && data.lang === d.lang);
 const relatedBySlug = new Map(availableRelated.map((item) => [getBlogSlug(item), item]));
+const relatedByHref = new Map(availableRelated.map((item) => [getBlogHref(item), item]));
 const currentHref = getBlogHref(post);
 const parentSeries = availableRelated.filter((item) =>
   item.id !== post.id
@@ -28,12 +29,34 @@ const parentSeries = availableRelated.filter((item) =>
   && item.body.includes(currentHref)
 );
 const parentSeriesIds = new Set(parentSeries.map((item) => item.id));
+const seriesName = (title: string) => title
+  .replace(/^Цикл\s+[«"]?/, '')
+  .replace(/[»"]$/, '');
+const seriesSiblings = [];
+const seriesSiblingIds = new Set<string>();
+
+for (const series of parentSeries) {
+  const memberHrefs = [...series.body.matchAll(/\]\((\/blog\/[^)\s]+\/)\)/g)]
+    .map((match) => match[1]);
+  const currentIndex = memberHrefs.indexOf(currentHref);
+  const orderedHrefs = currentIndex >= 0
+    ? [...memberHrefs.slice(currentIndex + 1), ...memberHrefs.slice(0, currentIndex).reverse()]
+    : memberHrefs;
+
+  for (const href of orderedHrefs) {
+    const item = relatedByHref.get(href);
+    if (item && item.id !== post.id && !seriesSiblingIds.has(item.id)) {
+      seriesSiblingIds.add(item.id);
+      seriesSiblings.push(item);
+    }
+  }
+}
 const manualRelated = d.related
   .map((slug) => relatedBySlug.get(slug))
-  .filter((item) => item && item.id !== post.id && !parentSeriesIds.has(item.id));
+  .filter((item) => item && item.id !== post.id && !parentSeriesIds.has(item.id) && !seriesSiblingIds.has(item.id));
 const manualIds = new Set(manualRelated.map((item) => item.id));
 const automaticRelated = availableRelated
-  .filter((item) => item.id !== post.id && !parentSeriesIds.has(item.id) && !manualIds.has(item.id))
+  .filter((item) => item.id !== post.id && !parentSeriesIds.has(item.id) && !seriesSiblingIds.has(item.id) && !manualIds.has(item.id))
   .map((item) => {
     const sharedTags = item.data.tags.filter((tag) => d.tags.includes(tag)).length;
     const score = sharedTags * 10 + (item.data.format === d.format ? 2 : 0);
@@ -41,7 +64,7 @@ const automaticRelated = availableRelated
   })
   .sort((a, b) => b.score - a.score || b.item.data.date.valueOf() - a.item.data.date.valueOf())
   .map(({ item }) => item);
-const relatedPosts = [...parentSeries, ...manualRelated, ...automaticRelated].slice(0, 3);
+const relatedPosts = [...manualRelated, ...seriesSiblings, ...automaticRelated].slice(0, 3);
 ---
 
 <Page
@@ -62,6 +85,17 @@ const relatedPosts = [...parentSeries, ...manualRelated, ...automaticRelated].sl
         <div class="tag-row article-head-tags" aria-label="Темы статьи">
           {d.tags.map((t) => <a href={`/blog/tag/${t}/`} class="tag-chip">#{t}</a>)}
         </div>
+      )}
+      {parentSeries.length > 0 && (
+        <nav class="article-series-nav" aria-label={ru ? 'Циклы статьи' : 'Article series'}>
+          {parentSeries.map((series) => (
+            <a class="article-series-link" href={getBlogHref(series)}>
+              <span class="article-series-kicker">{ru ? 'Из цикла' : 'From the series'}</span>
+              <span class="article-series-title">{ru ? `«${seriesName(series.data.title)}»` : series.data.title}</span>
+              <span class="article-series-action">{ru ? 'Все материалы' : 'All articles'} <span aria-hidden="true">→</span></span>
+            </a>
+          ))}
+        </nav>
       )}
     </div>
     <div class="reading-light">
@@ -95,8 +129,8 @@ const relatedPosts = [...parentSeries, ...manualRelated, ...automaticRelated].sl
             <a class="post-card article-related-card" href={getBlogHref(item)}>
               {item.data.cover && <img src={item.data.cover} alt={item.data.title} loading="lazy" />}
               <div class="post-date">
-                {parentSeriesIds.has(item.id)
-                  ? (ru ? 'Из цикла' : 'From the series')
+                {seriesSiblingIds.has(item.id)
+                  ? (ru ? 'Из этого цикла' : 'From this series')
                   : `${ru ? `${getBlogFormatLabel(item.data.format)} · ` : ''}${fmt(item.data.date)}`}
               </div>
               <div class="post-title">{item.data.title}</div>
