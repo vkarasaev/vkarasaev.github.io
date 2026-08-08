@@ -19,6 +19,7 @@
 .hx-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 40px; line-height: 1.1; color: var(--text); margin: 0 0 20px; }
 .hx-lead { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 20px; line-height: 1.6; color: #e2ded6; max-width: 500px; margin: 0 0 26px; }
 .hx-cta { display: flex; flex-direction: column; gap: 12px; max-width: 440px; }
+.hx-service { width: 100%; max-width: 440px; margin-top: 14px; text-align: center; font-size: 14px; line-height: 1.5; color: #b8b4ac; }
 
 /* Фото: на мобильном - первым (order: -1), компактная рамка */
 .hx-photo { position: relative; order: -1; height: 340px; overflow: hidden; border-radius: var(--radius); border: 1px solid var(--border); }
