@@ -25,18 +25,33 @@ export const site = {
   // Формат и цена (D4: курс 85, на RU - рубли, на EN - евро)
   session: {
     duration: '50 минут, онлайн / очно',
+    durationShort: '50 минут',
     platforms: 'Google Meet / Яндекс.Телемост',
+    platformsProse: 'Google Meet или Яндекс Телемосте',
     offline: 'Москва, м. Краснопресненская', // Р2
     schedule: 'Пн-Чт, 11:00-21:00 МСК',
     payment: 'Карта · PayPal · IBAN',
     priceRub: '5 000 ₽',
     priceEur: '60 €',
+    extended: [
+      { duration: '80 минут', priceRub: '8 000 ₽' },
+      { duration: '110 минут', priceRub: '11 000 ₽' },
+    ],
+    paymentMethodsLong:
+      'переводом на российскую или зарубежную карту, через IBAN, PayPal или наличными при очной встрече',
+    priceReview: {
+      minimumPeriod: 'год',
+      maximumAnnualIncrease: '15%',
+    },
   },
   eurRate: 85,
 
   // Запись на сессию (основной CTA по решению 2026-07-09)
   telegramSession:
     'https://t.me/vkarasaev?text=' + encodeURIComponent('Привет, хочу записаться на сессию'),
+
+  // Анкета для клиентов после первой сессии. Ссылка не используется как публичный CTA.
+  intakeForm: 'https://forms.gle/4ozhujNFjWZrsBia9',
 
   // EN-версия живет сама по себе: интро-звонок 30 минут, префиллы на английском,
   // расписание в CET, телефон не показываем (задача от 2026-07-12).

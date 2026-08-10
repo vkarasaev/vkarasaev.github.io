@@ -1,85 +1,788 @@
 ---
-// /principles/ (T8): правила работы человеческим языком + ссылка на канонический PDF (D5).
+// /principles/: главное о работе, анкета после первой сессии и подробные договоренности.
+// Стоимость, формат, контакты и ссылка на анкету - только из site.ts.
 import Page from '../../layouts/Page.astro';
 import { site } from '../../data/site';
+
+const principles = [
+  {
+    number: '01',
+    title: 'Формат сессий',
+    text: `Сессия длится ${site.session.durationShort} и проходит онлайн или очно. Обычно мы встречаемся раз в неделю. Онлайн - с камерой, очно - ${site.session.offline}.`,
+  },
+  {
+    number: '02',
+    title: 'Отмены и переносы',
+    text: 'Отмена или перенос без оплаты - минимум за 24 часа. Позже сессия оплачивается независимо от причины. При опоздании я жду 15 минут.',
+  },
+  {
+    number: '03',
+    title: 'Оплата',
+    text: `Сессия стоит ${site.session.priceRub} или ${site.session.priceEur}. Оплата - в день встречи, до нее или сразу после. Об изменении стоимости я предупреждаю заранее.`,
+  },
+  {
+    number: '04',
+    title: 'Конфиденциальность',
+    text: 'Все, что происходит на сессиях, остается между нами. Исключения - супервизия без личных данных и прямая угроза жизни.',
+  },
+  {
+    number: '05',
+    title: 'Границы',
+    text: 'Между встречами мне можно писать по организационным вопросам. Терапию в переписке я не провожу. Важное лучше принести на сессию.',
+  },
+  {
+    number: '06',
+    title: 'Завершение',
+    text: 'Терапию можно завершить в любой момент. Я предлагаю не исчезать, а выделить две или три сессии на завершение: часто это становится важной частью терапии.',
+  },
+  {
+    number: '07',
+    title: 'На встрече можно',
+    text: 'Плакать и смеяться. Ругаться матом. Злиться - в том числе на меня. Говорить о сексе, деньгах и зависти. Молчать, если слов пока нет. Здесь не нужно быть удобным.',
+  },
+];
+
+type Agreement = {
+  number: string;
+  title: string;
+  lead: string;
+  paragraphs: string[];
+  listFrom?: number;
+  listTo?: number;
+  link?: {
+    intro: string;
+    href: string;
+    label: string;
+  };
+};
+
+const agreements: Agreement[] = [
+  {
+    number: '01',
+    title: 'Продолжительность и формат сессий',
+    lead: 'Длительность, платформы и место очных встреч.',
+    paragraphs: [
+      `Стандартная сессия длится ${site.session.durationShort}. Сессии проходят онлайн в ${site.session.platformsProse} либо очно: ${site.session.offline}.`,
+      `Иногда для работы нужно больше непрерывного времени. По предварительной договоренности можно провести расширенную сессию: ${site.session.extended[0].duration} - ${site.session.extended[0].priceRub}, ${site.session.extended[1].duration} - ${site.session.extended[1].priceRub}.`,
+    ],
+    link: {
+      intro: 'Адрес и схема проезда есть на странице',
+      href: '/contact/',
+      label: '«Контакты».',
+    },
+  },
+  {
+    number: '02',
+    title: 'Частота и сроки терапии',
+    lead: 'Как часто мы встречаемся и сколько может продолжаться работа.',
+    paragraphs: [
+      'Обычно мы встречаемся раз в неделю. В период острого кризиса иногда полезно встречаться дважды в неделю. Ближе к завершению или в поддерживающем формате можно перейти на встречи раз в две недели.',
+      'Сроки зависят от глубины запроса и от того, каких изменений вы хотите. Работа с конкретной и ограниченной задачей может занять от 5 до 10 сессий, работа с острым кризисом - от 10 до 20. Если запрос связан с устойчивыми паттернами, отношениями и привычным способом жить, терапия может продолжаться от полугода до нескольких лет.',
+    ],
+    link: {
+      intro: 'Подробнее -',
+      href: '/blog/terapiya-06-skolko-dlitsya-terapiya/',
+      label: '«Сколько может длиться терапия».',
+    },
+  },
+  {
+    number: '03',
+    title: 'Стоимость и порядок оплаты',
+    lead: 'Стоимость, способы оплаты и правила ее изменения.',
+    paragraphs: [
+      `Стандартная сессия стоит ${site.session.priceRub} или ${site.session.priceEur}. Оплатить встречу можно в день сессии, до нее или сразу после.`,
+      'Про оплату я не напоминаю.',
+      'Оплачивать можно по одной встрече или блоком из пяти. Блок закрепляет регулярное время на оплаченный период, но не дает скидки.',
+      `Оплата возможна ${site.session.paymentMethodsLong}. Реквизиты я пришлю после первой сессии.`,
+      `Стоимость фиксируется минимум на ${site.session.priceReview.minimumPeriod}. Затем она может меняться не чаще раза в год и не более чем на ${site.session.priceReview.maximumAnnualIncrease}. Об изменении я предупреждаю заранее.`,
+    ],
+  },
+  {
+    number: '04',
+    title: 'Отмены, переносы и опоздания',
+    lead: 'Что происходит при отмене, переносе или опоздании.',
+    paragraphs: [
+      'Отменить или перенести встречу без оплаты можно не позднее чем за 24 часа. Если вы предупреждаете позже, сессия оплачивается полностью независимо от причины отмены.',
+      'Если вы опаздываете, встреча все равно заканчивается в запланированное время. Если через 15 минут после начала сессии от вас нет сообщения, я считаю встречу пропущенной и больше не жду. Такая сессия оплачивается полностью.',
+      'Если опаздываю я, мы продлеваем встречу на потерянное время в этот или в другой день.',
+    ],
+  },
+  {
+    number: '05',
+    title: 'Конфиденциальность',
+    lead: 'Что остается между нами и в каких случаях возможны исключения.',
+    paragraphs: [
+      'Все, что происходит на сессии, конфиденциально. Есть два исключения.',
+      'Я могу обсуждать нашу работу с супервизором. Это стандартная профессиональная практика, которая помогает мне лучше работать с вами. Ваше имя и сведения, по которым вас можно узнать, не раскрываются.',
+      'Если я сочту вероятной непосредственную угрозу вашей жизни или жизни другого человека, я могу обратиться за дополнительной помощью. Насколько возможно, сначала я обсужу это с вами.',
+    ],
+  },
+  {
+    number: '06',
+    title: 'Связь между сессиями',
+    lead: 'Когда можно написать и где проходит граница между сообщением и терапией.',
+    paragraphs: [
+      'Между сессиями мне можно писать в Telegram. Там можно решить организационный вопрос, предупредить об отмене или поделиться новостью.',
+      'Терапию в переписке я не провожу и в длительных обсуждениях в чате не участвую. Если сообщение требует подробного разговора, мы вернемся к нему на сессии.',
+    ],
+  },
+  {
+    number: '07',
+    title: 'Условия для работы онлайн',
+    lead: 'Что нужно для полноценной онлайн-сессии.',
+    paragraphs: [
+      'Для полноценной онлайн-сессии важно заранее подготовить несколько вещей.',
+      'Уединенное пространство, где вас не будут слышать, прерывать или отвлекать.',
+      'Стабильное интернет-соединение на протяжении всей встречи.',
+      'Включенная камера. Онлайн-сессии проходят с видео.',
+      'Наушники или заранее проверенный звук без эха и помех.',
+      'Беззвучный режим на телефоне и отключенные уведомления.',
+      'Если какое-то из этих условий трудно обеспечить, предупредите меня заранее: обсудим, как лучше провести встречу.',
+    ],
+    listFrom: 1,
+    listTo: 5,
+  },
+  {
+    number: '08',
+    title: 'Пауза и завершение работы',
+    lead: 'Как сделать паузу или закончить терапию.',
+    paragraphs: [
+      'Терапию можно поставить на паузу или завершить. Я предлагаю не исчезать резко, а сначала обсудить это и выделить две или три встречи на завершение. За это время можно разобраться, что стоит за решением, обсудить возникающие чувства или подвести итоги работы. Особенно важно дать этому место, если решение связано с сильной эмоциональной реакцией.',
+    ],
+    link: {
+      intro: 'Подробнее -',
+      href: '/blog/otnosheniya-05-ostatsya-pauza-uyti/',
+      label: '«Продолжать терапию, сделать паузу или уйти?»',
+    },
+  },
+  {
+    number: '09',
+    title: 'Цели и результат терапии',
+    lead: 'Как мы определяем направление работы и замечаем изменения.',
+    paragraphs: [
+      'Цели работы мы обсуждаем вместе. Можно прийти без точной формулировки: тогда первой задачей будет разобраться, что происходит и чего вы хотите изменить.',
+      'По ходу терапии цели могут уточняться. Время от времени мы сверяемся, что уже изменилось, что остается трудным и помогает ли выбранный формат двигаться дальше.',
+    ],
+    link: {
+      intro: 'Подробнее -',
+      href: '/blog/terapiya-05-kak-ponyat-chto-terapiya-rabotaet/',
+      label: '«Как понять, что терапия работает».',
+    },
+  },
+];
 ---
 
 <Page
-  title="Принципы работы · Валерий Карасаев"
-  description="Как устроена работа со мной: расписание, отмены и переносы, оплата, конфиденциальность, границы. Коротко и без канцелярита, полная версия - в PDF."
+  title="Принципы и договоренности · Валерий Карасаев"
+  description="Главное о формате и атмосфере встреч, подробные договоренности и анкета для клиентов после первой сессии."
   translation="/en/principles/"
+  hideCta={true}
 >
-  <div class="page-head">
-    <div class="kicker">Принципы работы</div>
-    <h1 class="page-title">Правила - это не бюрократия. Это рамка, в которой безопасно</h1>
+  <header class="page-head principles-head">
+    <div class="kicker">Принципы и договоренности</div>
+    <h1 class="page-title">Как устроена наша работа</h1>
     <p class="lead">
-      Терапия работает, когда у нее есть устойчивые границы: время, деньги, договоренности.
-      Здесь - главное. Полная версия - в
-      <a href="/docs/pravila-raboty.pdf" target="_blank" rel="noopener" style="color: var(--gold);">PDF</a>.
+      Сначала главное о формате и атмосфере встреч. Ниже - подробные договоренности,
+      к которым можно вернуться в любой момент.
     </p>
-  </div>
+    <button class="rules-print" type="button">Скачать PDF</button>
+  </header>
 
-  <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Формат сессий</span></div>
-  <div class="prose">
-    <p>
-      Сессия длится 50 минут, обычно раз в неделю в закрепленное за вами время. Онлайн -
-      {site.session.platforms}, с включенной камерой. Очно - {site.session.offline}.
-      Опоздание не продлевает сессию: я жду вас 20 минут, дальше встреча считается пропущенной.
+  <section id="principles" class="principles-section page-section" aria-labelledby="principles-title">
+    <header class="section-head">
+      <h2 id="principles-title">Главное о работе</h2>
+      <p>Семь основных вещей, которые стоит знать о формате и атмосфере наших встреч.</p>
+    </header>
+
+    <ol class="principles-grid">
+      {principles.map((principle) => (
+        <li class:list={{ "principle-warm": principle.number === '07' }}>
+          <span class="principle-number">{principle.number}</span>
+          <h3>{principle.title}</h3>
+          <p>{principle.text}</p>
+        </li>
+      ))}
+    </ol>
+
+    <p class="prospect-next">
+      Если мы еще не знакомы, можно посмотреть, <a href="/therapy/">как проходит терапия</a>,
+      или <a href={site.telegramSession}>записаться на первую сессию</a>. Если уже работаем,
+      ниже можно открыть подробные договоренности.
     </p>
-  </div>
+  </section>
 
-  <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Отмены и переносы</span></div>
-  <div class="prose">
-    <p>
-      Отменить или перенести сессию можно бесплатно не позднее чем за 24 часа. При отмене позже
-      сессия оплачивается полностью - это честно по отношению к времени, которое зарезервировано
-      под вас.
-    </p>
-  </div>
+  <section class="agreements-section page-section" id="agreements" aria-labelledby="agreements-title">
+    <header class="section-head">
+      <h2 id="agreements-title">Подробные договоренности</h2>
+      <p>Здесь собраны подробности о встречах, оплате, связи между сессиями и завершении работы.</p>
+    </header>
 
-  <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Оплата</span></div>
-  <div class="prose">
-    <p>
-      Стоимость сессии - {site.session.priceRub} / {site.session.priceEur}. Оплата до или сразу после
-      сессии: {site.session.payment}. Стоимость может пересматриваться не чаще раза в год
-      и с предупреждением минимум за месяц.
-    </p>
-  </div>
+    <div class="agreements-paper">
+      <div class="agreement-list">
+        {agreements.map((agreement) => (
+          <details>
+            <summary>
+              <span class="agreement-summary">
+                <strong>{agreement.title}</strong>
+                <small>{agreement.lead}</small>
+              </span>
+            </summary>
+            <div class="agreement-body">
+              {agreement.paragraphs.map((paragraph, index) => (
+                agreement.listFrom !== undefined && agreement.listTo !== undefined && index >= agreement.listFrom && index <= agreement.listTo ? (
+                  index === agreement.listFrom ? (
+                    <ul>
+                      {agreement.paragraphs.slice(agreement.listFrom, agreement.listTo + 1).map((item) => <li>{item}</li>)}
+                    </ul>
+                  ) : null
+                ) : <p>{paragraph}</p>
+              ))}
+              {agreement.link && (
+                <p>
+                  {agreement.link.intro} <a href={agreement.link.href}>{agreement.link.label}</a>
+                </p>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Конфиденциальность</span></div>
-  <div class="prose">
-    <p>
-      Все, что происходит на сессиях, остается между нами. Два исключения: супервизия
-      (обсуждение работы без имен и узнаваемых деталей - стандарт профессии) и прямая угроза
-      жизни, вашей или чьей-то еще.
-    </p>
-  </div>
+  <section class="intake-section page-section" id="intake" aria-labelledby="intake-title">
+    <span class="anchor-alias" id="after-session" aria-hidden="true"></span>
+    <header class="section-head">
+      <h2 id="intake-title">Анкета клиента</h2>
+      <p>Если после первой встречи мы решили продолжить работу, заполните анкету до следующей сессии.</p>
+    </header>
 
-  <div class="meta-line"><span class="meta-num">05</span><span class="meta-label">Границы</span></div>
-  <div class="prose">
-    <p>
-      Я не веду терапию в переписке и не совмещаю терапию с другими отношениями - деловыми или личными. 
-      Между сессиями можно написать по организационным вопросам; если хочется поделиться важным - лучше 
-      принести это на встречу, там этому самое место.
-    </p>
-  </div>
+    <div class="intake-card">
+      <div>
+        <span class="intake-tag">Google Forms</span>
+        <p>Контакты, вопросы о состоянии и предыдущем опыте.</p>
+      </div>
+      <a class="intake-action" href={site.intakeForm} target="_blank" rel="noopener noreferrer nofollow">
+        Открыть анкету
+      </a>
+    </div>
+  </section>
 
-  <div class="meta-line"><span class="meta-num">06</span><span class="meta-label">Завершение</span></div>
-  <div class="prose">
+  <div class="closing-note">
+    <h2>Не все можно предусмотреть заранее</h2>
     <p>
-      Терапию можно завершить в любой момент - это ваше право. Единственная просьба: приходите
-      на завершающую сессию. Уйти, попрощавшись, - это другой опыт, чем просто исчезнуть.
-      Часто именно на нем происходит важное.
-    </p>
-  </div>
-
-  <div class="meta-line"><span class="meta-num">07</span><span class="meta-label">На встрече можно</span></div>
-  <div class="prose">
-    <p>
-      Плакать и смеяться. Ругаться матом. Говорить о сексе, деньгах и зависти. Злиться -
-      в том числе на меня. Быть неуспешным, растерянным и по-человечески уязвимым.
-      Рассказывать то, о чем никому не говорили. Молчать, если слов пока нет.
-      Здесь не надо быть удобным - здесь надо быть настоящим.
+      Если что-то непонятно, не подходит или вызывает вопросы, мы можем обсудить это на сессии.
+      По организационным вопросам можно <a href={site.telegram}>написать мне в Telegram</a>.
     </p>
   </div>
 </Page>
+
+<script is:inline>
+  const printButton = document.querySelector('.rules-print');
+
+  printButton?.addEventListener('click', () => {
+    const details = Array.from(document.querySelectorAll('.agreement-list details'));
+    const openState = details.map((item) => item.open);
+
+    details.forEach((item) => {
+      item.open = true;
+    });
+
+    const restore = () => {
+      details.forEach((item, index) => {
+        item.open = openState[index];
+      });
+      window.removeEventListener('afterprint', restore);
+    };
+
+    window.addEventListener('afterprint', restore);
+    window.print();
+  });
+</script>
+
+<style>
+  .principles-head {
+    padding: 58px 0 52px;
+  }
+
+  .principles-head .lead {
+    max-width: 670px;
+    margin-bottom: 0;
+  }
+
+  .rules-print {
+    margin-top: 22px;
+    padding: 0 0 3px;
+    border: 0;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.45);
+    border-radius: 0;
+    background: transparent;
+    color: var(--gold);
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 10.5px;
+    font-weight: 400;
+    letter-spacing: 1.35px;
+    line-height: 1.5;
+    text-transform: uppercase;
+  }
+
+  .rules-print:hover {
+    color: var(--gold2);
+    border-bottom-color: var(--gold2);
+  }
+
+  .rules-print:focus-visible,
+  .agreement-list summary:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+  }
+
+  .page-section {
+    max-width: 720px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 58px 0 64px;
+    border-top: 1px solid var(--border);
+    scroll-margin-top: 96px;
+  }
+
+  .section-head {
+    margin-bottom: 28px;
+  }
+
+  .section-head h2,
+  .closing-note h2 {
+    margin: 0 0 7px;
+    color: var(--text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 1.18;
+  }
+
+  .section-head p {
+    max-width: 650px;
+    margin: 0;
+    color: #b6b2aa;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .principles-grid {
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    list-style: none;
+  }
+
+  .principles-grid li {
+    min-width: 0;
+    padding: 22px 24px 24px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+
+  .principle-number {
+    color: var(--gold);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+
+  .principles-grid h3 {
+    margin: 11px 0 8px;
+    color: var(--text);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .principles-grid p {
+    margin: 0;
+    color: #d2cec6;
+    font-size: 15.5px;
+    line-height: 1.72;
+  }
+
+  .principles-grid .principle-warm {
+    padding: 30px 32px 32px;
+    border-color: rgba(201, 169, 110, 0.48);
+    grid-column: 1 / -1;
+    background: radial-gradient(700px 260px at 12% 0%, rgba(201, 169, 110, 0.14), transparent 65%), var(--surface);
+  }
+
+  .principles-grid .principle-warm h3 {
+    color: var(--gold2);
+    font-size: 29px;
+  }
+
+  .principles-grid .principle-warm p {
+    max-width: 850px;
+    color: #e4ddd2;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 21px;
+    font-style: italic;
+    line-height: 1.58;
+  }
+
+  .prospect-next {
+    margin: 24px 0 0;
+    color: #b6b2aa;
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+
+  .prospect-next a,
+  .closing-note a {
+    color: var(--gold);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.45);
+  }
+
+  .prospect-next a:hover,
+  .closing-note a:hover {
+    color: var(--gold2);
+    border-bottom-color: var(--gold2);
+  }
+
+  .agreements-section .section-head {
+    margin-bottom: 28px;
+  }
+
+  .agreements-paper {
+    padding: 30px 48px 46px;
+    border-radius: var(--radius);
+    background: #f5f3ef;
+    color: #26262a;
+    overflow: hidden;
+  }
+
+  .agreement-list {
+    margin: 0;
+    padding: 0;
+  }
+
+  .agreement-list details {
+    border-top: 1px solid rgba(38, 38, 42, 0.2);
+  }
+
+  .agreement-list details:last-child {
+    border-bottom: 1px solid rgba(38, 38, 42, 0.2);
+  }
+
+  .agreement-list summary {
+    min-height: 82px;
+    padding: 20px 18px;
+    cursor: pointer;
+    list-style: none;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 22px;
+    gap: 18px;
+    align-items: center;
+  }
+
+  .agreement-list summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .agreement-list summary::after {
+    content: '+';
+    color: #8a6428;
+    font-size: 20px;
+    line-height: 1;
+    transition: transform 0.2s ease;
+  }
+
+  .agreement-list details[open] summary::after {
+    transform: rotate(45deg);
+  }
+
+  .agreement-list summary:focus-visible {
+    outline-color: #8a6428;
+  }
+
+  .agreement-summary {
+    display: grid;
+    gap: 6px;
+  }
+
+  .agreement-summary strong {
+    color: #232326;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.22;
+  }
+
+  .agreement-summary small {
+    color: #55514b;
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+
+  .agreement-body {
+    max-width: 780px;
+    padding: 10px 44px 28px 18px;
+  }
+
+  .agreement-body p {
+    margin: 0 0 16px;
+    color: #3f3c37;
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .agreement-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  .agreement-body ul {
+    margin: 0 0 16px;
+    padding-left: 20px;
+  }
+
+  .agreement-body li {
+    margin-bottom: 8px;
+    color: #3f3c37;
+    font-size: 15.5px;
+    line-height: 1.7;
+  }
+
+  .agreement-body li:last-child {
+    margin-bottom: 0;
+  }
+
+  .agreement-body a {
+    color: #805c24;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(128, 92, 36, 0.4);
+  }
+
+  .agreement-body a:hover {
+    color: #5f4219;
+    border-bottom-color: #5f4219;
+  }
+
+  .anchor-alias {
+    display: block;
+    height: 0;
+    scroll-margin-top: 96px;
+  }
+
+  .intake-card {
+    padding: 28px 30px;
+    border: 1px solid rgba(201, 169, 110, 0.42);
+    border-radius: var(--radius);
+    background: radial-gradient(520px 220px at 100% 0%, rgba(201, 169, 110, 0.15), transparent 68%), var(--surface);
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .intake-card p {
+    max-width: 650px;
+    margin: 0;
+    color: #d2cec6;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  .intake-tag {
+    margin-bottom: 7px;
+    color: var(--gold);
+    display: block;
+    font-size: 10.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+
+  .intake-action {
+    flex: 0 0 auto;
+    min-height: 46px;
+    padding: 13px 21px;
+    border-radius: var(--radius);
+    background: var(--gold);
+    color: var(--bg);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .intake-action:hover {
+    background: var(--gold2);
+  }
+
+  .closing-note {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 46px 0 54px;
+    border-top: 1px solid var(--border);
+  }
+
+  .closing-note h2 {
+    margin-bottom: 9px;
+    font-size: 28px;
+    line-height: 1.2;
+  }
+
+  .closing-note p {
+    max-width: 670px;
+    margin: 0;
+    color: #aaa69e;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 760px) {
+    .principles-head {
+      padding: 44px 0 42px;
+    }
+
+    .principles-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .principles-grid .principle-warm {
+      grid-column: auto;
+    }
+
+    .intake-card {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 420px) {
+    .page-section {
+      padding: 48px 0 52px;
+    }
+
+    .section-head h2 {
+      font-size: 30px;
+    }
+
+    .principles-grid li {
+      padding: 20px;
+    }
+
+    .principles-grid h3 {
+      font-size: 23px;
+    }
+
+    .agreements-paper {
+      padding: 30px 22px 34px;
+    }
+
+    .agreement-list summary {
+      padding-right: 4px;
+      padding-left: 4px;
+    }
+
+    .agreement-summary strong {
+      font-size: 20px;
+    }
+
+    .agreement-summary small {
+      display: none;
+    }
+
+    .agreement-body {
+      padding-right: 4px;
+      padding-left: 4px;
+    }
+
+    .intake-card {
+      padding: 22px;
+    }
+
+    .intake-action {
+      width: 100%;
+      white-space: normal;
+    }
+  }
+
+  @media print {
+    :global(.site-header),
+    :global(.site-footer),
+    .rules-print,
+    .prospect-next,
+    #intake,
+    .closing-note {
+      display: none !important;
+    }
+
+    :global(body) {
+      background: #fff !important;
+      color: #18181b !important;
+    }
+
+    :global(main.shell) {
+      max-width: none !important;
+      padding: 0 !important;
+    }
+
+    .principles-head,
+    .page-section {
+      padding: 0 0 28px;
+      border-top: 0;
+    }
+
+    .principles-head {
+      max-width: none;
+    }
+
+    .principles-head .kicker,
+    .principles-head .page-title,
+    .principles-head .lead,
+    .section-head h2,
+    .section-head p,
+    .principles-grid h3,
+    .principles-grid p,
+    .principle-number {
+      color: #18181b !important;
+    }
+
+    .principles-grid {
+      gap: 8px;
+    }
+
+    .principles-grid li,
+    .principles-grid .principle-warm {
+      padding: 16px;
+      border: 1px solid #c9c5be;
+      background: #fff;
+      break-inside: avoid;
+    }
+
+    .agreements-paper {
+      padding: 0;
+      background: #fff;
+      color: #18181b;
+    }
+
+    .agreement-list details {
+      break-inside: avoid;
+    }
+
+    .agreement-list summary::after {
+      display: none;
+    }
+
+    .agreement-body {
+      padding-right: 0;
+    }
+  }
+</style>
