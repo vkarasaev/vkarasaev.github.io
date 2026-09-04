@@ -7,7 +7,7 @@ format: case
 tags: ["терапия","изменения","быть собой"]
 source_channel: telegram
 cover: "/images/cover/cover-sobaka.jpg"
-featured: true
+featured: false
 draft: false
 ---
 
