@@ -24,8 +24,8 @@ export const site = {
 
   // Формат и цена (D4: курс 85, на RU - рубли, на EN - евро)
   session: {
-    duration: '50 минут, онлайн / очно',
-    durationShort: '50 минут',
+    duration: '55 минут, онлайн / очно',
+    durationShort: '55 минут',
     platforms: 'Google Meet / Яндекс.Телемост',
     platformsProse: 'Google Meet или Яндекс Телемосте',
     offline: 'Москва, м. Краснопресненская', // Р2
