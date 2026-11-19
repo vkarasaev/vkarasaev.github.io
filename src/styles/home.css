@@ -116,8 +116,6 @@
   .two { grid-template-columns: 1fr 1fr; }
   .steps { grid-template-columns: repeat(3, 1fr); gap: 28px 36px; }
   .fmts { grid-template-columns: repeat(3, 1fr); }
-  /* Пока форматов два (терапия и группы); третья карточка вернётся со страницей супервизии */
-  .fmts.fmts-2 { grid-template-columns: repeat(2, 1fr); }
   .posts3 { grid-template-columns: repeat(3, 1fr); }
   .human { grid-template-columns: 320px 1fr; }
 }

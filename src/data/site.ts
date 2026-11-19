@@ -42,10 +42,8 @@ export const site = {
     payment: 'Карта · PayPal · IBAN',
     priceRub: '5 000 ₽',
     priceEur: '60 €',
-    extended: [
-      { duration: '80 минут', priceRub: '8 000 ₽' },
-      { duration: '110 минут', priceRub: '11 000 ₽' },
-    ],
+    // Длинная сессия одна: 80 минут (решение 19.11.2026; 100 и 110 минут сняты)
+    extended: [{ duration: '80 минут', minutes: 80, priceRub: '8 000 ₽' }],
     paymentMethodsLong:
       'переводом на российскую или зарубежную карту, через IBAN, PayPal или наличными при очной встрече',
     priceReview: {
@@ -63,6 +61,12 @@ export const site = {
   // Запись на сессию (основной CTA по решению 2026-07-09)
   telegramSession:
     'https://t.me/vkarasaev?text=' + encodeURIComponent('Привет, хочу записаться на сессию'),
+
+  // Супервизия и развитие практики: цена и своё сообщение, чтобы обращение коллеги
+  // отличалось от заявки на терапию. Длительность та же, что у сессии (SESSION_MIN).
+  supervision: { priceRub: '4 000 ₽', priceEur: '50 €' },
+  telegramSupervision:
+    'https://t.me/vkarasaev?text=' + encodeURIComponent('Здравствуйте! Хочу обсудить супервизию'),
 
   // Анкета для клиентов после первой сессии. Ссылка не используется как публичный CTA.
   intakeForm: 'https://forms.gle/4ozhujNFjWZrsBia9',

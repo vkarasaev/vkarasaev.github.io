@@ -367,3 +367,10 @@ h1.page-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-
   .site-header-in .burger-box { margin-left: auto; }
   .site-footer-in { flex-direction: column; align-items: center; text-align: center; gap: 10px; }
 }
+
+/* Релиз 2026-11: в меню семь пунктов (добавилась «Супервизия»). На ширине 760-1019px
+   они не помещаются в строку, поэтому меню уходит в бургер раньше. */
+@media (max-width: 1019px) {
+  .site-header-in .nav { display: none; }
+  .site-header-in .burger-box { margin-left: auto; }
+}

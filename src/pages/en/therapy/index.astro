@@ -127,7 +127,7 @@ import { site } from '../../../data/site';
       </details>
       <details>
         <summary>Can a session be longer?</summary>
-        <div class="faq-body">Yes. A standard session is {site.session.minutes} minutes. We can work for {parseInt(site.session.extended[0].duration)} or {parseInt(site.session.extended[1].duration)} minutes - let's discuss what fits your task.</div>
+        <div class="faq-body">Yes. A standard session is {site.session.minutes} minutes. We can work for {site.session.extended[0].minutes} minutes - let's discuss what fits your task.</div>
       </details>
       <details>
         <summary>Why book several sessions in advance?</summary>
