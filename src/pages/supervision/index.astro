@@ -24,11 +24,11 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
       <div class="p-hero-txt">
         <div class="kicker">Супервизия и развитие практики</div>
         <h1>Какой я психолог и где мои клиенты?</h1>
-        <p class="lead" style="margin-bottom: 22px;">
+        <p class="lead" style="margin-bottom: 30px;">
           Разбираю с коллегами клиентские случаи и то, как рассказывать о себе, набирать клиентов
           и вести соцсети. Сам перешёл в практику после 17 лет в бизнесе.
         </p>
-        <div class="spec sv-spec" style="margin: 0 0 22px;">
+        <div class="spec sv-spec" style="margin: 0 0 30px;">
           <div class="spec-row"><span class="spec-key">Встреча</span><span class="spec-val">{site.session.durationShort} · один на один · онлайн</span></div>
           <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">{price}</span></div>
           <div class="spec-row"><span class="spec-key">Первый шаг</span><span class="spec-val">написать вопрос в Telegram</span></div>
@@ -258,10 +258,10 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
     /* Scoped: только страница супервизии. Одна сетка: контейнер 1060px, две равные колонки
        с шагом 44px во всех разделах; содержимое колонок выровнено по верхней линии. */
     .sv { max-width: 1060px; margin: 0 auto; padding: 0 0 24px; }
-    .sv .meta-line { max-width: none; margin: 0 0 26px; }
-    .sv-sec { margin-top: 60px; }
+    .sv .meta-line { max-width: none; margin: 0 0 34px; padding-bottom: 14px; }
+    .sv-sec { margin-top: 72px; }
     .sv-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 26px; align-items: start; }
-    .sv-intro { margin-top: 48px; }
+    .sv-intro { margin-top: 60px; }
     .sv-intro p, .sv-text p { font-size: 16.5px; line-height: 1.75; color: #d5d1c9; margin: 0 0 16px; }
     .sv-intro p:last-child, .sv-text p:last-child { margin-bottom: 0; }
     /* Строка текста выше своих букв на несколько пикселей: поднимаем текст, чтобы верх букв
@@ -274,9 +274,9 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
     .sv-hero .p-hero-photo img { object-position: 50% 22%; }
 
     /* Плашки: шесть штук одного размера */
-    .sv-cards { display: grid; grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; gap: 14px; }
-    .sv-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 22px 20px; }
-    .sv-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 22px; line-height: 1.2; color: var(--text); margin: 0 0 10px; }
+    .sv-cards { display: grid; grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; gap: 18px; }
+    .sv-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 26px 24px; }
+    .sv-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 22px; line-height: 1.2; color: var(--text); margin: 0 0 14px; }
     .sv-card p { font-size: 14.5px; line-height: 1.65; color: #c3bfb7; margin: 0; }
 
     /* Раскрываемые блоки на ширину своей колонки */
@@ -297,20 +297,25 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
     .sv-links a, .sv-terms a { color: var(--gold); text-decoration: none; }
 
     /* Закрывающий блок: стандартный блок сайта по центру, порядок «заголовок, текст, кнопки» */
-    .sv-final { margin: 72px auto 0; padding: 32px 28px 30px; }
-    .sv-final .cta-title { margin-bottom: 12px; }
-    .sv-terms { font-size: 15px; line-height: 1.7; color: #c3bfb7; margin: 0 0 22px; }
+    .sv-final { margin: 84px auto 0; padding: 40px 32px 36px; }
+    .sv-final .cta-title { margin-bottom: 16px; }
+    .sv-terms { font-size: 15px; line-height: 1.7; color: #c3bfb7; margin: 0 0 28px; }
 
     @media (min-width: 640px) {
       .sv-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (min-width: 960px) {
-      .sv-sec { margin-top: 76px; }
-      .sv-two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px; }
+      .sv-sec { margin-top: 104px; }
+      .sv-intro { margin-top: 76px; }
+      .sv-two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 64px; }
+      /* Первый экран: больше места между текстом и фото, текст не упирается в края */
+      .sv-hero .p-hero-in { gap: 84px; }
+      .sv-hero .p-hero-txt { padding: 88px 0 80px; }
+      .sv-hero h1 { margin: 20px 0 24px; }
       .sv-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .sv-btns { flex-direction: row; }
       .sv-btns .btn { padding: 14px 26px; }
-      .sv-final { margin-top: 84px; }
+      .sv-final { margin-top: 116px; }
     }
     @media (max-width: 959px) {
       .sv-hero .p-hero-txt { padding: 40px 0 32px; }
