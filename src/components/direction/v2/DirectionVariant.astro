@@ -1,0 +1,135 @@
+---
+// Лендинг направления: одно тело страницы и три первых экрана на выбор (prop variant).
+// После выбора Валерия остаётся один первый экран, шаблон достраивается средними разделами.
+//
+// Все слова берутся из принятого текста лендинга (src/data/directions/*.ts) и идут
+// в порядке исходника. Своих слов в шаблоне нет; цифры условий подставляются из site.ts.
+import Page from '../../../layouts/Page.astro';
+import { site } from '../../../data/site';
+import { typograf } from '../../../utils/typograf';
+import '../../../styles/direction-v2.css';
+
+export interface Props {
+  direction: any;
+  variant: 'a' | 'b' | 'c';
+}
+const { direction: d, variant } = Astro.props;
+const t = typograf;
+const introMinutes = site.intro.minutes;
+
+const headlineLines = d.hero.headlineLines ?? [d.hero.headline];
+// Фраза об условиях из исходника, цифры из единого источника.
+const terms = `Индивидуальная работа онлайн и очно в Москве. Сессия - <b>${site.session.durationShort}, <span class="nw">${site.session.priceRub} / ${site.session.priceEur}</span></b>. Можно начать с бесплатного знакомства на <b>${introMinutes} минут</b>.`;
+
+// Первый смысловой раздел исходника: два подзаголовка, абзацы, вопросы, кризисы.
+const first = d.sections[0];
+const paras = first.blocks.flatMap((b: any) => (b.type === 'p' ? [b.html] : []));
+const h3s = first.blocks.flatMap((b: any) => (b.type === 'h3' ? [b.text] : []));
+const questions = first.blocks.flatMap((b: any) => (b.type === 'questions' ? b.items : []));
+const crises = first.blocks.flatMap((b: any) => (b.type === 'ledger' ? b.items : []));
+// Порядок абзацев в исходнике: 0 - о профессии и идентичности, 1 - «Возникают вопросы:»,
+// 2 - «Это уже не задача…», 3 - ввод к кризисам, 4 - итог после кризисов.
+const [pIdentity, pQuestionsLead, pNotConsulting, pCrisesLead, pCrisesAfter] = paras;
+
+const second = d.sections[1];
+const secondParas = second.blocks.flatMap((b: any) => (b.type === 'p' ? [b.html] : []));
+---
+
+<Page title={d.meta.title} description={d.meta.description} noindex={true} wide={true} hideCta={true}>
+  <div class="dv" data-variant={variant}>
+    {/* ───────── Первый экран, три варианта ───────── */}
+    <header class={`dv-hero-${variant}`}>
+      {variant === 'b' && (
+        <img class="dv-hero-b-photo" src={d.hero.photo.src} alt={d.hero.photo.alt} width="1536" height="1024" />
+      )}
+      <div class="dv-hero-copy dv-rise">
+        <h1 class="dv-display">
+          {headlineLines.map((line) => <span set:html={t(line)} />)}
+        </h1>
+        <a class="dv-btn" href={site.telegram}>{d.hero.cta}</a>
+      </div>
+      {variant === 'a' && (
+        <img class="dv-hero-a-photo" src={d.hero.photo.src} alt={d.hero.photo.alt} width="1536" height="1024" />
+      )}
+    </header>
+
+    <div class="dv-who dv-grid">
+      <p class="dv-item dv-c12"><span>{site.name}</span><span>психолог, гештальт-терапевт</span></p>
+      <p class="dv-text dv-c34" set:html={t(terms)} />
+    </div>
+
+    {variant === 'c' && (
+      <img class="dv-pano" src="/images/direction/career-skyline.jpg" alt="Деловой центр Москвы на закате" width="1536" height="1024" />
+    )}
+
+    {/* ───────── Тело страницы, общее ───────── */}
+    <div class="dv-intro dv-grid">
+      <p class="dv-text dv-c12" set:html={t(d.hero.lead[0])} />
+      <p class="dv-text dv-c34" set:html={t(d.hero.lead[1])} />
+    </div>
+
+    <section class="dv-sec">
+      <h2 class="dv-h2" set:html={t(d.recognition.title)} />
+      <div class="dv-grid">
+        <ul class="dv-rows dv-c12">
+          {d.recognition.items.slice(0, 4).map((item) => <li class="dv-text" set:html={t(item)} />)}
+        </ul>
+        <ul class="dv-rows dv-c34">
+          {d.recognition.items.slice(4).map((item) => <li class="dv-text" set:html={t(item)} />)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="dv-sec">
+      <h2 class="dv-h2" set:html={t(first.title)} />
+      <details class="dv-fold">
+        <summary><h3 class="dv-item" set:html={t(h3s[0])} /></summary>
+        <div class="dv-fold-body dv-prose">
+          <p set:html={t(pIdentity)} />
+        </div>
+      </details>
+      <p class="dv-text dv-before" set:html={t(pQuestionsLead)} />
+      <ul class="dv-pairs">
+        {questions.map((q) => <li class="dv-item" set:html={t(q)} />)}
+      </ul>
+      <p class="dv-text dv-after" set:html={t(pNotConsulting)} />
+    </section>
+
+    <section class="dv-sec">
+      <h2 class="dv-h2" set:html={t(h3s[1])} />
+      <p class="dv-text dv-before" set:html={t(pCrisesLead)} />
+      <dl class="dv-pairs">
+        {crises.map((c) => (
+          <div>
+            <dt class="dv-item" set:html={t(c.term)} />
+            <dd set:html={t(c.text)} />
+          </div>
+        ))}
+      </dl>
+      <p class="dv-text dv-after" set:html={t(pCrisesAfter)} />
+    </section>
+
+    <section class="dv-sec">
+      <details class="dv-fold">
+        <summary><h2 class="dv-item" set:html={t(second.title)} /></summary>
+        <div class="dv-fold-body dv-prose">
+          {secondParas.map((p) => <p set:html={t(p)} />)}
+        </div>
+      </details>
+    </section>
+
+    <section class="dv-sec">
+      <div class="dv-grid">
+        <img class="dv-close-photo dv-c12" src="/images/direction/valeriy-coffee.jpg" alt="Валерий Карасаев" width="1536" height="1024" loading="lazy" />
+        <div class="dv-close-text dv-c34">
+          <h2 class="dv-h2" set:html={t(d.start.title)} />
+          <p class="dv-text" set:html={t(d.start.intro)} />
+          <div class="dv-close-actions">
+            <a class="dv-btn" href={site.telegram}>{d.start.cta}</a>
+            <a class="dv-link" href="/therapy/">Подробнее о терапии</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Page>
