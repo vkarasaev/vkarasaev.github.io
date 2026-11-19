@@ -1,6 +1,9 @@
 ---
 // Базовый layout: head, мета, OG, canonical, hreflang.
 // Стили страниц подключаются через слот или import в самой странице.
+// Шрифты лежат на самом сайте (public/fonts, правила в styles/fonts.css), без Google Fonts.
+import '../styles/fonts.css';
+
 export interface Props {
   title: string;
   description: string;
@@ -23,6 +26,21 @@ const {
 
 const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site).href;
 const ogImageURL = new URL(ogImage, Astro.site).href;
+
+// Шрифты первого экрана загружаются заранее, одновременно со стилями:
+// так текст сразу рисуется нужным шрифтом, без скачка от запасного к основному.
+// Пробел, цифры и знаки препинания живут в latin-файлах, поэтому русской странице нужны оба набора.
+const preloadFonts =
+  lang === 'ru'
+    ? [
+        'jost-cyrillic',
+        'jost-latin',
+        'cormorant-garamond-cyrillic',
+        'cormorant-garamond-latin',
+        'cormorant-garamond-italic-cyrillic',
+        'cormorant-garamond-italic-latin',
+      ]
+    : ['jost-latin', 'cormorant-garamond-latin', 'cormorant-garamond-italic-latin'];
 ---
 
 <!doctype html>
@@ -45,10 +63,9 @@ const ogImageURL = new URL(ogImage, Astro.site).href;
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:image" content={ogImageURL} />
     <meta name="twitter:card" content="summary_large_image" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap"
-      rel="stylesheet"
-    />
+    {preloadFonts.map((name) => (
+      <link rel="preload" href={`/fonts/${name}.woff2`} as="font" type="font/woff2" crossorigin />
+    ))}
     <slot name="head" />
   </head>
   <body>
