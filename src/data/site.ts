@@ -6,6 +6,7 @@
 const INTRO_MIN = 15; // бесплатное знакомство, русская версия
 const INTRO_MIN_EN = 15; // бесплатное знакомство, английская версия
 const SESSION_MIN = 50; // стандартная сессия (как на Зигмунде)
+const LATE_WAIT_MIN = 15; // сколько жду при опоздании, RU и EN
 
 export const site = {
   name: 'Валерий Карасаев',
@@ -33,6 +34,7 @@ export const site = {
   // Формат и цена (D4: курс 85, на RU - рубли, на EN - евро)
   session: {
     minutes: SESSION_MIN,
+    lateWaitMinutes: LATE_WAIT_MIN,
     duration: `${SESSION_MIN} минут, онлайн / очно`,
     durationShort: `${SESSION_MIN} минут`,
     platforms: 'Google Meet / Яндекс.Телемост',
