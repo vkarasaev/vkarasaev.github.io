@@ -7,10 +7,11 @@ import { fileURLToPath } from 'node:url';
 
 // Drafts: pages that exist for local preview only. They open on the dev server,
 // but are removed from the published build and from the sitemap, even if their
-// files get committed. To publish a page, take its pattern out of this list.
-//   /career*/  - direction landing and its variants (waiting for acceptance)
+// files get committed. Second line of defence: drafts live in their own
+// branches (see AGENTS.md), this filter only catches mistakes.
+//   /draft-*/  - any page under development (rename the folder when accepted)
 //   /*-prev/   - previous version of a page kept for before/after comparison
-const draftDirs = [/^career/, /-prev$/];
+const draftDirs = [/^draft-/, /-prev$/];
 const isDraftUrl = (url) => draftDirs.some((re) => re.test(new URL(url).pathname.split('/').filter(Boolean)[0] ?? ''));
 const dropDraftPages = {
   name: 'drop-draft-pages',

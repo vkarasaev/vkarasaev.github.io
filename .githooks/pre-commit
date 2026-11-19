@@ -1,0 +1,42 @@
+#!/bin/bash
+# Проверка перед коммитом: не пускает в репозиторий служебные файлы ИИ
+# и черновые страницы в релизную ветку. Правила: AGENTS.md в корне репозитория.
+# Подключение (один раз на компьютере): git config core.hooksPath .githooks
+
+branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+staged=$(git diff --cached --name-only --diff-filter=ACMR)
+bad=""
+
+while IFS= read -r f; do
+  [ -z "$f" ] && continue
+  case "$f" in
+    .impeccable/*|.claude/*|PRODUCT.md)
+      bad="$bad
+  служебный файл ИИ: $f" ;;
+  esac
+  case "$branch" in
+    main|astro-v*|release/*)
+      case "$f" in
+        src/pages/draft-*|src/pages/*-prev/*|src/pages/*-prev.astro)
+          bad="$bad
+  черновая страница в релизной ветке: $f" ;;
+      esac ;;
+  esac
+done <<EOF
+$staged
+EOF
+
+if [ -n "$bad" ]; then
+  echo "Коммит остановлен. В него попали файлы, которым здесь не место:$bad"
+  echo ""
+  echo "Снимите с них галочки (или git restore --staged <файл>) и закоммитьте снова."
+  echo "Черновики живут в своих ветках, см. AGENTS.md в корне репозитория."
+  exit 1
+fi
+
+new_pages=$(git diff --cached --name-only --diff-filter=A -- src/pages)
+if [ -n "$new_pages" ]; then
+  echo "Новые страницы в коммите (после выката станут адресами на сайте):"
+  echo "$new_pages" | sed 's/^/  /'
+fi
+exit 0
