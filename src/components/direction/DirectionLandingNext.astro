@@ -1,0 +1,319 @@
+---
+// Лендинг клиентского направления. Один шаблон на восемь направлений:
+// данные лежат в src/data/directions/*.ts.
+//
+// Порядок страницы идёт за читателем: узнать себя, понять, что происходит,
+// увидеть, как идёт работа и почему с этим автором, почитать, познакомиться ближе,
+// написать. Призыв закрывает страницу, как в авторской версии текста.
+//
+// Один приём на всю страницу: короткий текст, ровные плашки в две колонки, вывод.
+// Тезисы раскрываются независимо: общий name схлопывал бы открытый тезис над читателем.
+// Текст нигде не разложен на «кусок слева, кусок справа».
+//
+// Свои слова шаблона: подписи условий под первым экраном («индивидуальная сессия»,
+// «стоимость», «или очно в Москве», «бесплатное знакомство»), ссылки «Обо мне /
+// Опыт в бизнесе / Образование» и метка канала у личных текстов. Цифры условий
+// подставляются из site.ts.
+//
+// Для ИИ и поисковых ответов: весь текст есть в HTML без скриптов (раскрытия
+// сделаны на details), заголовки идут по уровням, у разделов есть якоря,
+// в конце страницы лежит JSON-LD (страница, автор, услуга с ценой, хлебные крошки).
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import type { Direction } from '../../data/directions/types';
+import { site } from '../../data/site';
+import { getBlogFormatLabel, getBlogHref, getBlogSlug } from '../../utils/blog';
+import { plural, typograf } from '../../utils/typograf';
+import '../../styles/direction-next.css';
+
+export interface Props {
+  direction: Direction;
+}
+const { direction: d } = Astro.props;
+const t = typograf;
+// Длительности только из site.ts: там их задаёт релиз, здесь цифр нет.
+const introMinutes = site.intro.minutes;
+
+const headlineLines = d.hero.headlineLines ?? [d.hero.headline];
+const price = `${site.session.priceRub} / ${site.session.priceEur}`;
+const facts = [
+  [site.session.durationShort, 'индивидуальная сессия'],
+  [price, 'стоимость'],
+  ['Онлайн', 'или очно в Москве'],
+  [`${introMinutes} минут`, 'бесплатное знакомство'],
+];
+// Абзац об условиях из «С чего можно начать», дословно; цифры из site.ts.
+// Предложение о частоте встреч стоит третьим шагом, остальное рядом с кнопкой.
+const stepRegular = 'Обычно мы встречаемся раз в неделю; частоту обсуждаем вместе.';
+const steps = [...d.start.steps, stepRegular];
+const terms = `Индивидуальная сессия - ${site.session.durationShort}, <span class="nw">${price}</span>. Онлайн или очно в Москве. Если сначала хочется познакомиться и задать вопросы о формате, можно договориться о бесплатной встрече на ${introMinutes} минут.`;
+
+// «Иногда…»: повторяющееся начало строки выделено золотом, чтобы повтор был виден глазом.
+const workRows = [...(d.work.options ?? []), ...(d.work.after ?? [])];
+const lead = (text: string) => t(text).replace(/^((?:А\s|А&nbsp;|А\u00a0)?[Ии]ногда)/, '<span class="dv-gold">$1</span>');
+
+const crises = d.insight.rows.flatMap((row) => row.blocks.flatMap((b) => (b.type === 'ledger' ? b.items : [])));
+
+// Материалы блога: только опубликованное, заголовки и обложки из самих статей.
+const posts = await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru');
+const bySlug = new Map(posts.map((post) => [getBlogSlug(post), post]));
+const series = d.materials?.series ? bySlug.get(d.materials.series) : undefined;
+const partSlugs = series
+  ? [...new Set([...(series.body ?? '').matchAll(/\]\(\/blog\/([^)\s/]+)\/\)/g)].map((m) => m[1]))]
+  : [];
+const parts = partSlugs.map((slug) => bySlug.get(slug)).filter((post) => post !== undefined);
+const half = Math.ceil(parts.length / 2);
+const articles = (d.materials?.articles ?? []).map((slug) => bySlug.get(slug)).filter((post) => post !== undefined);
+const pad = (n: number) => String(n).padStart(2, '0');
+const personalChannel = site.channels[0]?.label ?? 'Telegram';
+
+// ── Структурированные данные ──
+const url = new URL(`/${d.slug}/`, site.domain).href;
+const personId = `${site.domain}/#valeriy-karasaev`;
+const digits = (s: string) => s.replace(/[^\d]/g, '');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': url,
+      url,
+      name: d.meta.title,
+      headline: d.hero.headline,
+      description: d.meta.description,
+      inLanguage: 'ru',
+      about: d.topic,
+      author: { '@id': personId },
+      mainEntity: { '@id': `${url}#service` },
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: site.name,
+      jobTitle: 'Психолог, гештальт-терапевт',
+      url: `${site.domain}/about/`,
+      sameAs: site.socials.map((s) => s.url),
+      knowsAbout: [d.topic, ...crises.map((c) => c.term)],
+    },
+    {
+      '@type': 'Service',
+      '@id': `${url}#service`,
+      name: `Индивидуальная работа с психологом: ${d.topic.toLowerCase()}`,
+      serviceType: 'Психотерапия',
+      provider: { '@id': personId },
+      areaServed: ['Москва', 'Онлайн'],
+      url,
+      offers: [
+        { '@type': 'Offer', name: `Индивидуальная сессия, ${site.session.durationShort}`, price: digits(site.session.priceRub), priceCurrency: 'RUB' },
+        { '@type': 'Offer', name: `Индивидуальная сессия, ${site.session.durationShort}`, price: digits(site.session.priceEur), priceCurrency: 'EUR' },
+        { '@type': 'Offer', name: `Бесплатное знакомство, ${introMinutes} минут`, price: '0', priceCurrency: 'RUB' },
+      ],
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: `${site.domain}/` },
+        { '@type': 'ListItem', position: 2, name: d.topic, item: url },
+      ],
+    },
+  ],
+};
+---
+
+<Page title={d.meta.title} description={d.meta.description} noindex={true} wide={true} hideCta={true}>
+  <article class="dv">
+    <header class="dv-hero">
+      <img class="dv-hero-photo" src={d.hero.photo.src} alt={d.hero.photo.alt} width="1536" height="1024" />
+      <div class="dv-hero-copy dv-rise">
+        <p class="dv-meta">{d.topic}</p>
+        <h1 class="dv-display">
+          {headlineLines.map((line) => <><span set:html={t(line)} />{' '}</>)}
+        </h1>
+        {d.hero.sub && <p class="dv-text dv-sub" set:html={t(d.hero.sub)} />}
+        <div class="dv-hero-cta">
+          <a class="dv-btn" href={site.telegram}>{d.hero.cta}</a>
+          <p class="dv-who">{site.name} · психолог, гештальт-терапевт</p>
+        </div>
+      </div>
+    </header>
+
+    <dl class="dv-facts" aria-label="Условия">
+      {facts.map(([value, label]) => (<div><dt set:html={t(value)} /><dd>{label}</dd></div>))}
+    </dl>
+
+    <div class="dv-lead">
+      {d.hero.lead.map((p) => <p class="dv-text" set:html={t(p)} />)}
+    </div>
+
+    <section class="dv-sec" id="situations" aria-labelledby="situations-title">
+      <h2 class="dv-h2" id="situations-title" set:html={t(d.recognition.title)} />
+      <ul class="dv-voices">
+        {d.recognition.items.map((item) => (
+          <li class="dv-panel"><p class="dv-voice" set:html={t(item)} /></li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="dv-sec" id="questions" aria-labelledby="questions-title">
+      <h2 class="dv-h2" id="questions-title" set:html={t(d.insight.title)} />
+      <div class="dv-acc">
+        {d.insight.rows.map((row) => (
+          <details class="dv-row">
+            <summary><h3 class="dv-item" set:html={t(row.title)} /></summary>
+            <div class="dv-row-body">
+              {row.blocks.map((b) =>
+                b.type === 'p' ? (
+                  <p class="dv-text" set:html={t(b.html)} />
+                ) : b.type === 'questions' ? (
+                  <ul class="dv-voices">
+                    {b.items.map((q) => (<li class="dv-panel"><p class="dv-voice" set:html={t(q)} /></li>))}
+                  </ul>
+                ) : (
+                  <dl class="dv-defs">
+                    {b.items.map((c) => (
+                      <div class="dv-panel">
+                        <dt class="dv-item" set:html={t(c.term)} />
+                        <dd class="dv-text" set:html={t(c.text)} />
+                      </div>
+                    ))}
+                  </dl>
+                ),
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="dv-band" id="approach" aria-labelledby="approach-title">
+      <h2 class="dv-h2" id="approach-title" set:html={t(d.work.title)} />
+      <div class="dv-prose">
+        {d.work.paragraphs.map((p) => <p class="dv-text" set:html={t(p)} />)}
+      </div>
+      {workRows.length > 0 && (
+        <ul class="dv-sometimes">
+          {workRows.map((o) => (<li><p class="dv-text" set:html={lead(o)} /></li>))}
+        </ul>
+      )}
+      {d.work.thesis && <p class="dv-h2 dv-thesis" set:html={t(d.work.thesis)} />}
+    </section>
+
+    <section class="dv-sec" id="author" aria-labelledby="author-title">
+      <div class:list={['dv-duo', !d.author.photo && 'dv-duo-solo']}>
+        {d.author.photo && (
+          <div class="dv-duo-photo dv-photo-calm">
+            <img src={d.author.photo.src} alt={d.author.photo.alt} width="1536" height="1024" loading="lazy" style={d.author.photo.position ? `object-position: ${d.author.photo.position}` : undefined} />
+          </div>
+        )}
+        <div class="dv-duo-text">
+          <h2 class="dv-h2" id="author-title" set:html={t(d.author.title)} />
+          <div class="dv-prose">
+            {d.author.paragraphs.map((p) => <p class="dv-text" set:html={t(p)} />)}
+          </div>
+          <p class="dv-links">
+            <a class="dv-link" href="/about/">Обо мне</a>
+            <a class="dv-link" href="/business/">Опыт в бизнесе</a>
+            <a class="dv-link" href="/credentials/">Образование</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    {d.materials && (series || articles.length > 0) && (
+      <section class="dv-band" id="reading" aria-labelledby="reading-title">
+        <h2 class="dv-h2" id="reading-title" set:html={t(d.materials.title)} />
+        {series && (
+          <>
+            <div class="dv-series">
+              <a class="dv-series-cover" href={getBlogHref(series)} tabindex="-1" aria-hidden="true">
+                {series.data.cover && <img src={series.data.cover} alt="" width="988" height="659" loading="lazy" />}
+              </a>
+              <div class="dv-series-text">
+                <p class="dv-meta">Цикл{parts.length > 0 && `, ${parts.length} ${plural(parts.length, ['статья', 'статьи', 'статей'])}`}</p>
+                <h3 class="dv-item"><a class="dv-title-link" href={getBlogHref(series)} set:html={t(series.data.title.replace(/^Цикл\s+/, ''))} /></h3>
+                <p class="dv-text" set:html={t(series.data.description)} />
+              </div>
+            </div>
+            {parts.length > 0 && (
+              <div class="dv-parts">
+                <ol>
+                  {parts.slice(0, half).map((part, i) => (
+                    <li><a href={getBlogHref(part)}><span class="dv-meta" aria-hidden="true">{pad(i + 1)}</span><span set:html={t(part.data.title)} /></a></li>
+                  ))}
+                </ol>
+                <ol start={half + 1}>
+                  {parts.slice(half).map((part, i) => (
+                    <li><a href={getBlogHref(part)}><span class="dv-meta" aria-hidden="true">{pad(half + i + 1)}</span><span set:html={t(part.data.title)} /></a></li>
+                  ))}
+                </ol>
+              </div>
+            )}
+          </>
+        )}
+        {articles.length > 0 && (
+          <ul class="dv-articles">
+            {articles.map((post) => (
+              <li>
+                <a class="dv-article dv-panel" href={getBlogHref(post)}>
+                  {post.data.cover && <img src={post.data.cover} alt="" width="482" height="271" loading="lazy" />}
+                  <span class="dv-article-text">
+                    <span class="dv-meta">{getBlogFormatLabel(post.data.format)}</span>
+                    <span class="dv-item" set:html={t(post.data.title)} />
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+    )}
+
+    {d.personal && (
+      <section class="dv-sec" id="personal" aria-labelledby="personal-title">
+        <div class:list={['dv-duo', 'dv-duo-flip', !d.personal.photo && 'dv-duo-solo']}>
+          <div class="dv-duo-text">
+            <h2 class="dv-h2" id="personal-title" set:html={t(d.personal.title)} />
+            <p class="dv-text" set:html={t(d.personal.intro)} />
+            <ul class="dv-personal">
+              {d.personal.items.map((item) => (
+                <li>
+                  <a class="dv-panel" href={item.href} target="_blank" rel="noopener">
+                    <span class="dv-meta">{personalChannel}</span>
+                    <span class="dv-item" set:html={t(item.title)} />
+                    <span class="dv-text" set:html={t(item.note)} />
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {d.personal.photo && (
+            <div class="dv-duo-photo">
+              <img src={d.personal.photo.src} alt={d.personal.photo.alt} width="1536" height="1024" loading="lazy" style={d.personal.photo.position ? `object-position: ${d.personal.photo.position}` : undefined} />
+            </div>
+          )}
+        </div>
+      </section>
+    )}
+
+    <section class="dv-sec" id="start" aria-labelledby="start-title">
+      <h2 class="dv-h2" id="start-title" set:html={t(d.start.title)} />
+      <div class="dv-close">
+        <p class="dv-text dv-close-note" set:html={t(d.start.note)} />
+        <ol class="dv-steps">
+          {steps.map((step, i) => (
+            <li><span class="dv-meta" aria-hidden="true">{pad(i + 1)}</span><p class="dv-text" set:html={t(step)} /></li>
+          ))}
+        </ol>
+        <div class="dv-close-foot">
+          <p class="dv-text" set:html={t(terms)} />
+          <div class="dv-actions">
+            <a class="dv-btn" href={site.telegram}>{d.start.cta}</a>
+            <a class="dv-link" href="/therapy/">Подробнее о терапии</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </article>
+</Page>

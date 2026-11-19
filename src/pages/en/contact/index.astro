@@ -9,7 +9,7 @@ import SocIcons from '../../../components/SocIcons.astro';
 
 <Page
   title="Contact · Valeriy Karasaev"
-  description="How to reach Valeriy Karasaev: WhatsApp, Telegram, email. Book a free 30-minute intro call. Sessions in English, online."
+  description={`How to reach Valeriy Karasaev: WhatsApp, Telegram, email. Book a free ${site.en.introCallMinutes}-minute intro call. Sessions in English, online.`}
   lang="en"
   translation="/contact/"
 >
@@ -35,7 +35,7 @@ import SocIcons from '../../../components/SocIcons.astro';
     <div class="spec-row"><span class="spec-key">Email</span><span class="spec-val"><a href={'mailto:' + site.email} style="color: var(--gold); text-decoration: none;">{site.email}</a></span></div>
     <div class="spec-row"><span class="spec-key">Session hours</span><span class="spec-val">{site.en.schedule}</span></div>
     <div class="spec-row"><span class="spec-key">Format</span><span class="spec-val">online · English or Russian</span></div>
-    <div class="spec-row"><span class="spec-key">Intro call</span><span class="spec-val">free · 30 minutes</span></div>
+    <div class="spec-row"><span class="spec-key">Intro call</span><span class="spec-val">free · {site.en.introCallMinutes} minutes</span></div>
   </div>
 
   <div class="meta-line"><span class="meta-num">02</span><span class="meta-label">Where I write</span></div>

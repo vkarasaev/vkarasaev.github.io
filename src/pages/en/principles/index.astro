@@ -24,9 +24,9 @@ import { site } from '../../../data/site';
   <div class="meta-line"><span class="meta-num">01</span><span class="meta-label">Session format</span></div>
   <div class="prose">
     <p>
-      A session lasts 50 minutes, usually once a week at a time slot reserved for you.
+      A session lasts {site.session.minutes} minutes, usually once a week at a time slot reserved for you.
       Online - Google Meet or Zoom, camera on. Being late does not extend the session:
-      I wait for you for 20 minutes, after that the meeting counts as missed.
+      I wait for you for {site.session.lateWaitMinutes} minutes, after that the meeting counts as missed.
     </p>
   </div>
 

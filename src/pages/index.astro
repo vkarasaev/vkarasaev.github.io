@@ -25,8 +25,8 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
 ---
 
 <Base
-  title="Валерий Карасаев · Психолог, гештальт-терапевт, executive-коуч"
-  description="Психолог и гештальт-терапевт для взрослых в кризисе или переходе: выгорание, развод, эмиграция, потеря смысла, одиночество руководителя. Практика с 2014. Онлайн и очно в Москве, 5000 ₽."
+  title="Валерий Карасаев · Психолог, гештальт-терапевт, супервизор"
+  description="Психолог и гештальт-терапевт для взрослых в кризисе или переходе: выгорание, развод, иммиграция, потеря смысла, одиночество руководителя. Практика с 2014. Онлайн и очно в Москве, 5000 ₽."
   lang="ru"
   translation="/en/"
 >
@@ -36,6 +36,7 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       <nav class="nav">
         <a href="/therapy/">Терапия</a>
         <a href="/groups/vernutsya-v-kontakt/">Группа</a>
+        <a href="/supervision/">Супервизия</a>
         <a href="/about/">Обо мне</a>
         <a href="/credentials/">Образование</a>
         <a href="/blog/">Блог</a>
@@ -49,16 +50,16 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
   <section class="hx">
     <div class="hx-grid">
       <div class="hx-left">
-        <div class="hx-kicker">Психолог · Гештальт-терапевт · Executive-коуч</div>
+        <div class="hx-kicker">{site.tagline}</div>
         <h1 class="hx-title">Кризисы<br />и жизненные<br />переходы</h1>
         <p class="hx-lead">
           Помогаю пережить выгорание, развод и иммиграцию. Работаю с тупиками в карьере и отношениях.
         </p>
         <div class="hx-cta">
           <a href={site.telegramSession} class="btn btn-primary"><span class="btn-icon">✈</span> Записаться на сессию</a>
-          <a href={site.telegramFreeCall} class="btn btn-outline"><span class="btn-icon">◎</span> Бесплатная встреча · 15 мин</a>
+          <a href={site.telegramFreeCall} class="btn btn-outline"><span class="btn-icon">◎</span> Бесплатная встреча · {site.intro.minutes} мин</a>
         </div>
-        <div class="hx-service">50 минут · 5000 ₽ / 60 €</div>
+        <div class="hx-service">{site.session.durationShort} · 5000 ₽ / 60 €</div>
         <div class="hero-socials">
             <SocIcons ids={['instagram', 'telegram', 'youtube', 'vk']} />
         </div>
@@ -152,7 +153,7 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       <div class="steps">
         <div class="step">
           <div class="step-n">01</div>
-          <div class="step-b"><h4>Написать мне</h4><p>Договориться о времени, задать вопросы - или созвониться на 15 минут, познакомиться.</p></div>
+          <div class="step-b"><h4>Написать мне</h4><p>Договориться о времени, задать вопросы - или созвониться на {site.intro.minutes} минут, познакомиться.</p></div>
         </div>
         <div class="step">
           <div class="step-n">02</div>
@@ -172,20 +173,20 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
         <a class="fmt lead-fmt" href="/therapy/">
           <div class="fmt-tag">Основной формат</div>
           <div class="fmt-t">Индивидуальная терапия</div>
-          <div class="fmt-d">Кризисы, переходы, глубокая личная работа. 50 минут, раз в неделю, онлайн или очно в Москве.</div>
+          <div class="fmt-d">Кризисы, переходы, глубокая личная работа. {site.session.durationShort}, раз в неделю, онлайн или очно в Москве.</div>
           <div class="fmt-price">5000 ₽ / 60 € за сессию</div>
         </a>
         <a class="fmt" href="/groups/">
-          <div class="fmt-tag">Набор открыт</div>
+          <div class="fmt-tag">Идёт запись</div>
           <div class="fmt-t">Терапевтические группы</div>
           <div class="fmt-d">Увидеть свои способы быть с людьми вживую. «Вернуться в контакт» на русском и «Work, People, Ambition» на английском.</div>
           <div class="fmt-price">от 3000 ₽ за встречу</div>
         </a>
-        <a class="fmt" href="/soprovozhdenie/">
-          <div class="fmt-tag">Интенсивный формат</div>
-          <div class="fmt-t">Сопровождение</div>
-          <div class="fmt-d">Executive-коучинг с терапевтической глубиной: движемся к вашим целям и разбираем то, что останавливает.</div>
-          <div class="fmt-price">25 000 ₽ в месяц · вход через диагностику</div>
+        <a class="fmt" href="/supervision/">
+          <div class="fmt-tag">Для психологов</div>
+          <div class="fmt-t">Супервизия</div>
+          <div class="fmt-d">Развитие практики: как рассказать о себе, набрать клиентов и вести соцсети. И разбор клиентских случаев.</div>
+          <div class="fmt-price">Разово или регулярно · онлайн</div>
         </a>
       </div>
       <p style="margin-top: 16px; font-size: 14px;"><a href="/format/" style="color: var(--gold); text-decoration: none;">Как выбрать формат →</a></p>
@@ -269,7 +270,7 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       <!-- «Правки-6» п.11: CTA приглашает к контакту, а не продвигает один
            сценарий. Основная кнопка - просто «написать», варианты - в подписи. -->
       <div class="cta-title">Первый шаг - просто написать</div>
-      <div class="cta-sub">Задать вопрос, договориться о бесплатном 15-минутном созвоне - или записаться на сессию. Как удобнее</div>
+      <div class="cta-sub">Задать вопрос, договориться о бесплатном {site.intro.minutes}-минутном созвоне - или записаться на сессию. Как удобнее</div>
       <div class="btn-group" style="margin: 0;">
         <a href={site.telegram} class="btn btn-primary">Написать в Telegram</a>
         <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>

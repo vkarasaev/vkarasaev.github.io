@@ -5,13 +5,14 @@
 import Base from '../../layouts/Base.astro';
 import Burger from '../../components/Burger.astro';
 import SocIcons from '../../components/SocIcons.astro';
+import { site } from '../../data/site';
 import '../../styles/main.css';
 import '../../styles/inner.css';
 ---
 
 <Base
-  title="Валерий Карасаев · Психолог · Executive коуч"
-  description="Психолог, гештальт-терапевт, executive coach. Специализируюсь на кризисах и переходах. Практика с 2014 года."
+  title="Валерий Карасаев · Психолог, гештальт-терапевт"
+  description={site.description}
   lang="ru"
 >
 
@@ -26,7 +27,7 @@ import '../../styles/inner.css';
     <!-- Аватар: портрет со страницы Home -->
     <div class="logo-wrap"><img src="/images/photo/avatar.jpg" alt="Валерий Карасаев" width="108" height="108"></div>
     <div class="name">Валерий<br>Карасаев</div>
-    <div class="tagline">Психолог · Гештальт-терапевт · Executive коуч</div>
+    <div class="tagline">{site.tagline}</div>
     <div class="divider-gold"></div>
     <p class="hero-bio">17 лет в международном бизнесе.<br>Специализируюсь на кризисах и переходах.</p>
   </div>
@@ -39,8 +40,8 @@ import '../../styles/inner.css';
     <a href="mailto:karasaev.valery@gmail.com" class="btn btn-outline">
       <span class="btn-icon">✉</span> Написать на почту
     </a>
-    <a href="https://t.me/vkarasaev?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82%2C%20%D1%85%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BF%D0%B8%D1%81%D0%B0%D1%82%D1%8C%D1%81%D1%8F%20%D0%BD%D0%B0%20%D0%B1%D0%B5%D1%81%D0%BF%D0%BB%D0%B0%D1%82%D0%BD%D1%83%D1%8E%2030-%D0%BC%D0%B8%D0%BD%D1%83%D1%82%D0%BD%D1%83%D1%8E%20%D0%B2%D1%81%D1%82%D1%80%D0%B5%D1%87%D1%83" class="btn btn-ghost">
-      <span class="btn-icon">◎</span> Бесплатная встреча · 15 мин
+    <a href={site.telegramFreeCall} class="btn btn-ghost">
+      <span class="btn-icon">◎</span> Бесплатная встреча · {site.intro.minutes} мин
     </a>
   </div>
 
@@ -70,7 +71,7 @@ import '../../styles/inner.css';
   <div class="section">
     <div class="section-label">О себе</div>
     <div class="text-card">
-      <p>Психолог, гештальт-терапевт с психоаналитическим мышлением и сертифицированный коуч. Практика с 2014 года.</p>
+      <p>Психолог, гештальт-терапевт с психоаналитическим мышлением и коучинговой базой. Практика с 2014 года.</p>
     </div>
     <div class="text-card">
       <p>До перехода в практику - 17 лет в международном бизнесе (Abbott, BMW, Bosch). Руководил командами до 300 человек и проектами до $20 млн в 30 странах EMEA.</p>
@@ -105,8 +106,8 @@ import '../../styles/inner.css';
         <div class="wk-body">Злость, вина, облегчение, горе - всё разом, и всё это как-будто «неправильное». Через развод я проходил. И знаю, как это - собирать себя заново. Восстанавливаться.</div>
       </details>
       <details>
-        <summary><span class="wk-t">Жизнь эмигранта: идентичность, адаптация, одиночество</span></summary>
-        <div class="wk-body">Дом остался там, а ты тут. Язык чужой, статус поменялся, а друзья - в онлайне. «Кто я теперь» - вопрос не риторический. Я сам прожил эмиграцию и работаю с этим постоянно.</div>
+        <summary><span class="wk-t">Жизнь иммигранта: идентичность, адаптация, одиночество</span></summary>
+        <div class="wk-body">Дом остался там, а ты тут. Язык чужой, статус поменялся, а друзья - в онлайне. «Кто я теперь» - вопрос не риторический. Я сам прожил иммиграцию и работаю с этим постоянно.</div>
       </details>
       <details>
         <summary><span class="wk-t">Трудности в отношениях, повторяющиеся сценарии</span></summary>
@@ -170,7 +171,7 @@ import '../../styles/inner.css';
     <div class="format-table">
       <div class="format-row">
         <span class="format-key">Сессия</span>
-        <span class="format-val">50 минут, онлайн / очно</span>
+        <span class="format-val">{site.session.duration}</span>
       </div>
       <div class="format-row">
         <span class="format-key">Платформы</span>
@@ -192,11 +193,11 @@ import '../../styles/inner.css';
 
     <div class="price-badge">
       <div class="price-main">5 000 ₽</div>
-      <div class="price-sub">или 60 € · 50 минут</div>
+      <div class="price-sub">или 60 € · {site.session.durationShort}</div>
     </div>
     <div class="price-badge">
       <div class="price-free">Бесплатная встреча</div>
-      <div class="price-sub">15 минут · без обязательств</div>
+      <div class="price-sub">{site.intro.minutes} минут · без обязательств</div>
     </div>
     <p style="text-align: center; font-size: 13.5px; margin: 14px 0 0;">
       <a href="/therapy/" style="color: var(--gold); text-decoration: none;">Как проходит терапия</a>
@@ -222,7 +223,7 @@ import '../../styles/inner.css';
     <div class="section-label">Другие форматы</div>
     <div class="links-list">
       <a href="/groups/" class="link-btn"><span class="link-title">Терапевтические группы</span><span class="link-arrow">→</span></a>
-      <a href="/soprovozhdenie/" class="link-btn"><span class="link-title">Сопровождение</span><span class="link-arrow">→</span></a>
+      <a href="/supervision/" class="link-btn"><span class="link-title">Супервизия для психологов</span><span class="link-arrow">→</span></a>
     </div>
     <p style="text-align: left; font-size: 13.5px; margin-top: 14px;">
       <a href="/format/" style="color: var(--gold); text-decoration: none;">Как выбрать формат</a>

@@ -1,14 +1,14 @@
 ---
 // /en/therapy/ (переработка 2026-07-12): структура сверена с боевой RU /therapy/
 // (hero с фото, pullquote, «in session you can», FAQ по логике продаж).
-// EN-отличия: онлайн-only, 60 €, CET, интро-звонок 30 минут, префиллы на английском.
+// EN-отличия: онлайн-only, 60 €, CET, префиллы на английском. Минуты из site.ts.
 import Page from '../../../layouts/Page.astro';
 import { site } from '../../../data/site';
 ---
 
 <Page
   title="Individual Therapy in English · Valeriy Karasaev"
-  description="How therapy works: first session, 50-minute online format, 60 € per session, confidentiality, FAQ. Gestalt therapist and executive coach, in practice since 2014."
+  description={`How therapy works: first session, ${site.session.minutes}-minute online format, 60 € per session, confidentiality, FAQ. Gestalt therapist and executive coach, in practice since 2014.`}
   lang="en"
   wide={true}
   translation="/therapy/"
@@ -55,7 +55,7 @@ import { site } from '../../../data/site';
       <p>
         The first session is an introduction. We look at what brings you, I explain how I work,
         and you decide whether to continue. No commitments beyond paying for one session.
-        Before that, we can have a free 30-minute intro call - to meet, ask questions
+        Before that, we can have a free {site.en.introCallMinutes}-minute intro call - to meet, ask questions
         and see whether we click.
       </p>
     </div>
@@ -79,7 +79,7 @@ import { site } from '../../../data/site';
     <!-- Format and fees -->
     <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Format and fees</span></div>
     <div class="spec">
-      <div class="spec-row"><span class="spec-key">Session</span><span class="spec-val">50 minutes · online, camera on</span></div>
+      <div class="spec-row"><span class="spec-key">Session</span><span class="spec-val">{site.session.minutes} minutes · online, camera on</span></div>
       <div class="spec-row"><span class="spec-key">Fee</span><span class="spec-val">{site.session.priceEur} per session</span></div>
       <div class="spec-row"><span class="spec-key">Schedule</span><span class="spec-val">{site.en.schedule}</span></div>
       <div class="spec-row"><span class="spec-key">Platforms</span><span class="spec-val">Google Meet / Zoom</span></div>
@@ -127,7 +127,7 @@ import { site } from '../../../data/site';
       </details>
       <details>
         <summary>Can a session be longer?</summary>
-        <div class="faq-body">Yes. A standard session is 50 minutes. We can work for 80 or 100 minutes - let's discuss what fits your task.</div>
+        <div class="faq-body">Yes. A standard session is {site.session.minutes} minutes. We can work for {site.session.extended[0].minutes} minutes - let's discuss what fits your task.</div>
       </details>
       <details>
         <summary>Why book several sessions in advance?</summary>
@@ -151,7 +151,7 @@ import { site } from '../../../data/site';
       <p>
         Not sure individual therapy is what you need? There is also an English-speaking
         therapy group - <a href="/en/groups/work-ambition/">«Work, People, Ambition»</a>.
-        Or simply <a href={site.en.telegramFreeCall}>book a free 30-minute call</a> -
+        Or simply <a href={site.en.telegramFreeCall}>book a free {site.en.introCallMinutes}-minute call</a> -
         we will figure it out together.
       </p>
     </div>
