@@ -1,31 +1,40 @@
 // Единый источник фактов и контактов. Любая цифра на страницах - только отсюда.
 // Канон фактов и подачи: стратегия практики на Google Диске, «(A2-01) Стратегия / 02 Обо мне».
 
+// Длительности задаются только здесь. Страницы и лендинги читают эти числа:
+// в текстах страниц цифр минут быть не должно, иначе они снова разойдутся.
+const INTRO_MIN = 15; // бесплатное знакомство, русская версия
+const INTRO_MIN_EN = 15; // бесплатное знакомство, английская версия
+const SESSION_MIN = 50; // стандартная сессия (как на Зигмунде)
+
 export const site = {
   name: 'Валерий Карасаев',
   nameEn: 'Valeriy Karasaev',
-  tagline: 'Психолог · Гештальт-терапевт · Executive коуч',
+  tagline: 'Психолог · Гештальт-терапевт · Супервизор',
   taglineEn: 'Psychologist · Gestalt Therapist · Executive Coach',
   heroBio: '17 лет в международном бизнесе.\nСпециализируюсь на кризисах и переходах.',
   description:
-    'Психолог, гештальт-терапевт, executive coach. Специализируюсь на кризисах и переходах. Практика с 2014 года.',
+    'Психолог, гештальт-терапевт, супервизор. Специализируюсь на кризисах и переходах. Практика с 2014 года.',
 
   domain: 'https://karasaev.com',
 
   // Контакты (Р1: телефон канонический)
   telegram: 'https://t.me/vkarasaev',
   telegramHandle: '@vkarasaev',
+  // Бесплатное знакомство: число минут для кнопок, текстов и сообщения в Telegram
+  intro: { minutes: INTRO_MIN },
   telegramFreeCall:
     'https://t.me/vkarasaev?text=' +
-    encodeURIComponent('Привет, хочу записаться на бесплатную 15-минутную встречу'),
+    encodeURIComponent(`Привет, хочу записаться на бесплатную ${INTRO_MIN}-минутную встречу`),
   email: 'karasaev.valery@gmail.com',
   phone: '+7 (915) 310-71-78',
   phoneHref: 'tel:+79153107178',
 
   // Формат и цена (D4: курс 85, на RU - рубли, на EN - евро)
   session: {
-    duration: '55 минут, онлайн / очно',
-    durationShort: '55 минут',
+    minutes: SESSION_MIN,
+    duration: `${SESSION_MIN} минут, онлайн / очно`,
+    durationShort: `${SESSION_MIN} минут`,
     platforms: 'Google Meet / Яндекс.Телемост',
     platformsProse: 'Google Meet или Яндекс Телемосте',
     offline: 'Москва, м. Краснопресненская', // Р2
@@ -46,6 +55,11 @@ export const site = {
   },
   eurRate: 85,
 
+  // Группы: дата старта задаётся здесь и подставляется в каталог и на страницу группы
+  groups: {
+    vernutsya: { start: 'Февраль 2027', startIn: 'в феврале 2027' },
+  },
+
   // Запись на сессию (основной CTA по решению 2026-07-09)
   telegramSession:
     'https://t.me/vkarasaev?text=' + encodeURIComponent('Привет, хочу записаться на сессию'),
@@ -53,13 +67,13 @@ export const site = {
   // Анкета для клиентов после первой сессии. Ссылка не используется как публичный CTA.
   intakeForm: 'https://forms.gle/4ozhujNFjWZrsBia9',
 
-  // EN-версия живет сама по себе: интро-звонок 30 минут, префиллы на английском,
-  // расписание в CET, телефон не показываем (задача от 2026-07-12).
+  // EN-версия живет сама по себе: префиллы на английском, расписание в CET,
+  // телефон не показываем (задача от 2026-07-12). Интро-звонок: INTRO_MIN_EN выше.
   en: {
-    introCallMinutes: 30,
+    introCallMinutes: INTRO_MIN_EN,
     telegramFreeCall:
       'https://t.me/vkarasaev?text=' +
-      encodeURIComponent('Hi! I would like to book a free 30-minute intro call'),
+      encodeURIComponent(`Hi! I would like to book a free ${INTRO_MIN_EN}-minute intro call`),
     telegramSession:
       'https://t.me/vkarasaev?text=' + encodeURIComponent('Hi! I would like to book a session'),
     telegramQuestion:

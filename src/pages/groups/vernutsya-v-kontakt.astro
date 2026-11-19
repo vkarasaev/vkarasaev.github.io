@@ -7,7 +7,7 @@ import { site } from '../../data/site';
 
 <Page
   title="Группа «Вернуться в контакт» · Валерий Карасаев"
-  description="Терапевтическая группа: 12 встреч о стыде, агрессии, близости, выгорании и живости. Онлайн, четверг 19:00-22:00, с 17 сентября 2026. Запись через собеседование."
+  description={`Терапевтическая группа: 12 встреч о стыде, агрессии, близости, выгорании и живости. Онлайн, старт ${site.groups.vernutsya.startIn}. Запись через собеседование.`}
   wide={true}
   hideCta={true}
 >
@@ -22,7 +22,7 @@ import { site } from '../../data/site';
           Место, где свои способы быть с людьми видно вживую.
         </p>
         <div class="spec" style="margin: 0 0 22px;">
-          <div class="spec-row"><span class="spec-key">Старт</span><span class="spec-val">18 января 2027 · четверг 19:00-22:00</span></div>
+          <div class="spec-row"><span class="spec-key">Старт</span><span class="spec-val">{site.groups.vernutsya.start} · день и время при записи</span></div>
           <div class="spec-row"><span class="spec-key">Формат</span><span class="spec-val">12 встреч · Zoom · 10 участников</span></div>
           <div class="spec-row"><span class="spec-key">Стоимость</span><span class="spec-val">3000 ₽ за встречу · двумя блоками по 6</span></div>
         </div>

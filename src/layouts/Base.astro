@@ -18,7 +18,7 @@ const {
   title,
   description,
   lang = 'ru',
-  ogImage = '/images/og-default.png',
+  ogImage = '/images/og-karasaev.png',
   canonical,
   translation,
   noindex = false,
@@ -56,7 +56,9 @@ const preloadFonts =
       <link rel="alternate" hreflang={lang === 'ru' ? 'en' : 'ru'} href={new URL(translation, Astro.site).href} />
     )}
     {translation && <link rel="alternate" hreflang={lang} href={canonicalURL} />}
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />

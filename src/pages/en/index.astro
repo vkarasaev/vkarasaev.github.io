@@ -1,6 +1,6 @@
 ---
 // /en/ (переработка 2026-07-12): не перевод главной, а адаптация под expat/corporate-
-// аудиторию. Отличия от RU (осознанные): интро-звонок 30 минут, контакты без телефона,
+// аудиторию. Отличия от RU (осознанные): подача с executive coach, контакты без телефона,
 // расписание в CET, цены только в евро, ссылки на EN-страницы. Структура и голос
 // сверены с актуальными RU-страницами (/ и /home/).
 import Page from '../../layouts/Page.astro';
@@ -9,7 +9,7 @@ import { site } from '../../data/site';
 
 <Page
   title="Valeriy Karasaev · Psychologist and Executive Coach · Therapy in English"
-  description="Gestalt therapist and executive coach for professionals and expats. Burnout, relocation, identity, career transitions, leadership loneliness. Online sessions in English, 60 €. Free 30-minute intro call."
+  description={`Gestalt therapist and executive coach for professionals and expats. Burnout, relocation, identity, career transitions, leadership loneliness. Online sessions in English, 60 €. Free ${site.en.introCallMinutes}-minute intro call.`}
   lang="en"
   translation="/"
   hideCta={true}
@@ -98,7 +98,7 @@ import { site } from '../../data/site';
 
   <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Format and fees</span></div>
   <div class="spec">
-    <div class="spec-row"><span class="spec-key">Session</span><span class="spec-val">50 minutes · online</span></div>
+    <div class="spec-row"><span class="spec-key">Session</span><span class="spec-val">{site.session.minutes} minutes · online</span></div>
     <div class="spec-row"><span class="spec-key">Fee</span><span class="spec-val">60 € per session</span></div>
     <div class="spec-row"><span class="spec-key">Schedule</span><span class="spec-val">{site.en.schedule}</span></div>
     <div class="spec-row"><span class="spec-key">Payment</span><span class="spec-val">PayPal · IBAN · card</span></div>
@@ -137,7 +137,7 @@ import { site } from '../../data/site';
   </div>
 
   <div class="cta-final">
-    <div class="cta-title">Free 30-minute intro call</div>
+    <div class="cta-title">Free {site.en.introCallMinutes}-minute intro call</div>
     <div class="cta-sub">Meet, ask anything, see if we click. No strings attached</div>
     <div class="btn-group" style="margin: 0;">
       <a href={site.en.telegramFreeCall} class="btn btn-primary">Message me on Telegram</a>
