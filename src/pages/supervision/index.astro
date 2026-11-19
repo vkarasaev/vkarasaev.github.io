@@ -3,9 +3,9 @@
 // Главная версия текста на Диске: «(A2-10) Сайт / 07 Тексты сайта / RU / Супервизия (supervision)».
 // Вёрстка: первый экран с фото (канон p-hero, как у «Терапии»), дальше все блоки
 // стоят на одной сетке шириной 1060px: плашки в три колонки, остальное в две.
-// Порядок: развитие практики на виду, клиентская работа вторым планом (раскрывается).
+// Страница универсальная: и клиентские случаи, и развитие практики (два режима встречи).
 // Цена, длительность и сообщение Telegram берутся из site.ts.
-// Общий нижний блок скрыт: он про бесплатную встречу для клиентов терапии.
+// Общий нижний блок скрыт: вместо него свой закрывающий блок «Обсудить супервизию».
 import Page from '../../layouts/Page.astro';
 import { site } from '../../data/site';
 
@@ -15,7 +15,7 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
 
 <Page
   title="Супервизия и развитие практики для психологов · Валерий Карасаев"
-  description={`Супервизия для психологов: как рассказать о себе, набрать клиентов и вести соцсети. Разбор клиентской работы. Индивидуально, онлайн, ${sv.priceRub}.`}
+  description={`Супервизия для психологов: разбор клиентских случаев и развитие практики. Как рассказать о себе, набрать клиентов и вести соцсети. Индивидуально, онлайн, ${sv.priceRub}.`}
   wide={true}
   hideCta={true}
 >
@@ -25,8 +25,8 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
         <div class="kicker">Супервизия и развитие практики</div>
         <h1>Какой я психолог и где мои клиенты?</h1>
         <p class="lead" style="margin-bottom: 22px;">
-          Разбираю с коллегами, как рассказывать о себе, набирать клиентов и вести соцсети.
-          Сам перешёл в практику после 17 лет в бизнесе.
+          Разбираю с коллегами клиентские случаи и то, как рассказывать о себе, набирать клиентов
+          и вести соцсети. Сам перешёл в практику после 17 лет в бизнесе.
         </p>
         <div class="spec sv-spec" style="margin: 0 0 22px;">
           <div class="spec-row"><span class="spec-key">Встреча</span><span class="spec-val">{site.session.durationShort} · один на один · онлайн</span></div>
@@ -38,7 +38,7 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
         </div>
       </div>
       <div class="p-hero-photo">
-        <img src="/images/photo/supervision-hero.jpg" alt="Валерий Карасаев" width="1200" height="800" />
+        <img src="/images/photo/supervision-hero.jpg" alt="Валерий Карасаев" width="896" height="1195" />
       </div>
     </div>
   </div>
@@ -46,14 +46,16 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
   <div class="sv">
     <div class="sv-two sv-intro">
       <p>
-        Я провожу индивидуальные онлайн-встречи для психологов, которые начинают или развивают
-        практику, часто после другой карьеры. Разбираем, какой вы психолог и что предлагаете,
-        как об этом рассказывать, откуда приходят клиенты и что делать с соцсетями.
+        Я провожу индивидуальную супервизию для психологов: и для тех, кто начинает практику,
+        и для опытных коллег. Разбираем клиентские случаи. И то, чему обычно не учат: какой вы
+        психолог и что предлагаете, как об этом рассказывать, откуда приходят клиенты
+        и что делать с соцсетями.
       </p>
       <p>
-        Я психолог, гештальт-терапевт и супервизор; продолжаю обучение супервизии в МГИ.
-        До этого 17 лет работал в международном бизнесе. Свою практику, сайт и канал выстраиваю
-        сам, поэтому говорю о том, что делаю. С клиентским случаем тоже можно прийти.
+        Я психолог, гештальт-терапевт и супервизор, в практике с 2014 года; учусь на третьей
+        ступени МГИ (супервизия и ведение групп). До этого 17 лет работал в международном бизнесе.
+        Свою практику, сайт и канал выстраиваю сам, поэтому говорю о том, что делаю.
+        Веду и супервизию учебных троек.
       </p>
     </div>
 
@@ -70,19 +72,19 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
         </div>
         <div class="sv-card">
           <h3>Не понимаю, что делать с соцсетями</h3>
-          <p>Площадок много, сил мало. Непонятно, где вести профиль, о чём писать и как часто, чтобы это было похоже на меня и приводило людей.</p>
-        </div>
-        <div class="sv-card">
-          <h3>Боюсь выходить в продвижение</h3>
-          <p>Хочу писать, вести блог или записывать видео, но всё время готовлюсь, сравниваю себя с коллегами и откладываю публикацию.</p>
+          <p>Площадок много, сил мало. Непонятно, где вести профиль и о чём писать. Или понятно, но страшно публиковать.</p>
         </div>
         <div class="sv-card">
           <h3>Не решаюсь поднять цену</h3>
           <p>Понимаю, что работаю дешевле, чем стоит. Но страшно, что клиенты уйдут, и непонятно, сколько моя работа стоит на самом деле.</p>
         </div>
         <div class="sv-card">
-          <h3>Хочу организовать работу</h3>
-          <p>Материалы обучения, клиентская работа, документы и продвижение живут отдельно. Всё делаю руками, и половина задуманного так и остаётся в заметках.</p>
+          <h3>Застрял в работе с клиентом</h3>
+          <p>Встречи идут, разговоров много, а работа будто стоит на месте. Трудно сказать, с чем мы сейчас работаем и чего хочет клиент.</p>
+        </div>
+        <div class="sv-card">
+          <h3>Клиент вызывает сильные чувства</h3>
+          <p>Хочется спасти, переубедить или впечатлить. Или отстраниться, спорить, поскорее закончить встречу. Думать свободно рядом с ним трудно.</p>
         </div>
       </div>
     </section>
@@ -128,70 +130,92 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
 
     <section class="sv-sec">
       <div class="meta-line"><span class="meta-num">03</span><span class="meta-label">Как проходит встреча</span></div>
-      <div class="sv-two">
-        <div class="sv-text">
-          <p>
-            Начинаем с вашего вопроса. Можно прийти с текстом о себе, профилем в соцсети, вопросом
-            о своём предложении или с процессом, который хочется наладить.
-          </p>
-          <p>
-            На встрече разбираем, между встречами вы делаете сами. Можно прийти один раз
-            с конкретным вопросом. При регулярных встречах возвращаемся к выбранным действиям:
-            что получилось сделать, что изменилось, где понадобилась другая опора.
-          </p>
+      <p class="sv-lead">
+        Начинаем с вашего вопроса. Встреча идёт в одном из двух режимов, и я свободно перехожу
+        из одного в другой: за трудностью с клиентом часто стоит вопрос о цене или рамке,
+        а за страхом публиковаться бывает то, что видно и в работе с клиентами.
+      </p>
+      <div class="sv-two sv-modes">
+        <div class="sv-card sv-mode">
+          <h3>Разбор клиентского случая</h3>
+          <ol class="sv-steps">
+            <li><span class="sv-n">01</span><span>Восстанавливаем эпизод: что говорил и делал клиент, как вы отвечали, что чувствовали.</span></li>
+            <li><span class="sv-n">02</span><span>Смотрим, что происходит между вами и где вы действуете по привычке.</span></li>
+            <li><span class="sv-n">03</span><span>Собираем несколько рабочих гипотез.</span></li>
+            <li><span class="sv-n">04</span><span>Выбираем следующий шаг в работе с клиентом.</span></li>
+          </ol>
         </div>
-        <ol class="sv-steps">
-          <li><span class="sv-n">01</span><span>Смотрим, что уже есть и что вы пробовали.</span></li>
-          <li><span class="sv-n">02</span><span>Разбираем конкретный текст, профиль или процесс.</span></li>
-          <li><span class="sv-n">03</span><span>Разбираемся, чего не хватает.</span></li>
-          <li><span class="sv-n">04</span><span>Выбираем следующий шаг и то, по чему проверить результат.</span></li>
-        </ol>
+        <div class="sv-card sv-mode">
+          <h3>Развитие практики</h3>
+          <ol class="sv-steps">
+            <li><span class="sv-n">01</span><span>Смотрим, что уже есть и что вы пробовали.</span></li>
+            <li><span class="sv-n">02</span><span>Разбираем конкретный текст, профиль или процесс.</span></li>
+            <li><span class="sv-n">03</span><span>Разбираемся, чего не хватает.</span></li>
+            <li><span class="sv-n">04</span><span>Выбираем следующий шаг и то, по чему проверить результат.</span></li>
+          </ol>
+        </div>
       </div>
+      <p class="sv-lead sv-after">
+        На встрече разбираем, между встречами вы делаете сами. Можно прийти один раз
+        с конкретным вопросом или встречаться регулярно.
+      </p>
     </section>
 
     <section class="sv-sec">
-      <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Если вопрос о клиентской работе</span></div>
+      <div class="meta-line"><span class="meta-num">04</span><span class="meta-label">Как я работаю с клиентскими случаями</span></div>
       <div class="sv-two">
-        <div class="sv-text">
-          <p>
-            Иногда после сессии остаётся больше вопросов, чем было до неё. Вы много делаете, а работа
-            будто стоит на месте. Берём один случай. Смотрим, с чем пришёл клиент, что происходит
-            между вами и где вы действуете по привычке.
-          </p>
-          <p>
-            Ближе всего мне случаи про работу и карьеру, власть, признание, самооценку и большие
-            перемены в жизни. С этим я сам работаю как терапевт. С другим вопросом тоже напишите:
-            отвечу, возьмусь ли.
-          </p>
+        <div class="sv-photo">
+          <img src="/images/photo/supervision-chair.jpg" alt="Валерий Карасаев в кресле" width="600" height="665" loading="lazy" />
         </div>
-        <div class="faq sv-faq">
-          <details>
-            <summary>С какими случаями можно прийти</summary>
-            <div class="faq-body">
-              <p><strong>Неясное направление.</strong> Встречи идут, разговоров много, но трудно сформулировать, с чем вы сейчас работаете и чего хочет клиент.</p>
-              <p><strong>Повторение.</strong> Вы снова объясняете, поддерживаете, предлагаете - и оказываетесь в знакомом тупике.</p>
-              <p><strong>Сильные реакции.</strong> Клиента хочется спасти, переубедить, впечатлить; хочется отстраниться, спорить или поскорее закончить встречу.</p>
-              <p><strong>Рамка работы.</strong> Оплата, отмены, переписка и дополнительные просьбы постепенно меняют первоначальные договорённости.</p>
-              <p><strong>Профессиональная позиция.</strong> Рядом с уверенным, успешным, требовательным или обесценивающим клиентом становится трудно думать и действовать свободно.</p>
-              <p><strong>Кризис и переход.</strong> Клиенту предстоит трудное решение, а вы замечаете, что уже знаете, как ему «правильно» поступить, либо боитесь поддержать любой выбор.</p>
-              <p>Можно также обсуждать структуру и завершение сессии, паузы в работе, способы удерживать рамку и ощущение, что вы «тащите за двоих». Или разбирать основные понятия гештальт-терапии и то, как они помогают понимать происходящее на встрече.</p>
-            </div>
-          </details>
-          <details>
-            <summary>Как идёт разбор случая</summary>
-            <div class="faq-body">
-              <p>Восстанавливаем существенный эпизод: что говорил и делал клиент, как вы отвечали, что чувствовали, чего ожидали и к чему это привело. Иногда для работы достаточно одного момента, на котором всё изменилось.</p>
-              <p>Дальше рассматриваем несколько возможных пониманий. Что относится к обстоятельствам жизни клиента, что - к вашим отношениям, а что - к вашей собственной позиции. Где гипотеза опирается на наблюдение, а где мы пока предполагаем.</p>
-              <p><strong>Пример.</strong> Клиент регулярно просит перенести встречу, а вы каждый раз соглашаетесь и после этого злитесь. На супервизии важно увидеть весь эпизод: реальны ли его ограничения, что было оговорено, как звучит просьба, чего вы опасаетесь при отказе и какое место занимает это взаимодействие в терапии. После этого с клиентом можно поговорить точнее. Правила «всегда отказывайте» я не дам: решение зависит от этого клиента и ваших с ним договорённостей.</p>
-            </div>
-          </details>
-          <details>
-            <summary>Моя роль и ваша ответственность</summary>
-            <div class="faq-body">
-              <p>Я предлагаю профессиональный взгляд, задаю вопросы, обращаю внимание на пропущенные моменты и обсуждаю с вами гипотезы. Важно, чтобы вы могли показать не только удачную работу, но и непонимание, ошибку или раздражение. Здесь не нужно сдавать экзамен на правильность.</p>
-              <p>Вы сохраняете собственную позицию и ответственность за работу с клиентом. На супервизии можно не соглашаться, уточнять основания и проверять, подходит ли предложенное понимание вашему опыту. О клиенте рассказываем без имени и узнаваемых деталей.</p>
-            </div>
-          </details>
+        <div>
+          <div class="sv-text">
+            <p>
+              Практику веду больше десяти лет. Специализации: травма и ПТСР, нарциссизм и уязвимость,
+              клиническая работа в гештальт-терапии. Ближе всего мне случаи про работу и карьеру,
+              власть, признание, самооценку и большие перемены в жизни: с этим я сам работаю
+              как терапевт.
+            </p>
+            <p>
+              Берём один случай. Смотрим, с чем пришёл клиент, что происходит между вами
+              и где вы действуете по привычке.
+            </p>
+          </div>
+          <div class="faq sv-faq sv-faq-gap">
+            <details>
+              <summary>С какими случаями можно прийти</summary>
+              <div class="faq-body">
+                <p><strong>Неясное направление.</strong> Встречи идут, разговоров много, но трудно сформулировать, с чем вы сейчас работаете и чего хочет клиент.</p>
+                <p><strong>Повторение.</strong> Вы снова объясняете, поддерживаете, предлагаете - и оказываетесь в знакомом тупике.</p>
+                <p><strong>Сильные реакции.</strong> Клиента хочется спасти, переубедить, впечатлить; хочется отстраниться, спорить или поскорее закончить встречу.</p>
+                <p><strong>Рамка работы.</strong> Оплата, отмены, переписка и дополнительные просьбы постепенно меняют первоначальные договорённости.</p>
+                <p><strong>Профессиональная позиция.</strong> Рядом с уверенным, успешным, требовательным или обесценивающим клиентом становится трудно думать и действовать свободно.</p>
+                <p><strong>Кризис и переход.</strong> Клиенту предстоит трудное решение, а вы замечаете, что уже знаете, как ему «правильно» поступить, либо боитесь поддержать любой выбор.</p>
+                <p>Можно также обсуждать структуру и завершение сессии, паузы в работе, способы удерживать рамку и ощущение, что вы «тащите за двоих». Или разбирать основные понятия гештальт-терапии и то, как они помогают понимать происходящее на встрече.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Как идёт разбор случая</summary>
+              <div class="faq-body">
+                <p>Восстанавливаем существенный эпизод: что говорил и делал клиент, как вы отвечали, что чувствовали, чего ожидали и к чему это привело. Иногда для работы достаточно одного момента, на котором всё изменилось.</p>
+                <p>Дальше рассматриваем несколько возможных пониманий. Что относится к обстоятельствам жизни клиента, что - к вашим отношениям, а что - к вашей собственной позиции. Где гипотеза опирается на наблюдение, а где мы пока предполагаем.</p>
+                <p><strong>Пример.</strong> Клиент регулярно просит перенести встречу, а вы каждый раз соглашаетесь и после этого злитесь. На супервизии важно увидеть весь эпизод: реальны ли его ограничения, что было оговорено, как звучит просьба, чего вы опасаетесь при отказе и какое место занимает это взаимодействие в терапии. После этого с клиентом можно поговорить точнее. Правила «всегда отказывайте» я не дам: решение зависит от этого клиента и ваших с ним договорённостей.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Моя роль и ваша ответственность</summary>
+              <div class="faq-body">
+                <p>Я предлагаю профессиональный взгляд, задаю вопросы, обращаю внимание на пропущенные моменты и обсуждаю с вами гипотезы. Важно, чтобы вы могли показать не только удачную работу, но и непонимание, ошибку или раздражение. Здесь не нужно сдавать экзамен на правильность.</p>
+                <p>Вы сохраняете собственную позицию и ответственность за работу с клиентом. На супервизии можно не соглашаться, уточнять основания и проверять, подходит ли предложенное понимание вашему опыту. О клиенте рассказываем без имени и узнаваемых деталей.</p>
+              </div>
+            </details>
+            <details>
+              <summary>Супервизия троек и зачёт часов</summary>
+              <div class="faq-body">
+                <p>Веду супервизию учебных троек: напишите состав и программу, условия обсудим.</p>
+                <p>Часы супервизии подписываю. Засчитает ли их ваша программа, решает она: я учусь на третьей ступени МГИ, поэтому уточните требования у руководителя своей программы.</p>
+              </div>
+            </details>
+          </div>
         </div>
       </div>
     </section>
@@ -201,25 +225,29 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
       <div class="sv-two">
         <div class="sv-text">
           <p>
-            17 лет я работал в международном бизнесе, последние пять руководил коммерческим
-            проектным офисом Abbott на 30+ стран. Практику вёл параллельно с 2014 года,
-            в 2025-м ушёл в неё полностью. Каково после должности и статуса снова быть начинающим,
-            я знаю по себе.
+            Я знаю практику с двух сторон. Как терапевт: веду клиентов с 2014 года, работаю
+            с кризисами, выгоранием, карьерными и жизненными переходами. Как руководитель:
+            17 лет в международном бизнесе, последние пять руководил коммерческим проектным
+            офисом Abbott на 30+ стран.
           </p>
           <p>
-            Сайт, канал в Telegram, профиль на B17, базы по клиентской работе и обучению я собираю
-            сам и сейчас. Поэтому показываю не схему из учебника, а то, что у меня работает
-            и что пока нет. К практике отношусь как к небольшому бизнесу, в котором качество работы
-            с людьми, развитие и повседневные процессы должны поддерживать друг друга.
+            Каково после должности и статуса снова быть начинающим, я знаю по себе. Свою практику
+            собираю сам: сайт, канал в Telegram, соцсети, профили на площадках, откуда приходят
+            клиенты. Поэтому показываю не схему из учебника, а то, что у меня работает
+            и что пока нет.
+          </p>
+          <p>
+            К практике отношусь как к небольшому бизнесу, в котором качество работы с людьми,
+            развитие и повседневные процессы должны поддерживать друг друга.
           </p>
         </div>
         <div>
           <div class="spec sv-spec sv-facts">
-            <div class="spec-row"><span class="spec-key">В бизнесе</span><span class="spec-val">17 лет, проектный офис Abbott</span></div>
-            <div class="spec-row"><span class="spec-key">В практике</span><span class="spec-val">с 2014 года, полностью с 2025-го</span></div>
+            <div class="spec-row"><span class="spec-key">В бизнесе</span><span class="spec-val">17 лет</span></div>
+            <div class="spec-row"><span class="spec-key">В практике</span><span class="spec-val">с 2014 года</span></div>
             <div class="spec-row"><span class="spec-key">Образование</span><span class="spec-val">магистр психологии, НИУ ВШЭ</span></div>
-            <div class="spec-row"><span class="spec-key">Гештальт</span><span class="spec-val">четыре года в МГИ</span></div>
-            <div class="spec-row"><span class="spec-key">Сейчас</span><span class="spec-val">третья ступень: супервизия и группы</span></div>
+            <div class="spec-row"><span class="spec-key">Гештальт</span><span class="spec-val">первая и вторая ступень МГИ, три специализации</span></div>
+            <div class="spec-row"><span class="spec-key">Супервизия</span><span class="spec-val">учусь на третьей ступени МГИ</span></div>
           </div>
           <p class="sv-links">
             <a href="/about/">Обо мне</a> · <a href="/business/">Опыт в бизнесе</a> · <a href="/credentials/">Образование</a>
@@ -228,87 +256,95 @@ const price = `${sv.priceRub} или ${sv.priceEur}`;
       </div>
     </section>
 
-    <section class="sv-sec">
-      <div class="meta-line"><span class="meta-num">06</span><span class="meta-label">С чего начать</span></div>
-      <div class="sv-two">
-        <ol class="sv-steps">
-          <li><span class="sv-n">01</span><span>Напишите мне в Telegram пару строк: кто вы и какой у вас вопрос. Если вопрос о клиенте, без имени и узнаваемых деталей.</span></li>
-          <li><span class="sv-n">02</span><span>Я отвечу, подходит ли мне такой вопрос, и предложу время.</span></li>
-          <li><span class="sv-n">03</span><span>Встречаемся онлайн. Можно одну встречу, можно регулярно.</span></li>
-        </ol>
-        <div class="sv-close">
-          <div class="sv-close-title">Обсудить супервизию</div>
-          <p>
-            Встреча {site.session.durationShort}, {price}. Индивидуально, онлайн. Бесплатного знакомства нет:
-            вопрос можно задать в переписке. Отмена и перенос не позже чем за 24 часа; позже встреча
-            оплачивается. Остальное как в <a href="/principles/">договорённостях о работе</a>.
-          </p>
-          <div class="btn-group" style="margin: 0;">
-            <a href={site.telegramSupervision} class="btn btn-primary">Написать вопрос в Telegram</a>
-            <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
-          </div>
-        </div>
+    <div class="cta-final sv-final">
+      <div class="cta-title">Обсудить супервизию</div>
+      <div class="cta-sub">
+        Напишите пару строк: кто вы и с чем хотите разобраться.
+        Если вопрос о клиенте, без имени и узнаваемых деталей
       </div>
-    </section>
+      <div class="btn-group" style="margin: 0;">
+        <a href={site.telegramSupervision} class="btn btn-primary">Написать вопрос в Telegram</a>
+        <a href={'mailto:' + site.email} class="btn btn-outline">{site.email}</a>
+      </div>
+      <p class="sv-terms">
+        Встреча {site.session.durationShort}, {price}. Индивидуально, онлайн. Бесплатного знакомства нет:
+        вопрос можно задать в переписке. Отмена и перенос не позже чем за 24 часа.
+        Остальное как в <a href="/principles/">договорённостях о работе</a>.
+      </p>
+    </div>
   </div>
 
   <style>
-    /* Scoped: только страница супервизии. Одна сетка: контейнер 1060px, колонки с шагом 44px. */
+    /* Scoped: только страница супервизии. Одна сетка: контейнер 1060px, две колонки с шагом 56px. */
     .sv { max-width: 1060px; margin: 0 auto; padding: 0 0 24px; }
-    .sv .meta-line { max-width: none; margin: 0 0 22px; }
-    .sv-sec { margin-top: 56px; }
-    .sv-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; align-items: start; }
-    .sv-intro { margin-top: 44px; }
-    .sv-intro p, .sv-text p { font-size: 16.5px; line-height: 1.75; color: #d5d1c9; margin: 0 0 14px; }
+    .sv .meta-line { max-width: none; margin: 0 0 30px; }
+    .sv-sec { margin-top: 64px; }
+    .sv-two { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start; }
+    .sv-intro { margin-top: 48px; }
+    .sv-intro p, .sv-text p, .sv-lead { font-size: 16.5px; line-height: 1.8; color: #d5d1c9; margin: 0 0 18px; }
     .sv-intro p:last-child, .sv-text p:last-child { margin-bottom: 0; }
+    .sv-lead { max-width: 760px; margin-bottom: 30px; }
+    .sv-after { margin: 30px 0 0; }
 
     /* Первый экран: условия и кнопка в текстовой колонке, как у «Терапии» */
     .sv-spec { max-width: none; }
     .sv-spec .spec-row { font-size: 14px; }
-    .sv-hero .p-hero-photo img { object-position: 58% 30%; }
+    .sv-hero .p-hero-photo img { object-position: 50% 22%; }
 
     /* Плашки: шесть штук одного размера */
-    .sv-cards { display: grid; grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; gap: 14px; }
-    .sv-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 20px 18px; }
-    .sv-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 22px; line-height: 1.2; color: var(--text); margin: 0 0 8px; }
-    .sv-card p { font-size: 14.5px; line-height: 1.6; color: #c3bfb7; margin: 0; }
+    .sv-cards { display: grid; grid-template-columns: minmax(0, 1fr); grid-auto-rows: 1fr; gap: 16px; }
+    .sv-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 24px 22px; }
+    .sv-card h3 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 23px; line-height: 1.2; color: var(--text); margin: 0 0 10px; }
+    .sv-card p { font-size: 15px; line-height: 1.65; color: #c3bfb7; margin: 0; }
+
+    /* Два режима встречи */
+    .sv-modes { align-items: stretch; }
+    .sv-mode { padding: 28px 28px 14px; }
+    .sv-mode h3 { margin-bottom: 18px; }
 
     /* Раскрываемые блоки на ширину своей колонки */
     .sv-faq { max-width: none; margin: 0; }
+    .sv-faq-gap { margin-top: 28px; }
     .sv-faq .faq-body p { margin: 0 0 10px; }
     .sv-faq .faq-body p:last-child { margin-bottom: 0; }
 
     /* Шаги с номерами */
     .sv-steps { list-style: none; margin: 0; padding: 0; }
-    .sv-steps li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 4px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 16px; line-height: 1.6; color: #d5d1c9; }
-    .sv-steps li:first-child { padding-top: 0; }
-    .sv-n { font-family: 'Cormorant Garamond', serif; font-size: 20px; line-height: 1.3; color: var(--gold); }
+    .sv-steps li { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 4px; padding: 14px 0; border-top: 1px solid var(--border); font-size: 15.5px; line-height: 1.6; color: #d5d1c9; }
+    .sv-n { font-family: 'Cormorant Garamond', serif; font-size: 20px; line-height: 1.25; color: var(--gold); }
 
-    .sv-facts { margin: 0 0 14px; }
+    .sv-photo img { display: block; width: 100%; height: auto; border-radius: var(--radius); border: 1px solid var(--border); }
+
+    .sv-facts { margin: 0 0 16px; }
+    .sv-facts .spec-val { max-width: 62%; }
     .sv-links { font-size: 14px; margin: 0; }
-    .sv-links a, .sv-close a:not(.btn) { color: var(--gold); text-decoration: none; }
+    .sv-links a, .sv-terms a { color: var(--gold); text-decoration: none; }
 
-    /* Закрывающий блок */
-    .sv-close { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px 24px; }
-    .sv-close-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: var(--text); margin-bottom: 10px; }
-    .sv-close p { font-size: 15px; line-height: 1.7; color: #c3bfb7; margin: 0 0 18px; }
+    /* Закрывающий блок по центру, как на остальных страницах */
+    .sv-final { max-width: 720px; margin: 72px auto 0; }
+    .sv-final .cta-sub { max-width: 460px; margin-left: auto; margin-right: auto; line-height: 1.6; }
+    .sv-terms { font-size: 13.5px; line-height: 1.7; color: var(--muted); margin: 20px auto 0; max-width: 520px; }
 
     @media (min-width: 640px) {
       .sv-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (min-width: 960px) {
-      .sv-two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 44px; }
+      .sv-sec { margin-top: 92px; }
+      .sv-two { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; }
+      .sv-modes { gap: 24px; }
       .sv-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
       .sv-btns { flex-direction: row; }
       .sv-btns .btn { padding: 14px 26px; }
+      .sv-final { margin-top: 100px; }
     }
     @media (max-width: 959px) {
       .sv-hero .p-hero-txt { padding: 40px 0 32px; }
       .sv-hero h1 { font-size: 34px; margin: 14px 0 14px; }
       .sv-hero .lead { font-size: 18.5px; line-height: 1.6; margin-bottom: 18px !important; }
-      .sv-hero .p-hero-photo { min-height: 0; height: 260px; margin: 0 20px 30px; border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; }
+      .sv-hero .p-hero-photo { min-height: 0; height: 300px; margin: 0 20px 30px; border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; }
+      .sv-hero .p-hero-photo img { object-position: 50% 30%; }
       .sv-hero .p-hero-photo::after { background: linear-gradient(180deg, transparent 65%, rgba(14,14,16,0.5) 100%); }
-      .sv-sec { margin-top: 44px; }
+      .sv-photo { max-width: 420px; }
     }
   </style>
 </Page>
