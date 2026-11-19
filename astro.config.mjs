@@ -11,7 +11,8 @@ import { fileURLToPath } from 'node:url';
 // branches (see AGENTS.md), this filter only catches mistakes.
 //   /draft-*/  - any page under development (rename the folder when accepted)
 //   /*-prev/   - previous version of a page kept for before/after comparison
-const draftDirs = [/^draft-/, /-prev$/];
+// design/career-landing: /career*/ stays a draft until accepted; remove /^career/ on acceptance
+const draftDirs = [/^draft-/, /-prev$/, /^career/];
 const isDraftUrl = (url) => draftDirs.some((re) => re.test(new URL(url).pathname.split('/').filter(Boolean)[0] ?? ''));
 const dropDraftPages = {
   name: 'drop-draft-pages',

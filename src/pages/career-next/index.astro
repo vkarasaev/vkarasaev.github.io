@@ -1,0 +1,18 @@
+---
+// /career-next/ - рабочая копия лендинга «Карьера» для сравнения «было и стало».
+// Живая /career/ не меняется, пока Валерий её смотрит. После утверждения копия
+// заменяет основную страницу, а этот адрес удаляется.
+import DirectionLandingNext from '../../components/direction/DirectionLandingNext.astro';
+import { career } from '../../data/directions/career';
+
+const next = {
+  ...career,
+  slug: 'career-next',
+  personal: career.personal && {
+    ...career.personal,
+    photo: { src: '/images/direction/valeriy-coffee.jpg', alt: 'Валерий Карасаев за столиком с чашкой кофе', position: '50% 30%' },
+  },
+};
+---
+
+<DirectionLandingNext direction={next} />

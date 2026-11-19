@@ -1,0 +1,9 @@
+---
+// /career/ - лендинг направления «Карьера и профессиональная идентичность».
+// Страница собирается шаблоном из данных: чтобы добавить направление,
+// нужен файл данных в src/data/directions и такой же файл страницы.
+import DirectionLanding from '../../components/direction/DirectionLanding.astro';
+import { career } from '../../data/directions/career';
+---
+
+<DirectionLanding direction={career} />
