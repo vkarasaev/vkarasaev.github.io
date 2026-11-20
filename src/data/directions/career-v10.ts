@@ -41,7 +41,7 @@ export const careerV10 = {
     ...career.author,
     title: 'Почему эта тема мне близка',
     // Кадр выбирает Валерий из трёх своих (20.11.2026): награды Abbott, President's Club, костюм у камина.
-    photo: { src: '/images/direction/career-suit-fireplace.jpg', alt: 'Валерий Карасаев в деловом костюме у камина', position: '50% 66%' },
+    photo: { src: '/images/direction/career-presidents-club.jpg', alt: 'Сертификат President\'s Club на имя Валерия Карасаева и кружка Abbott', position: '50% 55%' },
   },
   personal: career.personal && {
     ...career.personal,
