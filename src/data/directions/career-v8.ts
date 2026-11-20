@@ -32,16 +32,10 @@ export const careerV8 = {
       'Я не занимаюсь подбором вакансий и не обещаю найти «идеальную профессию». Обычно сначала важно понять, что именно перестало работать.',
     ],
   },
-  author: {
-    ...career.author,
-    title: 'Почему эта тема мне близка',
-    photo: { src: '/images/photo/business-suit.jpg', alt: 'Валерий Карасаев в деловом костюме' },
-  },
+  author: { ...career.author, title: 'Почему эта тема мне близка' },
   personal: career.personal && {
     ...career.personal,
     photo: undefined,
-    // Вступление по словам Валерия от 19.11.2026 (черновик, ждёт его правки).
-    intro: 'Более личное на эту тему я пишу в Telegram. Познакомиться со мной можно и через эти тексты.',
     items: [
       { ...career.personal.items[0], thumb: '/images/photo/about-guitar.jpg' },
       { ...career.personal.items[1], thumb: '/images/photo/about-camino.jpg' },

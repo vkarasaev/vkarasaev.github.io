@@ -1,7 +1,8 @@
 ---
-// Версия 9: одна система на всю страницу (см. src/styles/direction-v9.css).
+// Версия 9в (последняя): одна система на всю страницу (см. src/styles/direction-v9.css)
+// и пять правок Валерия от 19.11.2026. Предыдущие состояния: /career-v9b/, /career-v9a/.
 import DirectionLandingV9 from '../../components/direction/DirectionLandingV9.astro';
-import { careerV8 } from '../../data/directions/career-v8';
+import { careerV9 } from '../../data/directions/career-v9';
 ---
 
-<DirectionLandingV9 direction={{ ...careerV8, slug: 'career-v9' }} />
+<DirectionLandingV9 direction={careerV9} />

@@ -1,0 +1,211 @@
+/* Версия 9а: первая сборка версии 9, до независимого ревью. Только для сравнения. */
+/* Лендинг направления, версия 9 (19.11.2026). Один стиль, написанный с нуля, без наследства прежних версий.
+
+   ИДЕЯ. Страница как разговор на одной сетке: слева узкая колонка с вопросом (заголовок раздела),
+   справа широкая колонка с ответом. Так устроен каждый раздел от вводного текста до личных текстов.
+   Сетка одна: 290 + 80 + остальное (в сетке сайта 1060 это 690). Левый край ответа везде один.
+
+   Три исключения, каждое встречается один раз и по делу:
+     первый экран (кадр на всю ширину окна),
+     светлая карточка «С чего можно начать» (единственная светлая поверхность: место действия),
+     общий блок сайта в конце.
+
+   КЕГЛИ. Пять, других на странице нет:
+     заголовок страницы   Cormorant 300   38-64
+     заголовок раздела    Cormorant 300   28-36
+     утверждение          Cormorant 400   20-24   пункты «про вас», тезисы, названия, вопросы (курсивом)
+     текст                Jost 400        18-20   всё, что читают, включая светлую карточку
+     подпись              Jost 500        14      кнопки, ссылки, метки
+
+   ОТСТУПЫ. Шкала 12 / 20 / 32 / 48 и поле раздела 64-104. Между двумя разделами на одном фоне
+   поле одно, а не два. Разделы на полосе чередуются с разделами на фоне.
+
+   ФОРМЫ. Три, повторяются: строки с линейкой и чёрточкой; карточка (тезисы с плюсом, статьи);
+   кадр. Вложенных карточек нет. */
+
+.d9 {
+  --ink: #f0ece3;
+  --body: #cfcbc2;
+  --quiet: #a09c94;
+  --rule: var(--border);
+  --serif: 'Cormorant Garamond', serif;
+  --sans: 'Jost', sans-serif;
+
+  --t-display: clamp(2.375rem, 4.5vw, 4rem);
+  --t-head: clamp(1.75rem, 2.5vw, 2.25rem);
+  --t-state: clamp(1.25rem, 1.7vw, 1.5rem);
+  --t-text: clamp(1.125rem, 0.35vw + 0.95rem, 1.25rem);
+  --t-meta: 0.875rem;
+
+  --s1: 12px;
+  --s2: 20px;
+  --s3: 32px;
+  --s4: 48px;
+  --sec: clamp(64px, 7.4vw, 104px);
+  --rail: 290px;
+  --rail-gap: 80px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  font-family: var(--sans);
+  font-size: var(--t-text);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.004em;
+  font-variant-numeric: lining-nums;
+  color: var(--body);
+}
+html:has(.d9) { overflow-x: clip; }
+.d9 .nw { white-space: nowrap; }
+.d9 ::selection { background: rgba(201, 169, 110, 0.34); color: #fff; }
+.d9 :focus-visible { outline: 2px solid var(--gold2); outline-offset: 4px; }
+.d9 p { text-wrap: pretty; }
+
+/* ── Роли ── */
+.d9-display { font-family: var(--serif); font-weight: 300; font-size: var(--t-display); line-height: 1.06; letter-spacing: -0.012em; color: var(--ink); text-wrap: balance; }
+.d9-display span { display: block; }
+.d9-head { font-family: var(--serif); font-weight: 300; font-size: var(--t-head); line-height: 1.14; letter-spacing: -0.004em; color: var(--ink); text-wrap: balance; }
+.d9-state { font-family: var(--serif); font-weight: 400; font-size: var(--t-state); line-height: 1.32; color: var(--ink); }
+.d9-meta { font-size: var(--t-meta); font-weight: 500; line-height: 1.4; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+.d9-prose { display: grid; gap: 0.9em; }
+.d9-gold { color: var(--gold2); }
+
+.d9-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 10px 28px; background: var(--gold); color: #0e0e10; border-radius: var(--radius); font-size: var(--t-meta); font-weight: 500; line-height: 1.3; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; text-align: center; transition: background-color 0.25s var(--ease), transform 0.15s var(--ease); }
+.d9-btn:hover { background: var(--gold2); }
+.d9-btn:active { transform: translateY(1px); }
+.d9-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--gold); font-size: var(--t-meta); font-weight: 500; letter-spacing: 0.02em; text-decoration: underline; text-decoration-color: rgba(201, 169, 110, 0.5); text-decoration-thickness: 1px; text-underline-offset: 6px; transition: color 0.25s var(--ease); }
+.d9-link:hover { color: var(--gold2); text-decoration-color: var(--gold2); }
+.d9-links { display: flex; flex-wrap: wrap; gap: 0 26px; }
+
+/* ── Первый экран (версии 4 и 5, больше воздуха) ── */
+.d9-hero { position: relative; width: 100vw; margin-left: calc(50% - 50vw); display: grid; align-items: end; overflow: hidden; }
+.d9-hero-photo { position: absolute; inset: 0 0 auto 0; width: 100%; height: 340px; object-fit: cover; object-position: 64% 0%; }
+.d9-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 14, 16, 0) 150px, rgba(14, 14, 16, 0.9) 300px, #0e0e10 340px); }
+.d9-hero-copy { position: relative; z-index: 1; display: grid; gap: 24px; justify-items: start; width: min(1060px, 100%); margin: 0 auto; padding: 258px 20px 36px; }
+.d9-hero-sub { max-width: 26em; color: var(--ink); }
+.d9-hero-cta { display: grid; gap: 14px; justify-items: start; margin-top: 8px; }
+.d9-hero-who { font-size: var(--t-meta); line-height: 1.4; letter-spacing: 0.02em; color: var(--body); }
+@media (min-width: 900px) {
+  .d9-hero { align-items: center; min-height: min(clamp(620px, 46vw, 840px), calc(100dvh - 68px - 120px)); }
+  .d9-hero-photo { inset: 0; height: 100%; object-position: 50% 16%; }
+  .d9-hero::after { background: linear-gradient(90deg, rgba(14, 14, 16, 0.94) 0%, rgba(14, 14, 16, 0.86) 30%, rgba(14, 14, 16, 0.45) 48%, rgba(14, 14, 16, 0) 64%); }
+  .d9-hero-copy { padding: 80px 20px; }
+  .d9-hero .d9-display { max-width: 9em; }
+  .d9-hero-sub { max-width: 23em; }
+}
+.d9-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; padding: 28px 0 30px; border-bottom: 1px solid var(--rule); }
+.d9-facts dt { font-family: var(--serif); font-size: var(--t-state); line-height: 1.2; color: var(--gold2); }
+.d9-facts dd { margin-top: 4px; font-size: var(--t-meta); line-height: 1.4; color: var(--quiet); }
+@media (min-width: 900px) { .d9-facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+/* ── Раздел, полоса, сетка разговора ── */
+.d9-sec { padding-block: var(--sec); }
+.d9-sec:not(.d9-band) + .d9-sec:not(.d9-band) { padding-top: 0; }
+.d9-band { background: var(--bg2); box-shadow: 0 0 0 100vmax var(--bg2); clip-path: inset(0 -100vmax); --rule: #2f2f36; --card: var(--surface); }
+.d9-rail { display: grid; gap: var(--s3); }
+.d9-answer { display: grid; gap: var(--s3); min-width: 0; }
+@media (min-width: 960px) {
+  .d9-rail { grid-template-columns: var(--rail) minmax(0, 1fr); column-gap: var(--rail-gap); align-items: start; }
+  .d9-rail > .d9-head, .d9-rail > .d9-ask { position: sticky; top: 104px; }
+  .d9-wide { grid-column: 1 / -1; }
+}
+
+/* ── Форма 1: строки с линейкой и чёрточкой ── */
+.d9-rows { list-style: none; border-top: 1px solid var(--rule); }
+.d9-rows > li { position: relative; padding: 18px 0 20px 34px; border-bottom: 1px solid var(--rule); color: var(--ink); }
+.d9-rows > li::before { content: ''; position: absolute; left: 0; top: calc(18px + 0.8em); width: 16px; height: 1px; background: var(--gold); }
+.d9-rows--state > li { font-family: var(--serif); font-size: var(--t-state); line-height: 1.32; }
+.d9-rows--state > li::before { top: calc(18px + 0.66em); }
+.d9-rows--ask > li { font-family: var(--serif); font-style: italic; font-size: var(--t-state); line-height: 1.32; }
+.d9-rows--ask > li::before { top: calc(18px + 0.66em); }
+.d9-rows--num > li { padding-left: 44px; }
+.d9-rows--num > li::before { content: none; }
+.d9-rows--num a { display: block; margin: -18px 0 -20px -44px; padding: 18px 0 20px 44px; color: var(--body); text-decoration: none; transition: color 0.25s var(--ease); }
+.d9-rows--num a:hover { color: var(--gold2); }
+.d9-rows--num .d9-meta { position: absolute; left: 0; top: calc(18px + 0.3em); letter-spacing: 0.04em; }
+.d9-defs { border-top: 1px solid var(--rule); }
+.d9-defs > div { display: grid; gap: 6px; padding: 18px 0 20px; border-bottom: 1px solid var(--rule); }
+.d9-defs dt { font-family: var(--serif); font-size: var(--t-state); line-height: 1.24; color: var(--gold2); }
+@media (min-width: 760px) { .d9-defs > div { grid-template-columns: 220px minmax(0, 1fr); gap: 24px; align-items: baseline; } }
+
+/* ── Форма 2: карточка ── */
+.d9-card { background: var(--card, var(--bg2)); border: 1px solid var(--rule); border-radius: var(--radius); transition: border-color 0.3s var(--ease); }
+a.d9-card:hover, .d9-acc > .d9-card:hover, .d9-acc > .d9-card[open] { border-color: rgba(201, 169, 110, 0.5); }
+.d9-acc { display: grid; gap: var(--s1); }
+.d9-acc summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 44px; padding: 22px 28px; cursor: pointer; list-style: none; border-radius: var(--radius); }
+.d9-acc summary::-webkit-details-marker { display: none; }
+.d9-acc summary::after { content: ''; flex: 0 0 auto; width: 18px; height: 18px; background: linear-gradient(var(--gold), var(--gold)) center / 18px 1px no-repeat, linear-gradient(var(--gold), var(--gold)) center / 1px 18px no-repeat; transition: transform 0.4s var(--ease); }
+.d9-acc [open] summary::after { transform: rotate(135deg); }
+.d9-acc summary:hover .d9-state { color: var(--gold2); }
+.d9-acc .d9-state { transition: color 0.25s var(--ease); text-wrap: balance; }
+.d9-acc-body { display: grid; gap: var(--s2); padding: 4px 28px 30px; --rule: #2f2f36; }
+.d9-acc-body > p:last-child:not(:first-child) { color: var(--ink); }
+
+/* ── «Как с этим работаю я»: цитата на всю ширину сетки ── */
+.d9-quote { position: relative; margin-top: var(--s4); padding-top: var(--s3); max-width: 26em; }
+.d9-quote::before { content: ''; position: absolute; top: 0; left: 0; width: 56px; height: 1px; background: var(--gold); }
+
+/* ── Форма 3: кадр ── */
+.d9-shot { position: relative; aspect-ratio: 16 / 7; border-radius: var(--radius); overflow: hidden; }
+.d9-shot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(0.88); }
+
+/* ── «С чего можно начать»: единственная светлая поверхность ── */
+.d9-start { display: grid; gap: var(--s3); padding: clamp(28px, 5vw, 64px); background: #f5f3ef; border-radius: var(--radius); color: #35353a; --rule: rgba(25, 25, 28, 0.16); }
+.d9-start ::selection { background: rgba(125, 90, 34, 0.26); color: #19191c; }
+.d9-start .d9-head { color: #19191c; font-weight: 400; }
+.d9-start-main { display: grid; gap: var(--s2); align-content: start; justify-items: start; }
+.d9-start-main p { max-width: 34em; }
+.d9-start-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; margin-top: var(--s1); }
+.d9-start .d9-btn { background: #19191c; color: #f5f3ef; }
+.d9-start .d9-btn:hover { background: #7d5a22; }
+.d9-start .d9-link { color: #7d5a22; text-decoration-color: rgba(125, 90, 34, 0.45); }
+.d9-start .d9-link:hover { color: #19191c; text-decoration-color: #19191c; }
+.d9-start :focus-visible { outline-color: #7d5a22; }
+.d9-terms { border-top: 1px solid var(--rule); }
+.d9-terms > div { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.d9-terms dt { flex: 0 0 auto; font-size: var(--t-meta); color: #625e57; }
+.d9-terms dd { color: #19191c; text-align: right; text-wrap: balance; }
+.d9-terms-note { margin-top: var(--s2); font-size: var(--t-meta); line-height: 1.6; color: #625e57; }
+@media (min-width: 960px) { .d9-start { grid-template-columns: minmax(0, 1fr) minmax(0, 380px); column-gap: 56px; align-items: center; } }
+
+/* ── «Почитать по теме» ── */
+.d9-series { display: grid; gap: var(--s2); }
+.d9-series img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius); }
+.d9-series-text { display: grid; gap: 10px; align-content: center; justify-items: start; }
+.d9-series-text a { color: inherit; text-decoration: none; transition: color 0.25s var(--ease); }
+.d9-series-text a:hover { color: var(--gold2); }
+.d9-articles { display: grid; gap: var(--s1); list-style: none; }
+.d9-articles li { display: grid; }
+.d9-article { display: grid; gap: 16px; align-content: start; padding: 14px 14px 22px; color: inherit; text-decoration: none; }
+.d9-article img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
+.d9-article-text { display: grid; gap: 8px; padding-inline: 8px; }
+.d9-article:hover .d9-state { color: var(--gold2); }
+@media (min-width: 640px) {
+  .d9-series { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--s3); }
+  .d9-articles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ── «Более личное»: строки с маленьким кадром ── */
+.d9-posts { list-style: none; border-top: 1px solid var(--rule); }
+.d9-posts li { border-bottom: 1px solid var(--rule); }
+.d9-posts a { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 24px; align-items: center; padding: 20px 0; color: inherit; text-decoration: none; }
+.d9-posts img { width: 88px; height: 88px; object-fit: cover; border-radius: 8px; }
+.d9-posts-text { display: grid; gap: 4px; }
+.d9-posts .d9-state { transition: color 0.25s var(--ease); }
+.d9-posts a:hover .d9-state { color: var(--gold2); }
+
+.d9 ~ .cta-final { margin-top: 0; }
+
+@media (max-width: 639px) {
+  .d9-hero-cta, .d9-hero-cta .d9-btn, .d9-start .d9-btn { width: 100%; }
+  .d9-hero-cta .d9-btn { padding-inline: 12px; letter-spacing: 0.04em; text-wrap: balance; }
+  .d9-acc summary { padding: 18px 20px; }
+  .d9-acc-body { padding: 0 20px 24px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .d9-rise > * { animation: d9-rise 0.9s var(--ease) both; }
+  .d9-rise > :nth-child(2) { animation-delay: 0.07s; }
+  .d9-rise > :nth-child(3) { animation-delay: 0.14s; }
+  .d9-rise > :nth-child(4) { animation-delay: 0.21s; }
+}
+@media (prefers-reduced-motion: reduce) { .d9 *, .d9 *::after { transition-duration: 0.01ms; } }
+@keyframes d9-rise { from { opacity: 0.001; transform: translateY(12px); } to { opacity: 1; transform: none; } }
