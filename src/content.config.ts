@@ -1,4 +1,4 @@
-// Коллекции контента (docs/04-контентная-модель.md)
+// Коллекции контента (описание: «(A2-10) Сайт / 03 Архитектура» на Диске)
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
