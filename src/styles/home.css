@@ -59,7 +59,7 @@
 .two { display: grid; grid-template-columns: 1fr; gap: 16px; }
 .two-col { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
 .two-col h3 { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin: 0 0 14px; }
-.two-col p { font-size: 15.5px; line-height: 1.7; color: #d2cec6; margin: 0 0 12px; }
+.two-col p { font-size: 16px; line-height: 1.7; color: #d2cec6; margin: 0 0 12px; }
 .two-col p:last-child { margin-bottom: 0; }
 
 /* Как работает: editorial-шаги с номерами над линейкой (вместо кружков) */
@@ -141,3 +141,36 @@
 /* Иконки соцсетей - Ограничивает область иконок шириной кнопок слева. Благодаря этому они центрируются под кнопками, а не относительно всей левой половины экрана. Плюс - отступ от кнопок */
 .hero-socials {max-width: 440px; margin-top: 16px;}
 .hero-socials .soc-row {justify-content: center; gap: 12px;}
+
+/* ── «Основные темы моей практики» (решение Валерия 21.11.2026) ──
+   От 640px: полоса во всю ширину на фоне --bg2 (как факт-полоса под первым экраном),
+   плашки с кадром слева; с 960px две в ряд. Название как у статей (.post-title 23/300),
+   текст как в «Форматах» (14.5/1.6). Ссылка только у темы с готовой страницей:
+   вся плашка, при наведении золотая рамка; у остальных рамка та же, но не ссылка.
+   До 640px: раскрытие с плюсами (.wk, как было), без кадров и без полосы. */
+.tq { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 16px; }
+.hx-sec .hx-h2 + .tq-acc + .tq { margin-top: 28px; }
+.tq-card { display: grid; grid-template-columns: 36% 1fr; gap: 0 22px; align-items: stretch; height: 100%; overflow: hidden; color: inherit; text-decoration: none; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color .3s; }
+.tq-card:hover { border-color: var(--gold); }
+.tq-card:focus-visible { outline: 2px solid var(--gold2); outline-offset: 3px; }
+@media (hover: none) { a.tq-card:active { border-color: var(--gold); } }
+.tq-img { display: block; width: 100%; height: 100%; min-height: 180px; contain: size; object-fit: cover; background: var(--bg2); }
+.tq-copy { display: grid; gap: 10px; align-content: center; padding: 20px 24px 22px 0; }
+.tq-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 23px; line-height: 1.3; color: var(--text); margin: 0; text-wrap: balance; }
+.tq-text { font-size: 14.5px; line-height: 1.6; color: #c3bfb7; margin: 0; text-wrap: pretty; }
+.tq-acc { display: none; }
+.tq-acc .wk-body p { margin: 0; }
+html:has(.tp-band) { overflow-x: clip; }
+@media (min-width: 640px) {
+  .hx-sec.tp-band { background: var(--bg2); box-shadow: 0 0 0 100vmax var(--bg2); clip-path: inset(0 -100vmax); border-bottom: none; }
+  .hx-sec:has(+ .tp-band) { border-bottom: none; }
+}
+@media (min-width: 960px) {
+  .tq { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tq-card { grid-template-columns: 40% 1fr; gap: 0 20px; }
+  .tq-copy { padding: 20px 22px 22px 0; }
+}
+@media (max-width: 639px) {
+  .tq-acc { display: block; }
+  .tq { display: none; }
+}

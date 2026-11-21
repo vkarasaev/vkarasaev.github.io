@@ -10,6 +10,7 @@ import SocIcons from '../components/SocIcons.astro';
 import { site } from '../data/site';
 import { getCollection } from 'astro:content';
 import { getBlogFormatLabel, getBlogHref } from '../utils/blog';
+import { homeTopics, topicLinkLabel } from '../data/homeTopics';
 import '../styles/main.css';
 import '../styles/inner.css';
 import '../styles/home.css';
@@ -92,42 +93,27 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       </div>
     </section>
 
-    <section class="hx-sec">
-      <h2 class="hx-h2">Полный список того, с чем я работаю</h2>
-      <div class="wk" style="max-width: 720px;">
-        <details>
-          <summary><span class="wk-t">Выгорание и хронический стресс</span></summary>
-          <div class="wk-body">Отпуск был. Не помогло. Работать всё тяжелее, а отдых - не восстанавливает. Сил становится меньше, а раздражения - больше. Но и остановиться не получается.</div>
-        </details>
-        <details>
-          <summary><span class="wk-t">Кризис смысла и ощущение пустоты</span></summary>
-          <div class="wk-body">Цели достигнуты, но радости нет. То, ради чего столько работал, больше не греет. Новые цели не цепляют, а ответов «зачем всё это?» и «куда дальше?» - нет.</div>
-        </details>
-        <details>
-          <summary><span class="wk-t">Развод, расставание и жизнь после разрыва</span></summary>
-          <div class="wk-body">Отношения закончились, а общая жизнь - нет. Дети, деньги и жильё продолжают связывать. И всё это надо разруливать, пытаясь заново собрать свою жизнь.</div>
-        </details>
-        <details>
-          <summary><span class="wk-t">Иммиграция: адаптация, одиночество, идентичность</span></summary>
-          <div class="wk-body">Визы, язык, чужие правила и нехватка своих людей. Обычную жизнь приходится обустраивать заново, а прежнюю до сих пор отчаянно хочется вернуть.</div>
-        </details>
-        <details>
-          <summary><span class="wk-t">Трудности в отношениях, повторяющиеся сценарии</span></summary>
-          <div class="wk-body">Партнёры меняются, сценарий остаётся. Сближение, тревога, контроль, обида и дистанция. Начинается все по-разному, а приходит почему-то в одну и туже точку.</div>
-        </details>
-        <details>
-          <summary><span class="wk-t">Карьерный тупик и потолок роста</span></summary>
-          <div class="wk-body">Четвёртый год в одной роли. Других повышают, а тебе до сих пор пихают зоны роста. Рынок стоит, позиции не радуют, а выход из тупика пока не просматривается.</div>
-        </details>
-        <details>
-          <summary><span class="wk-t">Выход из найма: из корпората в своё дело</span></summary>
-          <div class="wk-body">Своё дело хочется давно. Но чтобы всерьёз в него пойти, придётся рискнуть «на все бабки»: доходом, статусом и привычным комфортом. И это только первый шаг.</div>
-        </details>
-        <details>
-          <summary><span class="wk-t">Мужской опыт: сила, секс и уязвимость</span></summary>
-          <div class="wk-body">Злость, которую некуда деть. Уязвимость, которую трудно показать. Секс, желание и конкуренция. То, о чём действительно стоит говорить с другим мужчиной.</div>
-        </details>
+    <!-- «Основные темы моей практики» (решение Валерия 21.11.2026). Тексты и кадры: src/data/homeTopics.js.
+         От 640px плашки с кадром слева (две в ряд с 960px), на телефоне раскрытие с плюсами без кадров.
+         Ссылка только у тем с готовой страницей (без planned): на плашке вся плашка, в раскрытии золотая строка. -->
+    <section class="hx-sec tp-band">
+      <h2 class="hx-h2">Основные темы моей практики</h2>
+      <div class="wk tq-acc">
+        {homeTopics.map((x) => (
+          <details>
+            <summary><span class="wk-t">{x.t}</span></summary>
+            <div class="wk-body"><p>{x.d}</p>{!x.planned && <p style="margin-top: 10px; font-size: 14px;"><a href={x.href} style="color: var(--gold); text-decoration: none;">{topicLinkLabel} →</a></p>}</div>
+          </details>
+        ))}
       </div>
+      <ul class="tq">
+        {homeTopics.map((x) => {
+          const Tag = x.planned ? 'div' : 'a';
+          return (
+            <li><Tag class="tq-card" href={x.planned ? undefined : x.href}><img class="tq-img" src={x.img.src} alt="" style={`object-position: ${x.img.pos}`} width="600" height="400" loading="lazy" /><div class="tq-copy"><h3 class="tq-name">{x.t}</h3><p class="tq-text">{x.d}</p></div></Tag></li>
+          );
+        })}
+      </ul>
     </section>
 
     <section class="hx-sec">
