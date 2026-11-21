@@ -49,7 +49,8 @@ html:has(.tp-band) { overflow-x: clip; }
 .tq3 .tq-name { font-size: 21px; }
 
 /* ── 4. Плашки 2×4, кадр сбоку ──
-   Плашки в два столбца, как «Возможно, это про вас», у каждой слева кадр. */
+   Плашки в два столбца, как «Возможно, это про вас», у каждой слева кадр.
+   На iPad стоя плашки в одну колонку, на телефоне список с маленьким кадром. */
 .tq4 { display: grid; grid-template-columns: 1fr; gap: 16px; }
 .tq4 .tq-card { padding: 14px; }
 
@@ -64,30 +65,56 @@ html:has(.tp-band) { overflow-x: clip; }
 .tq5 .tq-img { aspect-ratio: 16 / 9; border-radius: var(--radius); }
 .tq-row:hover .tq-name { color: var(--gold2); }
 
-/* Телефон: кадр слева маленьким квадратом, чтобы восемь тем не превращались
-   в восемь экранов картинок (варианты 3 и 4) */
+/* ── Телефон ──
+   Вариант 3: карточки остаются карточками и листаются вбок, следующая выглядывает
+   справа. Блок занимает один экран, восемь фото не растягиваются в простыню.
+   Вариант 4: список, кадр маленьким квадратом слева от названия, текст ниже. */
 @media (max-width: 639px) {
-  .tq3 .tq-card, .tq4 .tq-card { display: grid; grid-template-columns: 84px 1fr; align-items: start; gap: 6px 14px; padding: 14px; }
-  .tq3 .tq-img, .tq4 .tq-img { aspect-ratio: 1; height: auto; grid-row: span 2; }
-  .tq3 .tq-name, .tq4 .tq-name { font-size: 20px; }
-  .tq3 .tq-text, .tq4 .tq-text { grid-column: 1 / -1; margin-top: 6px; }
+  .hx-sec .hx-h2 + .tq3 { margin: 24px -20px 0; }
+  .tq3 { display: flex; gap: 12px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding: 0 20px; padding: 0 20px 4px; scrollbar-width: none; }
+  .tq3::-webkit-scrollbar { display: none; }
+  .tq3 > li { flex: 0 0 82%; scroll-snap-align: start; }
+  .tq3 .tq-name { font-size: 21px; }
+  .tq4 .tq-card { display: grid; grid-template-columns: 84px 1fr; align-items: center; gap: 0 14px; padding: 14px; }
+  .tq4 .tq-img { aspect-ratio: 1; height: auto; }
+  .tq4 .tq-copy { display: contents; }
+  .tq4 .tq-name { font-size: 20px; }
+  .tq4 .tq-text { grid-column: 1 / -1; margin-top: 12px; }
   .tq2 .wk-body { padding-left: 16px; }
   .tq2-th { width: 48px; height: 36px; }
   .hx-sec.tp-band { padding: 52px 0 56px; }
   .tq5 .tq-name { font-size: 22px; }
 }
 
+/* ── Планшет (640-959, iPad стоя) ──
+   Вариант 3: две карточки в ряд, кадр пониже, чтобы четыре ряда не были простынёй.
+   Вариант 4: плашки в одну колонку, кадр слева. */
 @media (min-width: 640px) {
   .tq3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tq4 .tq-card { display: grid; grid-template-columns: 36% 1fr; gap: 0 22px; align-items: stretch; padding: 0; overflow: hidden; }
+  /* contain: size: кадр не раздувает плашку по своей высоте (портретные снимки), а заполняет её */
+  .tq4 .tq-img { aspect-ratio: auto; contain: size; height: 100%; min-height: 180px; border-radius: 0; }
+  .tq4 .tq-copy { display: grid; gap: 10px; align-content: center; padding: 20px 24px 22px 0; }
+}
+@media (min-width: 640px) and (max-width: 959px) {
+  .tq3 .tq-img { aspect-ratio: 16 / 9; }
 }
 @media (min-width: 760px) {
-  .tq4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .tq4 .tq-card { display: grid; grid-template-columns: 40% 1fr; gap: 0 20px; align-items: stretch; padding: 0; overflow: hidden; }
-  .tq4 .tq-img { aspect-ratio: auto; height: 100%; min-height: 190px; border-radius: 0; }
-  .tq4 .tq-copy { display: grid; gap: 10px; align-content: center; padding: 20px 22px 22px 0; }
   .tq-row { grid-template-columns: minmax(0, 1fr) 240px; gap: 40px; align-items: center; }
   .tq5 .tq-name { font-size: 25px; }
 }
+/* ── Компьютер и iPad лёжа (от 960) ──
+   Вариант 3: четыре в ряд. Вариант 4: плашки в два столбца. */
 @media (min-width: 960px) {
   .tq3 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .tq4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .tq4 .tq-card { grid-template-columns: 40% 1fr; gap: 0 20px; }
+  .tq4 .tq-copy { padding: 20px 22px 22px 0; }
+}
+/* На 960-1099 (iPad лёжа) колонка карточки уже: поля внутри меньше, чтобы
+   названия оставались в две строки */
+@media (min-width: 960px) and (max-width: 1099px) {
+  .tq3 { gap: 12px; }
+  .tq3 .tq-card { padding: 12px 12px 18px; }
+  .tq3 .tq-name { font-size: 20px; }
 }
