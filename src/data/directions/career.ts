@@ -169,7 +169,8 @@ export const career: Direction = {
         title: 'Свобода всё просрать',
         href: 'https://t.me/valera_outloud/35',
         note: 'Моя история ухода из прежней работы и жизни без готового следующего плана.',
-        thumb: '/images/direction/career-post-backpack.jpg',
+        // Запасные кадры (Камино на дороге со стрелкой, рюкзак) лежат на Диске рядом с текстом.
+        thumb: '/images/direction/career-post-car.jpg',
       },
       {
         title: 'Посленапряжение',
