@@ -118,3 +118,28 @@ html:has(.tp-band) { overflow-x: clip; }
   .tq3 .tq-card { padding: 12px 12px 18px; }
   .tq3 .tq-name { font-size: 20px; }
 }
+
+/* ── 6. Итоговый кандидат: плашки варианта 4, легче и ниже ──
+   Компьютер и iPad лёжа: две плашки в ряд, кадр слева на треть плашки.
+   iPad стоя: одна колонка. Телефон: список, маленький квадратный кадр у названия.
+   Стрелка после названия говорит, что плашка ведёт на страницу темы;
+   при наведении она сдвигается, рамка становится золотой. */
+.tq6 { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.tq6 .tq-card { display: grid; grid-template-columns: 76px 1fr; align-items: center; gap: 0 14px; padding: 14px; }
+.tq6 .tq-img { aspect-ratio: 1; height: auto; }
+.tq6 .tq-copy { display: contents; }
+.tq6 .tq-name { font-size: 20px; }
+.tq6 .tq-text { grid-column: 1 / -1; margin-top: 12px; }
+.tq-arrow { display: inline-block; margin-left: 8px; font-family: 'Jost', sans-serif; font-size: 0.8em; color: var(--gold); transition: transform .3s, color .3s; }
+.tq-card:hover .tq-arrow { transform: translateX(4px); color: var(--gold2); }
+@media (min-width: 640px) {
+  .tq6 .tq-card { grid-template-columns: 32% 1fr; gap: 0 22px; align-items: stretch; padding: 0; overflow: hidden; }
+  .tq6 .tq-img { aspect-ratio: auto; contain: size; height: 100%; min-height: 160px; border-radius: 0; }
+  .tq6 .tq-copy { display: grid; gap: 6px; align-content: center; padding: 16px 22px 18px 0; }
+  .tq6 .tq-text { line-height: 1.55; }
+  .tq6 .tq-name { font-size: 21px; }
+  .tq6 .tq-text { margin-top: 0; }
+}
+@media (min-width: 960px) {
+  .tq6 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
