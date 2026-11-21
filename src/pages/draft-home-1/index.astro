@@ -1,6 +1,6 @@
 ---
-// ЧЕРНОВИК главной, вариант 1 блока тем (21.11.2026, второй заход). Копия src/pages/index.astro,
-// меняется только секция тем. Адрес /draft-home-1/ на сайт не попадает (astro.config).
+// ЧЕРНОВИК главной, вариант 1 блока тем (21.11.2026, третий заход: как будто готовы все восемь лендингов).
+// Копия src/pages/index.astro, меняется только секция тем. Адрес /draft-home-1/ на сайт не попадает (astro.config).
 // ГЛАВНАЯ (бывшая /home, переезд 2026-07-14): полная страница - каноническая
 // главная для всех экранов, индексируется. Компактный линк-хаб переехал на
 // /start/ (лендинг для ссылок из соцсетей), /home/ редиректит сюда (astro.config).
@@ -16,7 +16,7 @@ import '../../styles/main.css';
 import '../../styles/inner.css';
 import '../../styles/home.css';
 import '../../styles/home-topics-draft.css';
-import { homeTopics, topicGroups, topicLinkLabel } from '../../data/homeTopics';
+import { homeTopics, topicLinkLabel } from '../../data/homeTopics';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru' && data.featured))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -97,29 +97,17 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       </div>
     </section>
 
-    <!-- ЧЕРНОВИК: Вариант 1 (консервативный): раскрытие как сейчас, по образцу лендинга; тема со страницей всегда раскрыта -->
+    <!-- ЧЕРНОВИК: Вариант 1 (консервативный: раскрытие с плюсами, как сейчас; внутри каждой темы текст и ссылка-таблетка). Все восемь тем со страницей и кадром, кадры условные -->
     <section class="hx-sec">
       <h2 class="hx-h2">Основные темы моей практики</h2>
-      <ul class="tp tp1">
-        {homeTopics.map((x, i) => (
-          <li>
-            {x.href ? (
-              <div class="tp1-item has-page">
-                <h3 class="tp-name" id={`topic-${i}`}>{x.t}</h3>
-                <div class="tp1-body">
-                  <p class="tp-text">{x.d}</p>
-                  <a class="tp-go" href={x.href} aria-describedby={`topic-${i}`}>{topicLinkLabel}<span aria-hidden="true">→</span></a>
-                </div>
-              </div>
-            ) : (
-              <details class="tp1-item" name="home-topics">
-                <summary><h3 class="tp-name">{x.t}</h3></summary>
-                <div class="tp1-body"><p class="tp-text">{x.d}</p></div>
-              </details>
-            )}
-          </li>
+      <div class="wk" style="max-width: 720px;">
+        {homeTopics.map((x) => (
+          <details>
+            <summary><span class="wk-t">{x.t}</span></summary>
+            <div class="wk-body"><p>{x.d}</p><a class="tag-chip tq-chip" href={x.href}>{topicLinkLabel} →</a></div>
+          </details>
         ))}
-      </ul>
+      </div>
     </section>
 
     <section class="hx-sec">

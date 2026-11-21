@@ -1,6 +1,6 @@
 ---
-// ЧЕРНОВИК главной, вариант 2 блока тем (21.11.2026, второй заход). Копия src/pages/index.astro,
-// меняется только секция тем. Адрес /draft-home-2/ на сайт не попадает (astro.config).
+// ЧЕРНОВИК главной, вариант 2 блока тем (21.11.2026, третий заход: как будто готовы все восемь лендингов).
+// Копия src/pages/index.astro, меняется только секция тем. Адрес /draft-home-2/ на сайт не попадает (astro.config).
 // ГЛАВНАЯ (бывшая /home, переезд 2026-07-14): полная страница - каноническая
 // главная для всех экранов, индексируется. Компактный линк-хаб переехал на
 // /start/ (лендинг для ссылок из соцсетей), /home/ редиректит сюда (astro.config).
@@ -16,7 +16,7 @@ import '../../styles/main.css';
 import '../../styles/inner.css';
 import '../../styles/home.css';
 import '../../styles/home-topics-draft.css';
-import { homeTopics, topicGroups, topicLinkLabel } from '../../data/homeTopics';
+import { homeTopics, topicLinkLabel } from '../../data/homeTopics';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru' && data.featured))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -97,18 +97,17 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       </div>
     </section>
 
-    <!-- ЧЕРНОВИК: Вариант 2 (консервативный): указатель строками в две колонки на своей полосе, всё на виду -->
-    <section class="hx-sec tp-band">
+    <!-- ЧЕРНОВИК: Вариант 2 (консервативный: то же раскрытие, у каждой темы в строке маленький кадр её страницы). Все восемь тем со страницей и кадром, кадры условные -->
+    <section class="hx-sec">
       <h2 class="hx-h2">Основные темы моей практики</h2>
-      <ul class="tp tp2">
-        {homeTopics.map((x, i) => (
-          <li class={x.href ? 'tp2-item has-page' : 'tp2-item'}>
-            <h3 class="tp-name" id={`topic-${i}`}>{x.t}</h3>
-            <p class="tp-text">{x.d}</p>
-            {x.href && <a class="tp-go" href={x.href} aria-describedby={`topic-${i}`}>{topicLinkLabel}<span aria-hidden="true">→</span></a>}
-          </li>
+      <div class="wk tq2" style="max-width: 720px;">
+        {homeTopics.map((x) => (
+          <details>
+            <summary><img class="tq2-th" src={x.img.src} alt="" style={`object-position: ${x.img.pos}`} width="120" height="84" loading="lazy" /><span class="wk-t">{x.t}</span></summary>
+            <div class="wk-body"><p>{x.d}</p><a class="tag-chip tq-chip" href={x.href}>{topicLinkLabel} →</a></div>
+          </details>
         ))}
-      </ul>
+      </div>
     </section>
 
     <section class="hx-sec">

@@ -1,6 +1,6 @@
 ---
-// ЧЕРНОВИК главной, вариант 3 блока тем (21.11.2026, второй заход). Копия src/pages/index.astro,
-// меняется только секция тем. Адрес /draft-home-3/ на сайт не попадает (astro.config).
+// ЧЕРНОВИК главной, вариант 3 блока тем (21.11.2026, третий заход: как будто готовы все восемь лендингов).
+// Копия src/pages/index.astro, меняется только секция тем. Адрес /draft-home-3/ на сайт не попадает (astro.config).
 // ГЛАВНАЯ (бывшая /home, переезд 2026-07-14): полная страница - каноническая
 // главная для всех экранов, индексируется. Компактный линк-хаб переехал на
 // /start/ (лендинг для ссылок из соцсетей), /home/ редиректит сюда (astro.config).
@@ -16,7 +16,7 @@ import '../../styles/main.css';
 import '../../styles/inner.css';
 import '../../styles/home.css';
 import '../../styles/home-topics-draft.css';
-import { homeTopics, topicGroups, topicLinkLabel } from '../../data/homeTopics';
+import { homeTopics, topicLinkLabel } from '../../data/homeTopics';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft && data.lang === 'ru' && data.featured))
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
@@ -97,28 +97,14 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       </div>
     </section>
 
-    <!-- ЧЕРНОВИК: Вариант 3 (смелый): две половины практики, по четыре темы в плашке; названия групп не утверждены -->
+    <!-- ЧЕРНОВИК: Вариант 3 (смелый: карточки 4×2 с кадром, как тексты ниже; вся карточка ссылка). Все восемь тем со страницей и кадром, кадры условные -->
     <section class="hx-sec tp-band">
       <h2 class="hx-h2">Основные темы моей практики</h2>
-      <div class="tp tp3">
-        {topicGroups.map((g, gi) => (
-          <div class="tp3-half">
-            <h3 class="tp3-head">{g}</h3>
-            <ul class="tp3-list">
-              {homeTopics.slice(gi * 4, gi * 4 + 4).map((x, j) => {
-                const i = gi * 4 + j;
-                return (
-                  <li class={x.href ? 'tp3-item has-page' : 'tp3-item'}>
-                    <h4 class="tp-name" id={`topic-${i}`}>{x.t}</h4>
-                    <p class="tp-text">{x.d}</p>
-                    {x.href && <a class="tp-go" href={x.href} aria-describedby={`topic-${i}`}>{topicLinkLabel}<span aria-hidden="true">→</span></a>}
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+      <ul class="tq tq3">
+        {homeTopics.map((x) => (
+          <li><a class="tq-card" href={x.href}><img class="tq-img" src={x.img.src} alt="" style={`object-position: ${x.img.pos}`} width="600" height="400" loading="lazy" /><h3 class="tq-name">{x.t}</h3><p class="tq-text">{x.d}</p></a></li>
         ))}
-      </div>
+      </ul>
     </section>
 
     <section class="hx-sec">
