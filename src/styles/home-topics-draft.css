@@ -1,63 +1,114 @@
-/* Черновые варианты блока «Основные темы моей практики» (21.11.2026).
-   Подключается только страницами /draft-home-a|b|c/. После выбора варианта
-   его правила переезжают в home.css, остальные удаляются вместе с файлом.
-   Ширина контента та же, что у всех секций главной (.hx-wrap, 1020 px). */
+/* Черновые варианты блока «Основные темы моей практики», второй заход (21.11.2026).
+   Подключается только страницами /draft-home-1..4/. После выбора правила варианта
+   переезжают в home.css, файл удаляется.
 
-.hx-sec .hx-h2 + .tpa,
-.hx-sec .hx-h2 + .tpb,
-.hx-sec .hx-h2 + .tpc { margin-top: 28px; }
+   Что учтено из разбора всей главной: под блоком тем и над ним уже стоят плашки
+   («Возможно, это про вас» 2×2, «Почему со мной» 2×1, дальше форматы и тексты).
+   Восемь новых плашек подряд делают из главной стопку одинаковых коробок. Поэтому
+   блок тем меняет фактуру: строки вместо коробок или своя полоса во всю ширину
+   (полоса --bg2 уже есть на главной под первым экраном и на лендинге «Карьера»).
 
-/* ── Вариант A: восемь плашек 2×4, текст на виду ──
-   Тема с лендингом: вся плашка - ссылка, внизу строка «Подробнее о теме →». */
-.tpa { display: grid; grid-template-columns: 1fr; gap: 14px; }
-.tpa-card { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px 26px; text-decoration: none; color: inherit; transition: border-color .3s; }
-.tpa-t { font-weight: 400; font-family: 'Cormorant Garamond', serif; font-size: 24px; line-height: 1.25; color: var(--text); margin: 0 0 12px; }
-.tpa-d { font-size: 15px; line-height: 1.65; color: #c9c5bd; margin: 0; }
-.tpa-go { margin-top: auto; padding-top: 18px; font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--gold); }
-a.tpa-card { border-color: rgba(201,169,110,0.4); }
-a.tpa-card:hover { border-color: var(--gold); }
-a.tpa-card:hover .tpa-go { color: var(--gold2); }
+   Компоненты взяты из дизайн-системы сайта: раскрытие с золотым крестом и строки
+   с линейкой и чёрточкой (лендинг, direction.css), плашка (.two-col, .pain),
+   полоса (.d9-band), ссылка с подчёркиванием (.d9-link), строка с кадром (.d9-posts).
+   Кегли главной: заголовок раздела 32, название 22-30 Cormorant, текст 15.5 Jost. */
 
-/* ── Вариант B: раскрывающийся список, как сейчас, ссылка видна в строке ──
-   Плашки и раскрытие из .wk (inner.css) не меняются. У темы с лендингом
-   ссылка стоит прямо в строке заголовка, её видно без раскрытия. */
-.tpb { max-width: 720px; }
-.tpb-item { position: relative; margin-bottom: 10px; }
-.tpb-item details { margin-bottom: 0; }
-/* Тема с лендингом: плашкой служит вся обёртка, чтобы строка ссылки
-   на телефоне оказалась внутри той же плашки */
-.tpb-item.has-page { background: var(--surface); border: 1px solid rgba(201,169,110,0.4); border-radius: var(--radius); overflow: hidden; }
-.tpb-item.has-page details { border: none; border-radius: 0; background: transparent; }
-.tpb-head-go { padding: 2px 14px 14px 26px; }
-.tpb-item.has-page details[open] + .tpb-head-go { padding-top: 12px; background: var(--bg); }
-.tpb-go { display: inline-flex; align-items: center; font-size: 11.5px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--gold); text-decoration: none; white-space: nowrap; border: 1px solid rgba(201,169,110,0.45); border-radius: 100px; padding: 6px 12px; transition: border-color .25s, color .25s, background .25s; }
-.tpb-go:hover { color: var(--gold2); border-color: var(--gold); background: rgba(201,169,110,0.06); }
-@media (min-width: 600px) {
-  /* Компьютер: ссылка в строке заголовка, слева от плюса; видна без раскрытия */
-  .tpb-item.has-page summary .wk-t { margin-right: 220px; }
-  .tpb-head-go { position: absolute; top: 0; right: 42px; height: 50px; display: flex; align-items: center; padding: 0; }
-  .tpb-item.has-page details[open] + .tpb-head-go { padding: 0; background: none; }
-}
+.tp { --ink: #f0ece3; --body: #cfcbc2; --quiet: #a09c94; --ease: cubic-bezier(0.16, 1, 0.3, 1); }
+.hx-sec .hx-h2 + .tp { margin-top: 32px; }
+.tp :focus-visible { outline: 2px solid var(--gold2); outline-offset: 4px; border-radius: 4px; }
+.tp p { margin: 0; text-wrap: pretty; }
 
-/* ── Вариант C: плитки 4×2, тема с лендингом - светлая плитка ──
-   Тёмные плитки - тема, светлая - у темы есть своя страница. Когда выйдут
-   новые лендинги, светлых станет больше, сетка не меняется. */
-.tpc { display: grid; grid-template-columns: 1fr; gap: 14px; }
-.tpc-tile { display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 22px 24px; text-decoration: none; color: inherit; transition: border-color .3s, background .3s; }
-.tpc-n { font-family: 'Cormorant Garamond', serif; font-size: 16px; letter-spacing: 1.5px; color: var(--gold); line-height: 1; margin-bottom: 14px; }
-.tpc-t { font-weight: 400; font-family: 'Cormorant Garamond', serif; font-size: 22px; line-height: 1.22; color: var(--text); margin: 0 0 12px; }
-.tpc-d { font-size: 14.5px; line-height: 1.62; color: #c3bfb7; margin: 0; }
-.tpc-go { margin-top: auto; padding-top: 18px; font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; font-weight: 500; }
-a.tpc-tile { background: #f5f3ef; border-color: #f5f3ef; }
-a.tpc-tile .tpc-n { color: #8a6428; }
-a.tpc-tile .tpc-t { color: #19191c; }
-a.tpc-tile .tpc-d { color: #45454b; }
-a.tpc-tile .tpc-go { color: #8a6428; }
-a.tpc-tile:hover { border-color: var(--gold); }
-a.tpc-tile:hover .tpc-go { color: #6d4c18; }
-@media (min-width: 600px) { .tpc { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 960px) { .tpc { grid-template-columns: repeat(4, 1fr); } }
+/* Общие роли */
+.tp-name { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 23px; line-height: 1.25; color: var(--ink); margin: 0; text-wrap: balance; transition: color .25s var(--ease); }
+.tp-text { font-size: 15.5px; line-height: 1.7; color: var(--body); }
+.tp-go { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; color: var(--gold); text-decoration: underline; text-decoration-color: rgba(201,169,110,0.5); text-decoration-thickness: 1px; text-underline-offset: 6px; transition: color .25s var(--ease), text-decoration-color .25s var(--ease); }
+.tp-go:hover, .has-page:hover .tp-go { color: var(--gold2); text-decoration-color: var(--gold2); }
+/* Ссылкой служит только подпись «Как я с этим работаю», а нажимается вся тема:
+   скринридер читает короткое имя ссылки, мышь попадает в любую точку темы. */
+.tp .has-page { position: relative; cursor: pointer; }
+.tp .has-page .tp-go::after { content: ''; position: absolute; inset: 0; border-radius: var(--radius); }
+.tp .has-page:hover .tp-name { color: var(--gold2); }
+.tp ul, ul.tp { list-style: none; margin: 0; padding: 0; }
+
+/* Полоса во всю ширину окна: раздел стоит на своём фоне, без линеек сверху и снизу */
+html:has(.tp-band) { overflow-x: clip; }
+.hx-sec.tp-band { background: var(--bg2); box-shadow: 0 0 0 100vmax var(--bg2); clip-path: inset(0 -100vmax); border-bottom: none; padding: 72px 0 80px; --rule: #2f2f36; }
+.hx-sec:has(+ .tp-band) { border-bottom: none; }
+
+/* ── 1. Раскрытие, как сейчас, по образцу лендинга ──
+   Список на всю ширину сетки (сейчас он уже: 720 из 1020). Названия крупнее,
+   крест вместо плюса, плашки те же. Тема, у которой есть своя страница,
+   не прячется: она всегда раскрыта, внутри текст и ссылка. */
+.tp1 { display: grid; gap: 10px; }
+.tp1 > li { display: grid; }
+.tp1-item.has-page .tp-go::after { border-radius: var(--radius); }
+.tp1-item { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color .3s var(--ease); }
+.tp1-item:hover, .tp1-item[open] { border-color: rgba(240,236,227,0.18); }
+.tp1 summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 18px 26px; cursor: pointer; list-style: none; border-radius: var(--radius); }
+.tp1 summary::-webkit-details-marker { display: none; }
+.tp1 summary:focus-visible { outline-offset: -2px; border-radius: var(--radius); }
+.tp1 summary::after { content: ''; flex: 0 0 auto; width: 16px; height: 16px; background: linear-gradient(var(--gold), var(--gold)) center / 16px 1px no-repeat, linear-gradient(var(--gold), var(--gold)) center / 1px 16px no-repeat; transition: transform .4s var(--ease); }
+.tp1 details[open] summary::after { transform: rotate(135deg); }
+.tp1 summary:hover .tp-name { color: var(--gold2); }
+.tp1 .tp-name { font-size: 22px; }
+.tp1-body { padding: 0 26px 24px; max-width: 760px; display: grid; gap: 6px; }
+.tp1-item.has-page { border-color: rgba(201,169,110,0.45); padding: 18px 26px 12px; }
+.tp1-item.has-page .tp1-body { padding: 10px 0 0; }
+.tp1-item.has-page:hover { border-color: var(--gold); }
+.tp1-item.has-page .tp-go:focus-visible { outline-offset: 6px; }
+
+/* ── 2. Указатель на полосе ──
+   Без коробок: восемь тем строками с линейкой и золотой чёрточкой, в две колонки,
+   всё на виду. Раздел стоит на своей полосе, поэтому отделён от плашек выше и ниже.
+   Тема со страницей - вся строка ссылка, внизу «Как я с этим работаю». */
+.tp2 { display: grid; grid-template-columns: 1fr; column-gap: 64px; }
+.tp2-item { display: grid; gap: 10px; align-content: start; padding: 26px 0 28px; border-top: 1px solid var(--rule, var(--border)); color: inherit; text-decoration: none; }
+.tp2-item .tp-go { margin-top: 2px; min-height: 0; }
+
+/* ── 3. Две половины практики ──
+   Две равные плашки на полосе: работа и личная жизнь, по четыре темы в каждой.
+   Внутри плашки темы идут строками через линейку, вложенных коробок нет. */
+.tp3 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.tp3-half { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 30px 32px 10px; }
+.tp3-head { font-family: 'Jost', sans-serif; font-size: 13px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin: 0 0 6px; }
+.tp3-list { display: contents; }
+.tp3-item { display: grid; gap: 8px; align-content: start; padding: 22px 0 24px; border-top: 1px solid var(--border); color: inherit; text-decoration: none; }
+.tp3-list > li:first-child { border-top: none; }
+.tp3-item.has-page .tp-go::after { border-radius: 0; }
+.tp3-item .tp-go { min-height: 0; margin-top: 4px; }
+
+/* ── 4. Оглавление с кадром ──
+   Крупный указатель в одну колонку на полосе: название большим светлым
+   Cormorant, под ним одна-две строки текста. У темы со своей страницей
+   справа кадр с лендинга и ссылка: с каждым новым лендингом кадров
+   становится больше, сетка не меняется. */
+.tp4 { list-style: none; margin: 0; padding: 0; border-bottom: 1px solid var(--rule, var(--border)); }
+.tp4 > li { border-top: 1px solid var(--rule, var(--border)); }
+.tp4 > li.tp4-item { padding: 26px 0 28px; }
+.tp4 .has-page .tp-go::after { border-radius: 0; }
+.tp4-item { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px 40px; align-items: center; padding: 26px 0 28px; color: inherit; text-decoration: none; }
+.tp4-copy { display: grid; gap: 10px; max-width: 760px; }
+.tp4 .tp-name { font-size: 24px; line-height: 1.22; }
+.tp4-shot { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 50% 30%; border-radius: var(--radius); filter: saturate(0.88); }
+.tp4-item .tp-go { min-height: 0; margin-top: 4px; }
 
 @media (min-width: 760px) {
-  .tpa { grid-template-columns: repeat(2, 1fr); }
+  .tp2 { grid-template-columns: repeat(2, minmax(0, 1fr)); border-bottom: 1px solid var(--rule, var(--border)); }
+  /* Две плашки на общих строках: линейки тем стоят на одной высоте слева и справа */
+  .tp3 { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: repeat(5, auto); row-gap: 0; column-gap: 16px; }
+  .tp3-half { display: grid; grid-row: span 5; grid-template-rows: subgrid; }
+  .tp4 .tp-name { font-size: 25px; }
+  .tp4-item.has-page { grid-template-columns: minmax(0, 1fr) 260px; }
+}
+@media (max-width: 759px) {
+  .tp2 { border-bottom: 1px solid var(--rule, var(--border)); }
+}
+@media (max-width: 639px) {
+  .hx-sec.tp-band { padding: 56px 0 60px; }
+  .tp1 summary { padding: 16px 20px; }
+  .tp1-body { padding: 0 20px 20px; }
+  .tp1-item.has-page { padding: 16px 20px 10px; }
+  .tp-name, .tp1 .tp-name { font-size: 21px; }
+  .tp3-half { padding: 24px 22px 6px; }
+  .tp4 .tp-name { font-size: 22px; }
 }
