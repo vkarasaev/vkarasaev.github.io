@@ -22,6 +22,8 @@
 .tq-img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; background: var(--bg2); }
 .tq-card { display: flex; flex-direction: column; gap: 12px; height: 100%; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color .3s; }
 .tq-card:hover { border-color: var(--gold); }
+/* Телефон: при нажатии на плашку-ссылку рамка на миг золотая, как при наведении мышкой. */
+@media (hover: none) { a.tq-card:active { border-color: var(--gold); } }
 
 /* Полоса во всю ширину окна: раздел на своём фоне, без линеек сверху и снизу */
 html:has(.tp-band) { overflow-x: clip; }
@@ -173,4 +175,12 @@ html:has(.tp-band) { overflow-x: clip; }
 }
 @media (min-width: 960px) {
   .tq7 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Вариант 9: на телефоне (до 640px) раскрытие с плюсами вместо плашек, от 640px плашки варианта 4. */
+.tq-phone { display: none; }
+.hx-sec .hx-h2 + .tq-phone + .tq-wide { margin-top: 28px; } /* тот же отступ под заголовком, что у варианта 4 */
+@media (max-width: 639px) {
+  .tq-phone { display: block; }
+  .tq-wide { display: none; }
 }

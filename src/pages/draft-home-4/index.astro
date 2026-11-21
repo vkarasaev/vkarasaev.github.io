@@ -97,13 +97,17 @@ const fmt = (d) => d.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long'
       </div>
     </section>
 
-    <!-- ЧЕРНОВИК: Вариант 4 (смелый: плашки 2×4, кадр слева; вся плашка ссылка). Все восемь тем со страницей и кадром, кадры условные -->
+    <!-- ЧЕРНОВИК: Вариант 4 (плашки 2×4, кадр слева). Ссылка только у «Карьеры»; остальные плашки не ссылки, рамка при наведении та же -->
     <section class="hx-sec tp-band">
       <h2 class="hx-h2">Основные темы моей практики</h2>
       <ul class="tq tq4">
-        {homeTopics.map((x) => (
-          <li><a class="tq-card" href={x.href}><img class="tq-img" src={x.img.src} alt="" style={`object-position: ${x.img.pos}`} width="600" height="400" loading="lazy" /><div class="tq-copy"><h3 class="tq-name">{x.t}</h3><p class="tq-text">{x.d}</p></div></a></li>
-        ))}
+        {homeTopics.map((x) => {
+          // Ссылка только у темы с готовым лендингом; остальные плашки - не ссылки (без пальца), рамка при наведении та же.
+          const Tag = x.planned ? 'div' : 'a';
+          return (
+            <li><Tag class="tq-card" href={x.planned ? undefined : x.href}><img class="tq-img" src={x.img.src} alt="" style={`object-position: ${x.img.pos}`} width="600" height="400" loading="lazy" /><div class="tq-copy"><h3 class="tq-name">{x.t}</h3><p class="tq-text">{x.d}</p></div></Tag></li>
+          );
+        })}
       </ul>
     </section>
 
