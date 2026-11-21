@@ -18,7 +18,9 @@ export function typograf(input: string): string {
     .replace(/(\d) (?=\d{3}(?!\d))/g, `$1${NBSP}`)
     // 55 минут, 5 000 ₽, 60 €
     .replace(/(\d) (?=[₽€]|минут|лет|год)/g, `$1${NBSP}`)
-    .replace(shortWord, `$1${NBSP}`);
+    .replace(shortWord, `$1${NBSP}`)
+    // «почему-то», «по-прежнему»: слова с дефисом не рвутся на переносе
+    .replace(/([А-Яа-яЁё]+(?:-[А-Яа-яЁё]+)+)/g, '<span class="nw">$1</span>');
 }
 
 // 1 статья, 3 статьи, 7 статей
