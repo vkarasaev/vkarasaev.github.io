@@ -1,5 +1,5 @@
 # Деплой karasaev.com на GitHub Pages через сборку Astro.
-# Прод = ветка main. Рабочие изменения - через ветки и PR (см. docs/06-деплой-и-workflow.md).
+# Прод = ветка main. Рабочие изменения - через ветки и PR (см. AGENTS.md).
 name: Deploy to GitHub Pages
 
 on:
