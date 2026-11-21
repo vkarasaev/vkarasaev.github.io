@@ -163,19 +163,19 @@ export const career: Direction = {
   personal: {
     title: 'Более личное',
     intro: 'Более личное на эту тему я пишу в Telegram. Познакомиться со мной можно и через эти тексты.',
+    // Порядок и картинки выбрал Валерий 21.11.2026: сначала «Свобода», затем «Посленапряжение».
     items: [
+      {
+        title: 'Свобода всё просрать',
+        href: 'https://t.me/valera_outloud/35',
+        note: 'Моя история ухода из прежней работы и жизни без готового следующего плана.',
+        thumb: '/images/direction/career-post-backpack.jpg',
+      },
       {
         title: 'Посленапряжение',
         href: 'https://t.me/valera_outloud/50',
         note: 'Большая задача уже позади, а внутри ещё ничего не закончилось.',
         thumb: '/images/direction/career-post-guitar.jpg',
-      },
-      {
-        title: 'Свобода всё просрать',
-        href: 'https://t.me/valera_outloud/35',
-        note: 'Моя история ухода из прежней работы и жизни без готового следующего плана.',
-        // Кадр выбран 21.11.2026 из двух (в машине, коробки переезда): лицо читается в 88 px.
-        thumb: '/images/direction/career-post-car.jpg',
       },
     ],
   },
