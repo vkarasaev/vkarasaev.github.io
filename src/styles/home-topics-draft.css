@@ -34,7 +34,7 @@ a.tpa-card:hover .tpa-go { color: var(--gold2); }
 .tpb-go:hover { color: var(--gold2); border-color: var(--gold); background: rgba(201,169,110,0.06); }
 @media (min-width: 600px) {
   /* Компьютер: ссылка в строке заголовка, слева от плюса; видна без раскрытия */
-  .tpb-item.has-page summary .wk-t { margin-right: 190px; }
+  .tpb-item.has-page summary .wk-t { margin-right: 220px; }
   .tpb-head-go { position: absolute; top: 0; right: 42px; height: 50px; display: flex; align-items: center; padding: 0; }
   .tpb-item.has-page details[open] + .tpb-head-go { padding: 0; background: none; }
 }
