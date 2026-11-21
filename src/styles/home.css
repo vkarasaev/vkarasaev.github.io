@@ -59,7 +59,7 @@
 .two { display: grid; grid-template-columns: 1fr; gap: 16px; }
 .two-col { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
 .two-col h3 { font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin: 0 0 14px; }
-.two-col p { font-size: 15.5px; line-height: 1.7; color: #d2cec6; margin: 0 0 12px; }
+.two-col p { font-size: 16px; line-height: 1.7; color: #d2cec6; margin: 0 0 12px; }
 .two-col p:last-child { margin-bottom: 0; }
 
 /* Как работает: editorial-шаги с номерами над линейкой (вместо кружков) */

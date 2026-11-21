@@ -27,7 +27,7 @@
 
 /* Полоса во всю ширину окна: раздел на своём фоне, без линеек сверху и снизу */
 html:has(.tp-band) { overflow-x: clip; }
-.hx-sec.tp-band { background: var(--bg2); box-shadow: 0 0 0 100vmax var(--bg2); clip-path: inset(0 -100vmax); border-bottom: none; padding: 64px 0 72px; }
+.hx-sec.tp-band { background: var(--bg2); box-shadow: 0 0 0 100vmax var(--bg2); clip-path: inset(0 -100vmax); border-bottom: none; padding: 52px 0; } /* 52 сверху и снизу, как у всех блоков главной (было 64 и 72) */
 .hx-sec:has(+ .tp-band) { border-bottom: none; }
 
 /* ── 1. Раскрытие, как сейчас ──
@@ -84,7 +84,6 @@ html:has(.tp-band) { overflow-x: clip; }
   .tq4 .tq-text { grid-column: 1 / -1; margin-top: 12px; }
   .tq2 .wk-body { padding-left: 16px; }
   .tq2-th { width: 48px; height: 36px; }
-  .hx-sec.tp-band { padding: 52px 0 56px; }
   .tq5 .tq-name { font-size: 22px; }
 }
 
@@ -93,6 +92,8 @@ html:has(.tp-band) { overflow-x: clip; }
    Вариант 4: плашки в одну колонку, кадр слева. */
 @media (min-width: 640px) {
   .tq3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  /* Название темы как названия статей в «Как я думаю - в текстах» (.post-title): 23, светлое 300 (было 22 и 400). */
+  .tq4 .tq-name { font-size: 23px; font-weight: 300; line-height: 1.3; }
   .tq4 .tq-card { display: grid; grid-template-columns: 36% 1fr; gap: 0 22px; align-items: stretch; padding: 0; overflow: hidden; }
   /* contain: size: кадр не раздувает плашку по своей высоте (портретные снимки), а заполняет её */
   .tq4 .tq-img { aspect-ratio: auto; contain: size; height: 100%; min-height: 180px; border-radius: 0; }
@@ -180,6 +181,11 @@ html:has(.tp-band) { overflow-x: clip; }
 /* Вариант 9: на телефоне (до 640px) раскрытие с плюсами вместо плашек, от 640px плашки варианта 4. */
 .tq-phone { display: none; }
 .hx-sec .hx-h2 + .tq-phone + .tq-wide { margin-top: 28px; } /* тот же отступ под заголовком, что у варианта 4 */
+/* На телефоне блок на обычном тёмном фоне с линией снизу, как сейчас на главной; полоса другого фона только от 640px. */
+@media (max-width: 639px) {
+  .hx-sec.tp-band.tp-band-wide { background: none; box-shadow: none; clip-path: none; border-bottom: 1px solid var(--border); }
+  .hx-sec:has(+ .tp-band-wide) { border-bottom: 1px solid var(--border); }
+}
 @media (max-width: 639px) {
   .tq-phone { display: block; }
   .tq-wide { display: none; }
