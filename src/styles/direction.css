@@ -1,240 +1,309 @@
-/* Лендинги клиентских направлений (19.11.2026, сборка от авторской композиции).
+/* Лендинги клиентских направлений (/career/ и следующие).
+   Гамма и шрифты сайта (main.css): тёмный фон, золото, Cormorant Garamond + Jost.
+   Своё здесь - структура: общая вертикальная ось «заголовок слева, текст справа»,
+   чередование тёмных полос и одна светлая панель с условиями и контактом.
+   Все классы с префиксом dl-, общие стили сайта не переопределяются. */
 
-   Мир: гамма и гарнитуры сайта, один акцент (золото), один радиус (12px), одна тёмная тема.
-   Язык тот же, что на главной: заголовок сверху, под ним плашки в две колонки.
+.dl {
+  --dl-ink: #efebe2;
+  --dl-body: #d5d1c8;
+  --dl-quiet: #b9b5ac;
+  --dl-rule: var(--border);
+  --dl-paper: #f5f3ef;
+  --dl-paper-ink: #19191c;
+  --dl-paper-body: #35353a;
+  --dl-paper-quiet: #625e57;
+  --dl-paper-rule: rgba(25, 25, 28, 0.16);
+  --dl-paper-gold: #7d5a22;
+  --dl-serif: 'Cormorant Garamond', serif;
+  --dl-sans: 'Jost', sans-serif;
+  --dl-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --dl-rail: 290px;
+  --dl-gap: 80px;
 
-   Приём страницы: короткий текст одной колонкой, ровные плашки, вывод.
-   Текст не раскладывается на левую и правую колонки; две колонки бывают только
-   у плашек (всегда чётное число, строки равной высоты) и у пары «кадр и текст».
-
-   Типографика: пять ролей, у каждой один кегль и одна гарнитура.
-     заголовок страницы  Cormorant 300   38-64   один раз
-     заголовок раздела   Cormorant 300   28-40   один на раздел, им же итоговая фраза
-     название пункта     Cormorant 400   22-26   тезисы, названия, цифры условий; курсивом голоса и вопросы
-     текст               Jost 400        18-20   всё, что читают
-     подпись             Jost 500        14      кнопки, ссылки, метки
-
-   Разделение: плашки (#151518 на фоне, #1c1c20 на полосе и внутри раскрытого тезиса)
-   и полосы во всю ширину окна. */
-
-.dv {
-  --dv-ink: #f0ece3;
-  --dv-body: #cfcbc2;
-  --dv-quiet: #a09c94;
-  --dv-rule: var(--border);
-  --dv-serif: 'Cormorant Garamond', serif;
-  --dv-sans: 'Jost', sans-serif;
-
-  --dv-display: clamp(2.375rem, 4.5vw, 4rem);
-  --dv-h2: clamp(1.75rem, 2.9vw, 2.5rem);
-  --dv-item: clamp(1.375rem, 1.85vw, 1.625rem);
-  --dv-text: clamp(1.125rem, 0.35vw + 0.95rem, 1.25rem);
-  --dv-small: 0.875rem;
-
-  --dv-gutter: 16px;
-  --dv-gap: clamp(64px, 8.4vw, 116px);
-  --dv-pad: clamp(20px, 2.6vw, 32px);
-  --dv-stack: clamp(24px, 3vw, 36px);
-  --dv-head: clamp(28px, 3.6vw, 48px);
-  --dv-ease: cubic-bezier(0.16, 1, 0.3, 1);
-
-  font-family: var(--dv-sans);
-  font-size: var(--dv-text);
+  font-family: var(--dl-sans);
   font-weight: 400;
-  line-height: 1.55;
-  letter-spacing: 0.004em;
-  font-variant-numeric: lining-nums;
-  color: var(--dv-body);
-}
-html:has(.dv) { overflow-x: clip; }
-.dv .nw { white-space: nowrap; }
-.dv ::selection { background: rgba(201, 169, 110, 0.34); color: #fff; }
-.dv :focus-visible { outline: 2px solid var(--gold2); outline-offset: 4px; }
-
-/* ── Роли ── */
-.dv-display { font-family: var(--dv-serif); font-weight: 300; font-size: var(--dv-display); line-height: 1.06; letter-spacing: -0.012em; color: var(--dv-ink); text-wrap: balance; }
-.dv-display span { display: block; }
-.dv-h2 { font-family: var(--dv-serif); font-weight: 300; font-size: var(--dv-h2); line-height: 1.12; letter-spacing: -0.006em; color: var(--dv-ink); text-wrap: balance; }
-.dv-item { font-family: var(--dv-serif); font-weight: 400; font-size: var(--dv-item); line-height: 1.24; letter-spacing: 0; color: var(--dv-ink); text-wrap: balance; }
-.dv-voice { font-family: var(--dv-serif); font-style: italic; font-weight: 400; font-size: min(calc(var(--dv-text) * 1.12), 1.3125rem); line-height: 1.38; letter-spacing: 0; color: var(--dv-ink); }
-.dv-text { max-width: 35em; text-wrap: pretty; }
-.dv-prose { display: grid; gap: 0.9em; }
-.dv-meta { font-size: var(--dv-small); font-weight: 500; line-height: 1.4; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
-
-.dv-btn {
-  display: inline-flex; align-items: center; justify-content: center;
-  min-height: 56px; padding: 10px 28px;
-  background: var(--gold); color: #0e0e10; border-radius: var(--radius);
-  font-size: var(--dv-small); font-weight: 500; line-height: 1.3; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; text-align: center;
-  transition: background-color 0.25s var(--dv-ease), transform 0.15s var(--dv-ease);
-}
-.dv-btn:hover { background: var(--gold2); }
-.dv-btn:active { transform: translateY(1px); }
-.dv-link { display: inline-flex; align-items: center; min-height: 44px; color: var(--gold); font-size: var(--dv-small); font-weight: 500; letter-spacing: 0.02em; text-decoration: underline; text-decoration-color: rgba(201, 169, 110, 0.5); text-decoration-thickness: 1px; text-underline-offset: 6px; transition: color 0.25s var(--dv-ease); }
-.dv-link:hover { color: var(--gold2); text-decoration-color: var(--gold2); }
-
-/* ── Секции, полосы, плашки ── */
-.dv-sec { padding-top: var(--dv-gap); }
-.dv-sec:last-of-type { padding-bottom: 0; }
-.dv-sec > .dv-h2, .dv-band > .dv-h2 { max-width: 18em; margin-bottom: var(--dv-head); }
-/* Полоса: содержимое остаётся в сетке, фон дотягивается до краёв окна. */
-.dv-band { margin-top: var(--dv-gap); padding-block: var(--dv-gap); background: var(--bg2); box-shadow: 0 0 0 100vmax var(--bg2); clip-path: inset(0 -100vmax); --dv-panel: var(--surface); --dv-line: #2f2f36; }
-.dv-panel { padding: var(--dv-pad); background: var(--dv-panel, var(--bg2)); border: 1px solid var(--dv-line, var(--dv-rule)); border-radius: var(--radius); }
-.dv-panel .dv-text { max-width: none; }
-.dv-panel { transition: border-color 0.3s var(--dv-ease); }
-.dv-voices > .dv-panel:hover, .dv-defs > .dv-panel:hover, .dv-options > .dv-panel:hover { border-color: rgba(201, 169, 110, 0.5); }
-
-/* Плашки в две колонки: все строки одной высоты. */
-.dv-voices, .dv-defs { display: grid; gap: var(--dv-gutter); list-style: none; }
-.dv-voices li { display: grid; align-content: center; }
-@media (min-width: 760px) {
-  .dv-voices, .dv-defs { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; }
+  color: var(--dl-body);
 }
 
-/* ── Первый экран: кадр на всю ширину окна, текст слева ── */
-.dv-hero { position: relative; width: 100vw; margin-left: calc(50% - 50vw); display: grid; align-items: end; overflow: hidden; }
-.dv-hero-photo { position: absolute; inset: 0 0 auto 0; width: 100%; height: 340px; object-fit: cover; object-position: 64% 0%; }
-.dv-hero::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 14, 16, 0) 150px, rgba(14, 14, 16, 0.9) 300px, #0e0e10 340px); }
-.dv-hero-copy { position: relative; z-index: 1; display: grid; gap: 22px; justify-items: start; width: min(1060px, 100%); margin: 0 auto; padding: 258px 20px 32px; }
-.dv-sub { max-width: 26em; color: var(--dv-ink); text-wrap: pretty; }
-.dv-hero-cta { display: grid; gap: 14px; justify-items: start; margin-top: 6px; }
-.dv-who { font-size: var(--dv-small); line-height: 1.4; letter-spacing: 0.02em; color: var(--dv-body); }
-@media (min-width: 900px) {
-  /* Первый экран целиком: шапка, кадр и строка условий занимают ровно высоту окна. */
-  .dv-hero { align-items: center; min-height: clamp(520px, calc(100dvh - 68px - 112px), 880px); }
-  .dv-hero-photo { inset: 0; height: 100%; object-position: 50% 16%; }
-  .dv-hero::after { background: linear-gradient(90deg, rgba(14, 14, 16, 0.94) 0%, rgba(14, 14, 16, 0.86) 30%, rgba(14, 14, 16, 0.45) 48%, rgba(14, 14, 16, 0) 64%); }
-  .dv-hero-copy { padding: 56px 20px; }
-  .dv-hero .dv-display { max-width: 9em; }
-  .dv-hero .dv-sub { max-width: 23em; }
+.dl ::selection { background: rgba(201, 169, 110, 0.34); color: #fff; }
+.dl a { transition: color 0.25s var(--dl-ease), border-color 0.25s var(--dl-ease), background-color 0.25s var(--dl-ease); }
+.dl a:focus-visible { outline: 2px solid var(--gold2); outline-offset: 3px; border-radius: 4px; }
+.dl p, .dl ul, .dl ol, .dl dl, .dl dd, .dl h2, .dl h3 { margin: 0; padding: 0; }
+
+/* ── Секции и полосы ──
+   Полоса остаётся в контентной сетке (края текста совпадают с шапкой), а фон и
+   линейки дотягиваются до краёв окна тенью и border-image: без 100vw и без
+   горизонтальной прокрутки. */
+.dl-sec { padding-block: clamp(56px, 8vw, 104px); }
+.dl-sec:not(.dl-band) + .dl-sec:not(.dl-band) { padding-top: 0; }
+.dl-band {
+  background: var(--bg2);
+  box-shadow: 0 0 0 100vmax var(--bg2);
+  clip-path: inset(0 -100vmax);
+  border-block: 1px solid var(--dl-rule);
+  border-image: linear-gradient(var(--dl-rule), var(--dl-rule)) 1 / 1px 0 / 0 100vmax;
 }
 
-/* ── Условия одной строкой ── */
-.dv-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 32px; padding: 26px 0 28px; border-bottom: 1px solid var(--dv-rule); }
-.dv-facts dt { font-family: var(--dv-serif); font-size: var(--dv-item); line-height: 1.2; letter-spacing: 0; color: var(--gold2); }
-.dv-facts dd { margin-top: 4px; font-size: var(--dv-small); line-height: 1.4; color: var(--dv-quiet); }
-@media (min-width: 900px) { .dv-facts { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-
-/* ── Вводные абзацы: одна колонка ── */
-.dv-lead { display: grid; gap: 0.9em; padding-top: clamp(40px, 4.6vw, 60px); }
-.dv-lead > p:last-child { color: var(--dv-ink); }
-
-/* ── Тезисы, которые раскрываются ── */
-.dv-acc { display: grid; gap: 12px; }
-.dv-row { background: var(--bg2); border: 1px solid var(--dv-rule); border-radius: var(--radius); --dv-panel: var(--surface); --dv-line: #2f2f36; transition: border-color 0.3s var(--dv-ease); }
-.dv-row:hover, .dv-row[open] { border-color: rgba(201, 169, 110, 0.38); }
-.dv-row summary { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 44px; padding: clamp(18px, 2vw, 24px) var(--dv-pad); cursor: pointer; list-style: none; border-radius: var(--radius); }
-.dv-row summary::-webkit-details-marker { display: none; }
-.dv-row summary::after { content: ''; flex: 0 0 auto; width: 18px; height: 18px; background: linear-gradient(var(--gold), var(--gold)) center / 18px 1px no-repeat, linear-gradient(var(--gold), var(--gold)) center / 1px 18px no-repeat; transition: transform 0.4s var(--dv-ease); }
-.dv-row[open] summary::after { transform: rotate(135deg); }
-.dv-row summary:hover .dv-item { color: var(--gold2); }
-.dv-row .dv-item { transition: color 0.25s var(--dv-ease); }
-.dv-row-body { display: grid; gap: 0.9em; padding: 4px var(--dv-pad) var(--dv-pad); }
-.dv-row-body > .dv-voices, .dv-row-body > .dv-defs { margin-block: 12px; }
-.dv-row-body > p:last-child:not(:first-child) { color: var(--dv-ink); }
-/* Плашка внутри раскрытого тезиса: заливка без рамки, чтобы рамка не стояла в рамке. */
-.dv-row .dv-panel { border-color: transparent; }
-@media (max-width: 639px) { .dv-row .dv-panel { padding: 16px; } }
-.dv-defs > div { display: grid; gap: 8px; align-content: start; }
-.dv-defs dt { color: var(--gold2); }
-
-/* ── «Как я с этим работаю»: один поток сверху вниз. Позиция, четыре равные плашки
-   исходов, пятый исход строкой, итоговая фраза. ── */
-.dv-options { display: grid; gap: var(--dv-gutter); margin-block: var(--dv-stack) clamp(20px, 2.2vw, 28px); list-style: none; }
-.dv-options li { display: grid; align-content: center; }
-.dv-options .dv-text { color: var(--dv-ink); }
-.dv-gold { color: var(--gold2); }
-@media (min-width: 760px) { .dv-options { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 1fr; } }
-.dv-thesis { position: relative; max-width: 21em; margin-top: clamp(40px, 4.4vw, 60px); padding-top: clamp(26px, 3vw, 36px); }
-.dv-thesis::before { content: ''; position: absolute; top: 0; left: 0; width: 56px; height: 1px; background: var(--gold); }
-
-/* ── Кадр и текст: кадр тянется по высоте текста, низ всегда совпадает ── */
-.dv-duo { display: grid; gap: 28px; }
-.dv-duo-photo { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; }
-.dv-duo-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.dv-photo-calm img { filter: saturate(0.85); }
-.dv-duo-text { display: grid; gap: 20px; align-content: start; justify-items: start; }
-.dv-links { display: flex; flex-wrap: wrap; gap: 0 26px; }
-@media (min-width: 900px) {
-  .dv-duo { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 4vw, 56px); align-items: stretch; }
-  .dv-duo-flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-  .dv-duo-solo { grid-template-columns: minmax(0, 1fr); }
-  .dv-duo-photo { aspect-ratio: auto; min-height: 300px; }
+/* Ось страницы: заголовок раздела слева, содержание справа. */
+.dl-rail { display: grid; gap: 26px; }
+.dl-h2 {
+  font-family: var(--dl-serif);
+  font-weight: 300;
+  font-size: clamp(30px, 3.5vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  color: var(--dl-ink);
+  text-wrap: balance;
 }
 
-/* ── Материалы блога ── */
-.dv-series { display: grid; gap: 24px; }
-.dv-series-cover { display: block; }
-.dv-series-cover img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius); }
-.dv-series-text { display: grid; gap: 12px; justify-items: start; align-content: center; }
-.dv-title-link { display: inline-flex; align-items: center; min-height: 44px; color: inherit; text-decoration: none; transition: color 0.25s var(--dv-ease); }
-.dv-title-link:hover { color: var(--gold2); }
-.dv-parts { display: grid; margin-top: var(--dv-stack); }
-.dv-parts ol { list-style: none; }
-.dv-parts li { border-top: 1px solid var(--dv-line, #2a2a30); }
-.dv-parts a { display: grid; grid-template-columns: 38px minmax(0, 1fr); align-items: baseline; min-height: 44px; padding: 14px 0 15px; color: var(--dv-body); text-decoration: none; transition: color 0.25s var(--dv-ease); }
-.dv-parts a:hover { color: var(--gold2); }
-.dv-parts .dv-meta { letter-spacing: 0.04em; }
-.dv-articles { display: grid; gap: var(--dv-gutter); margin-top: var(--dv-stack); list-style: none; }
-.dv-articles li { display: grid; }
-.dv-article { display: grid; gap: 18px; align-content: start; padding: 16px 16px 26px; color: inherit; text-decoration: none; transition: border-color 0.3s var(--dv-ease); }
-.dv-article:hover { border-color: rgba(201, 169, 110, 0.38); }
-.dv-article img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 8px; }
-.dv-article-text { display: grid; gap: 8px; align-content: start; padding-inline: 8px; }
-.dv-article:hover .dv-item { color: var(--gold2); }
-@media (min-width: 760px) {
-  .dv-series { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(32px, 4vw, 56px); }
-  .dv-parts { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(32px, 4vw, 56px); }
-  .dv-articles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+/* ── Первый экран ── */
+.dl-hero {
+  padding: clamp(40px, 6.5vw, 80px) 0 clamp(52px, 7vw, 92px);
+  background: radial-gradient(560px 300px at 28% 0%, rgba(201, 169, 110, 0.07), transparent 72%);
+}
+.dl-h1 { margin: 0; font-weight: inherit; }
+.dl-topic {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold2);
+  margin-bottom: clamp(16px, 2.2vw, 24px);
+}
+.dl-headline {
+  display: block;
+  max-width: 15.5em;
+  font-family: var(--dl-serif);
+  font-weight: 300;
+  font-size: clamp(37px, 5.5vw, 68px);
+  line-height: 1.04;
+  letter-spacing: -0.012em;
+  color: var(--dl-ink);
+  text-wrap: balance;
+}
+.dl-hero-row {
+  display: grid;
+  gap: 34px;
+  margin-top: clamp(28px, 4vw, 48px);
+  padding-top: clamp(26px, 3.4vw, 40px);
+  border-top: 1px solid var(--dl-rule);
+}
+.dl-lead p { font-size: 17px; line-height: 1.72; max-width: 58ch; }
+.dl-lead p + p { margin-top: 1.1em; }
+.dl-lead .dl-lead-first {
+  max-width: 31em;
+  font-family: var(--dl-serif);
+  font-size: clamp(21px, 2.25vw, 25px);
+  line-height: 1.42;
+  color: var(--dl-ink);
 }
 
-/* ── Более личное: кадр и короткое вступление рядом, ниже две равные карточки-ссылки ── */
-.dv-media { display: grid; gap: 24px; }
-.dv-media-text { display: grid; gap: 18px; align-content: center; }
-.dv-media-photo { position: relative; aspect-ratio: 3 / 2; border-radius: var(--radius); overflow: hidden; }
-.dv-media-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.dv-personal { display: grid; gap: var(--dv-gutter); margin-top: var(--dv-stack); list-style: none; }
-.dv-personal li { display: grid; }
-.dv-personal a { display: grid; gap: 6px; align-content: start; justify-items: start; color: inherit; text-decoration: none; }
-.dv-personal a:hover { border-color: rgba(201, 169, 110, 0.5); }
-.dv-personal a:hover .dv-item { color: var(--gold2); }
-.dv-personal .dv-link { min-height: 0; margin-top: 8px; }
-@media (min-width: 760px) { .dv-personal { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 900px) {
-  .dv-media { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 4vw, 56px); align-items: center; }
-  .dv-media-photo { order: -1; }
-  .dv-media-solo { grid-template-columns: minmax(0, 1fr); }
-}
+.dl-card { background: var(--surface); border: 1px solid var(--dl-rule); border-radius: var(--radius); overflow: hidden; }
+.dl-card-photo { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; }
+.dl-card-body { padding: 20px 22px 22px; }
+.dl-card-name { font-family: var(--dl-serif); font-size: 26px; line-height: 1.1; color: var(--dl-ink); }
+.dl-card-role { margin-top: 7px; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+.dl-card-terms { margin: 14px 0 20px; font-size: 14.5px; line-height: 1.62; color: var(--dl-quiet); }
+.dl .dl-btn { padding: 15px 14px; font-size: 12px; letter-spacing: 1.2px; line-height: 1.35; text-align: center; }
 
-/* ── «С чего можно начать»: три шага, условия; дальше общий для сайта блок «напишите мне» ── */
-.dv-start-note { margin-top: calc(var(--dv-head) * -0.5); color: var(--dv-ink); }
-.dv-steps { display: grid; gap: 22px; margin-top: var(--dv-stack); list-style: none; }
-.dv-steps li { display: grid; gap: 10px; align-content: start; padding-top: 18px; border-top: 1px solid var(--dv-rule); }
-.dv-steps .dv-meta { letter-spacing: 0.04em; }
-.dv-start-foot { display: grid; gap: 6px; justify-items: start; margin-top: var(--dv-stack); }
-.dv-start-foot .dv-text { color: var(--dv-quiet); }
-.dv-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
-@media (min-width: 900px) { .dv-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; } }
-.dv ~ .cta-final { margin-top: clamp(40px, 5vw, 64px); }
-
-@media (max-width: 639px) {
-  .dv-hero-cta, .dv-hero-cta .dv-btn, .dv-actions .dv-btn { width: 100%; }
-  .dv-hero-cta .dv-btn, .dv-actions .dv-btn { padding-inline: 12px; letter-spacing: 0.04em; text-wrap: balance; }
-}
-
+/* Появление первого экрана: один раз, из уже читаемого состояния. */
 @media (prefers-reduced-motion: no-preference) {
-  .dv-rise > * { animation: dv-rise 0.9s var(--dv-ease) both; }
-  .dv-rise > :nth-child(2) { animation-delay: 0.07s; }
-  .dv-rise > :nth-child(3) { animation-delay: 0.14s; }
-  .dv-rise > :nth-child(4) { animation-delay: 0.21s; }
-  /* Раскрытие тезиса: высота едет плавно там, где браузер это умеет. */
-  @supports (interpolate-size: allow-keywords) {
-    .dv-row { interpolate-size: allow-keywords; }
-    .dv-row::details-content { block-size: 0; overflow: clip; transition: block-size 0.5s var(--dv-ease), content-visibility 0.5s allow-discrete; }
-    .dv-row[open]::details-content { block-size: auto; }
-  }
+  .dl-hero .dl-h1, .dl-hero .dl-lead, .dl-hero .dl-card { animation: dl-rise 0.9s var(--dl-ease) both; }
+  .dl-hero .dl-lead { animation-delay: 0.08s; }
+  .dl-hero .dl-card { animation-delay: 0.16s; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .dv *, .dv *::after { transition-duration: 0.01ms; }
+@keyframes dl-rise {
+  from { opacity: 0.001; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
 }
-@keyframes dv-rise { from { opacity: 0.001; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+/* ── «Возможно, это про вас» ── */
+.dl-recognition { list-style: none; border-top: 1px solid var(--dl-rule); }
+.dl-recognition li {
+  position: relative;
+  padding: 17px 0 19px 34px;
+  border-bottom: 1px solid var(--dl-rule);
+  font-family: var(--dl-serif);
+  font-size: clamp(20px, 2.05vw, 24px);
+  line-height: 1.36;
+  color: var(--dl-ink);
+  text-wrap: pretty;
+}
+.dl-recognition li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(17px + 0.68em);
+  width: 16px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* ── Текст разделов ── */
+.dl-prose p { max-width: 62ch; font-size: 17px; line-height: 1.72; }
+.dl-prose > * + p, .dl-prose > p + * { margin-top: 1.15em; }
+.dl-prose h3 {
+  max-width: 22em;
+  margin-top: 2.1em;
+  font-family: var(--dl-serif);
+  font-weight: 400;
+  font-size: clamp(24px, 2.5vw, 28px);
+  line-height: 1.18;
+  color: var(--dl-ink);
+  text-wrap: balance;
+}
+.dl-prose h3:first-child { margin-top: 0; }
+.dl-prose h3 + p { margin-top: 0.7em; }
+.dl-prose a { color: var(--gold); text-decoration: underline; text-decoration-color: rgba(201, 169, 110, 0.45); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.dl-prose a:hover { color: var(--gold2); }
+.dl-prose strong { font-weight: 500; color: var(--dl-ink); }
+
+/* Вопросы к себе: каждый отдельной строкой. */
+.dl-questions { list-style: none; margin-top: 1.5em; }
+.dl-questions + * { margin-top: 1.7em; }
+.dl-questions li {
+  padding: 15px 0 17px;
+  border-top: 1px solid var(--dl-rule);
+  font-family: var(--dl-serif);
+  font-style: italic;
+  font-size: clamp(22px, 2.45vw, 28px);
+  line-height: 1.26;
+  color: #f3ecda;
+  text-wrap: pretty;
+}
+.dl-questions li:last-child { border-bottom: 1px solid var(--dl-rule); }
+
+/* Различения: за одним словом разные процессы. */
+.dl-ledger { margin-top: 1.4em; border-top: 1px solid var(--dl-rule); }
+.dl-ledger + * { margin-top: 1.5em; }
+.dl-ledger-row { display: grid; gap: 4px; padding: 15px 0 16px; border-bottom: 1px solid var(--dl-rule); }
+.dl-ledger dt { font-family: var(--dl-serif); font-size: 22px; line-height: 1.2; color: var(--gold2); text-wrap: balance; }
+.dl-ledger dd { font-size: 16px; line-height: 1.6; }
+
+.dl-note { padding: 18px 20px; background: var(--surface); border: 1px solid var(--dl-rule); border-radius: var(--radius); font-size: 16px; line-height: 1.65; }
+
+/* ── «Как я с этим работаю»: итоговая фраза ── */
+.dl-thesis {
+  position: relative;
+  max-width: 21em;
+  margin-top: 38px;
+  padding-top: 28px;
+  font-family: var(--dl-serif);
+  font-size: clamp(24px, 2.9vw, 33px);
+  line-height: 1.24;
+  color: var(--dl-ink);
+  text-wrap: balance;
+}
+.dl-thesis::before { content: ''; position: absolute; top: 0; left: 0; width: 48px; height: 1px; background: var(--gold); }
+
+/* ── «Почему эта тема близка моей практике» ── */
+.dl-author .dl-h2 { margin-bottom: 22px; }
+.dl-author-photo { display: block; width: 100%; max-width: 250px; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--dl-rule); }
+.dl-more { display: flex; flex-wrap: wrap; gap: 10px 24px; margin-top: 26px; font-size: 14px; letter-spacing: 0.02em; }
+.dl-more a { padding-bottom: 2px; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(201, 169, 110, 0.38); }
+.dl-more a:hover { color: var(--gold2); border-bottom-color: var(--gold2); }
+
+/* ── «С чего можно начать»: светлая панель ── */
+.dl-start {
+  display: grid;
+  gap: 34px;
+  padding: clamp(28px, 5.4vw, 64px);
+  background: var(--dl-paper);
+  border-radius: 14px;
+  color: var(--dl-paper-body);
+}
+.dl-start ::selection { background: rgba(125, 90, 34, 0.26); color: var(--dl-paper-ink); }
+.dl-start-title { font-family: var(--dl-serif); font-weight: 400; font-size: clamp(32px, 4vw, 46px); line-height: 1.06; letter-spacing: -0.008em; color: var(--dl-paper-ink); text-wrap: balance; }
+.dl-start-main p { max-width: 54ch; margin-top: 18px; font-size: 17px; line-height: 1.7; }
+.dl-start-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 28px; }
+.dl-btn-ink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 14px 30px;
+  background: var(--dl-paper-ink);
+  border-radius: var(--radius);
+  color: var(--dl-paper);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.dl-btn-ink:hover { background: var(--dl-paper-gold); }
+.dl a.dl-btn-ink:focus-visible, .dl a.dl-link-ink:focus-visible { outline-color: var(--dl-paper-gold); }
+.dl-link-ink { display: inline-flex; align-items: center; gap: 8px; padding-bottom: 2px; color: var(--dl-paper-gold); font-size: 15.5px; text-decoration: none; border-bottom: 1px solid rgba(125, 90, 34, 0.4); }
+.dl-link-ink svg { transition: transform 0.3s var(--dl-ease); }
+.dl-link-ink:hover { color: var(--dl-paper-ink); border-bottom-color: var(--dl-paper-ink); }
+.dl-link-ink:hover svg { transform: translateX(3px); }
+
+.dl-terms { border-top: 1px solid var(--dl-paper-rule); }
+.dl-terms-row { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; padding: 13px 0; border-bottom: 1px solid var(--dl-paper-rule); }
+.dl-terms dt { flex: 0 0 auto; font-size: 14px; color: var(--dl-paper-quiet); }
+.dl-terms dd { font-size: 15.5px; line-height: 1.4; color: var(--dl-paper-ink); text-align: right; text-wrap: balance; }
+.dl-terms-note { margin-top: 16px; font-size: 14.5px; line-height: 1.6; color: var(--dl-paper-quiet); }
+
+/* ── «Почитать по теме» ── */
+.dl-reading .dl-sec:first-child:not(:last-child) { padding-bottom: clamp(44px, 6vw, 72px); }
+.dl-label { display: block; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+
+.dl-series-head { display: grid; gap: 18px; color: inherit; text-decoration: none; }
+.dl-series-cover { display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 10px; }
+.dl-series-title { display: block; margin: 8px 0 9px; font-family: var(--dl-serif); font-size: clamp(27px, 3.1vw, 34px); line-height: 1.1; color: var(--dl-ink); transition: color 0.25s var(--dl-ease); }
+.dl-series-desc { display: block; font-size: 15px; line-height: 1.6; color: var(--dl-quiet); }
+.dl-series-head:hover .dl-series-title { color: var(--gold2); }
+
+.dl-parts { list-style: none; margin-top: 24px; border-top: 1px solid var(--dl-rule); }
+.dl-parts a { display: grid; grid-template-columns: 42px minmax(0, 1fr); align-items: baseline; padding: 13px 0 14px; border-bottom: 1px solid var(--dl-rule); color: var(--dl-body); font-size: 16.5px; line-height: 1.4; text-decoration: none; }
+.dl-parts-n { font-family: var(--dl-serif); font-size: 17px; font-variant-numeric: lining-nums; letter-spacing: 0.04em; color: var(--gold); }
+.dl-parts a:hover { color: var(--gold2); }
+
+.dl-articles { list-style: none; }
+.dl-series + .dl-articles { margin-top: 34px; }
+.dl-article { display: grid; grid-template-columns: 96px minmax(0, 1fr); column-gap: 18px; align-items: start; padding: 20px 0; border-top: 1px solid var(--dl-rule); color: inherit; text-decoration: none; }
+.dl-articles li:last-child .dl-article { border-bottom: 1px solid var(--dl-rule); }
+.dl-article-cover { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; }
+.dl-article-title { display: block; margin: 6px 0 6px; font-family: var(--dl-serif); font-size: clamp(21px, 2.2vw, 24px); line-height: 1.2; color: var(--dl-ink); transition: color 0.25s var(--dl-ease); }
+.dl-article-desc { display: block; font-size: 14.5px; line-height: 1.55; color: var(--dl-quiet); }
+.dl-article:hover .dl-article-title { color: var(--gold2); }
+
+/* ── «Более личное» ── */
+.dl-personal-intro { max-width: 54ch; margin-bottom: 18px; font-size: 16px; line-height: 1.65; color: var(--dl-quiet); }
+.dl-personal { list-style: none; border-top: 1px solid var(--dl-rule); }
+.dl-personal a { display: block; padding: 15px 0 17px; border-bottom: 1px solid var(--dl-rule); text-decoration: none; }
+.dl-personal-title { display: inline-flex; align-items: center; gap: 9px; font-family: var(--dl-serif); font-size: clamp(21px, 2.2vw, 24px); line-height: 1.2; color: var(--dl-ink); transition: color 0.25s var(--dl-ease); }
+.dl-personal-title svg { flex: 0 0 auto; color: var(--gold); transition: transform 0.3s var(--dl-ease); }
+.dl-personal-note { display: block; margin-top: 4px; font-size: 14.5px; line-height: 1.55; color: var(--dl-quiet); }
+.dl-personal a:hover .dl-personal-title { color: var(--gold2); }
+.dl-personal a:hover svg { transform: translate(2px, -2px); }
+
+/* ── От планшета ── */
+@media (min-width: 640px) {
+  .dl-ledger-row { grid-template-columns: 208px minmax(0, 1fr); column-gap: 28px; align-items: baseline; padding: 16px 0 17px; }
+  .dl-series-head { grid-template-columns: 220px minmax(0, 1fr); column-gap: 28px; align-items: center; }
+  .dl-article { grid-template-columns: 132px minmax(0, 1fr); column-gap: 24px; }
+}
+
+/* ── Десктоп: ось «заголовок слева, содержание справа» ── */
+@media (min-width: 960px) {
+  .dl-rail { grid-template-columns: var(--dl-rail) minmax(0, 1fr); column-gap: var(--dl-gap); align-items: start; }
+  .dl-rail > .dl-h2 { position: sticky; top: 104px; }
+  .dl-hero-row { grid-template-columns: minmax(0, 1fr) 368px; column-gap: 76px; align-items: start; }
+  .dl-author-photo { max-width: none; }
+  .dl-author-plain { grid-template-columns: minmax(0, 1fr); max-width: calc(100% - var(--dl-rail) - var(--dl-gap)); margin-left: auto; }
+  .dl-start { grid-template-columns: minmax(0, 1fr) minmax(0, 372px); column-gap: 72px; align-items: end; }
+}
+
+/* ── Телефон ── */
+@media (max-width: 639px) {
+  .dl-headline { letter-spacing: -0.006em; line-height: 1.06; }
+  .dl-card-photo { aspect-ratio: 16 / 9; }
+  .dl-recognition li { padding-left: 28px; }
+  .dl-recognition li::before { width: 14px; }
+  .dl-start { margin-inline: -8px; }
+  .dl-terms-row { gap: 14px; }
+  .dl-btn-ink { width: 100%; }
+}
