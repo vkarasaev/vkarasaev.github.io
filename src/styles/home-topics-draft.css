@@ -143,3 +143,34 @@ html:has(.tp-band) { overflow-x: clip; }
 @media (min-width: 960px) {
   .tq6 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* ── 7 и 8. Вариант 4 на шкале главной ──
+   Основа: плашки варианта 4 (кадр слева 40%, текст справа), которые Валерий принял.
+   Изменено только то, что выбивалось из главной:
+   - название = .post-title «Как я думаю - в текстах»: Cormorant 23, светлое начертание 300, интерлиньяж 1.3
+     (в варианте 4 было 22-25 и начертание 400, такого на главной нет);
+   - текст = .fmt-d «Форматы работы»: Jost 14.5 / 1.6, как в варианте 4;
+   - отступы плашки и между названием и текстом как в варианте 4.
+   Переход на страницу темы обозначен так же, как «Как выбрать формат →» под форматами:
+   золотая строка со стрелкой, без подчёркивания, кегль как у текста (14.5), чтобы в
+   плашке было два кегля: 23 и 14.5. Строка стоит внизу плашки, в ряду ссылки на одной высоте.
+   7: у каждой темы своя подпись («Как я работаю с выгоранием →»).
+   8: одна подпись на все темы («Как я с этим работаю →»). */
+.tq7 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+.tq7 .tq-card { display: grid; grid-template-columns: 84px 1fr; align-items: center; gap: 0 14px; padding: 16px; }
+.tq7 .tq-img { aspect-ratio: 1; height: auto; }
+.tq7 .tq-copy { display: contents; }
+.tq7 .tq-name { font-weight: 300; font-size: 23px; line-height: 1.3; }
+.tq7 .tq-text { grid-column: 1 / -1; margin-top: 14px; }
+.tq-more { grid-column: 1 / -1; margin-top: 12px; font-size: 14.5px; color: var(--gold); transition: color .3s; }
+.tq-card:hover .tq-more { color: var(--gold2); }
+@media (min-width: 640px) {
+  .tq7 .tq-card { grid-template-columns: 40% 1fr; gap: 0 22px; align-items: stretch; padding: 0; overflow: hidden; }
+  .tq7 .tq-img { aspect-ratio: auto; contain: size; height: 100%; min-height: 190px; border-radius: 0; }
+  .tq7 .tq-copy { display: flex; flex-direction: column; gap: 10px; padding: 22px 22px 20px 0; }
+  .tq7 .tq-text { margin-top: 0; }
+  .tq7 .tq-more { margin-top: auto; padding-top: 4px; }
+}
+@media (min-width: 960px) {
+  .tq7 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
