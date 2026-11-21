@@ -168,13 +168,14 @@ export const career: Direction = {
         title: 'Посленапряжение',
         href: 'https://t.me/valera_outloud/50',
         note: 'Большая задача уже позади, а внутри ещё ничего не закончилось.',
-        thumb: '/images/photo/about-guitar.jpg',
+        thumb: '/images/direction/career-post-guitar.jpg',
       },
       {
         title: 'Свобода всё просрать',
         href: 'https://t.me/valera_outloud/35',
         note: 'Моя история ухода из прежней работы и жизни без готового следующего плана.',
-        thumb: '/images/photo/about-camino.jpg',
+        // Кадр выбран 21.11.2026 из двух (в машине, коробки переезда): лицо читается в 88 px.
+        thumb: '/images/direction/career-post-car.jpg',
       },
     ],
   },
